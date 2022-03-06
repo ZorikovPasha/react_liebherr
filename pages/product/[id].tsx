@@ -1,38 +1,26 @@
 import { NextPage } from "next";
-import { DescriptionPars, HelpRequestForm, ProductTabs, ProductView, SimilarOnesSlider } from "../../components";
+import { BreadCrumbs, DescriptionPars, HelpRequestForm, ProductTabs, ProductView, 
+  SimilarOnesSlider } from "../../components";
 
 const Product: NextPage = () => {
+  const breadCrumbs = [
+    { id: 1, link: "/", text: "Главная" }, 
+    { id: 2, link: "/blog", text: "Каталог техники" }, 
+    { id: 3, link: "", text: "Страница товара" }, 
+  ];
+
   return (
     <>
-      <div className="breadcrumbs">
-        <div className="container">
-          <ul className="breadcrumbs__list">
-            <li className="breadcrumbs__item">
-              <a className="breadcrumbs__link" href="index.html">
-                Главная
-              </a>
-            </li>
-            <li className="breadcrumbs__item">
-              <a className="breadcrumbs__link" href="catalog.html">
-                Каталог техники
-              </a>
-            </li>
-            <li className="breadcrumbs__item">
-              <span className="breadcrumbs__link">Страница товара</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <BreadCrumbs items={breadCrumbs} />
+      <ProductView />
 
-      <ProductView></ProductView>
+      <ProductTabs />
 
-      <ProductTabs></ProductTabs>
+      <DescriptionPars />
 
-      <DescriptionPars></DescriptionPars>
+      <HelpRequestForm />
 
-      <HelpRequestForm></HelpRequestForm>
-
-      <SimilarOnesSlider></SimilarOnesSlider>
+      <SimilarOnesSlider />
     </>
   );
 };

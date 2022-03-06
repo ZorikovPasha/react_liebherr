@@ -1,10 +1,17 @@
 import { NextPage } from "next";
-import { BreadCrumbs, ContactsForm, ReviewsCards, ServicesPreviews, Texts } from "../components";
+import { BreadCrumbs, ContactsForm, ReviewsCards, ServicesPreviews, 
+  Texts, CostsRow } from "../components";
 
 const About: NextPage = () => {
+  const breadCrumbs = [
+    { id: 1, link: "/", text: "Главная" }, 
+    { id: 2, link: "", text: "О компании" }, 
+  ];
+
+
   return (
     <>
-      <BreadCrumbs items={[]}></BreadCrumbs>
+      <BreadCrumbs items={breadCrumbs} />
       <section className="about">
         <div className="container">
           <h1 className="about__title">О Компании Еврокран</h1>
@@ -44,47 +51,48 @@ const About: NextPage = () => {
 
       <ReviewsCards></ReviewsCards>
 
-      <section className="cost cost--padding">
-        <div className="container">
-          <div className="cost__inner">
-            <h2 className="cost__title">Несколько фактов о нас</h2>
-            <div className="cost__items wow animate__animated animate__fadeIn animate__delay-1s">
-              <div className="cost__item">
-                <p className="cost__item-num cost__item-num--1">
-                  <img src="static/images/cost-1.png" alt="" />
-                </p>
-                <p className="cost__item-title">Прозрачность</p>
-                <p className="cost__item-text">работаем с клиентами без посредников</p>
-              </div>
-              <div className="cost__item">
-                <p className="cost__item-num cost__item-num--2">
-                  <img src="static/images/cost-2.png" alt="" />
-                </p>
-                <p className="cost__item-title">Ответственность</p>
-                <p className="cost__item-text">исполняем обязательства в соответствии с договором и гарантируем завершение работы в срок</p>
-              </div>
-              <div className="cost__item">
-                <p className="cost__item-num cost__item-num--3">
-                  <img src="static/images/cost-3.png" alt="" />
-                </p>
-                <p className="cost__item-title">Профессионализм</p>
-                <p className="cost__item-text">постоянная подготовка кадров для безопасной работы со спецтехникой любой сложности</p>
-              </div>
-              <div className="cost__item">
-                <p className="cost__item-num cost__item-num--4">
-                  <img src="static/images/cost-4.png" alt="" />
-                </p>
-                <p className="cost__item-title">Качество</p>
-                <p className="cost__item-text">высший класс обслуживания заказчиков и новейший парк техники</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CostsRow></CostsRow>
 
       <Texts></Texts>
 
-      <ContactsForm></ContactsForm>
+      <section className="contacts">
+        <div className="container">
+          <h2 className="contacts__title">Контакты</h2>
+          <div className="contacts__inner">
+            <div className="contacts__content">
+              <a className="contacts__address" href="#">г. Москва, Россия, 117628,м. Бульвар Дмитрия Донского, ул. Куликовская, 12 </a>
+              <div className="contacts__box">
+                <div className="contacts__phones">
+                  <a className="contacts__phone" href="tel:+74999299666">+7 (499)929-96-66</a>
+                  <a className="contacts__phone" href="tel:+79853645518">+7 (985)364-55-18</a>
+                  <a className="contacts__phone" href="tel:+79852262030">+7 (985)226-20-30</a>
+                </div>
+                <div className="contacts__time">
+                  <a className="contacts__mail" href="mailto:evro-k@yandex.ru">evro-k@yandex.ru</a>
+                  <p className="contacts__schedule">10:00 - 17:00</p>  
+                </div>
+              </div>
+              <div className="contacts__requisite">
+                <p className="contacts__sub">Реквизиты:</p>
+                <p>ООО "Компания Еврокран" </p>
+                <div className="contacts__requisite-box">
+                  <p>ИНН:</p>
+                  <p>7718999293</p>
+                  <p>ОГРН:</p>
+                  <p>5147746130593</p>
+                </div>
+              </div>
+            </div>
+            <ContactsForm></ContactsForm>
+          </div>
+
+          <p className="contacts__sub contacts__sub--margin">Как добраться:</p>
+          <p className="contacts__subtext">
+            Принимая во внимание показатели успешности, глубокий уровень погружения играет определяющее значение для прогресса профессионального сообщества. Лишь предприниматели в сети интернет, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут ограничены исключительно образом мышления. Кстати, активно развивающиеся страны третьего мира смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности.
+          </p>
+        </div>
+      </section>
+
 
       <div className="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1538.59309082283!2d37.5659100109784!3d55.57353554252417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aada349fa0335%3A0x664f1a375fe7ab8a!2z0JrRg9C70LjQutC-0LLRgdC60LDRjyDRg9C7Liwg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1630922368972!5m2!1sru!2sru" width="100%" height="548" style={{ border: 0 }} allowFullScreen loading="lazy"></iframe>

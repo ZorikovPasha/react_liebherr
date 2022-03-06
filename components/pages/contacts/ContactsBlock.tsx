@@ -1,0 +1,40 @@
+const ContactsBlock: React.FC = () => {
+  return (
+    <div className="contacts__content">
+      <a className="contacts__address" href="#">
+        г. Москва, Россия, 117628,м. Бульвар Дмитрия Донского, ул. Куликовская, 12{" "}
+      </a>
+      <div className="contacts__box">
+        <div className="contacts__phones">
+          <a className="contacts__phone" href="tel:+74999299666">
+            +7 (499)929-96-66
+          </a>
+          <a className="contacts__phone" href="tel:+79853645518">
+            +7 (985)364-55-18
+          </a>
+          <a className="contacts__phone" href="tel:+79852262030">
+            +7 (985)226-20-30
+          </a>
+        </div>
+        <div className="contacts__time">
+          <a className="contacts__mail" href="mailto:evro-k@yandex.ru">
+            evro-k@yandex.ru
+          </a>
+          <p className="contacts__schedule">10:00 - 17:00</p>
+        </div>
+      </div>
+      <div className="contacts__requisite">
+        <p className="contacts__sub">Реквизиты:</p>
+        <p>ООО "Компания Еврокран" </p>
+        <div className="contacts__requisite-box">
+          <p>ИНН:</p>
+          <p>7718999293</p>
+          <p>ОГРН:</p>
+          <p>5147746130593</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactsBlock;

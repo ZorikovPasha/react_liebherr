@@ -1,8 +1,11 @@
-import '../styles/style.scss';
+import React from 'react';
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import { store } from '../redux/store';
 import { Layout } from '../components';
+import '../styles/style.scss';
 
 
 type NextPageWithLayout = NextPage & {
@@ -14,10 +17,13 @@ type AppPropsWithLayout = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Provider store={store}>
+      <Layout >
+        <Component {...pageProps}/>
+      </Layout>
+    </Provider>
   )
 };
 

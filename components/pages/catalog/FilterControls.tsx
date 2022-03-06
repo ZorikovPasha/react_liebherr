@@ -1,13 +1,25 @@
-const FilterControls: React.FC = () => {
+
+import React from 'react';
+import { MouseEventHandler } from "react";
+
+interface ICOntrolsProps {
+onAsideOpen: MouseEventHandler<HTMLButtonElement>;
+}
+const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen }, asideBtnRef) => {
+
   return (
     <div className="catalog-content__controls catalog-controls">
       <div className="catalog-controls__aside-toggle aside-toggle">
-        <button className="aside-toggle__btn">
-          <img src="images/aside-toggle.svg" alt="" />
+        <button 
+          className="aside-toggle__btn" 
+          onClick={onAsideOpen}
+          ref={asideBtnRef}
+          >
+          <img src="/static/images/aside-toggle.svg" alt="иконка переключатель" />
         </button>
       </div>
       <div className="catalog-controls__sort">
-        <img src="images/sort-icon.svg" alt="" />
+        <img src="/static/images/sort-icon.svg" alt="" />
         <div className="dropdown">
           <button className="catalog-controls__select sort-select">По умолчанию</button>
           <ul className="sort-select__list">
@@ -24,19 +36,23 @@ const FilterControls: React.FC = () => {
               По длине
             </li>
           </ul>
-          <input type="text" className="sort-select__input" value="" />
+          <input 
+            type="text" 
+            className="sort-select__input" 
+            value="" 
+            />
         </div>
       </div>
       <div className="catalog-controls__view view">
         <button className="catalog-controls__btn view__btn-grid">
-          <img src="images/view-grid.svg" alt="" />
+          <img src="/static/images/view-grid.svg" alt="сетка" />
         </button>
         <button className="catalog-controls__btn view__btn-list">
-          <img src="images/view-list.svg" alt="" />
+          <img src="/static/images/view-list.svg" alt="список" />
         </button>
       </div>
     </div>
   );
-};
+});
 
 export default FilterControls;

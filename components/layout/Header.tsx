@@ -1,28 +1,60 @@
-import { MouseEventHandler } from "react";
-
+import React from 'react';
+import Link from "next/link";
+import { PopupRequest } from '..';
 
 interface IHeaderProps {
-  handleMobMennuButtonClick: MouseEventHandler<HTMLButtonElement>
+  handleMobMennuButtonClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Header: React.FC<IHeaderProps> = ({ handleMobMennuButtonClick }) => {
+const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick}) => {
+
+  const [isPopupRequestOpened, setPopupRequestOpened] = React.useState(false);
+
+  const handletOpenPopup = () => {
+    document.body.classList.add('lock');
+    setPopupRequestOpened(true);
+  };
+
+  const handletClosePopup = () => {
+    document.body.classList.remove('lock');
+    setPopupRequestOpened(false);
+  };
+  const links = [
+    { link: "/catalog", text: "Каталог" },
+    { link: "/objects", text: "Услуги" },
+    { link: "/about", text: "О компании" },
+    { link: "/objects", text: "Объекты" },
+    { link: "/contacts", text: "Цены" },
+    { link: "/blog", text: "Блог" },
+    { link: "/contacts", text: "Контакты" },
+  ];
   return (
     <header className="header">
+      {isPopupRequestOpened && <PopupRequest onClose={handletClosePopup}/>}
       <div className="header__top">
         <div className="container">
           <div className="header__top-inner">
             <div className="header__about">
-              <a className="header__logo" href="main.html">
-                <img className="header__logo-img" src="images/logo.svg" alt="" />
-              </a>
+              <Link href="/">
+                <a className="header__logo">
+                  <img 
+                    className="header__logo-img" 
+                    src="/static/images/logo.svg" 
+                    alt="Логотип компани" 
+                    />
+                </a>
+              </Link>
               <p className="header__about-text">Аренда спецтехники LIEBHERR c 2000 года</p>
             </div>
             <div className="header__info">
               <p className="header__schedule">10:00-17:00</p>
-              <a className="header__address" href="#">г. Москва, <br />
-                ул. Куликовская, 12</a>
+              <span className="header__address">г. Москва, <br />
+                ул. Куликовская, 12</span>
             </div>
-            <button className="header__btn">Свяжитесь со мной</button>
+            <button 
+              className="header__btn"
+              onClick={handletOpenPopup}
+              >Свяжитесь со мной</button>
             <div className="header__tels">
               <a className="header__tel" href="tel:+74999299666">+7 (499)929-96-66</a>
               <a className="header__tel" href="tel:+79853645518">+7 (985)364-55-18</a>
@@ -44,27 +76,13 @@ const Header: React.FC<IHeaderProps> = ({ handleMobMennuButtonClick }) => {
 
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="catalog.html">Каталог</a>
+                {links.map(({ link, text }) => (
+                  <li className="header__nav-item" key={text + link}>
+                    <Link href={link}>
+                      <a className="header__nav-link">{text}</a>
+                    </Link>
                 </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="product.html">Услуги</a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="about.html">О компании</a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link active" href="objects.html">Объекты</a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="contacts.html">Цены</a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="blog.html">Блог</a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="contacts.html">Контакты</a>
-                </li>
+                ))}
             </ul>
           </nav>
           <div className="header__input-box">
@@ -78,6 +96,6 @@ const Header: React.FC<IHeaderProps> = ({ handleMobMennuButtonClick }) => {
       </div>
   </header>
   );
-};
+});
 
 export default Header;

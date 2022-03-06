@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Slider, { Settings } from "react-slick";
+import { PopupRequest } from "../..";
 
 const SliderPrevArrow: React.FC = () => {
   return (
@@ -19,6 +20,18 @@ const SliderNextArrow: React.FC = () => {
 };
 
 const Top: React.FC = () => {
+  const [isPopupRequestOpened, setPopupRequestOpened] = React.useState(false);
+
+  const handletOpenPopup = React.useCallback(() => {
+    document.body.classList.add('lock');
+    setPopupRequestOpened(true);
+  }, []);
+
+  const handletClosePopup = React.useCallback(() => {
+    document.body.classList.remove('lock');
+    setPopupRequestOpened(false);
+  }, []);
+
   const settings: Settings = {
     autoplay: true,
     draggable: true,
@@ -43,23 +56,22 @@ const Top: React.FC = () => {
     { num: "04", total: "04", src: "static/images/top-bg.jpg" },
   ];
   return (
-    
     <section className="top">
-
+    {isPopupRequestOpened && <PopupRequest onClose={handletClosePopup}/>}
       <div className="container-fluid">
         <div className="top__inner">
           <Slider className={`top__slider`} {...settings}>
-            {slides.map(({ num, total, src }) => (
-              <div className="top__slider-item" key={num + src}>
-                <div className="top__slider-numbers">
-                  <span className="top__slider-num">{num}/</span>
-                  <span className="top__slider-total">{total}</span>
+              {slides.map(({ num, total, src }) => (
+                <div className="top__slider-item" key={num + src}>
+                  <div className="top__slider-numbers">
+                    <span className="top__slider-num">{num}/</span>
+                    <span className="top__slider-total">{total}</span>
+                  </div>
+                  <div className="top__slider-images">
+                    <img className="top__slider-img" src={src} alt="background image" />
+                  </div>
                 </div>
-                <div className="top__slider-images">
-                  <img className="top__slider-img" src={src} alt="background image" />
-                </div>
-              </div>
-            ))}
+              ))}
           </Slider>
 
           <div className="top__content">
@@ -68,7 +80,10 @@ const Top: React.FC = () => {
                 <h1 className="top__title animate__animated animate__fadeIn animate__delay-1s">Аренда спецтехники Liebherr для любых задач</h1>
                 <p className="top__text animate__animated animate__fadeIn animate__delay-2s">Мобильные, гусеничные и башенные краны LIEBHERR в аренду для любых задач и грузов. работаем по всей России</p>
                 <div className="top__btns animate__animated animate__fadeIn animate__delay-2s">
-                  <button className="top__callme btn">Заказать звонок</button>
+                  <button 
+                    className="top__callme btn"
+                    onClick={handletOpenPopup}
+                    >Заказать звонок</button>
                   <Link href="/catalog">
                     <a className="top__link">Каталог техники</a>
                   </Link>

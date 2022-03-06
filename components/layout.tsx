@@ -1,14 +1,17 @@
 import React from 'react';
 
-import { MobMenu, Header, PopupRequest, PopupSuccess, BreadCrumbs, Footer } from ".";
+import { MobMenu, Header, PopupSuccess, Footer } from ".";
 
 type LayoutProps = {
   children: React.ReactNode,
 };
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ 
+  children, 
+}) => {
   const [isMobMenuOpen, setMobMenuOpen] = React.useState(false);
   const [isMenuBodyOpened, setMenuBodyOpened] = React.useState(false);
+
 
   const handleMobMennuButtonClick = React.useCallback(() => {
     setMobMenuOpen(true);
@@ -22,18 +25,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     document.body.classList.remove("lock");
   }, []);
 
+  console.log('rendered');
+  
   return (
     <>
       <Header 
-        handleMobMennuButtonClick={handleMobMennuButtonClick}
-        />
+        handleMobMennuButtonClick={handleMobMennuButtonClick}/>
       {<MobMenu 
         handleMobMennuCloseClick={handleMobMennuCloseClick} 
         isMobMenuOpen={isMobMenuOpen}
         isMenuBodyOpened={isMenuBodyOpened}
         />}
       <div className="main">
-        <PopupRequest />
 
         <PopupSuccess 
           title="Ваша заявка отправлена"
@@ -41,7 +44,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           buttonText="Вернуться"
         />
         {children}
-        <Footer></Footer>
+        <Footer />
       </div>
     </>
   )

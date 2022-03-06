@@ -1,18 +1,19 @@
 import Link from "next/link";
-
 interface iCardProps {
   id: number;
   name: string;
   liftingCapacity: number;
   arrowLength: number;
+  imgSrc: string;
 }
 
-const CatalogCard: React.FC<iCardProps> = ({ id, name, liftingCapacity, arrowLength }) => {
+const CatalogCard: React.FC<iCardProps> = ({ id, name, liftingCapacity, arrowLength, imgSrc }) => {
+
   return (
     <div className="product-item" key={id}>
       <div className="product-item__body">
         <div className="product-item__images">
-          <img className="product-item__img" src="static/images/catalog/1.jpg" alt="product" />
+          <img className="product-item__img" src={imgSrc} alt="product" />
         </div>
         <div className="product-item__title-box">
           <Link href={`/product/${id}`}>
@@ -29,8 +30,12 @@ const CatalogCard: React.FC<iCardProps> = ({ id, name, liftingCapacity, arrowLen
           <Link href={`/product/${id}`}>
             <a className="product-item__link">Все характеристики</a>
           </Link>
-          <Link href="/contacts">
-            <a className="product-item__link">Арендовать</a>
+          <Link 
+            href="/contacts"
+            >
+            <a 
+              className="product-item__link"
+              >Арендовать</a>
           </Link>
         </div>
       </div>

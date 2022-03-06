@@ -1,98 +1,71 @@
-import axios, { AxiosError, AxiosInterceptorManager, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-export const apiConfig: AxiosRequestConfig = {
-  withCredentials: true,
+export const apiConfig = {
+  returnRejectedPromiseOnError: true,
   baseURL: "http://localhost:5000",
   headers: {
     "Cache-Control": "no-cache, no-store, must-revalidate",
-    Pragma: "no-cache",
     "Content-Type": "application/json",
     Accept: "application/json",
   },
 }
 
+
 export class Axios {
-  public interceptors: {
-    request: AxiosInterceptorManager<AxiosRequestConfig>;
-    response: AxiosInterceptorManager<AxiosResponse>;
-  } | undefined;
+  protected _axios: AxiosInstance;
   constructor(config: AxiosRequestConfig) {
-    return axios.create(config);
+    this._axios =  axios.create(config);
   }
 }
 
-class UserApi extends Axios {
-  private token: string;
-
+class Api extends Axios {
   constructor(config: AxiosRequestConfig) {
     super(config);
-    this.token = "";
-    this.getToken = this.getToken.bind(this);
-    this.setToken = this.setToken.bind(this);
-    this.removeToken = this.removeToken.bind(this);
-    this.post = this.post.bind(this);
-    this.success = this.success.bind(this);
-    this.error = this.error.bind(this);
-
-    this.interceptors?.request.use((param) => {
-      return {
-        ...param,
-        defaults: {
-          headers: {
-            ...param.headers,
-            "Authorization": `Bearer ${this.getToken()}`
-          },
-        }
-      }
-  }, (error) => {
-      // handling error
-  });
   }
 
-  public success<T>(response: AxiosResponse<T>): T {
+  success = <T>(response: AxiosResponse<T>): T =>  {
     return response.data;
   }
 
-  public error<T> (error: AxiosError<T>): void {
+  error = <T>(error: AxiosError<T>): void => {
     throw error;
   }
 
-  public getToken() {
-    return `Bearer ${this.token}`
-  }
-
-  public setToken(token: string) {
-    this.token = token;
-    localStorage.setItem('token', token)
-  }
-
-  public removeToken() {
-    this.token = "";
-    localStorage.setItem("token", "");
-  }
-
-  public post<T, B, R = AxiosResponse<T>>(url: string, data?: B, config?: AxiosRequestConfig): Promise<R> {
-    return this.post (url, data, config);
-  }
-
-  public register(credentials: any) {
-    const data =  this.post('/private/register', {credentials})
+  get = <T>(url: string): Promise<T> => {
+    return this._axios.get(url)
       .then(this.success)
-      .catch((error: AxiosError<Error>) => console.log(error));
-
-    console.log(data);
-    
-  }
-
-  public login(credentials: any) {
-    const data = this.post('/private/login', {credentials})
+      .catch((error: AxiosError<Error>) => {
+        throw error;
+    });
+    }
+  post = <T, B>(url: string, data?: B): Promise<T> => {
+    return this._axios.post(url, data)
       .then(this.success)
-      .catch((error: AxiosError<Error>) => console.log(error));
-
-    console.log(data);
-    // this.setToken(data);
-
+      .catch((error: AxiosError<Error>) => {
+        console.log(error.response);
+        return error?.response?.data;
+      });
   }
 }
 
-export const userApi = new UserApi(apiConfig);
+class UserApi extends Api {
+  constructor(config: AxiosRequestConfig) {
+    super(config)
+    this._axios.interceptors.request.use((config) => {
+      return {
+        ...config,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }
+    }, (error) => {
+        console.log(error);
+    });
+  }
+  setToken =  (token: string): void => {
+    localStorage.setItem('token', token);
+  }
+}
+
+export const ApiClient = new Api(apiConfig);
+export const UserApiClient = new UserApi(apiConfig);

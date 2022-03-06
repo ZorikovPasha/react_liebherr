@@ -1,22 +1,41 @@
+import React from 'react';
+
 const ProductTabs: React.FC = () => {
+  const [activeTab, setActiveTab] = React.useState(0)
+  const info = {
+    liftingCapacity: { text: "Максимальная грузоподъемность", value: 750 },
+    arrowLength: { text: "При вылете стрелы", value: 7 } ,
+    mainArrowLength: { text: "Главная стрела", value: 140 },
+    maxHeight: { text: "Максимальная высота подъема", value: 191 },
+    maxRadius: { text: "Максимальный вылет стрелы", value: 156 },
+    speed: { text: "Скорость передвижения", value: 1.65 },
+    extension: { text: "Решетчатый удлинитель", value: 14.105},
+  };
+
+  const tabs = [ 'Описание', 'Характеристики', 'Документация' ];
+
+  const handleTabClick = (param: number) => {
+    setActiveTab(param)
+  };
+
+
+
   return (
     <section className="tabs">
       <div className="container">
         <div className="tabs__toggle">
           <div className="tabs__toggle-box">
-            <a className="tabs__toggle-item tabs__toggle-item--pressed" href="#depiction">
-              Описание
-            </a>
-            <a className="tabs__toggle-item" href="#features">
-              Характеристики
-            </a>
-            <a className="tabs__toggle-item" href="#specifications">
-              Документация
-            </a>
+            {tabs.map((t, idx) => (
+              <span 
+                key={idx}
+                className={`tabs__toggle-item ${ idx === activeTab ? 'tabs__toggle-item--pressed' : ''}`}
+                onClick={handleTabClick.bind(null, idx)}
+                >{t}</span>
+            ))}
           </div>
         </div>
         <div className="tabs__content">
-          <div className="tabs__content-item tabs__content-item--shown item-content" id="depiction">
+          { activeTab === 0 && <div className="tabs__content-item tabs__content-item--shown item-content">
             <h2 className="item-content__title">Аренда гусеничного крана Liebherr LR 1750</h2>
             <p className="item-content__text block-text__text">Гусеничный кран LR 1750 находит свое применение в строительстве электростанций, нефтеперерабатывающих заводов, на строительных площадках мостов и при монтаже ветросиловых установок.</p>
             <p className="item-content__text block-text__text">Эта 750-тонная машина имеет универсальное применение со своей 140-метровой основной стрелой, 105-метровым управляемым удлинителем стрелы, 21-метровым монтажным удлинителем, деррик-оборудованием и 400-тонным подвесным противовесом или балластировочной тележкой.</p>
@@ -25,53 +44,31 @@ const ProductTabs: React.FC = () => {
 
             <div className="item-content__images">
               <div className="item-content__img">
-                <img src="images/depict-1.jpg" alt="" />
+                <img src="/static/images/depict-1.jpg" alt="" />
               </div>
               <div className="item-content__img">
-                <img src="images/depict-2.jpg" alt="" />
+                <img src="/static/images/depict-2.jpg" alt="" />
               </div>
               <div className="item-content__img">
-                <img src="images/depict-3.jpg" alt="" />
+                <img src="/static/images/depict-3.jpg" alt="" />
               </div>
             </div>
-          </div>
-          <div className="tabs__content-item" id="features">
+          </div>}
+          { activeTab === 1 && <div className="tabs__content-item">
             <ul className="product__info-list product-list">
-              <li className="product-list__item">
-                <p className="product-list__text">Максимальная грузоподъемность:</p>
-                <p className="product-list__text">750 т</p>
-              </li>
-              <li className="product-list__item">
-                <p className="product-list__text">При вылете стрелы:</p>
-                <p className="product-list__text">7,00 м</p>
-              </li>
-              <li className="product-list__item">
-                <p className="product-list__text">Главная стрела:</p>
-                <p className="product-list__text">140 м</p>
-              </li>
-              <li className="product-list__item">
-                <p className="product-list__text">Максимальная высота подъема:</p>
-                <p className="product-list__text">191 м</p>
-              </li>
-              <li className="product-list__item">
-                <p className="product-list__text">Максимальный вылет стрелы:</p>
-                <p className="product-list__text">156 м</p>
-              </li>
-              <li className="product-list__item">
-                <p className="product-list__text">Решетчатый удлинитель:</p>
-                <p className="product-list__text">от 14,00 до 105,00 м</p>
-              </li>
-              <li className="product-list__item">
-                <p className="product-list__text">Скорость передвижения:</p>
-                <p className="product-list__text">1,65 км/ч</p>
-              </li>
+              { Object.entries(info).map(arr => (
+                  <li className="product-list__item">
+                    <p className="product-list__text">{arr[1].text}:</p>
+                    <p className="product-list__text">{arr[1].value }</p>
+                  </li>
+                )) }
             </ul>
-          </div>
-          <div className="tabs__content-item item-specs" id="specifications">
+          </div>}
+          { activeTab === 2 && <div className="tabs__content-item item-specs">
             <div className="item-specs__box">
               <div className="item-specs__item">
                 <div className="item-specs__images">
-                  <img src="images/specifications/1.jpg" alt="" />
+                  <img src="/static/images/specifications/1.jpg" alt="Спецификация" />
                 </div>
                 <a className="item-specs__link" href="#">
                   скачать
@@ -79,7 +76,7 @@ const ProductTabs: React.FC = () => {
               </div>
               <div className="item-specs__item">
                 <div className="item-specs__images">
-                  <img src="images/specifications/1.jpg" alt="" />
+                  <img src="/static/images/specifications/1.jpg" alt="Спецификация" />
                 </div>
                 <a className="item-specs__link" href="#">
                   скачать
@@ -87,7 +84,7 @@ const ProductTabs: React.FC = () => {
               </div>
               <div className="item-specs__item">
                 <div className="item-specs__images">
-                  <img src="images/specifications/1.jpg" alt="" />
+                  <img src="/static/images/specifications/1.jpg" alt="Спецификация" />
                 </div>
                 <a className="item-specs__link" href="#">
                   скачать
@@ -95,14 +92,14 @@ const ProductTabs: React.FC = () => {
               </div>
               <div className="item-specs__item">
                 <div className="item-specs__images">
-                  <img src="images/specifications/1.jpg" alt="" />
+                  <img src="/static/images/specifications/1.jpg" alt="Спецификация" />
                 </div>
                 <a className="item-specs__link" href="#">
                   скачать
                 </a>
               </div>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </section>

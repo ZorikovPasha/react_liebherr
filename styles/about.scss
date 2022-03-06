@@ -45,6 +45,7 @@
     @extend %imgbox;
     height: 100%;
 
+    background-image: url('../images/about-big.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -52,7 +53,6 @@
 
   &__video-box {
     position: relative;
-
     height: 100%;
   }
 
@@ -82,8 +82,10 @@
   // .reviews__items
 
   &__items {
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // grid-gap: 15px;
     margin: 0 -16px;
-
     .slick-btn {
       right: 12px;
       top: -58px;

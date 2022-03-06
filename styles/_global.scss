@@ -1,10 +1,12 @@
 @import "_vars.scss";
+@import "~slick-carousel/slick/slick.css"; 
 
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
   height: 100%;
 }
+
 
 *, 
 *::after,
@@ -26,6 +28,10 @@ body {
 
   &.lock {
     overflow: hidden;
+
+    @media (hover: hover) {
+      margin-right: 17px;
+    }
   }
 }
 
@@ -188,7 +194,7 @@ button:active {
 .reviews__items {
   .slick-dots {
     position: absolute;
-    display: flex;
+    display: flex !important;
     max-width: 123px;
     width: 100%;
     align-items: center;
@@ -627,11 +633,10 @@ button:active {
 
 
 .product-item {
-
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
   overflow: hidden;
   max-width: 370px;
-
+  padding: 0 5px;
 
 
   &.product-item--wide {
@@ -718,7 +723,7 @@ button:active {
 
   &__box {
     display: grid;
-    grid-template-columns: 160px auto;
+    grid-template-columns: 1fr auto;
     grid-template-rows: 1fr 1fr;
     grid-gap: 8px 10px;
     margin-top: auto;
@@ -754,9 +759,9 @@ button:active {
     line-height: 141.69%;
 
     align-self: flex-start;
+    white-space: nowrap;
+    padding-right: 25px;
 
-    margin-bottom: 22px;
-    padding-right: 42px;
     &::after{
       content: "";
       position: absolute;
@@ -770,6 +775,14 @@ button:active {
 
       background-image: url('../images/catalog-arr.svg');
     }
+  }
+
+  &__link:hover:after {
+    right: -10px;
+  }
+
+  &__link + &__link {
+    margin-top: 22px;
   }
 
   // .product-item__btn
@@ -792,7 +805,6 @@ button:active {
 
 
 .another-ones {
-
   padding-bottom: 80px;
 
   &__title {
@@ -801,12 +813,11 @@ button:active {
   }
 
   &__slider {
-    margin: 0 -15px;
-
+    margin: 0 -5px;
+    
     .slick-slide {
-      margin: 0 15px;
+      padding: 0 5px;
     }
-
     .slick-btn {
       right: 15px;
       top: -58px;
@@ -830,9 +841,10 @@ button:active {
 }
 
 .popup {
-
   @extend %pop-up;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   // .popup__body
 
@@ -844,6 +856,11 @@ button:active {
     position: absolute;
     top: 15px;
     right: 22px;
+    transition: all .2s;
+  }
+
+  &__close:hover {
+    transform: rotate(360deg);
   }
 
   // .popup__title
@@ -930,5 +947,20 @@ button:active {
     display: block;
     padding: 12px 69px;
     margin: 0 auto;
+  }
+}
+
+
+@media (max-width:992px) {
+  .product-item__title--big {
+    font-size: 19px;
+    line-height: 26px;
+  }
+}
+
+@media (max-width:570px) {
+  .product-item__title--big {
+    font-size: 14px;
+    line-height: 16px;
   }
 }

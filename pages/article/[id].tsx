@@ -3,31 +3,16 @@ import { AnotherArticlesSlider, BreadCrumbs } from "../../components";
 
 
 const Article: NextPage = () => {
+  const breadCrumbs = [
+    { id: 1, link: "/", text: "Главная" }, 
+    { id: 2, link: "/blog", text: "Блог" }, 
+    { id: 3, link: "", text: "Аренда автокрана Liebherr ltm 1160" }, 
+  ];
+
 
   return (
     <>
-      <BreadCrumbs items={[]}></BreadCrumbs>
-
-      <div className="breadcrumbs">
-        <div className="container">
-          <ul className="breadcrumbs__list">
-            <li className="breadcrumbs__item">
-              <a className="breadcrumbs__link" href="index.html">
-                Главная
-              </a>
-            </li>
-            <li className="breadcrumbs__item">
-              <a className="breadcrumbs__link" href="blog.html">
-                Блог
-              </a>
-            </li>
-            <li className="breadcrumbs__item">
-              <span className="breadcrumbs__link">Аренда автокрана Liebherr ltm 1160</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
+      <BreadCrumbs items={breadCrumbs} />
       <section className="article-top">
         <div className="container">
           <h1 className="article-top__heading">Аренда автокрана Liebherr ltm 1160</h1>
@@ -36,10 +21,10 @@ const Article: NextPage = () => {
           <p className="article-top__text">Спрос на автокраны немецкого производителя огромный. Однако не все компании имеют достаточно средств на покупку такой машины. Отличное решение – аренда автокрана 160 тонн.</p>
           <div className="article-top__images">
             <div className="article-top__img">
-              <img src="static/images/article/1.jpg" alt="" />
+              <img src="/static/images/article/1.jpg" alt="Строительный кран" />
             </div>
             <div className="article-top__img">
-              <img src="static/images/article/2.jpg" alt="" />
+              <img src="/static/images/article/2.jpg" alt="Строительный кран" />
             </div>
           </div>
           <h2 className="article-top__title">Условия аренды автокранов liebherr ltm 1160</h2>
@@ -72,10 +57,7 @@ const Article: NextPage = () => {
           <p className="article-top__text">Если хотите заказать услуги аренды в москве и московской области, позвоните менеджерам нашей фирмы по номеру +7 (495) 645-19-20. По всем интересующим вопросам вас проконсультируют сотрудники, а также помогут с выбором транспорта.</p>
         </div>
       </section>
-
-      <AnotherArticlesSlider></AnotherArticlesSlider>
-
-
+      <AnotherArticlesSlider />
       <div className="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1538.59309082283!2d37.5659100109784!3d55.57353554252417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aada349fa0335%3A0x664f1a375fe7ab8a!2z0JrRg9C70LjQutC-0LLRgdC60LDRjyDRg9C7Liwg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1630922368972!5m2!1sru!2sru" width="100%" height="548" style={{ border: 0 }} allowFullScreen loading="lazy"></iframe>
       </div>

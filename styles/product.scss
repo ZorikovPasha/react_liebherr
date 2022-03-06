@@ -184,6 +184,7 @@
   &__toggle-item {
     display: inline-block;
     padding: 0 24px 8px;
+    cursor: pointer;
   }
 
   &__toggle-item--pressed {
@@ -217,16 +218,6 @@
       left: -63%;
       width: 1218px;
     }
-  }
-
-  // .tabs__content-item
-
-  &__content-item {
-    display: none;
-  }
-
-  &__content-item--shown {
-    display: block;
   }
 }
 

@@ -12,7 +12,7 @@ const CostsRow: React.FC = () => {
           <h2 className="cost__title">Из чего складывается стоимость аренды</h2>
           <div className="cost__items">
             {costsItems.map(({ imgSrc, text }, idx) => (
-              <div className="cost__item">
+              <div className="cost__item" key={imgSrc}>
                 <p className={`cost__item-num cost__item-num--${idx + 1}`}>
                   <img src={imgSrc} alt="cost" />
                 </p>

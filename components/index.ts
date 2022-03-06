@@ -34,14 +34,17 @@ import SceneFootage from "./pages/object/SceneFootage";
 import ObjectCard from "./pages/objects/ObjectCard";
 import ReviewsCards from "./pages/about/ReviewsCards";
 import ArticleCard from "./pages/blog/ArticleCard";
+import ContactsBlock from "./pages/contacts/ContactsBlock";
+import AnotherObjectsSlider from "./pages/object/AnotherObjectsSlider";
 import Layout from "./layout";
 
 import MobMenu from "./layout/MobMenu";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
+
 export {PopupRequest, BreadCrumbs, Popup, Top, RentSlider, Guarantee, ProjectsSlider, 
   ResultsInNumbers, CatalogSlider, CostsRow, SupplyForm, AboutPreview, ServicesPreviews,
   Texts, QuestionsForm, ProductView, ProductTabs, DescriptionPars, SimilarOnesSlider,
   HelpRequestForm, CatalogTabs, ContactsForm, CatalogAside, Pagination, FilterControls, 
   CatalogCard, AnotherArticlesSlider, SceneFootage, ObjectCard, ReviewsCards, ArticleCard,
-  Layout, MobMenu, Header, PopupSuccess, Footer };
+  Layout, MobMenu, Header, PopupSuccess, Footer, ContactsBlock, AnotherObjectsSlider };

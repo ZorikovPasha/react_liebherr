@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MouseEventHandler } from "react";
 
 interface IMobMenuProps {
-  handleMobMennuCloseClick:  MouseEventHandler<HTMLButtonElement>;
+  handleMobMennuCloseClick:  MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
   isMobMenuOpen: boolean;
   isMenuBodyOpened: boolean;
 }
@@ -18,6 +18,7 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
     { link: "/blog", text: "Блог" },
     { link: "/contacts", text: "Контакты" },
   ];
+
   return (
     <div className={`mob-menu ${isMobMenuOpen ? 'opened' : ''}`}>
       <div className={`mob-menu__body ${isMenuBodyOpened ? 'opened' : ''}`}>
@@ -27,9 +28,15 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
         </button>
         <ul className="mob-menu__list">
           {menuItems.map(({ link, text }) => (
-            <li className="mob-menu__list-item" key={text}>
-              <Link href={link} passHref>
+            <li 
+              className="mob-menu__list-item" 
+              key={text}
+              onClick={handleMobMennuCloseClick}
+              >
+              <Link href={link}>
+                <a className="mob-menu__list-link">
                 {text}
+                </a>
               </Link>
             </li>
           ))}

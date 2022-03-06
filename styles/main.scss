@@ -253,7 +253,7 @@
     .slick-dots {
       position: absolute;
       right: 12px;
-      display: flex;
+      display: flex !important;
       max-width: 47%;
       width: 100%;
       bottom: 79px;
@@ -720,12 +720,7 @@
 }
 
 .catalog-slider {
-
   margin-bottom: 30px;
-
-  .slick-slide {
-    margin: 0 15px;
-  }
 
   .slick-btn {
     right: 223px;

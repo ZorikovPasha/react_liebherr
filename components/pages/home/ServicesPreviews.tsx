@@ -16,7 +16,7 @@ const ServicesPreviews: React.FC = () => {
           <h2 className="services__title">Услуги</h2>
           <div className="services__items">
             {servicesItems.map(({ text, imgSrc }) => (
-              <div className="services__item">
+              <div className="services__item" key={text}>
                 <div className="services__item-images">
                   <img className="services__item-img" src={imgSrc} alt="Превью услуги" />
                 </div>
