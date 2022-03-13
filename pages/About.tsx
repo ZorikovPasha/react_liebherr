@@ -40,20 +40,20 @@ const About: NextPage = () => {
           <div className="about__video wow animate__animated animate__fadeIn animate__delay-1s" data-wow-offset="200">
             <div className="about__video-box">
               <a className="about__video-play" data-fancybox href="https://youtu.be/0UUK4VDblXM">
-                <img src="static/images/play-btn.svg" alt="" />
+                <img src="static/images/play-btn.svg" alt="значок воспроизведения видео" />
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <ServicesPreviews></ServicesPreviews>
+      <ServicesPreviews />
 
-      <ReviewsCards></ReviewsCards>
+      <ReviewsCards />
 
-      <CostsRow></CostsRow>
+      <CostsRow />
 
-      <Texts></Texts>
+      <Texts />
 
       <section className="contacts">
         <div className="container">
@@ -88,7 +88,7 @@ const About: NextPage = () => {
 
           <p className="contacts__sub contacts__sub--margin">Как добраться:</p>
           <p className="contacts__subtext">
-            Принимая во внимание показатели успешности, глубокий уровень погружения играет определяющее значение для прогресса профессионального сообщества. Лишь предприниматели в сети интернет, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут ограничены исключительно образом мышления. Кстати, активно развивающиеся страны третьего мира смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности.
+          г. Москва, Россия, 117628,м. Бульвар Дмитрия Донского, ул. Куликовская, 12
           </p>
         </div>
       </section>

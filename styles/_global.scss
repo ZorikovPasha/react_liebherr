@@ -165,6 +165,10 @@ button:active {
     width: 40px;
     height: 40px;
     border: 2px solid #FF971D;
+
+    &:active {
+      opacity: .6;
+    }
   
     &.slick-disabled {
       border: 2px solid transparent;
@@ -349,8 +353,7 @@ button:active {
 
 
 .help {
-
-  padding: 47px 0 47px;
+  padding: 47px 0;
 
   position: relative;
   &::after,
@@ -376,10 +379,24 @@ button:active {
   // .help__container
 
   &__container {
+    position: relative;
+
     margin: 0 auto;
     max-width: 1605px;
-    position: relative;
     padding: 76px 0 138px;
+
+    &::after{
+      content: "";
+      position: absolute;
+      z-index: -1;
+      right: -38px;
+      bottom: 0;
+      width: 964px;
+      height: 264px;
+      background-image: url('../images/form-bg.png');
+      background-repeat: no-repeat;
+    }
+
   }
 
   // .help__title
@@ -652,17 +669,12 @@ button:active {
 
   }
 
-  // .product-item__images
-
-  &__images {
-  }
-
   // .product-item__img
 
   &__img {
     display: block;
     width: 100%;
-    max-height: 400px;
+    height: 300px;
     object-fit: cover;
   }
 
@@ -953,8 +965,9 @@ button:active {
 
 @media (max-width:992px) {
   .product-item__title--big {
-    font-size: 19px;
-    line-height: 26px;
+    font-size: 17px;
+    line-height: 20px;
+    margin-bottom: 10px;
   }
 }
 

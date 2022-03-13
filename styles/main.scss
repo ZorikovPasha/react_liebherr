@@ -909,9 +909,9 @@
     }
   }
 
-  // .main-form__form
-
-  &__form {
+  &__block {
+    max-width: 300px;
+    width: 100%;
   }
 
   // .main-form__line
@@ -931,9 +931,7 @@
     line-height: 142.19%;
     color: $black;
     border: 1px solid #535554;
-    max-width: 300px;
     width: 100%;
-    margin-right: 20px;
 
     &::placeholder {
       font-weight: normal;
@@ -1010,6 +1008,7 @@
 
   &__agree-link {
     text-decoration: underline;
+    padding: 0 3px;
   }
 }
 
@@ -1364,5 +1363,12 @@
 
   &__form-btn {
     width: 100%;
+  }
+}
+
+
+@media (max-width:992px) {
+  .main-form__block--pushed {
+    margin-bottom: 30px;
   }
 }

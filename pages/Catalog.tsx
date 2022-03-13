@@ -1,43 +1,38 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import React, { MouseEventHandler } from "react";
 import { BreadCrumbs, CatalogAside, CatalogCard, CatalogTabs, ContactsBlock, ContactsForm, 
   FilterControls, HelpRequestForm, Pagination, Texts } from "../components";
+import { publicApi } from "../api";
+import { MachineryType } from "../types/dataTypes";
 
-const Catalog: NextPage = () => {
+
+interface ICatalogProps {
+  items: MachineryType[];
+}
+
+const Catalog: NextPage<ICatalogProps> = ({ items }) => {
   const [isAsideOpened, setAsideOpened] = React.useState(false);
   const [isAsideBodyOpened, setAsideBodyOpened] = React.useState(false);
 
+
   const AsideRef = React.useRef(null)
   const asideBtnRef = React.useRef(null)
-
-  React.useEffect(() => {
-    document.body.onclick = (e: any) => {
-      if (!e.path.includes(asideBtnRef.current) && !e.path.includes(AsideRef.current) && isAsideOpened) {
-        setAsideOpened(false);
-        setAsideBodyOpened(false)
-        document.body.classList.remove('lock')
-      }
-    };
-  }, [])
 
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "/catalog", text: "Каталог техники" }, 
   ];
 
-  const catalogCards = [
-    { id: 35, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg"  },
-    { id: 5, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-    { id: 3, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-    { id: 0, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-    { id: 45, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg"  },
-    { id: 57, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg"  },
-  ];
-
   const onAsideOpen: MouseEventHandler<HTMLButtonElement> = () => {
     setAsideOpened(true);
     setTimeout(() => setAsideBodyOpened(true), 100);
     document.body.classList.add('lock')
+  };
+
+  const onAsideClose: MouseEventHandler<HTMLButtonElement> = () => {
+    setAsideOpened(false);
+    setAsideBodyOpened(false);
+    document.body.classList.remove('lock')
   };
 
   return (
@@ -52,6 +47,7 @@ const Catalog: NextPage = () => {
               ref={AsideRef}
               isAsideOpened={isAsideOpened} 
               isAsideBodyOpened={isAsideBodyOpened}
+              onAsideClose={onAsideClose}
               />
             <div className="catalog-content__body">
               <FilterControls 
@@ -60,8 +56,15 @@ const Catalog: NextPage = () => {
                 />
 
               <div className="catalog-content__items">
-                {catalogCards.map((card) => (
-                  <CatalogCard {...card} key={card.id} />
+                {items && items?.map((item) => (
+                  <CatalogCard 
+                    id={item.id}
+                    key={item.id} 
+                    name={item.name}
+                    liftingCapacity={item.features.liftingCapacity.value}
+                    arrowLength={item.features.arrowLength.value}
+                    imgSrc={item.imgSrc}
+                    />
                 ))}
               </div>
 
@@ -72,8 +75,7 @@ const Catalog: NextPage = () => {
       </div>
 
       <HelpRequestForm />
-
-      <Texts></Texts>
+      <Texts />
 
       <section className="contacts">
         <div className="container">
@@ -94,3 +96,12 @@ const Catalog: NextPage = () => {
 };
 
 export default Catalog;
+
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const items = await publicApi.getMachinery();
+  
+  return { 
+    props: {items},
+  }
+}

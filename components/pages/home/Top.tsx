@@ -1,26 +1,43 @@
 import Link from "next/link";
 import React from "react";
 import Slider, { Settings } from "react-slick";
+
 import { PopupRequest } from "../..";
 
-const SliderPrevArrow: React.FC = () => {
+interface IArrowProps {
+  onClick: (() => void) | undefined,
+  isDisabled: boolean
+}
+
+const SliderPrevArrow: React.FC<IArrowProps> = ({ onClick, isDisabled }) => {
   return (
-    <button type="button" className="slick-btn slick-prev">
+    <button
+      onClick={onClick}  
+      type="button" 
+      className={`slick-btn slick-prev ${ isDisabled ? 'slick-disabled': ''}`}
+      >
       <img src="static/images/slider-arr-left.svg" alt="" />
     </button>
   );
 };
 
-const SliderNextArrow: React.FC = () => {
+const SliderNextArrow: React.FC<IArrowProps> = ({ onClick, isDisabled }) => {
   return (
-    <button type="button" className="slick-btn slick-next">
+    <button
+      onClick={onClick} 
+      type="button" 
+      className={`slick-btn slick-next ${ isDisabled ? 'slick-disabled': ''}`}
+      >
       <img src="static/images/slider-arr-right.svg" alt="" />
     </button>
   );
 };
 
+
 const Top: React.FC = () => {
   const [isPopupRequestOpened, setPopupRequestOpened] = React.useState(false);
+  const [slider, setSlider] = React.useState<Slider>();
+  const [activeSlide, setActiveSlide] = React.useState(0);
 
   const handletOpenPopup = React.useCallback(() => {
     document.body.classList.add('lock');
@@ -32,13 +49,21 @@ const Top: React.FC = () => {
     setPopupRequestOpened(false);
   }, []);
 
+  const slides = [
+    { num: "01", total: "04", src: "static/images/top-bg.jpg" },
+    { num: "02", total: "04", src: "static/images/top-bg.jpg" },
+    { num: "03", total: "04", src: "static/images/top-bg.jpg" },
+    { num: "04", total: "04", src: "static/images/top-bg.jpg" },
+  ];
+
   const settings: Settings = {
     autoplay: true,
     draggable: true,
     fade: true,
     infinite: false,
-    prevArrow: <SliderPrevArrow />,
-    nextArrow: <SliderNextArrow />,
+    prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === slides.length - 1} />,
+    afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
         breakpoint: 670,
@@ -49,18 +74,17 @@ const Top: React.FC = () => {
     ],
   };
 
-  const slides = [
-    { num: "01", total: "04", src: "static/images/top-bg.jpg" },
-    { num: "02", total: "04", src: "static/images/top-bg.jpg" },
-    { num: "03", total: "04", src: "static/images/top-bg.jpg" },
-    { num: "04", total: "04", src: "static/images/top-bg.jpg" },
-  ];
+
   return (
     <section className="top">
     {isPopupRequestOpened && <PopupRequest onClose={handletClosePopup}/>}
       <div className="container-fluid">
         <div className="top__inner">
-          <Slider className={`top__slider`} {...settings}>
+          <Slider 
+            className={`top__slider`} 
+            {...settings}
+            ref={(slider: Slider) => setSlider(slider)}
+            >
               {slides.map(({ num, total, src }) => (
                 <div className="top__slider-item" key={num + src}>
                   <div className="top__slider-numbers">

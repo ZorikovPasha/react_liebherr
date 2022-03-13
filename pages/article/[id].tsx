@@ -1,8 +1,16 @@
-import { NextPage } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { ParsedUrlQuery } from "querystring";
+import { publicApi } from "../../api";
+
 import { AnotherArticlesSlider, BreadCrumbs } from "../../components";
+import { ArticleType } from "../../types/dataTypes";
 
+interface IArticleProps {
+  article: ArticleType
+}
 
-const Article: NextPage = () => {
+const Article: NextPage<IArticleProps> = ({ article }) => {
+  const { title, images, sections, subtitles } = article;
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "/blog", text: "Блог" }, 
@@ -15,46 +23,24 @@ const Article: NextPage = () => {
       <BreadCrumbs items={breadCrumbs} />
       <section className="article-top">
         <div className="container">
-          <h1 className="article-top__heading">Аренда автокрана Liebherr ltm 1160</h1>
-          <p className="article-top__text">Компания liebherr – ведущий поставщик строительной и землеройной техники в мире. Кроме тяжелых гусеничных экскаваторов производитель предлагает автомобильные краны от легкой до тяжелой категории.</p>
-          <p className="article-top__text">Каждая машина демонстрирует отличные параметры при эксплуатации в тяжелых условиях и проведении серьезных работ.</p>
-          <p className="article-top__text">Спрос на автокраны немецкого производителя огромный. Однако не все компании имеют достаточно средств на покупку такой машины. Отличное решение – аренда автокрана 160 тонн.</p>
+          <h1 className="article-top__heading">{title}</h1>
           <div className="article-top__images">
-            <div className="article-top__img">
-              <img src="/static/images/article/1.jpg" alt="Строительный кран" />
-            </div>
-            <div className="article-top__img">
-              <img src="/static/images/article/2.jpg" alt="Строительный кран" />
-            </div>
+            {images?.map(src => (
+              <div className="article-top__img">
+                <img src={src} alt="Строительный кран" />
+              </div>
+            ))}
           </div>
-          <h2 className="article-top__title">Условия аренды автокранов liebherr ltm 1160</h2>
-          <p className="article-top__text">Компания Еврокран предлагает в аренду в москве автокраны производства liebherr. В линейке надежные, исправные машины, которые часто проходят сервисное обслуживание. Благодаря этому арендованная техника быстро справляется с поставленными задачами. В парке – мобильные и гусеничные транспортные средства.</p>
-          <p className="article-top__text">С помощью кранов разной грузоподъемности можно провести погрузочные, монтажные, транспортировочные работы. Цена аренды зависит от вида выбранной машины, сроков и других факторов. В стоимость проката входит оплата труда опытного крановщика.</p>
-          <p className="article-top__text">Наши постоянные клиенты получают скидки на предоставляемые услуги. Своим клиентам гарантируем следующие выгоды сотрудничества:</p>
-          <ul className="article-top__list">
-            <li className="article-top__list-item">Быстрая выдача транспорта в пользование клиента;</li>
-            <li className="article-top__list-item">Высококлассное обслуживание;</li>
-            <li className="article-top__list-item">Штат опытных водителей, с помощью которых эффективно проводятся любые поставленные задачи:</li>
-            <li className="article-top__list-item">Консультации опытных сотрудников, которые помогают с выбором крана и сопровождают на всех этапах сотрудничества;</li>
-            <li className="article-top__list-item">Сотрудничество на основе договора, в котором отражаются сроки, цены услуг и обязательства сторон.</li>
-          </ul>
-          <p className="article-top__text">Наши краны используются при строительстве высотных объектов, при проведении работ на промышленных добывающих объектах, при прокладке и ремонте дорог, железнодорожных путей.</p>
-          <p className="article-top__text article-top__text--last">Техника незаменима при ремонте старых строений, операциях, требующих высокой точности.</p>
-
-          <h2 className="article-top__title">Особенности и преимущества крана liebherr ltm 1160</h2>
-          <p className="article-top__text">Большим спросом среди предложения нашей компании пользуется автокран liebherr ltm 1160. Модель обладает такими характеристиками:</p>
-          <ul className="article-top__list">
-            <li className="article-top__list-item">Современная концепция привода;</li>
-            <li className="article-top__list-item">Мощное шасси, позволяющее работать на местностях с плохим рельефом;</li>
-            <li className="article-top__list-item">Безопасное перемещение груза;</li>
-            <li className="article-top__list-item">Возможность оперативной установки крана на опоры;</li>
-            <li className="article-top__list-item">Надежная лебедочная система с канавками особого типа, монтированными планетарными редукторами;</li>
-            <li className="article-top__list-item">Небольшие габариты, позволяющие установке легко маневрировать в стесненных пространствах;</li>
-            <li className="article-top__list-item">Оснащение дисковыми пневматическими тормозами. Благодаря этому получилась повышенная скорость торможения без утраты устойчивости;</li>
-            <li className="article-top__list-item">Дистанционное управление, которое позволяет работать без участия водителя, при помощи компьютерной программы, которая автоматически настраивает требуемые показатели после ввода массы груза.</li>
-            <li className="article-top__list-item">Радиус разворота механизма – 10,5 м. Особая программа тестирования liccon дает возможность оператору исключить сбои датчиков без применения измерительных приборов.</li>
-          </ul>
-          <p className="article-top__text">Если хотите заказать услуги аренды в москве и московской области, позвоните менеджерам нашей фирмы по номеру +7 (495) 645-19-20. По всем интересующим вопросам вас проконсультируют сотрудники, а также помогут с выбором транспорта.</p>
+          {sections.map((section, index) => (
+            <div>
+              <h2 className="article-top__title" key={index}>{subtitles[index]}</h2>
+              {section.map(({ text, isListItem }, idx) => (
+                isListItem 
+                  ? <li className="article-top__list-item" key={idx}>{text}</li>
+                  : <p className="article-top__text" key={idx}>{text}</p>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
       <AnotherArticlesSlider />
@@ -66,3 +52,24 @@ const Article: NextPage = () => {
 };
 
 export default Article;
+
+
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return { paths: [
+    { params: { id: '1' } }
+  ],
+fallback: false}
+}
+
+interface IParams extends ParsedUrlQuery {
+id: string
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+const { id } = params as IParams;
+const article = await publicApi.getSingleArticle(id);
+console.log('article', article);
+
+return { props: {article} }
+}

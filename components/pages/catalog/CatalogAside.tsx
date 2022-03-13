@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 interface IASideProps {
   isAsideOpened: boolean;
   isAsideBodyOpened: boolean;
+  onAsideClose: MouseEventHandler<HTMLButtonElement>;
 }
 
-const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({ isAsideOpened, isAsideBodyOpened }, AsideRef) => {
+const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({ isAsideOpened, isAsideBodyOpened, onAsideClose }, AsideRef) => {
   return (
     <aside 
       className={`catalog-content__aside aside-catalog ${isAsideOpened ? "opened" : ""}`}
@@ -14,6 +15,9 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({ isAsideOp
         className={`aside-catalog__body ${isAsideBodyOpened ? 'opened': ""}`}
         ref={AsideRef}
       >
+        <button className="aside-catalog__close" onClick={onAsideClose}>
+          <img src="/static/images/close.svg" alt="крестик" />
+        </button>
         <div className="aside-catalog__title-box">
           <p className="aside-catalog__title">Параметры</p>
         </div>
@@ -92,260 +96,6 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({ isAsideOp
               Показать
             </button>
           </form>
-        </div>
-
-        <div className="aside-catalog__title-box">
-          <p className="aside-catalog__title">Парк техники</p>
-        </div>
-        <div className="aside-catalog__box aside-catalog__box--last">
-          <div className="aside-catalog__dropdown aside-dropdown">
-            <p className="aside-dropdown__title">Мобильные краны Liebherr LTM</p>
-            <div className="aside-dropdown__box">
-              <ul className="aside-dropdown__list">
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1040 (40 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1050 (50 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1070 (70 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1090 (90 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1095 (95 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1120 (120 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="#product.html">
-                    LTM 1250 (250 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1300 (300 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1400 (400 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1500 (500 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1750 (750 т.)
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="aside-catalog__dropdown aside-dropdown">
-            <p className="aside-dropdown__title">Гусеничные краны Liebherr LR</p>
-            <div className="aside-dropdown__box">
-              <ul className="aside-dropdown__list">
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1040 (40 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1050 (50 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1070 (70 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1090 (90 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1095 (95 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1120 (120 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="#product.html">
-                    LTM 1250 (250 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1300 (300 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1400 (400 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1500 (500 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1750 (750 т.)
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="aside-catalog__dropdown aside-dropdown">
-            <p className="aside-dropdown__title">Низкорамные тралы</p>
-            <div className="aside-dropdown__box">
-              <ul className="aside-dropdown__list">
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1040 (40 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1050 (50 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1070 (70 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1090 (90 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1095 (95 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1120 (120 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="#product.html">
-                    LTM 1250 (250 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1300 (300 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1400 (400 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1500 (500 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1750 (750 т.)
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="aside-catalog__dropdown aside-dropdown">
-            <p className="aside-dropdown__title">Модульные платформы</p>
-            <div className="aside-dropdown__box">
-              <ul className="aside-dropdown__list">
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1040 (40 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1050 (50 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1070 (70 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1090 (90 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1095 (95 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1120 (120 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="#product.html">
-                    LTM 1250 (250 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1300 (300 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1400 (400 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1500 (500 т.)
-                  </a>
-                </li>
-                <li className="aside-dropdown__list-item">
-                  <a className="aside-dropdown__link" href="product.html">
-                    LTM 1750 (750 т.)
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </aside>

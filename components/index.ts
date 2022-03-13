@@ -6,6 +6,8 @@ import SupplyForm from "./common/SupplyForm";
 import Texts from "./common/Texts";
 import QuestionsForm from "./common/QuestionsForm";
 import HelpRequestForm from "./common/HelpRequestForm";
+import { SliderPrevArrow } from "./common/SliderArrows";
+import { SliderNextArrow }  from "./common/SliderArrows";
 import ContactsForm from "./common/ContactsForm";
 
 import Top from "./pages/home/Top";
@@ -47,4 +49,5 @@ export {PopupRequest, BreadCrumbs, Popup, Top, RentSlider, Guarantee, ProjectsSl
   Texts, QuestionsForm, ProductView, ProductTabs, DescriptionPars, SimilarOnesSlider,
   HelpRequestForm, CatalogTabs, ContactsForm, CatalogAside, Pagination, FilterControls, 
   CatalogCard, AnotherArticlesSlider, SceneFootage, ObjectCard, ReviewsCards, ArticleCard,
-  Layout, MobMenu, Header, PopupSuccess, Footer, ContactsBlock, AnotherObjectsSlider };
+  Layout, MobMenu, Header, PopupSuccess, Footer, ContactsBlock, AnotherObjectsSlider,
+  SliderNextArrow, SliderPrevArrow };

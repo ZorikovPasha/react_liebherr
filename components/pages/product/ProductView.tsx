@@ -1,31 +1,14 @@
 import React from 'react';
 import Slider from 'react-slick';
+import { MachineryType } from '../../../types/dataTypes';
 
-const ProductView: React.FC = () => {
+interface IView {
+  info: MachineryType
+}
+
+const ProductView: React.FC<IView> = ({ info }) => {
   const [thumbsSlider, setThumbsSlider] = React.useState<Slider>();
   const [fullSlider, setFullSlider] = React.useState<Slider>();
-
-  const info = {
-    liftingCapacity: { text: "Максимальная грузоподъемность", value: 750 },
-    arrowLength: { text: "При вылете стрелы", value: 7 } ,
-    mainArrowLength: { text: "Главная стрела", value: 140 },
-    maxHeight: { text: "Максимальная высота подъема", value: 191 },
-    maxRadius: { text: "Максимальный вылет стрелы", value: 156 },
-    speed: { text: "Скорость передвижения", value: 1.65 },
-    extension: { text: "Решетчатый удлинитель", value: 14.105},
-    price: { text: "Стоимость аренды", value: "Договорная"},
-  };
-  const thumbs = [
-    { imgSrc: "/static/images/product-slider-1.jpg", },
-    { imgSrc: "/static/images/product-slider-2.jpg", },
-    { imgSrc: "/static/images/product-slider-1.jpg", },
-  ];
-
-  const slides = [
-    { imgSrc: "/static/images/product-slider-1.jpg", },
-    { imgSrc: "/static/images/product-slider-2.jpg", },
-    { imgSrc: "/static/images/product-slider-1.jpg", },
-  ];
 
   const thumsSettings = {
     slidesToShow: 3,
@@ -51,7 +34,7 @@ const ProductView: React.FC = () => {
               asNavFor={thumbsSlider} 
               ref={(slider1: Slider) => setFullSlider(slider1)}
               >
-              {slides.map(({ imgSrc }, idx) => (
+              {info?.thumbs?.map((imgSrc, idx) => (
                 <div className="product__slider-item" key={idx}>
                   <div className="product__slider-images">
                     <img src={imgSrc} alt="Строительная техника" />
@@ -65,7 +48,7 @@ const ProductView: React.FC = () => {
               asNavFor={fullSlider} 
               ref={(slider2: Slider) => setThumbsSlider(slider2)}
               >
-              {thumbs.map(({ imgSrc }, idx) => (
+              {info?.thumbs?.map((imgSrc, idx) => (
                 <div className="product__thumb" key={idx}>
                   <div className="product__thumb-images">
                     <img src={imgSrc} alt="Строительная техника" />
@@ -76,8 +59,8 @@ const ProductView: React.FC = () => {
           </div>
           <div className="product__info">
             <ul className="product__info-list product-list">
-              { Object.entries(info).map(arr => (
-                <li className="product-list__item">
+              { info && Object.entries(info.features)?.map(arr => (
+                <li className="product-list__item" key={arr[1].value}>
                   <p className="product-list__text">{arr[1].text}:</p>
                   <p className="product-list__text">{arr[1].value }</p>
                 </li>

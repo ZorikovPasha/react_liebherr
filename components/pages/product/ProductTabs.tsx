@@ -57,7 +57,7 @@ const ProductTabs: React.FC = () => {
           { activeTab === 1 && <div className="tabs__content-item">
             <ul className="product__info-list product-list">
               { Object.entries(info).map(arr => (
-                  <li className="product-list__item">
+                  <li className="product-list__item" key={arr[1].value}>
                     <p className="product-list__text">{arr[1].text}:</p>
                     <p className="product-list__text">{arr[1].value }</p>
                   </li>

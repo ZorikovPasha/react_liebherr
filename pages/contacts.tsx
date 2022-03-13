@@ -17,8 +17,8 @@ const Contacts: NextPage = () => {
           <h2 className="contacts__title">Контакты</h2>
           <div className="contacts__inner">
 
-            <ContactsBlock></ContactsBlock>
-            <ContactsForm></ContactsForm>
+            <ContactsBlock />
+            <ContactsForm />
           </div>
 
           <p className="contacts__sub contacts__sub--margin">Как добраться:</p>

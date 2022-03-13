@@ -1,15 +1,15 @@
 import Link from "next/link";
 
 interface ICardProps {
-  imgSrc: string;
+  preview: string;
   id: number;
   title: string;
 }
-const ObjectCard: React.FC<ICardProps> = ({ id, imgSrc, title }) => {
+const ObjectCard: React.FC<ICardProps> = ({ id, preview, title }) => {
   return (
     <div className="objects__item item-object">
       <div className="item-object__images">
-        <img src={imgSrc} alt="" />
+        <img src={preview} alt="Фото объекта строительства" />
       </div>
       <h6 className="item-object__title">
         <Link href={'/object/' + id}>

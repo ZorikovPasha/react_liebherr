@@ -1,19 +1,17 @@
-import { NextPage } from "next";
-import { ArticleCard, BreadCrumbs } from "../components";
+import { GetStaticProps, NextPage } from "next";
+import { publicApi } from "../api";
+import { BreadCrumbs, ArticleCard } from "../components";
+import { ArticleType } from "../types/dataTypes";
 
-const Blog: NextPage = () => {
+interface IBlogProps {
+  articles: ArticleType[]
+}
+
+const Blog: NextPage<IBlogProps> = ({ articles }) => {
 
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "", text: "Статьи" }, 
-  ];
-
-  const articles= [
-    { id: 1, imgSrc: "static/images/blog/1.jpg", title: "Аренда автокрана", text: "Компания Liebherr – ведущий поставщик строительной и землеройной техники в мире. Предлагаем автомобильные краны от легкой до тяжелой категории." },
-    { id: 2, imgSrc: "static/images/blog/1.jpg", title: "Аренда автокрана", text: "Компания Liebherr – ведущий поставщик строительной и землеройной техники в мире. Предлагаем автомобильные краны от легкой до тяжелой категории." },
-    { id: 3, imgSrc: "static/images/blog/1.jpg", title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "" },
-    { id: 4, imgSrc: "static/images/blog/1.jpg", title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "" },
-    { id: 5, imgSrc: "static/images/blog/1.jpg", title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "" },
   ];
   return (
     <>
@@ -22,8 +20,14 @@ const Blog: NextPage = () => {
         <div className="container">
           <h1 className="blog__title">СТАТЬИ О СПЕЦТЕХНИКЕ</h1>
           <div className="blog__items">
-            {articles.map(articleInfo => (
-              <ArticleCard {...articleInfo} key={articleInfo.id}/>
+            {articles.map(({ id, title, subtitle, preview }) => (
+              <ArticleCard 
+                key={id}
+                id={id}
+                title={title}
+                subtitle={subtitle}
+                preview={preview}
+                />
             ))}
           </div>
           <div className="blog__btn-wrapper">
@@ -36,3 +40,9 @@ const Blog: NextPage = () => {
 };
 
 export default Blog;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const articles = await publicApi.getArticles();
+
+  return { props: {articles} }
+}

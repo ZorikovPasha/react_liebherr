@@ -75,35 +75,55 @@
     margin-bottom: 45px;
   }
 
+  &__list-item {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #FFBF1D;
+  }
+
+
   &__list-link {
     position: relative;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 24px;
     font-weight: 700;
-    letter-spacing: 1px;
-    color: #fff;
-  }
+    letter-spacing: 2px;
+    // color: #fff;
 
-  &__list-link {
-    &::after{
-      content: "";
-      position: absolute;
-      width: 0;
-      left: auto;
-      right: 0;
-      bottom: -15px;
-      background-color: #FFBF1D;
-      height: 3px;
-      transition: all .3s;
-    }
-    &.active::after,
-    &:hover::after{
-      width: 100%;
-      right: auto;
-      left: 0;
-    }
-  }
+    --fill-color: #FFBF1D;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px var(--fill-color);
+    background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
+    color: transparent;
+    background-clip: text;
+    transition: 0.5s linear;
 
+    &:hover {
+      background-size: 100%;
+    }
+
+    // &::before {
+    //   content: attr(data-item);
+    //   transition: 0.5s;
+    //   color: #FFBF1D;
+    //   position: absolute;
+    //   top: 0;
+    //   bottom: 0;
+    //   left: 0;
+    //   right: 0;
+    //   width: 0;
+    //   overflow: hidden;
+    // }
+
+    // &:hover {
+    //   &::before {
+    //     width: 100%;
+    //     transition: all 0.3s ease-in-out;
+    //   }
+    // }
+  }
 
   &__list-item + &__list-item {
     margin-left: 0px;

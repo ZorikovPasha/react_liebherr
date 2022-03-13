@@ -1,18 +1,26 @@
 import { NextPage } from "next";
-import { BreadCrumbs, DescriptionPars, HelpRequestForm, ProductTabs, ProductView, 
-  SimilarOnesSlider } from "../../components";
+import { GetServerSideProps } from 'next';
+import { publicApi } from "../../api";
 
-const Product: NextPage = () => {
+import { BreadCrumbs, DescriptionPars, HelpRequestForm, ProductTabs, ProductView,
+  SimilarOnesSlider } from "../../components";
+import { MachineryType } from "../../types/dataTypes";
+
+interface IProductProps {
+  machinery: MachineryType,
+}
+
+const Product: NextPage<IProductProps> = ({ machinery }) => {
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "/blog", text: "Каталог техники" }, 
     { id: 3, link: "", text: "Страница товара" }, 
   ];
-
+  
   return (
     <>
       <BreadCrumbs items={breadCrumbs} />
-      <ProductView />
+      <ProductView info={machinery}/>
 
       <ProductTabs />
 
@@ -26,3 +34,13 @@ const Product: NextPage = () => {
 };
 
 export default Product;
+
+
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => { 
+  const { machinery } = await publicApi.getSingleMachinery(Number(query.id));
+  
+  return { 
+    props:{ machinery },
+  }
+}

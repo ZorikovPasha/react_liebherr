@@ -11,7 +11,7 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
 
   const menuItems = [
     { link: "/catalog", text: "Каталог" },
-    { link: "/product", text: "Услуги" },
+    { link: "/profile", text: "Услуги" },
     { link: "/about", text: "О компании" },
     { link: "/objects", text: "Объекты" },
     { link: "/contacts", text: "Цены" },
@@ -34,7 +34,7 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
               onClick={handleMobMennuCloseClick}
               >
               <Link href={link}>
-                <a className="mob-menu__list-link">
+                <a className="mob-menu__list-link" data-item={text}>
                 {text}
                 </a>
               </Link>

@@ -3,7 +3,7 @@ import Link from "next/link";
 const ServicesPreviews: React.FC = () => {
   const servicesItems = [
     { text: "Аренда мобильных автокранов Liebherr", imgSrc: "static/images/services/1.png" },
-    { text: "Аренда гусеничных кранов <br /> Liebherr", imgSrc: "static/images/services/2.png" },
+    { text: "Аренда гусеничных кранов Liebherr", imgSrc: "static/images/services/2.png" },
     { text: "Аренда низкорамных тралов", imgSrc: "static/images/services/3.png" },
     { text: "Перевозка негабаритного и тяжеловесного груза", imgSrc: "static/images/services/4.png" },
     { text: "Разработка ППРК", imgSrc: "static/images/services/5.png" },
@@ -21,7 +21,7 @@ const ServicesPreviews: React.FC = () => {
                   <img className="services__item-img" src={imgSrc} alt="Превью услуги" />
                 </div>
                 <Link href="/contacts">
-                  <a className="services__item-link" href="#">
+                  <a className="services__item-link">
                     {text}
                   </a>
                 </Link>

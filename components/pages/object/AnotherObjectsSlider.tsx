@@ -46,20 +46,20 @@ const AnotherObjectsSlider: React.FC = () => {
     ]
   };
   const objects = [
-    { id: 1, name: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "/static/images/top-bg.jpg" },
-    { id: 2, name: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "/static/images/objects/1.jpg" },
-    { id: 3, name: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "/static/images/objects/1.jpg" },
-    { id: 4, name: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "../static/images/objects/1.jpg" },
-    { id: 5, name: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "../static/images/objects/1.jpg" },
-    { id: 6, name: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "../static/images/objects/1.jpg" },
-    { id: 7, name: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "../static/images/objects/1.jpg" },
+    { id: 1, title: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "/static/images/top-bg.jpg" },
+    { id: 2, title: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "/static/images/objects/1.jpg" },
+    { id: 3, title: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "/static/images/objects/1.jpg" },
+    { id: 4, title: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "../static/images/objects/1.jpg" },
+    { id: 5, title: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "../static/images/objects/1.jpg" },
+    { id: 6, title: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "../static/images/objects/1.jpg" },
+    { id: 7, title: "Разгрузка и монтаж трансформатора автокраном LIEBHERR LTM1500 г.Туапсе", imgSrc: "../static/images/objects/1.jpg" },
   ];
   return (
     <div className="another-ones">
       <div className="container">
         <h2 className="another-ones__title">Другие объекты</h2>
         <Slider className="another-ones__slider" {...settings}>
-        {objects.map(({ id, name, imgSrc }) => (
+        {objects.map(({ id, title, imgSrc }) => (
             <div className=" item-object" key={id}>
               <div className="item-object__images">
                 <img src={imgSrc} alt="Фото объекта стройки" />
@@ -67,7 +67,7 @@ const AnotherObjectsSlider: React.FC = () => {
               <h6 className="item-object__title">
                 <Link href={"/object/" + id}>
                 <a className="item-object__link">
-                  {name}
+                  {title}
                 </a>
                 </Link>
               </h6>
@@ -75,9 +75,11 @@ const AnotherObjectsSlider: React.FC = () => {
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">
-          <a className="another-ones__btn" href="objects.html">
-            Смотреть все
-          </a>
+          <Link href="/objects">
+            <a className="another-ones__btn">
+              Смотреть все
+            </a>
+          </Link>
         </div>
       </div>
     </div>

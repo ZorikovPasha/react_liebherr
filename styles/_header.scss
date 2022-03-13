@@ -260,6 +260,7 @@
   transform: translate(0, -50%);
   background-color: transparent;
   border: none;
+
   div {
     width: 40px;
     height: 4px;
@@ -274,6 +275,17 @@
   }
 }
 
+.menu-btn:hover:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(#000, .2);
+}
 .menu-btn.active{
   div:nth-child(2) {
     opacity: 0;

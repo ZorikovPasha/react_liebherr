@@ -1,14 +1,15 @@
 import Link from "next/link";
-interface iCardProps {
-  id: number;
-  name: string;
-  liftingCapacity: number;
-  arrowLength: number;
-  imgSrc: string;
+
+interface ICardProps {
+  id: number,
+  name: string,
+  imgSrc: string,
+  liftingCapacity: number,
+  arrowLength: number,
 }
 
-const CatalogCard: React.FC<iCardProps> = ({ id, name, liftingCapacity, arrowLength, imgSrc }) => {
 
+const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, arrowLength }) => {
   return (
     <div className="product-item" key={id}>
       <div className="product-item__body">

@@ -6,8 +6,8 @@ type LayoutProps = {
   children: React.ReactNode,
 };
 
-const Layout: React.FC<LayoutProps> = ({ 
-  children, 
+const Layout: React.FC<LayoutProps> = ({
+  children,
 }) => {
   const [isMobMenuOpen, setMobMenuOpen] = React.useState(false);
   const [isMenuBodyOpened, setMenuBodyOpened] = React.useState(false);
@@ -25,20 +25,18 @@ const Layout: React.FC<LayoutProps> = ({
     document.body.classList.remove("lock");
   }, []);
 
-  console.log('rendered');
-  
   return (
     <>
-      <Header 
+      <Header
         handleMobMennuButtonClick={handleMobMennuButtonClick}/>
-      {<MobMenu 
-        handleMobMennuCloseClick={handleMobMennuCloseClick} 
+      {<MobMenu
+        handleMobMennuCloseClick={handleMobMennuCloseClick}
         isMobMenuOpen={isMobMenuOpen}
         isMenuBodyOpened={isMenuBodyOpened}
         />}
       <div className="main">
 
-        <PopupSuccess 
+        <PopupSuccess
           title="Ваша заявка отправлена"
           text="Мы позвоним вам в самое ближайшее время"
           buttonText="Вернуться"

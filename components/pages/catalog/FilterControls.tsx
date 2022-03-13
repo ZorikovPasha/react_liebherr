@@ -1,11 +1,18 @@
 
 import React from 'react';
 import { MouseEventHandler } from "react";
+import Select from 'react-select'
 
 interface ICOntrolsProps {
 onAsideOpen: MouseEventHandler<HTMLButtonElement>;
 }
 const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen }, asideBtnRef) => {
+  const sortOptions = [
+    {value: "default", label: "По умолчанию"},
+    {value: "heght", label: "по высоте"},
+    {value: "liftingCapacity", label: "По грузоподъемности"},
+    {value: "length", label: "По длине"},
+  ];
 
   return (
     <div className="catalog-content__controls catalog-controls">
@@ -20,28 +27,10 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
       </div>
       <div className="catalog-controls__sort">
         <img src="/static/images/sort-icon.svg" alt="" />
-        <div className="dropdown">
-          <button className="catalog-controls__select sort-select">По умолчанию</button>
-          <ul className="sort-select__list">
-            <li className="sort-select__item" data-value="1">
-              Не по умолчанию
-            </li>
-            <li className="sort-select__item" data-value="2">
-              по высоте
-            </li>
-            <li className="sort-select__item" data-value="3">
-              По грузоподъемности
-            </li>
-            <li className="sort-select__item" data-value="4">
-              По длине
-            </li>
-          </ul>
-          <input 
-            type="text" 
-            className="sort-select__input" 
-            value="" 
-            />
-        </div>
+        <Select
+          className="catalog-controls__sort-select"
+          options={sortOptions} 
+          />
       </div>
       <div className="catalog-controls__view view">
         <button className="catalog-controls__btn view__btn-grid">

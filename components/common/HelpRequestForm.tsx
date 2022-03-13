@@ -21,9 +21,6 @@ const HelpRequestForm: React.FC = () => {
             </label>
           </form>
         </div>
-        <div className="help__images">
-          <img src="images/form-bg.png" alt="" />
-        </div>
       </div>
     </div>
   );

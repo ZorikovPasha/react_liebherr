@@ -1,19 +1,18 @@
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
+import { publicApi } from "../api";
 import { BreadCrumbs, ObjectCard, Texts } from "../components";
+import { ConstructionType } from "../types/dataTypes";
 
-const Objects: NextPage = () => {
+interface IObjectsProps {
+  constructions: ConstructionType[]
+}
+
+const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
-    { id: 2, link: "", text: "Объексты" }, 
+    { id: 2, link: "", text: "Объекты" }, 
   ];
 
-  const objects = [
-    { id: 1, imgSrc: "/static/images/objects/1.jpg", title: "Замена крана" },  
-    { id: 2, imgSrc: "/static/images/objects/1.jpg", title: "Замена крана" },  
-    { id: 3, imgSrc: "/static/images/objects/1.jpg", title: "Замена крана" },  
-    { id: 4, imgSrc: "/static/images/objects/1.jpg", title: "Замена крана" },  
-    { id: 5, imgSrc: "/static/images/objects/1.jpg", title: "Замена крана" },  
-  ];
   return (
     <>
       <BreadCrumbs items={breadCrumbs} />
@@ -21,8 +20,13 @@ const Objects: NextPage = () => {
         <div className="container">
           <h1 className="objects__title">Работа спецтехники от Компании Еврокран</h1>
           <div className="objects__items">
-            {objects.map(object => (
-              <ObjectCard {...object} key={object.id} />
+            {constructions.map(({ id, preview, title }) => (
+              <ObjectCard 
+                id={id}
+                key={id}
+                title={title}
+                preview={preview}
+              />
             ))}
           </div>
           <div className="objects__btn-wrapper">
@@ -31,9 +35,15 @@ const Objects: NextPage = () => {
         </div>
       </section>
 
-      <Texts></Texts>
+      <Texts />
     </>
   );
 };
 
 export default Objects;
+
+
+export const getStaticProps: GetStaticProps = async () => {
+  const constructions = await publicApi.getConstructions();
+  return { props: {constructions} }
+}

@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { ArticleType, ConstructionType, MachineryType } from "../types/dataTypes";
 
 export const apiConfig = {
   returnRejectedPromiseOnError: true,
@@ -48,6 +49,38 @@ class Api extends Axios {
   }
 }
 
+class PublicApi extends Api {
+  constructor(config: AxiosRequestConfig) {
+    super(config);
+  }
+
+  getMachinery = () => {
+    return this.get<MachineryType[]>('/api/machinery');
+  };
+
+  getSingleMachinery = (id: number)=> {
+    return this.post<{ machinery: MachineryType }, { id: number }>('/api/machinery', { id });
+  };
+
+  getSingleConstruction = (id: string) => {
+    return this.post<ConstructionType, { id: string }>('/api/construction', { id });
+  };
+
+  getConstructions = () => {
+    return this.get<ConstructionType[]>('/api/constructions');
+  };
+
+  getArticles = () => {
+    return this.get<ArticleType[]>('/api/articles');
+  };
+
+  getSingleArticle = (id: string) => {
+    return this.post<ArticleType, { id: string }>('/api/article', { id });
+  };
+}
+
+
+
 class UserApi extends Api {
   constructor(config: AxiosRequestConfig) {
     super(config)
@@ -62,10 +95,10 @@ class UserApi extends Api {
         console.log(error);
     });
   }
-  setToken =  (token: string): void => {
+  setToken = (token: string): void => {
     localStorage.setItem('token', token);
   }
 }
 
-export const ApiClient = new Api(apiConfig);
 export const UserApiClient = new UserApi(apiConfig);
+export const publicApi = new PublicApi(apiConfig);
