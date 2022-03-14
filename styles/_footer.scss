@@ -47,6 +47,7 @@
 
   &__rights {
     font-size: 10px;
+    line-height: 16px;
     color: #B5B5B5;
   }
 
@@ -74,6 +75,7 @@
     font-size: 15px;
     line-height: 141.69%;
     font-family: 'PT Sans', sans-serif;
+
     color: #000000;
     background: #FFFFFF;
     padding: 11px 0;
@@ -82,6 +84,12 @@
     cursor: pointer;
     margin-bottom: 22px;
     border: none;
+    opacity: 1;
+    transition: all .2s;
+  }
+
+  &__btn:hover {
+    opacity: .7;
   }
 
   // .footer__socials
@@ -92,6 +100,7 @@
   // .footer__social
 
   &__social {
+    cursor: pointer;
   }
 
   &__social + &__social {
@@ -105,6 +114,8 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 156.69%;
+
+    white-space: nowrap;
   }
 }
 
