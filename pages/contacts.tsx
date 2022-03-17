@@ -5,7 +5,7 @@ import { ContactsForm, ContactsBlock, BreadCrumbs } from "../components";
 const Contacts: NextPage = () => {
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
-    { id: 2, link: "", text: "Каталог техники" }, 
+    { id: 2, link: "", text: "Контакты" }, 
   ];
   
 

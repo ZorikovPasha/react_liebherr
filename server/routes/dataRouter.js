@@ -9,5 +9,6 @@ router.post('/machinery', dataController.getSingleMachinery.bind(dataController)
 router.post('/construction', dataController.getSingleConstruction.bind(dataController));
 router.get('/constructions', dataController.getConstructions.bind(dataController));
 router.post('/article', dataController.getSingleArticle.bind(dataController));
+router.post('/question', dataController.makeRequest.bind(dataController));
 
 module.exports = router;

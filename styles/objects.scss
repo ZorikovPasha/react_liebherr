@@ -39,6 +39,10 @@
 
   background-color: #fff;
 
+  &:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
   // .item-object__images
 
   &__images {
@@ -79,5 +83,11 @@
 @media (max-width:600px) {
   .objects__items {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .item-object__title {
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 110%;
+    padding: 15px 20px;
   }
 }

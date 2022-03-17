@@ -1,5 +1,9 @@
-const CatalogTabs: React.FC = () => {
+import React from 'react';
 
+const CatalogTabs: React.FC = () => {
+  const [activeTabs, setActiveTabs] = React.useState([0]);
+  console.log('activeTabs', activeTabs);
+  
   const tabs = [
     { filter: "weight-40", text: "40 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
     { filter: "weight-50", text: "50 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
@@ -26,16 +30,22 @@ const CatalogTabs: React.FC = () => {
     { filter: "weight-500", text: "500 тонн", className: "catalog-tabs__item" },
     { filter: "weight-750", text: "750 тонн", className: "catalog-tabs__item" },
   ];
+
+  const onTabClick = (idx: number) => {
+    activeTabs.includes(idx) ? setActiveTabs(activeTabs.filter(num => num !== idx)) : setActiveTabs([...activeTabs, idx])
+  };
+
   return (
     <section className="catalog-tabs">
       <div className="container">
         <h1 className="catalog-tabs__title">Каталог техники</h1>
         <div className="catalog-tabs__items">
-          {tabs.map(({ filter, text, className }) => (
+          {tabs.map(({ filter, text, className }, idx) => (
             <button 
-              className={`${className}`} 
+              className={`${className } ${activeTabs.includes(idx) ? 'pressed': ''}`} 
               data-filter={filter} 
               key={filter}
+              onClick={onTabClick.bind(null, idx)}
               >
               {text}
             </button>

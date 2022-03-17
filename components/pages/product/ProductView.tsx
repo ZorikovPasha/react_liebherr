@@ -59,7 +59,7 @@ const ProductView: React.FC<IView> = ({ info }) => {
           </div>
           <div className="product__info">
             <ul className="product__info-list product-list">
-              { info && Object.entries(info.features)?.map(arr => (
+              { info?.features && Object.entries(info.features)?.map(arr => (
                 <li className="product-list__item" key={arr[1].value}>
                   <p className="product-list__text">{arr[1].text}:</p>
                   <p className="product-list__text">{arr[1].value }</p>

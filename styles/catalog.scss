@@ -21,7 +21,6 @@
 
   &__item {
     font-family: 'Montserrat', sans-serif;
-    // width: 114px;
     padding: 5px 7px;
     border: 1px solid rgba(255, 191, 29, 0.27);
 
@@ -437,6 +436,11 @@
   // .catalog-controls__btn
 
   &__btn {
+    opacity: .6;
+  }
+
+  &__btn--active {
+    opacity: 1;
   }
 
   &__btn + &__btn {
@@ -571,10 +575,6 @@
     }
   }
 
-  &__input + &__input {
-    margin-left: 14px;
-  }
-
   // .form-contacts__line
 
   &__line {
@@ -651,6 +651,11 @@
     cursor: pointer;
   }
 
+  &__checkbox-real:focus + .form-label__checkbox-fake {
+    border: 3px solid #000;
+  }
+
+
   &__checkbox-real:checked + .form-label__checkbox-fake::after {
     position: absolute;
     content: "";
@@ -676,6 +681,14 @@
       display: inline;
       text-decoration: underline;
     }
+  }
+
+  &--margin-left {
+    margin-left: 15px;
+  }
+
+  &--fgrow {
+    flex-grow: 1;
   }
 }
 
@@ -738,6 +751,13 @@
   }
 
 
+  .form-contacts__line {
+    flex-wrap: wrap;
+  }
+  .form-label--margin-left {
+    margin-left: 15px;
+  }
+
 
   .contacts__content {
     width: 47.5%;
@@ -755,12 +775,6 @@
   }
   .contacts__time {
     order: -1;
-  }
-  .form-contacts__line {
-    flex-wrap: wrap;
-  }
-  .form-contacts__input + .form-contacts__input {
-    margin-left: 0;
   }
 }
 

@@ -400,6 +400,10 @@
   .product__info-btn {
     margin-left: 31px;
   }
+
+  .tabs__toggle-item + .tabs__toggle-item {
+    margin-left: 10px;
+  }
 }
 
 @media (max-width:660px) {

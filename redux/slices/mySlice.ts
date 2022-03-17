@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from '../store'
-
-// Define a type for the slice state
+import { HYDRATE } from 'next-redux-wrapper';
 
 type orderType = {
   id: number;
@@ -14,13 +12,11 @@ interface CartItemsState {
 }
 
 
-
-// Define the initial state using that type
 const initialState: CartItemsState = {
   items: [],
 }
 
-export const cartSlice = createSlice({
+export const ordersSlice = createSlice({
   name: 'orders',
   initialState,
   reducers: {
@@ -28,11 +24,16 @@ export const cartSlice = createSlice({
       state.items.push(action.payload);
     },
   },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      return {
+          ...state,
+          ...action.payload,
+      };
+    },
+  },
 })
 
-export const { addOrder } = cartSlice.actions
+export const { addOrder } = ordersSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.rootReducer.cart
-
-export default cartSlice.reducer
+export const { reducer } =  ordersSlice;

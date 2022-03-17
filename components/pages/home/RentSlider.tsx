@@ -48,7 +48,7 @@ const RentSlider: React.FC = () => {
             {slides.map(({ title, text, link }, idx) => (
               <div className="rent__slider-item slider-item" key={idx}>
                 <div className="slider-item__body">
-                  <div className="slider-item__images wow animate__animated animate__fadeInLeft" data-wow-offset="400">
+                  <div className="slider-item__images wow animate__animated animate__fadeInLeft">
                     <img src="static/images/rent.png" alt="строительная техника" />
                   </div>
                   <div className="slider-item__info">

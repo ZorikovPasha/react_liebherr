@@ -1,6 +1,7 @@
 const Machinery = require('../models/machineryModel');
 const Construction = require('../models/constructionModel');
 const Article = require('../models/articleModel');
+const Question = require('../models/questionModel');
 const ApiError = require('../error/index');
 
 class dataController {
@@ -15,7 +16,17 @@ class dataController {
   async getSingleMachinery(req, res) {
     try {
       const machinery  = await Machinery.findOne({ id: req.body.id });
-      res.send({ machinery });
+
+      const similarOnes = [];
+      const getSimilarOnes = async () => {
+        for(const id of machinery.similarOnes) {
+          const item = await Machinery.findOne({ id })
+          similarOnes.push(item);
+        }
+        res.send({machinery, similarOnes});
+      };
+
+      getSimilarOnes();
     } catch (err) {
       return ApiError.internal(res, err);
     }
@@ -24,7 +35,17 @@ class dataController {
   async getSingleConstruction(req, res) {
     try {
       const construction  = await Construction.findOne({ id: req.body.id });
-      res.send(construction);
+
+      const similarOnes = [];
+      const getSimilarOnes = async () => {
+        for(const id of construction.anotherConstructions) {
+          const item = await Construction.findOne({ id })
+          similarOnes.push(item);
+        }
+        res.send({construction, similarOnes});
+      };
+
+      getSimilarOnes();
     } catch (err) {
       return ApiError.internal(res, err);
     }
@@ -52,6 +73,21 @@ class dataController {
     try {
       const article  = await Article.findOne({ id: req.body.id });
       res.send(article);
+    } catch (err) {
+      return ApiError.internal(res, err);
+    }
+  }
+  async makeRequest(req, res) {
+    try {
+      const { id, name, email, phone, question, date } = req.body;
+      const askedQuestion = new Question({
+        id,
+        name,
+        email, 
+        phone, 
+        question, 
+        date
+      })
     } catch (err) {
       return ApiError.internal(res, err);
     }

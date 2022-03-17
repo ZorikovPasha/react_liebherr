@@ -59,11 +59,11 @@ class PublicApi extends Api {
   };
 
   getSingleMachinery = (id: number)=> {
-    return this.post<{ machinery: MachineryType }, { id: number }>('/api/machinery', { id });
+    return this.post<{ machinery: MachineryType, similarOnes: MachineryType[] }, { id: number }>('/api/machinery', { id });
   };
 
   getSingleConstruction = (id: string) => {
-    return this.post<ConstructionType, { id: string }>('/api/construction', { id });
+    return this.post<{construction: ConstructionType, similarOnes: ConstructionType[]}, { id: string }>('/api/construction', { id });
   };
 
   getConstructions = () => {

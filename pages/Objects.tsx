@@ -1,4 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
+
 import { publicApi } from "../api";
 import { BreadCrumbs, ObjectCard, Texts } from "../components";
 import { ConstructionType } from "../types/dataTypes";
@@ -12,6 +13,10 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "", text: "Объекты" }, 
   ];
+
+  const onLoadMore = () => {
+
+  };
 
   return (
     <>
@@ -30,7 +35,10 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
             ))}
           </div>
           <div className="objects__btn-wrapper">
-            <button className="objects__btn">Загрузить ещё</button>
+            <button 
+              className="objects__btn"
+              onClick={onLoadMore}
+              >Загрузить ещё</button>
           </div>
         </div>
       </section>

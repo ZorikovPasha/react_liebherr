@@ -62,3 +62,7 @@
 .floating__input:focus + .floating__label::before {
   color: $yellowOrange;
 }
+
+.form-input--error {
+  border: 1px solid red;
+}

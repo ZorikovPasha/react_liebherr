@@ -7,14 +7,17 @@ import { ConstructionType } from "../../types/dataTypes";
 
 interface IObjectsProps {
   construction: ConstructionType,
+  similarOnes: ConstructionType[]
 }
 
-const Object: NextPage<IObjectsProps> = ({ construction }) => {
+const Object: NextPage<IObjectsProps> = ({ construction, similarOnes }) => {
+  
   const { title, text, images } = construction;
+  
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
-    { id: 2, link: "/objects", text: "Объексты" }, 
-    { id: 3, link: "", text: "Разгрузка и монтаж трансформатора" }, 
+    { id: 2, link: "/objects", text: "Объекты" }, 
+    { id: 3, link: "", text: construction.title }, 
   ];
 
   return (
@@ -22,7 +25,7 @@ const Object: NextPage<IObjectsProps> = ({ construction }) => {
       <BreadCrumbs items={breadCrumbs} />
       <SceneFootage title={title} text={text} images={images}/>
       <Texts />
-      <AnotherObjectsSlider />
+      <AnotherObjectsSlider items={similarOnes}/>
     </>
   );
 };
@@ -45,6 +48,13 @@ interface IParams extends ParsedUrlQuery {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as IParams;
-  const construction = await publicApi.getSingleConstruction(id);
-  return { props: {construction} }
+  const { construction, similarOnes} = await publicApi.getSingleConstruction(id);
+  console.log('--------------');  
+  console.log('construction', construction);
+  console.log('------');
+  console.log('similarOnes', similarOnes);
+
+  console.log('--------------');  
+
+  return { props: {construction, similarOnes} }
 }

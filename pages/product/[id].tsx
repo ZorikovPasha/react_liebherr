@@ -8,9 +8,11 @@ import { MachineryType } from "../../types/dataTypes";
 
 interface IProductProps {
   machinery: MachineryType,
+  similarOnes: MachineryType[] 
 }
 
-const Product: NextPage<IProductProps> = ({ machinery }) => {
+const Product: NextPage<IProductProps> = ({ machinery, similarOnes }) => {
+  
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "/blog", text: "Каталог техники" }, 
@@ -28,7 +30,7 @@ const Product: NextPage<IProductProps> = ({ machinery }) => {
 
       <HelpRequestForm />
 
-      <SimilarOnesSlider />
+      <SimilarOnesSlider items={similarOnes}/>
     </>
   );
 };
@@ -38,9 +40,9 @@ export default Product;
 
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => { 
-  const { machinery } = await publicApi.getSingleMachinery(Number(query.id));
+  const { machinery, similarOnes } = await publicApi.getSingleMachinery(Number(query.id));
   
   return { 
-    props:{ machinery },
+    props:{ machinery, similarOnes },
   }
 }

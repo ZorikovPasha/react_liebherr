@@ -9,6 +9,8 @@ import HelpRequestForm from "./common/HelpRequestForm";
 import { SliderPrevArrow } from "./common/SliderArrows";
 import { SliderNextArrow }  from "./common/SliderArrows";
 import ContactsForm from "./common/ContactsForm";
+import Loader from "./common/Loader";
+import ClientOnlyPortal from "./common/ClientOnlyPortal";
 
 import Top from "./pages/home/Top";
 import RentSlider from "./pages/home/RentSlider";
@@ -50,4 +52,4 @@ export {PopupRequest, BreadCrumbs, Popup, Top, RentSlider, Guarantee, ProjectsSl
   HelpRequestForm, CatalogTabs, ContactsForm, CatalogAside, Pagination, FilterControls, 
   CatalogCard, AnotherArticlesSlider, SceneFootage, ObjectCard, ReviewsCards, ArticleCard,
   Layout, MobMenu, Header, PopupSuccess, Footer, ContactsBlock, AnotherObjectsSlider,
-  SliderNextArrow, SliderPrevArrow };
+  SliderNextArrow, SliderPrevArrow, Loader, ClientOnlyPortal };

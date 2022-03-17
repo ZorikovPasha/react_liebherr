@@ -1,9 +1,17 @@
 
+import React from 'react';
 import Slider from 'react-slick';
 import { CatalogCard, SliderPrevArrow, SliderNextArrow } from "../..";
+import { MachineryType } from '../../../types/dataTypes';
 
+interface ISliderProps {
+  items: MachineryType[],
+}
 
-const SimilarOnesSlider: React.FC = () => {
+const SimilarOnesSlider: React.FC<ISliderProps> = ({ items }) => {
+  const [slider, setSlider] = React.useState<Slider>();
+  const [activeSlide, setActiveSlide] = React.useState(0);
+
   const settings  = {
     arrows: true,
     dots: true,
@@ -11,8 +19,9 @@ const SimilarOnesSlider: React.FC = () => {
     centerMode: true,
     infinite: false,
     initialSlide: 2,
-    prevArrow: <SliderPrevArrow />,
-    nextArrow: <SliderNextArrow />,
+    prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === items?.length - 2} />,
+    afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
         breakpoint: 993,
@@ -30,28 +39,30 @@ const SimilarOnesSlider: React.FC = () => {
             slidesToShow: 1,
             variableWidth: false,
             centerMode: false,
-            rows: 2,
-          }
+        }
       }
 
     ]
   };
-  const machinery = [
-    { id: 35, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-    { id: 5, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-    { id: 3, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-    { id: 0, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-    { id: 45, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-    { id: 57, name: "Гусеничный кран Liebherr LR 1750", liftingCapacity: 20, arrowLength: 30, imgSrc: "/static/images/catalog/1.jpg" },
-  ];
   return (
     <section className="similar">
       <div className="container">
         <h2 className="similar__title">Похожие краны</h2>
         <div className="similar__items">
-          <Slider className="similar__items" {...settings}>
-            {machinery.map(m => (
-              <CatalogCard {...m} key={m.id} />
+          <Slider 
+            className="similar__items"
+            {...settings}
+            ref={(slider: Slider) => setSlider(slider)}
+            >
+            {items && items?.map(({ id, name, features, imgSrc }) => (
+              <CatalogCard 
+                id={id}
+                key={id} 
+                name={name}
+                liftingCapacity={features.liftingCapacity.value}
+                arrowLength={features.arrowLength.value}
+                imgSrc={imgSrc}
+              />
             ))}
           </Slider>
         </div>

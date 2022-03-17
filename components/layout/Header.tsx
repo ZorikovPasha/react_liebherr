@@ -1,24 +1,19 @@
 import React from 'react';
 import Link from "next/link";
-import { PopupRequest } from '..';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from '../../redux/slices/modalsSlice';
 
 interface IHeaderProps {
-  handleMobMennuButtonClick: React.MouseEventHandler<HTMLButtonElement>
+  handleMobMennuButtonClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick}) => {
-
-  const [isPopupRequestOpened, setPopupRequestOpened] = React.useState(false);
-
-  const handletOpenPopup = () => {
-    document.body.classList.add('lock');
-    setPopupRequestOpened(true);
+  const dispatch = useDispatch();
+  const onOpenPopup = () => {
+    dispatch(toggleModal({ name: "request", state: true }));
+    document.documentElement.classList.add('lock');
   };
 
-  const handletClosePopup = () => {
-    document.body.classList.remove('lock');
-    setPopupRequestOpened(false);
-  };
   const links = [
     { link: "/catalog", text: "Каталог" },
     { link: "/objects", text: "Услуги" },
@@ -30,7 +25,6 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
   ];
   return (
     <header className="header">
-      {isPopupRequestOpened && <PopupRequest onClose={handletClosePopup}/>}
       <div className="header__top">
         <div className="container">
           <div className="header__top-inner">
@@ -53,7 +47,7 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
             </div>
             <button 
               className="header__btn"
-              onClick={handletOpenPopup}
+              onClick={onOpenPopup}
               >Свяжитесь со мной</button>
             <div className="header__tels">
               <a className="header__tel" href="tel:+74999299666">+7 (499)929-96-66</a>

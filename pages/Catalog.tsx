@@ -14,7 +14,6 @@ const Catalog: NextPage<ICatalogProps> = ({ items }) => {
   const [isAsideOpened, setAsideOpened] = React.useState(false);
   const [isAsideBodyOpened, setAsideBodyOpened] = React.useState(false);
 
-
   const AsideRef = React.useRef(null)
   const asideBtnRef = React.useRef(null)
 
@@ -68,7 +67,7 @@ const Catalog: NextPage<ICatalogProps> = ({ items }) => {
                 ))}
               </div>
 
-              <Pagination />
+              <Pagination catalogItemsCount={3}/>
             </div>
           </div>
         </div>

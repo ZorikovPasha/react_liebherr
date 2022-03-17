@@ -48,11 +48,8 @@ const About: NextPage = () => {
       </section>
 
       <ServicesPreviews />
-
       <ReviewsCards />
-
       <CostsRow />
-
       <Texts />
 
       <section className="contacts">

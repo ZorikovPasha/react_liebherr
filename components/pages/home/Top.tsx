@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
+import { useDispatch } from "react-redux";
 import Slider, { Settings } from "react-slick";
-
-import { PopupRequest } from "../..";
+import { toggleModal } from "../../../redux/slices/modalsSlice";
 
 interface IArrowProps {
   onClick: (() => void) | undefined,
@@ -35,19 +35,10 @@ const SliderNextArrow: React.FC<IArrowProps> = ({ onClick, isDisabled }) => {
 
 
 const Top: React.FC = () => {
-  const [isPopupRequestOpened, setPopupRequestOpened] = React.useState(false);
   const [slider, setSlider] = React.useState<Slider>();
   const [activeSlide, setActiveSlide] = React.useState(0);
 
-  const handletOpenPopup = React.useCallback(() => {
-    document.body.classList.add('lock');
-    setPopupRequestOpened(true);
-  }, []);
-
-  const handletClosePopup = React.useCallback(() => {
-    document.body.classList.remove('lock');
-    setPopupRequestOpened(false);
-  }, []);
+  const dispatch = useDispatch();
 
   const slides = [
     { num: "01", total: "04", src: "static/images/top-bg.jpg" },
@@ -74,10 +65,14 @@ const Top: React.FC = () => {
     ],
   };
 
+  const handleOpenPopup = () => {
+    dispatch(toggleModal({ name: "request", state: true }));
+    document.documentElement.classList.add('lock');
+  };
+
 
   return (
     <section className="top">
-    {isPopupRequestOpened && <PopupRequest onClose={handletClosePopup}/>}
       <div className="container-fluid">
         <div className="top__inner">
           <Slider 
@@ -106,8 +101,10 @@ const Top: React.FC = () => {
                 <div className="top__btns animate__animated animate__fadeIn animate__delay-2s">
                   <button 
                     className="top__callme btn"
-                    onClick={handletOpenPopup}
-                    >Заказать звонок</button>
+                    onClick={handleOpenPopup}
+                    >
+                      Заказать звонок
+                    </button>
                   <Link href="/catalog">
                     <a className="top__link">Каталог техники</a>
                   </Link>

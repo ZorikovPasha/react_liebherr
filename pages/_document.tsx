@@ -10,6 +10,9 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="description" content="Liebherr - аренда строительной техники"/>
+          <meta name="robots" content="index, follow"/>
+          <meta name="keywords" content="Строительная техника, краны, машины"/>
           <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,6 +21,7 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
+          <div id="modal" />
           <NextScript />
         </body>
       </Html>

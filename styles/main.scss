@@ -982,6 +982,11 @@
     cursor: pointer;
   }
 
+  &__checkbox-fake--error {
+    border: 2px solid red;
+  }
+
+
   &__checkbox-real:checked + .main-form__checkbox-fake::after {
     position: absolute;
     content: "";

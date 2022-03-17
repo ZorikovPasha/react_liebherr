@@ -38,7 +38,8 @@ const machinerySchema = mongoose.Schema({
       text: String,
       value: Number,
     },
-  }
+  },
+  similarOnes: [Number]
 });
 
 module.exports = mongoose.model('machinery', machinerySchema);
