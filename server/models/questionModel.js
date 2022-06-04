@@ -9,4 +9,4 @@ const QuestionSchema = mongoose.Schema({
   date: Date,
 })
 
-module.exports = mongoose.model('question', QuestionSchema);
+module.exports = mongoose.model('Question', QuestionSchema);

@@ -1,13 +1,16 @@
+import React from 'react'
 import { NextPage } from "next";
-import { BreadCrumbs, ContactsForm, ReviewsCards, ServicesPreviews, 
-  Texts, CostsRow } from "../components";
+
+import { BreadCrumbs, ReviewsCards, ServicesPreviews, 
+  Texts, CostsRow, ContactsForm } from "../components";
 
 const About: NextPage = () => {
+
+
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "", text: "О компании" }, 
   ];
-
 
   return (
     <>
@@ -80,7 +83,8 @@ const About: NextPage = () => {
                 </div>
               </div>
             </div>
-            <ContactsForm></ContactsForm>
+
+            <ContactsForm />
           </div>
 
           <p className="contacts__sub contacts__sub--margin">Как добраться:</p>

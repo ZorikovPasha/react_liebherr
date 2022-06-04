@@ -1,34 +1,42 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setPaginate } from '../../../redux/slices/CatalogFiltersSlice';
 
 interface IPagination {
   catalogItemsCount: number,
-  // activePage: number,
-  // onPrevPage: MouseEventHandler<HTMLButtonElement> 
-  // onNextPage: MouseEventHandler<HTMLButtonElement> 
 }
 
 const Pagination: React.FC<IPagination> = ({catalogItemsCount}) => {
   let [activePage, setActivePage] = React.useState(0);
+
+  const dispatch = useDispatch();
+
   const ITEMS_PER_PAGE = 10;
   const pagesCount = Math.ceil(catalogItemsCount / ITEMS_PER_PAGE);
   const pages = [...Array(pagesCount)].map((_,i) => i);
 
-  // console.log(pages);
-  // console.log('activePage', activePage);
-  
+
+
   const onPrevPage = () => {
     if (activePage > 0) {
-      setActivePage(activePage--);
+      setActivePage(--activePage);
+      dispatch(setPaginate(--activePage))
     }
   };
 
-  console.log('activePage', activePage);
   
   const onNextPage = () => {
     if (activePage < pagesCount) {
-      setActivePage(activePage++);
+      setActivePage(++activePage);
+      dispatch(setPaginate(++activePage))
     }
   };
+
+  const onPageChange = (num: number) => {
+    setActivePage(num);
+    dispatch(setPaginate(num))
+  };
+
 
   return (
     <div className="pagination">
@@ -46,6 +54,7 @@ const Pagination: React.FC<IPagination> = ({catalogItemsCount}) => {
           <li
             key={num}
             className={`pagination__item ${activePage === num ? 'pagination__item--active' : '' }`}
+            onClick={onPageChange.bind(null, num)}
             >
             <span className="pagination__link">{num + 1}</span>
           </li>

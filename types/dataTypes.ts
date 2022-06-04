@@ -54,3 +54,10 @@ export type ArticleType = {
   sections: ArticleSectionType[][],
   images: string[],
 };
+
+export type RequestType = {
+  name: string,
+  phone: string,
+  email?: string,
+  message?: string
+}

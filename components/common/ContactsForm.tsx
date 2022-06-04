@@ -1,32 +1,20 @@
-import { Formik } from "formik";
-import { useDispatch } from "react-redux";
+import React from 'react'
 import * as yup from "yup";
-import { toggleModal } from "../../redux/slices/modalsSlice";
 
-const ContactsForm: React.FC = () => {
-  const dispatch = useDispatch();
+import { REGEX } from '../../utils/const';
+import { AppForm } from './AppForm';
 
-  const onClose = () => {
-    document.documentElement.classList.remove("lock");
-    dispatch(toggleModal({ name: "request", state: false }));
-  };
 
-  const onSuccess = () => {
-    onClose();
-
-    dispatch(toggleModal({ name: "message", state: true }));
-    document.documentElement.classList.add("lock");
-  };
-
+export const ContactsForm = () => {
   const formSchema = yup.object().shape({
-    name: yup.string().required("This field is required"),
-    email: yup.string().email("").required("This field is required"),
-    phone: yup.string().required("This field is required"),
-    message: yup.string().required("This field is required"),
-    isAgree: yup.boolean().oneOf([true], "This field is required"),
+    name: yup.string().required('Поле обязательно'),
+    email: yup.string().email("Некорректный адрес электронной почты").required('Поле обязательно'),
+    phone: yup.string().required('Поле обязательно').matches(REGEX.phone, "Некорректный номер телефона"),
+    message: yup.string().required("Поле обязательно"),
+    isAgree: yup.boolean().oneOf([true])
   });
 
-  const userFormValues = {
+  const initValues = {
     name: "",
     phone: "",
     email: "",
@@ -34,85 +22,51 @@ const ContactsForm: React.FC = () => {
     isAgree: false,
   };
 
-  const handleSubmit = (userData: typeof userFormValues) => {
-    console.log(userData);
-    onSuccess();
-  };
-
+  const fields = React.useRef({
+    fields: {
+      name: {
+        tag: "input",
+        inputClass: "form-contacts__input",
+        type: "text",
+        placeholder: "Ваше имя",
+        labelClass: "form-label",
+        blockClass: "form-contacts__block"
+      },
+      phone: {
+        tag: "input",
+        inputClass: "form-contacts__input",
+        type: "tel",
+        placeholder: "Ваш телефон",
+        labelClass: "form-label",
+        blockClass: "form-contacts__block"
+      },
+      email: {
+        tag: "input",
+        inputClass: "form-contacts__input",
+        type: "text",
+        placeholder: "Ваша почта",
+        labelClass: "form-label",
+        blockClass: "form-contacts__block"
+      },
+      message: {
+        tag: "textarea",
+        inputClass: "form-contacts__area",
+        type: "text",
+        placeholder: "Оставьте ваш вопрос",
+        labelClass: "form-label",
+        blockClass: "form-contacts__block"
+      },
+    },
+    isAgree: false
+  })
   return (
-    <Formik initialValues={userFormValues} validationSchema={formSchema} onSubmit={handleSubmit}>
-      {({ values, touched, errors, handleChange, handleBlur, handleSubmit }) => (
-        <form className="contacts__form form-contacts" onSubmit={handleSubmit}>
-          <label htmlFor="contacts-name" className="form-label">
-            <input
-              id="contacts-name"
-              name="name"
-              className={`form-contacts__input ${errors.name && touched.name ? "form-input--error" : ""} `}
-              type="text"
-              placeholder="Ваше имя"
-              value={values.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </label>
-          <div className="form-contacts__line">
-            <label htmlFor="email" className="form-label form-label--fgrow">
-              <input
-                id="email"
-                name="email"
-                className={`form-contacts__input ${errors.email && touched.email ? "form-input--error" : ""} `}
-                type="text"
-                placeholder="Ваша почта"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </label>
-            <label htmlFor="phone" className="form-label form-label--fgrow form-label--margin-left">
-              <input
-                id="phone"
-                name="phone"
-                className={`form-contacts__input ${errors.phone && touched.phone ? "form-input--error" : ""} `}
-                type="tel"
-                placeholder="Ваш телефон*"
-                value={values.phone}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </label>
-          </div>
-          <label htmlFor="questions-area" className="form-label" />
-          <textarea
-            id="questions-area"
-            name="message"
-            className={`form-contacts__area ${errors.message && touched.message ? "form-input--error" : ""} `}
-            placeholder="Оставьте ваш вопрос"
-            value={values.message}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <label className="form-contacts__label form-label" htmlFor="agree">
-            <input
-              id="agree"
-              name="isAgree"
-              className="form-label__checkbox-real"
-              type="checkbox"
-              checked={values.isAgree}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <span className={`form-label__checkbox-fake ${errors.isAgree ? "form-input--error" : ""}`} />
-            <span className="form-label__text">
-              Я согласен с <a href="#">условиями обработки</a> и использования моих персональных данных
-            </span>
-          </label>
-          <button className="popup__btn btn" type="submit">
-            Оставить заявку
-          </button>
-        </form>
-      )}
-    </Formik>
-  );
-};
-
-export default ContactsForm;
+    <AppForm 
+      formClass="popup__form"
+      fields={fields.current}
+      formSchema={formSchema} 
+      initValues={initValues}
+      buttonClass="popup__btn btn" 
+      buttonText="Оставить заявку"
+    />
+  )
+}

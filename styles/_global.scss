@@ -229,6 +229,19 @@ button:active {
   }
 }
 
+.another-ones__slider {
+  .slick-track {
+    display: flex !important;
+  }
+  .slick-slide {
+    height: inherit !important;
+  }
+
+  .slick-slide > div {
+    height: 100%;
+  }
+}
+
 .pagination {
 
   display: flex;
@@ -412,6 +425,23 @@ button:active {
     margin-bottom: 63px;
   }
 
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+
+    @media (max-width:992px) {
+      max-width: 370px;
+      margin: 0 auto;
+      grid-template-columns: 1fr;
+      grid-row-gap: 30px;
+    }
+  }
+
+  &__form-block + &__form-block {
+    margin-top: 30px;
+  }
+
   // .help__form-line
 
   &__form-line {
@@ -425,9 +455,7 @@ button:active {
 
   &__form-input {
     width: 100%;
-    max-width: 370px;
     height: 50px;
-    margin-right: 20px;
     padding: 0 21px;
     border: 1px solid #535554;
 
@@ -447,7 +475,7 @@ button:active {
 
   &__form-btn {
     width: 100%;
-    max-width: 370px;
+    align-self: baseline;
   }
 
   // .help__images
@@ -462,7 +490,21 @@ button:active {
   &__form-label {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 30px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 3;
+
+    &--margin-top {
+      margin-top: 30px;
+
+      @media (max-width:992px) {
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width:992px) {
+      grid-row: auto;
+      grid-column: auto;
+    }
   }
 
   &__form-real {
@@ -507,11 +549,6 @@ button:active {
   &__title {
     @extend %h2;
     margin-bottom: 51px;
-  }
-
-  // .contacts__text
-
-  &__text {
   }
 
   &__text + &__text {
@@ -645,7 +682,6 @@ button:active {
   // .contacts__form
 
   &__form {
-    // max-width: 470px;
     width: 40%;
   }
 
@@ -674,7 +710,6 @@ button:active {
     height: 100%;
     background-color: #fff;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-
   }
 
   // .product-item__img
@@ -893,13 +928,16 @@ button:active {
     margin-bottom: 30px;
   }
 
+  &__form-block + &__form-block {
+    margin-top: 30px;
+  }
+
   // .popup__input
 
   &__input {
     display: inline-block;
     width: 100%;
     height: 50px;
-    margin-bottom: 30px;
     padding: 0 20px;
     border: 1px solid #2D2D2D;
     background-color: transparent;
@@ -916,6 +954,7 @@ button:active {
 
   &__label {
     display: flex;
+    margin-top: 30px;
   }
 
   &__btn {

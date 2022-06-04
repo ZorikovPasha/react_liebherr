@@ -54,7 +54,7 @@ class dataController {
   async getConstructions(req, res) {
     try {
       const constructions  = await Construction.find({});
-      res.send(constructions);
+      res.send({ constructions, hasMore: constructions > 9 });
     } catch (err) {
       return ApiError.internal(res, err);
     }
@@ -83,10 +83,16 @@ class dataController {
       const askedQuestion = new Question({
         id,
         name,
-        email, 
-        phone, 
-        question, 
+        email,
+        phone,
+        question,
         date
+      })
+      askedQuestion.save((err) => {
+        if (err) {
+          ApiError.internal(res, err)
+        }
+        return res.status(200).json({ success: true });
       })
     } catch (err) {
       return ApiError.internal(res, err);

@@ -1,13 +1,12 @@
+import React from 'react'
 import { NextPage } from "next";
-
-import { ContactsForm, ContactsBlock, BreadCrumbs } from "../components";
+import { ContactsBlock, BreadCrumbs, ContactsForm } from "../components";
 
 const Contacts: NextPage = () => {
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "", text: "Контакты" }, 
   ];
-  
 
   return (
     <>
@@ -19,6 +18,7 @@ const Contacts: NextPage = () => {
 
             <ContactsBlock />
             <ContactsForm />
+
           </div>
 
           <p className="contacts__sub contacts__sub--margin">Как добраться:</p>

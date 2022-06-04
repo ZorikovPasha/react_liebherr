@@ -2,15 +2,15 @@ import PopupRequest from "./common/Popup";
 import PopupSuccess from "./common/PopupSuccess";
 import BreadCrumbs from "./common/BreadCrumbs";
 import Popup from "./common/Popup";
-import SupplyForm from "./common/SupplyForm";
 import Texts from "./common/Texts";
 import QuestionsForm from "./common/QuestionsForm";
 import HelpRequestForm from "./common/HelpRequestForm";
 import { SliderPrevArrow } from "./common/SliderArrows";
 import { SliderNextArrow }  from "./common/SliderArrows";
-import ContactsForm from "./common/ContactsForm";
 import Loader from "./common/Loader";
 import ClientOnlyPortal from "./common/ClientOnlyPortal";
+import { AppForm } from "./common/AppForm";
+import { ContactsForm } from "./common/ContactsForm";
 
 import Top from "./pages/home/Top";
 import RentSlider from "./pages/home/RentSlider";
@@ -47,9 +47,9 @@ import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 
 export {PopupRequest, BreadCrumbs, Popup, Top, RentSlider, Guarantee, ProjectsSlider, 
-  ResultsInNumbers, CatalogSlider, CostsRow, SupplyForm, AboutPreview, ServicesPreviews,
+  ResultsInNumbers, CatalogSlider, CostsRow, AboutPreview, ServicesPreviews,
   Texts, QuestionsForm, ProductView, ProductTabs, DescriptionPars, SimilarOnesSlider,
-  HelpRequestForm, CatalogTabs, ContactsForm, CatalogAside, Pagination, FilterControls, 
+  HelpRequestForm, CatalogTabs, CatalogAside, Pagination, FilterControls, 
   CatalogCard, AnotherArticlesSlider, SceneFootage, ObjectCard, ReviewsCards, ArticleCard,
   Layout, MobMenu, Header, PopupSuccess, Footer, ContactsBlock, AnotherObjectsSlider,
-  SliderNextArrow, SliderPrevArrow, Loader, ClientOnlyPortal };
+  SliderNextArrow, SliderPrevArrow, Loader, ClientOnlyPortal, AppForm, ContactsForm };

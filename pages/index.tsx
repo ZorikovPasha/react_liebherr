@@ -3,7 +3,7 @@ import { publicApi } from "../api";
 
 import { AboutPreview, CatalogSlider, CostsRow, Guarantee, 
   QuestionsForm, RentSlider, ResultsInNumbers, ServicesPreviews, 
-  SupplyForm, Texts, Top, ProjectsSlider } from "../components";
+  Texts, Top, ProjectsSlider } from "../components";
 import { ConstructionType, MachineryType } from "../types/dataTypes";
 
 interface IHomeProps {
@@ -27,8 +27,6 @@ const Home: NextPage<IHomeProps> = ({ items, constructions }) => {
         <CatalogSlider items={items}/>
 
         <CostsRow />
-
-        <SupplyForm />
 
         <AboutPreview />
 

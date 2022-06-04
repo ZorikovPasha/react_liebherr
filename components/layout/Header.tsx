@@ -79,12 +79,6 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
                 ))}
             </ul>
           </nav>
-          <div className="header__input-box">
-            <form action="" className="header__form">
-              <input type="text" className="header__input" />
-              <button className="header__input-search" type="submit"></button>  
-            </form>
-          </div>
         </div>
         </div>
       </div>

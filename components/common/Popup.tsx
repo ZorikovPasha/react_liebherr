@@ -1,43 +1,62 @@
 import React from "react";
-import { Formik } from "formik";
 import * as yup from "yup";
+
 import { ClientOnlyPortal } from "../";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
+import { REGEX } from "../../utils/const";
+import { AppForm } from "./AppForm";
 
-const PopupRequest: React.FC = ({  }) => {
+const PopupRequest: React.FC = () => {
   const dispatch = useDispatch();
 
-  const onClose = () => {
-    document.documentElement.classList.remove('lock');
-    dispatch(toggleModal({ name: "request", state: false }));
-
-  };
-
-  const onSuccess = () => {
-    onClose();
-
-    dispatch(toggleModal({ name: "message", state: true }));
-    document.documentElement.classList.add('lock');
-  };
-
   const formSchema = yup.object().shape({
-    name: yup.string().required('This field is required'),
-    email: yup.string().email("").required('This field is required'),
-    phone: yup.string().required('This field is required'),
-    isAgree: yup.boolean().oneOf([true],'This field is required')
+    name: yup.string().required('Поле обязательно'),
+    email: yup.string().email("Некорректный адрес электронной почты").required('Поле обязательно'),
+    phone: yup.string().required('Поле обязательно').matches(REGEX.phone, "Некорректный номер телефона"),
+    isAgree: yup.boolean().oneOf([true])
   });
 
-  const userFormValues = {
+  const initValues = {
     name: "",
     phone: "",
     email: "",
     isAgree: false,
   };
 
-  const handleSubmit = (userData: typeof userFormValues) => {
-    console.log(userData);
-    onSuccess();
+  const fields = React.useRef({
+    fields: {
+      name: {
+        inputClass: "popup__input",
+        type: "text",
+        placeholder: "Ваше имя",
+        labelClass: "popup__label form-label",
+        blockClass: "",
+        tag: "input"
+      },
+      phone: {
+        inputClass: "popup__input",
+        type: "tel",
+        placeholder: "Ваш телефон",
+        labelClass: "popup__label form-label",
+        blockClass: "",
+        tag: "input"
+      },
+      email: {
+        inputClass: "popup__input",
+        type: "text",
+        placeholder: "Ваша почта",
+        labelClass: "popup__label form-label",
+        blockClass: "",
+        tag: "input"
+      },
+    },
+    isAgree: false
+  })
+
+  const onClose = () => {
+    document.documentElement.classList.remove('lock');
+    dispatch(toggleModal({ name: "request", state: false }));
   };
 
   return (
@@ -52,90 +71,15 @@ const PopupRequest: React.FC = ({  }) => {
           </button>
           <h3 className="popup__title">Арендовать спецтехнику</h3>
           <p className="popup__text">Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое ближайшее время</p>
-          <Formik 
-            initialValues={userFormValues} 
-            validationSchema={formSchema} 
-            onSubmit={handleSubmit}
-           >
-            {({ values, touched, errors, handleChange, handleBlur, handleSubmit }) => (
-              <form 
-                className="popup__form" 
-                onSubmit={handleSubmit}
-                >
-                <label 
-                  htmlFor="name" 
-                  className="popup__label form-label"
-                  >
-                  <input
-                    id="name"
-                    name="name"
-                    className={`popup__input ${errors.name && touched.name ? 'form-input--error' : ''} `}
-                    type="text" 
-                    placeholder="Ваше имя"
-                    value={values.name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </label>
-                <label 
-                  htmlFor="phone" 
-                  className="popup__label form-label"
-                  >
-                  <input 
-                    id="phone"
-                    name="phone"
-                    className={`popup__input ${errors.phone && touched.phone ? 'form-input--error' : ''} `}
-                    type="tel"
-                    placeholder="Ваш телефон*"
-                    value={values.phone}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </label>
-                <label 
-                  htmlFor="email" 
-                  className="popup__label form-label"
-                  >
-                  <input
-                    id="email"
-                    name="email"
-                    className={`popup__input ${errors.email && touched.email ? 'form-input--error' : ''} `}
-                    type="text"
-                    placeholder="Ваша почта"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </label>
-                <label 
-                  className="popup__label form-label" 
-                  htmlFor="agree"
-                  >
-                  <input 
-                    id="agree"
-                    name="agree"
-                    className="form-label__checkbox-real" 
-                    type="checkbox"
-                    checked={values.isAgree}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                   />
-                  <span 
-                    className={`main-form__checkbox-fake ${errors.isAgree ? 'main-form__checkbox-fake--error': '' }`}
-                    />
-                  <span className="form-label__text">
-                    Я согласен с <a href="#">условиями обработки</a> и использования моих персональных данных
-                  </span>
-                </label>
-                <button 
-                  className="popup__btn btn" 
-                  type="submit"
-                  >
-                  Оставить заявку
-                </button>
-              </form>
-            )}
-          </Formik>
+
+          <AppForm 
+            formClass="popup__form"
+            fields={fields.current}
+            formSchema={formSchema} 
+            initValues={initValues}
+            buttonClass="popup__btn btn" 
+            buttonText="Оставить заявку"
+          />
         </div>
       </div>
     </ClientOnlyPortal>

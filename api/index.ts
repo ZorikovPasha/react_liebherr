@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ArticleType, ConstructionType, MachineryType } from "../types/dataTypes";
+import { ArticleType, ConstructionType, MachineryType, RequestType } from "../types/dataTypes";
 
 export const apiConfig = {
   returnRejectedPromiseOnError: true,
@@ -67,7 +67,7 @@ class PublicApi extends Api {
   };
 
   getConstructions = () => {
-    return this.get<ConstructionType[]>('/api/constructions');
+    return this.get<{ constructions: ConstructionType[], hasMore: boolean }>('/api/constructions');
   };
 
   getArticles = () => {
@@ -77,28 +77,10 @@ class PublicApi extends Api {
   getSingleArticle = (id: string) => {
     return this.post<ArticleType, { id: string }>('/api/article', { id });
   };
-}
 
-
-
-class UserApi extends Api {
-  constructor(config: AxiosRequestConfig) {
-    super(config)
-    this._axios.interceptors.request.use((config) => {
-      return {
-        ...config,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      }
-    }, (error) => {
-        console.log(error);
-    });
-  }
-  setToken = (token: string): void => {
-    localStorage.setItem('token', token);
+  sendRequest = (data: RequestType) => {
+    return this.post<{ success: Boolean }, RequestType>("/api/question", data)
   }
 }
 
-export const UserApiClient = new UserApi(apiConfig);
 export const publicApi = new PublicApi(apiConfig);

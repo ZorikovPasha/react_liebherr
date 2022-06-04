@@ -5,6 +5,7 @@ const initialState = {
   opened: {
     request: false,
     message: false,
+    error: false
   }
 }
 
@@ -25,8 +26,8 @@ export const modalsSlice = createSlice({
   extraReducers: {
     [HYDRATE]: (state, action) => {
       return {
-          ...state,
-          ...action.payload,
+        ...state,
+        ...action.payload,
       };
     },
   },

@@ -1,19 +1,46 @@
 
 import React from 'react';
 import { MouseEventHandler } from "react";
-import Select from 'react-select'
+import { useDispatch } from 'react-redux';
+import Select, { ActionMeta, SingleValue } from 'react-select'
+import { setSort } from '../../../redux/slices/CatalogFiltersSlice';
 
 interface ICOntrolsProps {
-onAsideOpen: MouseEventHandler<HTMLButtonElement>;
+  activeView: 'grid' | 'list';
+  onAsideOpen: MouseEventHandler<HTMLButtonElement>;
+  setActiveView: React.Dispatch<React.SetStateAction<'grid' | 'list'>>
 }
-const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen }, asideBtnRef) => {
-  const [activeView, setActiveView] = React.useState('grid');
+
+type onSortChangeType = (newValue: SingleValue<{
+  value: string;
+  label: string;
+}>, actionMeta: ActionMeta<{
+  value: string;
+  label: string;
+}>) => void;
+
+
+const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen, setActiveView, activeView }, asideBtnRef) => {
+  const dispatch = useDispatch();
+  
   const sortOptions = [
-    {value: "default", label: "По умолчанию"},
     {value: "heght", label: "По высоте"},
     {value: "liftingCapacity", label: "По грузоподъемности"},
     {value: "length", label: "По длине"},
   ];
+
+  const [activeSortType, setActiveSortType] = React.useState<SingleValue<{
+    value: string,
+    label: string,
+  }>>(sortOptions[0]);
+
+  const onSortTypeChange: onSortChangeType = (value) => {
+    setActiveSortType(value);
+
+    if (value?.value) {
+      dispatch(setSort(value?.value));
+    }
+  };
 
   const onChangeViewGrid = () => {
     setActiveView('grid')
@@ -22,7 +49,6 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
   const onChangeViewList = () => {
     setActiveView('list')
   };
-
 
   return (
     <div className="catalog-content__controls catalog-controls">
@@ -38,9 +64,10 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
       <div className="catalog-controls__sort">
         <img src="/static/images/sort-icon.svg" alt="" />
         <Select
-          value={sortOptions[0]}
+          value={activeSortType}
           className="catalog-controls__sort-select"
           options={sortOptions} 
+          onChange={onSortTypeChange}
           />
       </div>
       <div className="catalog-controls__view view">

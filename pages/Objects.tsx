@@ -5,7 +5,7 @@ import { BreadCrumbs, ObjectCard, Texts } from "../components";
 import { ConstructionType } from "../types/dataTypes";
 
 interface IObjectsProps {
-  constructions: ConstructionType[]
+  constructions: { constructions: ConstructionType[], hasMore: boolean }
 }
 
 const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
@@ -14,9 +14,7 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
     { id: 2, link: "", text: "Объекты" }, 
   ];
 
-  const onLoadMore = () => {
-
-  };
+  const onLoadMore = () => {};
 
   return (
     <>
@@ -25,7 +23,7 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
         <div className="container">
           <h1 className="objects__title">Работа спецтехники от Компании Еврокран</h1>
           <div className="objects__items">
-            {constructions.map(({ id, preview, title }) => (
+            {constructions?.constructions?.map(({ id, preview, title }) => (
               <ObjectCard 
                 id={id}
                 key={id}
@@ -34,15 +32,16 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
               />
             ))}
           </div>
-          <div className="objects__btn-wrapper">
+          {constructions.hasMore && <div className="objects__btn-wrapper">
             <button 
               className="objects__btn"
               onClick={onLoadMore}
-              >Загрузить ещё</button>
-          </div>
+            >
+              Загрузить ещё
+            </button>
+          </div>}
         </div>
       </section>
-
       <Texts />
     </>
   );

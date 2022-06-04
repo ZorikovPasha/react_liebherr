@@ -17,7 +17,6 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
     { id: 3, link: "", text: title }, 
   ];
 
-
   return (
     <>
       <BreadCrumbs items={breadCrumbs} />

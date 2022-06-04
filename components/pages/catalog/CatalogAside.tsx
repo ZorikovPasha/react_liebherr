@@ -1,48 +1,141 @@
 import React from "react";
-import { Formik } from "formik";
-import { Range } from "react-range";
+import Range from 'rc-slider';
+
+
+import 'rc-slider/assets/index.css';
+import { makeQueryFromParams } from "../../../utils/makeQueryFromParams";
+import { useSelector } from "react-redux";
+import { selectFliters } from "../../../redux/selectors";
+
 interface IASideProps {
   isAsideOpened: boolean;
   isAsideBodyOpened: boolean;
   onAsideClose: React.MouseEventHandler<HTMLButtonElement>;
 }
 
+const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({ 
+  isAsideOpened, 
+  isAsideBodyOpened, 
+  onAsideClose 
+}, AsideRef) => {
 
-const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>(({ isAsideOpened, isAsideBodyOpened, onAsideClose }, AsideRef) => {
-  const STEP = 0.1;
-  const MIN = 0;
-  const MAX = 300;
-  const [values, setValues] = React.useState([25, 75]);
-  console.log(values);
-
-  const userFormValues = {
-    machinery_type: { 
-      mobile: false,
-      tracked: false,
-      low_bed: false,
-      modular: false,
-    },
-    lifting_capacity_from: 50,
-    lifting_capacity_to: 100,
-    height_from: 20,
-    height_to: 120,
-    arrow_length_from: 50,
-    arrow_length_to: 150,
+  const trackStyle = {
+    backgroundColor: "#FCB427",
+    height: "2px",
   };
 
-  const onResetFilters = () => {
-    let key: keyof typeof userFormValues.machinery_type;
+  const railStyle = {
+    backgroundColor: "#535554",
+    height: "2px",
+  };
 
-    for (key in userFormValues.machinery_type) {
-      userFormValues.machinery_type[key] = false
+  const handleStyle = {
+    top: "8px",
+    width: "12px",
+    height: "6px",
+    backgroundColor: "#FCB427",
+    border: "none",
+    borderRadius: 0,
+    opacity: 1,
+    boxShadow: "none"
+  };
+
+  const [liftingCapacityFrom, setLiftingCapacityFrom] = React.useState(10);
+  const [liftingCapacityTo, setLiftingCapacityTo] = React.useState(50);
+
+  const [heightFrom, setHeightFrom] = React.useState(10);
+  const [heightTo, setHeightTo] = React.useState(50);
+
+  const [arrowLengthFrom, setArrowLengthFrom] = React.useState(10);
+  const [arrowLengthTo, setArrowLengthTo] = React.useState(50);
+
+
+  const onLiftCapacityFromChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setLiftingCapacityFrom(Number(e.target.value))
+  };
+
+  const onLiftCapacityToChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setLiftingCapacityTo(Number(e.target.value))
+  };
+
+  const onHeightFromChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setHeightFrom(Number(e.target.value))
+  };
+
+  const onHeightToChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setHeightTo(Number(e.target.value))
+  };
+
+  const onArrowLengthFromChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setArrowLengthFrom(Number(e.target.value))
+  };
+
+  const onArrowLengthToChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setArrowLengthTo(Number(e.target.value))
+  };
+
+
+  const [isMobile, setMobile] = React.useState(false);
+  const [isTracked, setTracked] = React.useState(false);
+  const [islowBed, setlowBed] = React.useState(false);
+  const [isModular, setModular] = React.useState(false);
+
+  const onTypeToggle = (value: boolean, setStateCb: React.Dispatch<React.SetStateAction<boolean>>) => {
+    setStateCb(!value);
+  };
+
+  const handleChangeRange = (
+    values: number | number[], 
+    setFromCb: React.Dispatch<React.SetStateAction<number>>,
+    setToCb: React.Dispatch<React.SetStateAction<number>>
+    ) => {
+    if (Array.isArray(values)) {
+      setFromCb(values[0]);
+      setToCb(values[1])  
+    } else {
+      setFromCb(values);
     }
+  };
 
-    userFormValues.lifting_capacity_from = 50;
-    userFormValues.lifting_capacity_to = 100;
-    userFormValues.height_from = 20;
-    userFormValues.height_to = 120;
-    userFormValues.arrow_length_from = 50;
-    userFormValues.arrow_length_to = 150;
+  const { paginate, sort, weights } = useSelector(selectFliters);
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement>  = (e) => {
+    e.preventDefault();
+    const query = makeQueryFromParams(
+      paginate,
+      sort,
+      weights,
+      {
+        mobile: isMobile,
+        tracked: isTracked,
+        lowBed: islowBed,
+        modular: isModular,
+      },
+      liftingCapacityFrom,
+      liftingCapacityTo,
+      heightFrom,
+      heightTo,
+      arrowLengthFrom,
+      arrowLengthTo
+    );
+    console.log(query);
+  };
+
+
+  const onResetFilters = () => {
+    setMobile(false);
+    setTracked(false);
+    setlowBed(false);
+    setModular(false);
+
+    setLiftingCapacityFrom(10);
+    setLiftingCapacityTo(50);
+
+    setHeightFrom(10);
+    setHeightTo(50);
+
+    setArrowLengthFrom(10);
+    setArrowLengthTo(50);
   };
 
   return (
@@ -55,229 +148,172 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>(({ isAsideOpe
           <p className="aside-catalog__title">Параметры</p>
         </div>
         <div className="aside-catalog__box">
-          <Formik
-            enableReinitialize
-            initialValues={userFormValues} 
-            onSubmit={() => {}}
-            >
-            {({ values, handleChange, handleBlur, handleSubmit }) => (
-              <form className="aside-catalog__form" onSubmit={handleSubmit}>
-                <div className="aside-catalog__filter aside-filter">
-                  <p className="aside-filter__title">Вид техники</p>
-                  <label className="aside-filter__label">
-                    <input
-                      name="machinery_type"
-                      type="checkbox"
-                      className="aside-filter__check-real"
-                      checked={values.machinery_type.mobile}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <span className="aside-filter__check-fake"></span>
-                    <span className="aside-filter__text">Мобильные краны</span>
-                  </label>
-                  <label className="aside-filter__label">
-                    <input
-                      name="machinery_type"
-                      type="checkbox"
-                      className="aside-filter__check-real"
-                      checked={values.machinery_type.tracked}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <span className="aside-filter__check-fake"></span>
-                    <span className="aside-filter__text">Гусеничные краны</span>
-                  </label>
-                  <label className="aside-filter__label">
-                    <input
-                      name="machinery_type"
-                      type="checkbox"
-                      className="aside-filter__check-real"
-                      checked={values.machinery_type.low_bed}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <span className="aside-filter__check-fake"></span>
-                    <span className="aside-filter__text">Низкорамные тралы</span>
-                  </label>
-                  <label className="aside-filter__label">
-                    <input
-                      name=""
-                      type="checkbox"
-                      className="aside-filter__check-real"
-                      checked={values.machinery_type.modular}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <span className="aside-filter__check-fake"></span>
-                    <span className="aside-filter__text">Модульные платформы</span>
-                  </label>
-                </div>
-                <div className="aside-catalog__filter aside-filter filter-weight">
-                  <p className="aside-filter__title">Грузоподъемность т.</p>
-                  <div className="aside-filter__line">
-                    <div className="aside-filter__input-box">
-                      <span className="aside-filter__from">от</span>
-                      <input
-                        name="lifting_capacity_from"
-                        type="number"
-                        className="aside-filter__input aside-filter__input-from filter-weight__from"
-                        value={values.lifting_capacity_from}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                    </div>
-                    <div className="aside-filter__input-box">
-                      <span className="aside-filter__from">до</span>
-                      <input
-                        name="lifting_capacity_to"
-                        type="number"
-                        className="aside-filter__input aside-filter__input-to filter-weight__to"
-                        value={values.lifting_capacity_to}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                    </div>
-                  </div>
-                  <Range
-                    values={[values.lifting_capacity_from, values.lifting_capacity_to]}
-                    step={STEP}
-                    min={MIN}
-                    max={MAX}
-                    onChange={(values) => {
-                      setValues(values);
-                    }}
-                    renderTrack={({ props, children }) => (
-                      <div
-                        className="range-slider--weight"
-                        {...props}
-                        onMouseDown={props.onMouseDown}
-                        onTouchStart={props.onTouchStart}
-                        style={{
-                          ...props.style,
-                          height: "36px",
-                          display: "flex",
-                          width: "100%",
-                        }}
-                      >
-                        <div
-                          ref={props.ref}
-                          style={{
-                          backgroundColor: "#fcb427",
-                          height: "2px",
-                          width: "100%",
-                          borderRadius: "4px",
-                          alignSelf: "center",
-                          }}
-                        >
-                          {children}
-                        </div>
-                      </div>
-                    )}
-                    renderThumb={({ props }) => (
-                      <div
-                        {...props}
-                        style={{
-                          ...props.style,
-                          width: '19px',
-                          height: '6px',
-                          backgroundColor: '#fcb427'
-                        }}
-                      />
-                    )}
-                  />
-                </div>
-                <div className="aside-catalog__filter aside-filter filter-height">
-                  <p className="aside-filter__title">Высота подъема, м.</p>
-                  <div className="aside-filter__line">
-                    <div className="aside-filter__input-box">
-                      <span className="aside-filter__from">от</span>
-                      <input
-                        name="height_from"
-                        type="number"
-                        className="aside-filter__input aside-filter__input-from filter-height__from"
-                        value={values.height_from}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                    </div>
-                    <div className="aside-filter__input-box">
-                      <span className="aside-filter__from">до</span>
-                      <input
-                        name="height_to"
-                        type="number"
-                        className="aside-filter__input aside-filter__input-to filter-height__to"
-                        value={values.height_to}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                    </div>
-                  </div>
+          <form className="aside-catalog__form" onSubmit={handleSubmit}>
+            <div className="aside-catalog__filter aside-filter">
+              <p className="aside-filter__title">Вид техники</p>
+              <label className="aside-filter__label">
+                <input
+                  name="machinery_type"
+                  type="checkbox"
+                  className="aside-filter__check-real"
+                  checked={isMobile}
+                  onChange={onTypeToggle.bind(null, isMobile, setMobile)}
+                />
+                <span className="aside-filter__check-fake" />
+                <span className="aside-filter__text">Мобильные краны</span>
+              </label>
+              <label className="aside-filter__label">
+                <input
+                  name="machinery_type"
+                  type="checkbox"
+                  className="aside-filter__check-real"
+                  checked={isTracked}
+                  onChange={onTypeToggle.bind(null, isTracked, setTracked)}
+                />
+                <span className="aside-filter__check-fake" />
+                <span className="aside-filter__text">Гусеничные краны</span>
+              </label>
+              <label className="aside-filter__label">
+                <input
+                  name="machinery_type"
+                  type="checkbox"
+                  className="aside-filter__check-real"
+                  checked={islowBed}
+                  onChange={onTypeToggle.bind(null, islowBed, setlowBed)}
+                />
+                <span className="aside-filter__check-fake" />
+                <span className="aside-filter__text">Низкорамные тралы</span>
+              </label>
+              <label className="aside-filter__label">
+                <input
+                  name=""
+                  type="checkbox"
+                  className="aside-filter__check-real"
+                  checked={isModular}
+                  onChange={onTypeToggle.bind(null, isModular, setModular)}
+                />
+                <span className="aside-filter__check-fake" />
+                <span className="aside-filter__text">Модульные платформы</span>
+              </label>
+            </div>
+            <div className="aside-catalog__filter aside-filter filter-weight">
+              <p className="aside-filter__title">Грузоподъемность т.</p>
+              <div className="aside-filter__line">
+                <div className="aside-filter__input-box">
+                  <span className="aside-filter__from">от</span>
                   <input
-                    className="range-slider--height"
-                    type="text"
-                    name="my_range"
-                    value=""
-                    data-type="double"
-                    data-min="10"
-                    data-max="100"
-                    data-from="10"
-                    data-to="84"
-                    data-grid="false"
+                    name="lifting_capacity_from"
+                    type="number"
+                    className="aside-filter__input aside-filter__input-from filter-weight__from"
+                    value={liftingCapacityFrom}
+                    onChange={onLiftCapacityFromChange}
                   />
                 </div>
-                <div className="aside-catalog__filter aside-filter filter-length">
-                  <p className="aside-filter__title">Длина стрелы, м.</p>
-                  <div className="aside-filter__line">
-                    <div className="aside-filter__input-box">
-                      <span className="aside-filter__from">от</span>
-                      <input 
-                        name="arrow_length_from"
-                        type="number" 
-                        className="aside-filter__input aside-filter__input-from filter-length__from" 
-                        value={values.arrow_length_from}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        />
-                    </div>
-                    <div className="aside-filter__input-box">
-                      <span className="aside-filter__from">до</span>
-                      <input
-                        name="arrow_length_to"
-                        type="number" 
-                        className="aside-filter__input aside-filter__input-to filter-length__to" 
-                        value={values.arrow_length_to}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        />
-                    </div>
-                  </div>
+                <div className="aside-filter__input-box">
+                  <span className="aside-filter__from">до</span>
                   <input
-                    className="range-slider--length"
-                    type="text"
-                    name="my_range"
-                    value=""
-                    data-type="double"
-                    data-min="20"
-                    data-max="120"
-                    data-from="30"
-                    data-to="100"
-                    data-grid="false"
+                    name="lifting_capacity_to"
+                    type="number"
+                    className="aside-filter__input aside-filter__input-to filter-weight__to"
+                    value={liftingCapacityTo}
+                    onChange={onLiftCapacityToChange}
                   />
                 </div>
-                <button 
-                  className="aside-catalog__reset" 
-                  type="reset"
-                  onClick={onResetFilters}
-                  >
-                  Очистить фильтр
-                </button>
-                <button className="aside-catalog__submit" type="submit">
-                  Показать
-                </button>
-              </form>
-            )}
-          </Formik>
+              </div>
+              <Range
+                range 
+                step={1}
+                min={0}
+                max={150}
+                value={[liftingCapacityFrom, liftingCapacityTo]}
+                allowCross={false} 
+                trackStyle={trackStyle}
+                railStyle={railStyle}
+                handleStyle={handleStyle}
+                onChange={(value) => handleChangeRange.call(null, value, setLiftingCapacityFrom, setLiftingCapacityTo)}
+              />
+            </div>
+            <div className="aside-catalog__filter aside-filter filter-height">
+              <p className="aside-filter__title">Высота подъема, м.</p>
+              <div className="aside-filter__line">
+                <div className="aside-filter__input-box">
+                  <span className="aside-filter__from">от</span>
+                  <input
+                    name="height_from"
+                    type="number"
+                    className="aside-filter__input aside-filter__input-from filter-height__from"
+                    value={heightFrom}
+                    onChange={onHeightFromChange}
+                  />
+                </div>
+                <div className="aside-filter__input-box">
+                  <span className="aside-filter__from">до</span>
+                  <input
+                    name="height_to"
+                    type="number"
+                    className="aside-filter__input aside-filter__input-to filter-height__to"
+                    value={heightTo}
+                    onChange={onHeightToChange}
+                  />
+                </div>
+              </div>
+              <Range
+                range 
+                step={1}
+                min={0}
+                max={150}
+                value={[heightFrom, heightTo]}
+                allowCross={false} 
+                trackStyle={trackStyle}
+                railStyle={railStyle}
+                handleStyle={handleStyle}
+                onChange={(value) => handleChangeRange.call(null, value, setHeightFrom, setHeightTo)}
+              />
+            </div>
+            <div className="aside-catalog__filter aside-filter filter-length">
+              <p className="aside-filter__title">Длина стрелы, м.</p>
+              <div className="aside-filter__line">
+                <div className="aside-filter__input-box">
+                  <span className="aside-filter__from">от</span>
+                  <input
+                    name="arrow_length_from"
+                    type="number"
+                    className="aside-filter__input aside-filter__input-from filter-length__from"
+                    value={arrowLengthFrom}
+                    onChange={onArrowLengthFromChange}
+                  />
+                </div>
+                <div className="aside-filter__input-box">
+                  <span className="aside-filter__from">до</span>
+                  <input
+                    name="arrow_length_to"
+                    type="number"
+                    className="aside-filter__input aside-filter__input-to filter-length__to"
+                    value={arrowLengthTo}
+                    onChange={onArrowLengthToChange}
+                  />
+                </div>
+              </div>
+            <Range
+              range 
+              step={1}
+              min={0}
+              max={150}
+              value={[arrowLengthFrom, arrowLengthTo]}
+              allowCross={false} 
+              trackStyle={trackStyle}
+              railStyle={railStyle}
+              handleStyle={handleStyle}
+              onChange={(value) => handleChangeRange.call(null, value, setArrowLengthFrom, setArrowLengthTo)}
+            />
+            </div>
+            <button className="aside-catalog__reset" type="reset" onClick={onResetFilters}>
+              Очистить фильтр
+            </button>
+            <button className="aside-catalog__submit" type="submit">
+              Показать
+            </button>
+          </form>
         </div>
       </div>
     </aside>

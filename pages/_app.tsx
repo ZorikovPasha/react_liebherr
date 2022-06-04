@@ -5,15 +5,11 @@ import { wrapper } from '../redux/store';
 import { Layout } from '../components';
 import '../styles/style.scss';
 
-
-
 type AppPropsWithLayout = AppProps & {
   Component: NextPage
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-
-
   return (
     <Layout >
       <Component {...pageProps}/>
