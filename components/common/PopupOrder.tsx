@@ -1,7 +1,7 @@
 import React from "react";
 import * as yup from "yup";
 
-import { ClientOnlyPortal } from "../";
+import { ClientOnlyPortal } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
 import { REGEX } from "../../utils/const";
@@ -59,11 +59,11 @@ const PopupRequest: React.FC = () => {
 
   const onClose = () => {
     document.documentElement.classList.remove('lock');
-    popupState.request && dispatch(toggleModal({ name: "request", state: false }));
-    popupState.order && dispatch(toggleModal({ name: "order", state: false }))
+    dispatch(toggleModal({ name: "request", state: false }));
+    dispatch(toggleModal({ name: "order", state: false }));
   };
 
-  return popupState.order || popupState.request ? (
+  return (
     <ClientOnlyPortal selector="#modal">
       <div className="popup">
         <div className="popup__body">
@@ -88,7 +88,7 @@ const PopupRequest: React.FC = () => {
         </div>
       </div>
     </ClientOnlyPortal>
-  ) : null
+  );
 };
 
 export default PopupRequest;

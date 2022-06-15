@@ -11,6 +11,7 @@ import Loader from "./common/Loader";
 import ClientOnlyPortal from "./common/ClientOnlyPortal";
 import { AppForm } from "./common/AppForm";
 import { ContactsForm } from "./common/ContactsForm";
+import PopupError from "./common/PopupError";
 
 import Top from "./pages/home/Top";
 import RentSlider from "./pages/home/RentSlider";
@@ -24,7 +25,6 @@ import ServicesPreviews from "./pages/home/ServicesPreviews";
 
 import ProductView from "./pages/product/ProductView";
 import ProductTabs from "./pages/product/ProductTabs";
-import DescriptionPars from "./pages/product/DescriptionPars";
 import SimilarOnesSlider from "./pages/product/SimilarOnesSlider";
 
 import CatalogTabs from "./pages/catalog/CatalogTabs";
@@ -48,8 +48,9 @@ import Footer from "./layout/Footer";
 
 export {PopupRequest, BreadCrumbs, Popup, Top, RentSlider, Guarantee, ProjectsSlider, 
   ResultsInNumbers, CatalogSlider, CostsRow, AboutPreview, ServicesPreviews,
-  Texts, QuestionsForm, ProductView, ProductTabs, DescriptionPars, SimilarOnesSlider,
+  Texts, QuestionsForm, ProductView, ProductTabs, SimilarOnesSlider,
   HelpRequestForm, CatalogTabs, CatalogAside, Pagination, FilterControls, 
   CatalogCard, AnotherArticlesSlider, SceneFootage, ObjectCard, ReviewsCards, ArticleCard,
   Layout, MobMenu, Header, PopupSuccess, Footer, ContactsBlock, AnotherObjectsSlider,
-  SliderNextArrow, SliderPrevArrow, Loader, ClientOnlyPortal, AppForm, ContactsForm };
+  SliderNextArrow, SliderPrevArrow, Loader, ClientOnlyPortal, AppForm, ContactsForm,
+  PopupError };

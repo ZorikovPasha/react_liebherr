@@ -1,8 +1,13 @@
 .loader {
+  position: fixed;
+  z-index: 120;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
-  
-  min-height: 200px;
+  background-color: rgba(#fff, .6);
 }
 
 .dots {

@@ -35,13 +35,12 @@
       right: -57%;
       width: 1094px;
     }
-
-
   }
 
-  // .blog__item
-
-  &__item {
+  &__item-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   &__btn-wrapper {
@@ -56,9 +55,8 @@
 }
 
 .item-blog {
-  display: flex;
-  flex-direction: column;
   max-width: 370px;
+  height: 100%;
   background-color: #fff;
 
   &:hover {

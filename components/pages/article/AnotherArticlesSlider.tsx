@@ -1,22 +1,31 @@
 import Link from 'next/link';
 import Slider from 'react-slick';
 import React from 'react';
+import AxiosError from 'axios';
 
-import { SliderNextArrow, SliderPrevArrow } from "../../../components";
+import { ArticleCard, SliderNextArrow, SliderPrevArrow } from "../../../components";
+import { publicApi } from '../../../api';
+import { ArticleType } from '../../../types/dataTypes';
 
-const AnotherArticlesSlider: React.FC = () => {
+interface IProps {
+  currentArticle: number
+}
+
+const AnotherArticlesSlider: React.FC<IProps> = ({ currentArticle }) => {
+  const [articles, setArticles] = React.useState<ArticleType[]>([])
   const [slider, setSlider] = React.useState<Slider>();
   const [activeSlide, setActiveSlide] = React.useState(0);
 
-  const articles = [
-    { id: 1, title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "Компания Liebherr – ведущий поставщик строительной и землеройной техники в мире. Предлагаем автомобильные краны от легкой до тяжелой категории.", imgSrc: "/static/images/blog/1.jpg" },
-    { id: 2, title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "Компания Liebherr – ведущий поставщик строительной и землеройной техники в мире. Предлагаем автомобильные краны от легкой до тяжелой категории.", imgSrc: "/static/images/blog/1.jpg" },
-    { id: 3, title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "Компания Liebher.", imgSrc: "/static/images/blog/1.jpg" },
-    { id: 4, title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "Компания Liebherr – ведущий поставщик строительной и землеройной техники в мире. Предлагаем автомобильные краны от легкой до тяжелой категории.", imgSrc: "/static/images/blog/1.jpg" },
-    { id: 5, title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "Компания Liebherr – ведущий поставщик строительной и землеройной техники в мире. Предлагаем автомобильные краны от легкой до тяжелой категории.", imgSrc: "/static/images/blog/1.jpg" },
-    { id: 6, title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "Компания Liebherr – ведущий поставщик строительной и землеройной техники в мире. Предлагаем автомобильные краны от легкой до тяжелой категории.", imgSrc: "/static/images/blog/1.jpg" },
-    { id: 7, title: "Аренда автокрана LIEBHERR LTM 1160 в Москве", text: "Компания Liebherr – ведущий поставщик строительной и землеройной техники в мире. Предлагаем автомобильные краны от легкой до тяжелой категории.", imgSrc: "/static/images/blog/1.jpg" },
-  ];
+  React.useEffect(() => {
+    publicApi.getArticles(1).then(data => {
+      if (data instanceof AxiosError) {
+        return
+      }
+
+      setArticles(data.items.filter(article => article.id !== currentArticle))
+    })
+
+  }, [])
 
   const settings = {
     row: 1,
@@ -25,7 +34,7 @@ const AnotherArticlesSlider: React.FC = () => {
     dots: false,
     infinite: false,
     prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
-    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === articles.length - 2} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === articles.length - 3} />,
     afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
@@ -47,21 +56,8 @@ const AnotherArticlesSlider: React.FC = () => {
           className="another-ones__slider"
           ref={(slider: Slider) => setSlider(slider)}
           >
-          {articles.map(({ id, imgSrc, title, text }) => (
-            <div className=" item-blog" key={id}>
-              <div className="item-blog__images">
-                <img src={imgSrc} alt="" />
-              </div>
-              <div className="item-blog__box">
-                <h6 className="item-blog__title">{title}</h6>
-                <p className="item-blog__text" data-crop="200">{text}</p>
-                <Link href={'/article/' + id}>
-                  <a className="item-blog__btn btn">
-                    Подробнее
-                  </a>
-                </Link>
-              </div>
-            </div>
+          {articles?.map(({ id, title, subtitle, preview }) => (
+            <ArticleCard preview={preview} title={title} subtitle={subtitle} id={id} key={id} />
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">

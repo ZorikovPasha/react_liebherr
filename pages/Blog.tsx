@@ -1,19 +1,44 @@
 import { GetStaticProps, NextPage } from "next";
+import React from "react"
+import AxiosError from "axios";
 
 import { publicApi } from "../api";
 import { BreadCrumbs, ArticleCard } from "../components";
 import { ArticleType } from "../types/dataTypes";
+import { useDispatch } from "react-redux";
+import { toggleLoader } from "../redux/slices/loaderSilce";
 
 interface IBlogProps {
-  articles: ArticleType[]
+  items: ArticleType[]
+  hasMore: boolean
 }
 
-const Blog: NextPage<IBlogProps> = ({ articles }) => {
+const Blog: NextPage<IBlogProps> = ({ items, hasMore }) => {
+  const dispatch = useDispatch();
 
+  const activeChunkIdx = React.useRef(1)
+  const showMoreRef = React.useRef(hasMore)
   const breadCrumbs = [
     { id: 1, link: "/", text: "Главная" }, 
     { id: 2, link: "", text: "Статьи" }, 
   ];
+
+  const [_, setArticles] = React.useState(items) 
+
+  const onLoadMore = () => {
+    dispatch(toggleLoader(true))
+
+    publicApi.getArticles(activeChunkIdx.current + 1).then(data => {
+      if (data instanceof AxiosError) {
+        return
+      }
+      activeChunkIdx.current += 1
+      showMoreRef.current = data.hasMore
+      setArticles(data.items)
+      dispatch(toggleLoader(false))
+    })
+  }
+
   return (
     <>
       <BreadCrumbs items={breadCrumbs} />
@@ -21,7 +46,7 @@ const Blog: NextPage<IBlogProps> = ({ articles }) => {
         <div className="container">
           <h1 className="blog__title">СТАТЬИ О СПЕЦТЕХНИКЕ</h1>
           <div className="blog__items">
-            {articles?.map(({ id, title, subtitle, preview }) => (
+            {_?.map(({ id, title, subtitle, preview }) => (
               <ArticleCard 
                 key={id}
                 id={id}
@@ -31,9 +56,9 @@ const Blog: NextPage<IBlogProps> = ({ articles }) => {
                 />
             ))}
           </div>
-          <div className="blog__btn-wrapper">
-            <button className="blog__btn">Загрузить ещё</button>
-          </div>
+          {showMoreRef.current && <div className="blog__btn-wrapper">
+            <button className="blog__btn" onClick={onLoadMore}>Загрузить ещё</button>
+          </div>}
         </div>
       </section>
     </>
@@ -43,7 +68,7 @@ const Blog: NextPage<IBlogProps> = ({ articles }) => {
 export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const articles = await publicApi.getArticles();
+  const articlesInfo = await publicApi.getArticles(1);
 
-  return { props: {articles} }
+  return { props: { items: articlesInfo.items , hasMore: articlesInfo.hasMore } }
 }

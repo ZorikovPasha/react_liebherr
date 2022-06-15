@@ -6,37 +6,51 @@ const CatalogTabs: React.FC = () => {
   const dispatch = useDispatch();
   
   const tabs = [
-    { filter: "weight-40", text: "40 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-50", text: "50 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-65", text: "65 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-68", text: "68 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-70", text: "70 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-82.5", text: "82.5 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-84", text: "84 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-85", text: "85 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-90", text: "90 тонн", className: "catalog-tabs__item catalog-tabs__item--mobile" },
-    { filter: "weight-93.8", text: "93.8 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-95", text: "95 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-112.5", text: "112.5 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-120", text: "120 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-131.6", text: "131.6 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-151", text: "150 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-160", text: "160 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-200", text: "200 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-250", text: "250 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-280", text: "280 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-300", text: "300 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-360", text: "360 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-400", text: "400 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-500", text: "500 тонн", className: "catalog-tabs__item" },
-    { filter: "weight-750", text: "750 тонн", className: "catalog-tabs__item" },
+    { filter: 40, text: "40 тонн" },
+    { filter: 50, text: "50 тонн" },
+    { filter: 65, text: "65 тонн" },
+    { filter: 68, text: "68 тонн" },
+    { filter: 70, text: "70 тонн" },
+    { filter: 82, text: "82.5 тонн" },
+    { filter: 84, text: "84 тонн" },
+    { filter: 85, text: "85 тонн" },
+    { filter: 90, text: "90 тонн" },
+    { filter: 93.8, text: "93.8 тонн" },
+    { filter: 95, text: "95 тонн" },
+    { filter: 112.5, text: "112.5 тонн" },
+    { filter: 120, text: "120 тонн" },
+    { filter: 131.6, text: "131.6 тонн" },
+    { filter: 150, text: "150 тонн" },
+    { filter: 160, text: "160 тонн" },
+    { filter: 200, text: "200 тонн" },
+    { filter: 250, text: "250 тонн" },
+    { filter: 280, text: "280 тонн" },
+    { filter: 300, text: "300 тонн" },
+    { filter: 360, text: "360 тонн" },
+    { filter: 400, text: "400 тонн" },
+    { filter: 500, text: "500 тонн" },
+    { filter: 750, text: "750 тонн" },
   ];
 
+  const TABS_ON_MOBILE = 9
+
   const [activeTabs, setActiveTabs] = React.useState([0]) ;
+  const [itemsToShow, setItemsToShow] = React.useState(tabs.length)
+
+  React.useEffect(() => {
+    const onResize = () => setItemsToShow(window.innerWidth < 768 ? TABS_ON_MOBILE: tabs.length)
+
+    window.addEventListener("resize", onResize)
+    onResize()
+    return () => window.removeEventListener("resize", onResize)
+  }, [])
+
+  const onShowMore = () => {
+    setItemsToShow(itemsToShow === TABS_ON_MOBILE ? tabs.length : TABS_ON_MOBILE )
+  }
 
   const onTabClick = (idx: number) => {
-    const filteringValue = Number(tabs[idx].filter.split('-')[1]);
-    dispatch(setWeight(filteringValue));
+    dispatch(setWeight(tabs[idx].filter));
 
     if (activeTabs.includes(idx)) {
       setActiveTabs(activeTabs.filter(num => num !== idx));
@@ -50,18 +64,23 @@ const CatalogTabs: React.FC = () => {
       <div className="container">
         <h1 className="catalog-tabs__title">Каталог техники</h1>
         <div className="catalog-tabs__items">
-          {tabs && tabs.map(({ filter, text, className }, idx) => (
+          {tabs.slice(0, itemsToShow).map(({ filter, text }, idx) => (
             <button 
-              className={`${className } ${activeTabs.includes(idx) ? 'pressed': ''}`} 
+              className={`catalog-tabs__item ${activeTabs.includes(idx) ? 'pressed': ''}`} 
               data-filter={filter} 
               key={filter}
               onClick={onTabClick.bind(null, idx)}
-              >
+            >
               {text}
             </button>
-          ))}
+          )) 
+          }
         </div>
-        <button className="catalog-tabs__more">ещё</button>
+        <button 
+          className="catalog-tabs__more"
+          onClick={onShowMore}
+          >{itemsToShow === tabs.length? "скрыть" : "ещё"}
+        </button>
       </div>
     </section>
   );

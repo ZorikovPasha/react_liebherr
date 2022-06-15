@@ -8,7 +8,7 @@ import { ConstructionType, MachineryType } from "../types/dataTypes";
 
 interface IHomeProps {
   items: MachineryType[],
-  constructions: ConstructionType[]
+  constructions: { constructions: ConstructionType[], hasMpre: boolean }
 }
 
 const Home: NextPage<IHomeProps> = ({ items, constructions }) => {
@@ -22,7 +22,7 @@ const Home: NextPage<IHomeProps> = ({ items, constructions }) => {
 
         <ResultsInNumbers />
 
-        <ProjectsSlider items={constructions}/>
+        <ProjectsSlider items={constructions.constructions}/>
 
         <CatalogSlider items={items}/>
 
@@ -46,7 +46,7 @@ export default Home;
 
 
 export const getStaticProps: GetStaticProps = async () => {
-  const items = await publicApi.getMachinery();
+  const items = await publicApi.getMachinery("");
   const constructions = await publicApi.getConstructions();
 
   return { 

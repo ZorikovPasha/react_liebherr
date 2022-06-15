@@ -3,6 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import { publicApi } from "../api";
 import { BreadCrumbs, ObjectCard, Texts } from "../components";
 import { ConstructionType } from "../types/dataTypes";
+import { ROUTES } from "../utils/const";
 
 interface IObjectsProps {
   constructions: { constructions: ConstructionType[], hasMore: boolean }
@@ -10,7 +11,7 @@ interface IObjectsProps {
 
 const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
   const breadCrumbs = [
-    { id: 1, link: "/", text: "Главная" }, 
+    { id: 1, link: ROUTES.HOME, text: "Главная" }, 
     { id: 2, link: "", text: "Объекты" }, 
   ];
 

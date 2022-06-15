@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Slider from 'react-slick';
+import { toggleModal } from '../../../redux/slices/modalsSlice';
 import { MachineryType } from '../../../types/dataTypes';
 
 interface IView {
@@ -9,6 +11,8 @@ interface IView {
 const ProductView: React.FC<IView> = ({ info }) => {
   const [thumbsSlider, setThumbsSlider] = React.useState<Slider>();
   const [fullSlider, setFullSlider] = React.useState<Slider>();
+
+  const dispatch = useDispatch()
 
   const thumsSettings = {
     slidesToShow: 3,
@@ -21,6 +25,11 @@ const ProductView: React.FC<IView> = ({ info }) => {
     fade: true,
     arrows: false,
   };
+
+  const onOrder = () => {
+    dispatch(toggleModal({ name: "order", state: true }));
+    document.documentElement.classList.add('lock');
+  }
 
   return (
     <section className="product">
@@ -59,14 +68,14 @@ const ProductView: React.FC<IView> = ({ info }) => {
           </div>
           <div className="product__info">
             <ul className="product__info-list product-list">
-              { info?.features && Object.entries(info.features)?.map(arr => (
+              {info?.features && Object.entries(info.features)?.map(arr => (
                 <li className="product-list__item" key={arr[1].value}>
                   <p className="product-list__text">{arr[1].text}:</p>
                   <p className="product-list__text">{arr[1].value }</p>
                 </li>
-              )) }
+              ))}
             </ul>
-            <button className="product__info-btn btn">
+            <button className="product__info-btn btn" onClick={onOrder}>
               Заказать
             </button>
           </div>

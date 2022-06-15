@@ -1,6 +1,4 @@
 .catalog-tabs {
-
-
   // .catalog-tabs__title
 
   &__title {
@@ -36,14 +34,15 @@
 
     text-align: center;
     margin: 17px auto 0 auto;
-    padding-bottom: 4px;
+    padding: 0 20px 4px 20px;
+
     &::after{
       content: "";
       position: absolute;
       bottom: 0;
       left: 50%;
       transform: translate(-50%, 0);
-      width: 53px;
+      width: 100%;
       height: 2px;
       background-color: $yellowOrange;
     }
@@ -52,7 +51,6 @@
 
 
 .catalog-content {
-
   padding-top: 50px;
   overflow: hidden;
 
@@ -83,11 +81,6 @@
 
   }
 
-  // .catalog-content__aside
-
-  &__aside {
-  }
-
   // .catalog-content__body
 
   &__body {
@@ -109,39 +102,29 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     margin-bottom: 48px;
+  }
 
-    &.catalog-content__items--list {
-      grid-template-columns: 1fr;
+  &__items.catalog-content__items--list {
+    grid-template-columns: 1fr;
 
-      .product-item {
-        max-width: 100%;
-      }
-
-      .product-item__body {
-        flex-direction: row;
-        display: grid;
-        grid-template-columns: 200px 1fr;
-        grid-template-rows: 1fr 1fr;
-      }
-
-      .product-item__images {
-        grid-row: span 2;
-      }
-
-      .product-item__img {
-        height: 100%;
-      }
+    .product-item {
+      max-width: 100%;
     }
-  }
 
-  // .catalog-content__item
+    .product-item__body {
+      flex-direction: row;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
 
-  &__item {
-  }
+    .product-item__images {
+      grid-row: span 2;
+    }
 
-  // .catalog-content__help
-
-  &__help {
+    .product-item__img {
+      height: 100%;
+    }
   }
 }
 
@@ -151,7 +134,10 @@
     max-width: 271px;
     width: 100%;
     overflow-y: auto;
-  
+
+    @media (max-width:767px) {
+      max-width: 100%;
+    }
   }
 
   &__close {
@@ -177,16 +163,6 @@
 
   &__box--last {
     margin-bottom: 0;
-  }
-
-  // .aside-catalog__form
-
-  &__form {
-  }
-
-  // .aside-catalog__filter
-
-  &__filter {
   }
 
   // .aside-catalog__reset
@@ -227,7 +203,6 @@
   }
 }
 .aside-filter {
-
   margin-bottom: 30px;
 
   // .aside-filter__title
@@ -244,8 +219,6 @@
   &__label {
     display: flex;
     align-items: center;
-
-
   }
 
   &__label + &__label {
@@ -335,12 +308,6 @@
     background-color: transparent;
     outline: none;
   }
-
-  
-  // .aside-catalog__dropdown
-
-  &__dropdown {
-  }
 }
 
 .aside-dropdown {
@@ -377,20 +344,10 @@
     }
   }
 
-  // .aside-dropdown__box
-
-  &__box {
-  }
-
   // .aside-dropdown__list
 
   &__list {
     margin-bottom: 25px;
-  }
-
-  // .aside-dropdown__list-item
-
-  &__list-item {
   }
 
   &__list-item + &__list-item {
@@ -431,11 +388,6 @@
     margin-right: 15px;
   }
 
-  // .catalog-controls__select
-
-  &__select {
-  }
-
   // .catalog-controls__view
 
   &__view {
@@ -456,16 +408,6 @@
 
   &__btn + &__btn {
     margin-left: 10px;
-  }
-
-  // .catalog-controls__grid
-
-  &__grid {
-  }
-
-  // .catalog-controls__list
-
-  &__list {
   }
 }
 
@@ -546,10 +488,11 @@
   // .sort-select__arrows
 
   &__arrows {
+    margin-right: 10px;
+
     img {
       display: block;
     }
-    margin-right: 10px;
   }
 
   &__input {
@@ -618,7 +561,6 @@
 
     &::placeholder {
       color: #8C8A8A;
-
     }
 
   }
@@ -726,11 +668,12 @@
 
 @media (max-width:992px) {
   .aside-catalog__body {
-    max-width: 226px;
+    max-width: 100%;
   }
   .aside-catalog__box {
     padding-left: 14px;
     padding-right: 19px;
+    margin-bottom: 0;
   }
   .product-item__box--small {
     grid-template-columns: 135px auto;
@@ -795,13 +738,6 @@
   .catalog-tabs__items {
     grid-template-columns: repeat( 3, 1fr );
   }
-  .catalog-tabs__item {
-    display: none;
-
-    &.catalog-tabs__item--mobile {
-      display: block;
-    }
-  }
   .catalog-tabs__more {
     display: block;
   }
@@ -823,7 +759,7 @@
   }
 
   .aside-catalog__body {
-    transform: translate(-200%, 0);
+    opacity: 0;
     transition: all .2s;
     background: #f3f3f3;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
@@ -831,7 +767,6 @@
     &.opened {
       opacity: 1;
       visibility: visible;  
-      transform: translate(0%, 0);
     }
   }
   .aside-catalog__close {

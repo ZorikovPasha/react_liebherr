@@ -8,14 +8,19 @@ const RentSlider: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>();
   const [activeSlide, setActiveSlide] = React.useState(0);
 
+  const text = "Аренда гусеничного крана – актуальная услуга для многих строительных площадок. Использование спецтехники существенно упрощает погрузку - выгрузку материалов, оптимизирует рабочий процесс."
+
   const slides = [
-    { title: "Гусеничные краны", link: "Выбрать спецтехнику", text: "Аренда гусеничного крана – актуальная услуга для многих строительных площадок. Использование спецтехники существенно упрощает погрузку - выгрузку материалов, оптимизирует рабочий процесс." },
-    { title: "Гусеничные краны", link: "Выбрать спецтехнику", text: "Аренда гусеничного крана – актуальная услуга для многих строительных площадок. Использование спецтехники существенно упрощает погрузку - выгрузку материалов, оптимизирует рабочий процесс." },
-    { title: "Гусеничные краны", link: "Выбрать спецтехнику", text: "Аренда гусеничного крана – актуальная услуга для многих строительных площадок. Использование спецтехники существенно упрощает погрузку - выгрузку материалов, оптимизирует рабочий процесс." },
-    { title: "Гусеничные краны", link: "Выбрать спецтехнику", text: "Аренда гусеничного крана – актуальная услуга для многих строительных площадок. Использование спецтехники существенно упрощает погрузку - выгрузку материалов, оптимизирует рабочий процесс." },
-    { title: "Гусеничные краны", link: "Выбрать спецтехнику", text: "Аренда гусеничного крана – актуальная услуга для многих строительных площадок. Использование спецтехники существенно упрощает погрузку - выгрузку материалов, оптимизирует рабочий процесс." },
-    { title: "Гусеничные краны", link: "Выбрать спецтехнику", text: "Аренда гусеничного крана – актуальная услуга для многих строительных площадок. Использование спецтехники существенно упрощает погрузку - выгрузку материалов, оптимизирует рабочий процесс." },
+    { title: "Гусеничные краны", text, img: "static/images/items-rent/pic-1.png" },
+    { title: "Экскаваторы", text,  img: "static/images/items-rent/pic-2.webp" },
+    { title: "Бульдозеры", text,  img: "static/images/items-rent/pic-3.webp" },
+    { title: "Краны строительные", text,  img: "static/images/items-rent/pic-4.webp" },
+    { title: "Самосвалы", text,  img: "static/images/items-rent/pic-5.webp" },
+    { title: "Гидромолот", text,  img: "static/images/items-rent/pic-6.webp" },
   ];
+
+
+
   const settings = {
     dots: true,
     fade: true,
@@ -45,17 +50,17 @@ const RentSlider: React.FC = () => {
             {...settings}
             ref={(slider: Slider) => setSlider(slider)}
             >
-            {slides.map(({ title, text, link }, idx) => (
+            {slides.map(({ title, text, img }, idx) => (
               <div className="rent__slider-item slider-item" key={idx}>
                 <div className="slider-item__body">
                   <div className="slider-item__images wow animate__animated animate__fadeInLeft">
-                    <img src="static/images/rent.png" alt="строительная техника" />
+                    <img src={img} alt="строительная техника" />
                   </div>
                   <div className="slider-item__info">
                     <h3 className="slider-item__title">{title}</h3>
                     <p className="slider-item__text">{text}</p>
                     <Link href="/catalog">
-                      <a className="slider-item__link btn">{link}</a>
+                      <a className="slider-item__link btn">Выбрать спецтехнику</a>
                     </Link>
                   </div>
                 </div>

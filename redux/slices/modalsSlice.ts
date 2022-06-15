@@ -4,6 +4,7 @@ import { HYDRATE } from "next-redux-wrapper";
 const initialState = {
   opened: {
     request: false,
+    order: false,
     message: false,
     error: false
   }
@@ -27,7 +28,7 @@ export const modalsSlice = createSlice({
     [HYDRATE]: (state, action) => {
       return {
         ...state,
-        ...action.payload,
+        ...action.payload.rootReducer.modals,
       };
     },
   },

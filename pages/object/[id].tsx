@@ -4,6 +4,7 @@ import { ParsedUrlQuery } from "querystring";
 import { publicApi } from "../../api";
 import { AnotherObjectsSlider, BreadCrumbs, SceneFootage, Texts } from "../../components";
 import { ConstructionType } from "../../types/dataTypes";
+import { ROUTES } from '../../utils/const';
 
 interface IObjectsProps {
   construction: ConstructionType,
@@ -15,8 +16,8 @@ const Object: NextPage<IObjectsProps> = ({ construction, similarOnes }) => {
   const { title, text, images } = construction;
   
   const breadCrumbs = [
-    { id: 1, link: "/", text: "Главная" }, 
-    { id: 2, link: "/objects", text: "Объекты" }, 
+    { id: 1, link: ROUTES.HOME, text: "Главная" }, 
+    { id: 2, link: ROUTES.OBJECTS, text: "Объекты" }, 
     { id: 3, link: "", text: construction.title }, 
   ];
 
@@ -32,29 +33,27 @@ const Object: NextPage<IObjectsProps> = ({ construction, similarOnes }) => {
 
 export default Object;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    return { paths: [
-      { params: { id: '1' } },
-      { params: { id: '2' } },
-      { params: { id: '3' } },
-      { params: { id: '4' } },
-    ],
-  fallback: false}
-}
-
 interface IParams extends ParsedUrlQuery {
   id: string
+}
+
+type PType = { params: { id: string } }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data = await publicApi.getConstructionsIds();
+  
+  return {
+    paths: data.items.reduce((accum: PType[], next) => ([
+      ...accum,
+      { params: { id: next.toString() } }
+    ]), []),
+    fallback: false
+  }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as IParams;
   const { construction, similarOnes} = await publicApi.getSingleConstruction(id);
-  console.log('--------------');  
-  console.log('construction', construction);
-  console.log('------');
-  console.log('similarOnes', similarOnes);
-
-  console.log('--------------');  
 
   return { props: {construction, similarOnes} }
 }

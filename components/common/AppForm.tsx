@@ -1,9 +1,14 @@
 import React from 'react'
 import { Formik, FormikHelpers } from "formik";
 import { publicApi } from '../../api';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/router';
 import { toggleModal } from "../../redux/slices/modalsSlice";
 import { AppTextField } from './AppTextField';
+import { toggleLoader } from '../../redux/slices/loaderSilce';
+import { selectProduct } from '../../redux/selectors';
+import { MachineryType } from '../../types/dataTypes';
+
 
 type fieldsType = {
   fields: {
@@ -42,6 +47,7 @@ type AppFormPropsType = {
   buttonText: string,
   formClass: string,
   agreeLabelClass?: string
+  isOrder?: boolean
 }
 
 export type handleSubmitType<T> = ((values: T, formikHelpers: FormikHelpers<T>) => void | Promise<unknown>)
@@ -53,28 +59,37 @@ export const AppForm: React.FC<AppFormPropsType> = ({
   buttonClass="",
   buttonText,
   formClass="",
-  agreeLabelClass="popup__label form-label"
+  agreeLabelClass="popup__label form-label",
+  isOrder=false
 }) => {
   const dispatch = useDispatch();
+  const { query } = useRouter()
 
-  const onClose = () => {
-    document.documentElement.classList.remove('lock');
-    dispatch(toggleModal({ name: "request", state: false }));
-  };
+  let desiredProduct: MachineryType | undefined
+  if (query.id && !Array.isArray(query.id)) {
+    desiredProduct = useSelector(selectProduct(Number(query.id)))
+  }
 
-  const onSuccess = () => {
-    onClose();
+  const handleSubmit: handleSubmitType<typeof initValues> = async (userData) => {
+    dispatch(toggleLoader(true))
 
-    dispatch(toggleModal({ name: "message", state: true }));
-    document.documentElement.classList.add('lock');
-  };
+    let res;
+    
+    if (isOrder) {
+      const data = { ...userData, id: desiredProduct?._id }
+      
+      res = await publicApi.makeOrder(data)
+    } else {
+      res = await publicApi.sendRequest(userData)
+    }
 
-  const handleSubmit: handleSubmitType<typeof initValues> = async (userData, { resetForm }) => {
-    const res = await publicApi.sendRequest(userData)
+    dispatch(toggleLoader(false))
 
     if (res?.success) {
-      onSuccess();
-      resetForm();
+      isOrder 
+        ? dispatch(toggleModal({ name: "order", state: false }))
+        : dispatch(toggleModal({ name: "request", state: false }));
+      dispatch(toggleModal({ name: "message", state: true }));
     } else {
       dispatch(toggleModal({ name: "error", state: true }));
       document.documentElement.classList.add('lock');

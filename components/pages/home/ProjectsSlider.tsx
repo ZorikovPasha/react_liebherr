@@ -5,7 +5,6 @@ import Slider, { Settings } from "react-slick";
 import { SliderNextArrow, SliderPrevArrow } from "../../../components";
 import { ConstructionType } from "../../../types/dataTypes";
 
-
 interface ISliderProps {
   items: ConstructionType[]
 }
@@ -42,8 +41,9 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
   const [activeSlide, setActiveSlide] = React.useState(0);
 
   const ProjectSliderSettings: Settings = {
-    fade: true,
-    infinite: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
     prevArrow: <SliderPrevArrow onClick={thumbsNav?.slickPrev} isDisabled={activeSlide === 0} />,

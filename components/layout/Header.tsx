@@ -2,6 +2,7 @@ import React from 'react';
 import Link from "next/link";
 import { useDispatch } from 'react-redux';
 import { toggleModal } from '../../redux/slices/modalsSlice';
+import { ROUTES } from '../../utils/const';
 
 interface IHeaderProps {
   handleMobMennuButtonClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -15,13 +16,13 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
   };
 
   const links = [
-    { link: "/catalog", text: "Каталог" },
-    { link: "/objects", text: "Услуги" },
-    { link: "/about", text: "О компании" },
-    { link: "/objects", text: "Объекты" },
-    { link: "/contacts", text: "Цены" },
-    { link: "/blog", text: "Блог" },
-    { link: "/contacts", text: "Контакты" },
+    { link: ROUTES.CATALOG, text: "Каталог" },
+    { link: ROUTES.OBJECTS, text: "Услуги" },
+    { link: ROUTES.ABOUT, text: "О компании" },
+    { link: ROUTES.OBJECTS, text: "Объекты" },
+    { link: ROUTES.CONTACTS, text: "Цены" },
+    { link: ROUTES.BLOG, text: "Блог" },
+    { link: ROUTES.CONTACTS, text: "Контакты" },
   ];
   return (
     <header className="header">
@@ -29,7 +30,7 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
         <div className="container">
           <div className="header__top-inner">
             <div className="header__about">
-              <Link href="/">
+              <Link href={ROUTES.HOME}>
                 <a className="header__logo">
                   <img 
                     className="header__logo-img" 

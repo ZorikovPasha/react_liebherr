@@ -6,7 +6,7 @@ interface IPagination {
   catalogItemsCount: number,
 }
 
-const Pagination: React.FC<IPagination> = ({catalogItemsCount}) => {
+const Pagination: React.FC<IPagination> = ({catalogItemsCount = 0}) => {
   let [activePage, setActivePage] = React.useState(0);
 
   const dispatch = useDispatch();

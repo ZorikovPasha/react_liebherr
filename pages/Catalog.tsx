@@ -1,6 +1,5 @@
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import React, { MouseEventHandler } from "react";
-
 import {
   BreadCrumbs,
   CatalogAside,
@@ -13,24 +12,27 @@ import {
   Pagination,
   Texts,
 } from "../components";
-import { publicApi } from "../api";
 import { MachineryType } from "../types/dataTypes";
+import { ROUTES } from "../utils/const";
+import { useSelector } from "react-redux";
+import { selectProducts } from "../redux/selectors";
 
 interface ICatalogProps {
   items: MachineryType[];
 }
 
-const Catalog: NextPage<ICatalogProps> = ({ items }) => {
+const Catalog: NextPage<ICatalogProps> = () => {
+  const items = useSelector(selectProducts)
   const [isAsideOpened, setAsideOpened] = React.useState(false);
   const [isAsideBodyOpened, setAsideBodyOpened] = React.useState(false);
-  const [activeView, setActiveView] = React.useState<"grid" | "list">("grid");
+  const [activeView, setActiveView] = React.useState<"grid" | "list">("grid");  
 
   const AsideRef = React.useRef(null);
   const asideBtnRef = React.useRef(null);
 
   const breadCrumbs = [
-    { id: 1, link: "/", text: "Главная" },
-    { id: 2, link: "/catalog", text: "Каталог техники" },
+    { id: 1, link: ROUTES.HOME, text: "Главная" },
+    { id: 2, link: ROUTES.CATALOG, text: "Каталог техники" },
   ];
 
   const onAsideOpen: MouseEventHandler<HTMLButtonElement> = () => {
@@ -69,16 +71,16 @@ const Catalog: NextPage<ICatalogProps> = ({ items }) => {
 
               <div className={`catalog-content__items ${activeView === "list" ? "catalog-content__items--list" : ""}`}>
                 {items &&
-                  items?.map((item) => (
+                  items?.map(({ id, name, features, imgSrc }) => (
                     <CatalogCard
-                      id={item.id}
-                      key={item.id}
-                      name={item.name}
-                      liftingCapacity={item.features.liftingCapacity.value}
-                      arrowLength={item.features.arrowLength.value}
-                      imgSrc={item.imgSrc}
+                      id={id}
+                      key={id}
+                      name={name}
+                      liftingCapacity={features.liftingCapacity.value}
+                      arrowLength={features.arrowLength.value}
+                      imgSrc={imgSrc}
                     />
-                  ))}
+                ))}
               </div>
 
               <Pagination catalogItemsCount={items.length} />
@@ -109,18 +111,10 @@ const Catalog: NextPage<ICatalogProps> = ({ items }) => {
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
-        ></iframe>
+        />
       </div>
     </>
   );
 };
 
 export default Catalog;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const items = await publicApi.getMachinery();
-
-  return {
-    props: { items },
-  };
-};

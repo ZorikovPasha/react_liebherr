@@ -1,10 +1,11 @@
 import React from 'react'
 import { NextPage } from "next";
 import { ContactsBlock, BreadCrumbs, ContactsForm } from "../components";
+import { ROUTES } from '../utils/const';
 
 const Contacts: NextPage = () => {
   const breadCrumbs = [
-    { id: 1, link: "/", text: "Главная" }, 
+    { id: 1, link: ROUTES.HOME, text: "Главная" }, 
     { id: 2, link: "", text: "Контакты" }, 
   ];
 

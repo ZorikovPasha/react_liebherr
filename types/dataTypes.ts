@@ -11,6 +11,7 @@ type featureType = {
 };
 
 export interface MachineryType {
+  _id: string,
   id: number;
   name: string;
   imgSrc: string;
@@ -55,9 +56,14 @@ export type ArticleType = {
   images: string[],
 };
 
-export type RequestType = {
+export interface RequestType {
   name: string,
   phone: string,
   email?: string,
   message?: string
+}
+
+export interface OrderType extends RequestType {
+  isAgree: boolean,
+  id: string
 }

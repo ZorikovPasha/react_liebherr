@@ -1,11 +1,14 @@
 import React from "react";
 import Range from 'rc-slider';
-
+import Router from "next/router";
+import AxiosError from "axios"
 
 import 'rc-slider/assets/index.css';
 import { makeQueryFromParams } from "../../../utils/makeQueryFromParams";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectFliters } from "../../../redux/selectors";
+import { publicApi } from "../../../api";
+import { set } from "../../../redux/slices/productsSlice";
 
 interface IASideProps {
   isAsideOpened: boolean;
@@ -48,7 +51,6 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
 
   const [arrowLengthFrom, setArrowLengthFrom] = React.useState(10);
   const [arrowLengthTo, setArrowLengthTo] = React.useState(50);
-
 
   const onLiftCapacityFromChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setLiftingCapacityFrom(Number(e.target.value))
@@ -97,9 +99,11 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
     }
   };
 
+  const dispatch = useDispatch()
+
   const { paginate, sort, weights } = useSelector(selectFliters);
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement>  = (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const query = makeQueryFromParams(
       paginate,
@@ -118,9 +122,18 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
       arrowLengthFrom,
       arrowLengthTo
     );
-    console.log(query);
-  };
+    Router.push({
+      pathname: '',
+      query,
+    })
+    publicApi.getMachinery(query).then(data => {
+      if (data instanceof AxiosError) {
+        return
+      }
 
+      dispatch(set(data))
+    });
+  };
 
   const onResetFilters = () => {
     setMobile(false);
@@ -140,8 +153,14 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
 
   return (
     <aside className={`catalog-content__aside aside-catalog ${isAsideOpened ? "opened" : ""}`}>
-      <div className={`aside-catalog__body ${isAsideBodyOpened ? "opened" : ""}`} ref={AsideRef}>
-        <button className="aside-catalog__close" onClick={onAsideClose}>
+      <div 
+        className={`aside-catalog__body ${isAsideBodyOpened ? "opened" : ""}`} 
+        ref={AsideRef}
+      >
+        <button 
+          className="aside-catalog__close" 
+          onClick={onAsideClose}
+        >
           <img src="/static/images/close.svg" alt="крестик" />
         </button>
         <div className="aside-catalog__title-box">
@@ -307,10 +326,17 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
               onChange={(value) => handleChangeRange.call(null, value, setArrowLengthFrom, setArrowLengthTo)}
             />
             </div>
-            <button className="aside-catalog__reset" type="reset" onClick={onResetFilters}>
+            <button 
+              className="aside-catalog__reset" 
+              type="reset" 
+              onClick={onResetFilters}
+            >
               Очистить фильтр
             </button>
-            <button className="aside-catalog__submit" type="submit">
+            <button 
+              className="aside-catalog__submit" 
+              type="submit"
+            >
               Показать
             </button>
           </form>

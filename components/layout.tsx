@@ -1,8 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-import { MobMenu, Header, Footer, PopupRequest, PopupSuccess } from ".";
-import { selectPopupState, selectSuccessPopupState } from '../redux/selectors';
+import { MobMenu, Header, Footer, Loader, PopupRequest, PopupSuccess, PopupError } from ".";
 
 type LayoutProps = {
   children: React.ReactNode,
@@ -13,9 +11,6 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
   const [isMobMenuOpen, setMobMenuOpen] = React.useState(false);
   const [isMenuBodyOpened, setMenuBodyOpened] = React.useState(false);
-
-  const isPopupOpened = useSelector(selectPopupState);
-  const isSuccessPopupOpened = useSelector(selectSuccessPopupState);
 
   const handleMobMennuCloseClick = React.useCallback(() => {
     setMobMenuOpen(false);
@@ -39,16 +34,19 @@ const Layout: React.FC<LayoutProps> = ({
         isMobMenuOpen={isMobMenuOpen}
         isMenuBodyOpened={isMenuBodyOpened}
         />}
-      <div className="main">
+      <main className="main">
         {children}
-        <Footer />
-        {isPopupOpened && <PopupRequest/>}
-        {isSuccessPopupOpened && <PopupSuccess 
-          title='Заявка отправлена' 
-          text="Мы вам перезвоним в ближайшее время" 
+        <PopupRequest />
+        <PopupSuccess
+          title="Заявка отправлена"
+          text="Мы вам перезвоним в ближайшее время"
           buttonText="Закрыть"
-          />}
-      </div>
+        />
+        <PopupError />
+        <Loader />
+      </main>
+      <Footer />
+
     </>
   )
 };

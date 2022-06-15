@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   sort: "height",
-  paginate: 0,
+  paginate: 1,
   weights: [40],
 };
 
@@ -27,6 +28,14 @@ export const filtersSlice = createSlice({
       state.weights.includes(action.payload)
         ? state.weights = state.weights.filter(num => num !== action.payload)
         : state.weights.push(action.payload);
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      return {
+        ...state,
+        ...action.payload.loader,
+      };
     },
   },
 });

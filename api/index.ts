@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ArticleType, ConstructionType, MachineryType, RequestType } from "../types/dataTypes";
+import { ArticleType, ConstructionType, MachineryType, OrderType, RequestType } from "../types/dataTypes";
 
 export const apiConfig = {
   returnRejectedPromiseOnError: true,
@@ -54,8 +54,8 @@ class PublicApi extends Api {
     super(config);
   }
 
-  getMachinery = () => {
-    return this.get<MachineryType[]>('/api/machinery');
+  getMachinery = (query: string) => {
+    return this.get<MachineryType[]>('/api/machinery' + query);
   };
 
   getSingleMachinery = (id: number)=> {
@@ -70,8 +70,16 @@ class PublicApi extends Api {
     return this.get<{ constructions: ConstructionType[], hasMore: boolean }>('/api/constructions');
   };
 
-  getArticles = () => {
-    return this.get<ArticleType[]>('/api/articles');
+  getConstructionsIds = () => {
+    return this.get<{ items: number[] }>('/api/constructions/ids');
+  };
+
+  getArticles = (portionIdx: number) => {
+    return this.get<{ items: ArticleType[], hasMore: boolean}>('/api/articles?chunk=' + portionIdx);
+  };
+
+  getArticlesIds = () => {
+    return this.get<{ items: number[] }>('/api/articles/ids');
   };
 
   getSingleArticle = (id: string) => {
@@ -80,6 +88,10 @@ class PublicApi extends Api {
 
   sendRequest = (data: RequestType) => {
     return this.post<{ success: Boolean }, RequestType>("/api/question", data)
+  }
+
+  makeOrder = (userData: OrderType) => {
+    return this.post<{ success: Boolean }, { id: string }>("/api/order", {...userData})
   }
 }
 
