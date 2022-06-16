@@ -677,6 +677,26 @@ button:active {
   }
 }
 
+.empty {
+  padding: 50px 0;
+
+  &__images {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+
+    img {
+      max-width: 200px;
+      object-fit: contain;
+    }
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 26px;
+    text-align: center;
+  }
+}
 
 .product-item {
   overflow: hidden;

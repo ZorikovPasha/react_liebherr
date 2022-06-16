@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import {
   BreadCrumbs,
   CatalogAside,
@@ -11,11 +11,13 @@ import {
   HelpRequestForm,
   Pagination,
   Texts,
+  Error,
+  AppEmpty
 } from "../components";
 import { MachineryType } from "../types/dataTypes";
 import { ROUTES } from "../utils/const";
 import { useSelector } from "react-redux";
-import { selectProducts } from "../redux/selectors";
+import { selectProducts, selectProductsError } from "../redux/selectors";
 
 interface ICatalogProps {
   items: MachineryType[];
@@ -23,29 +25,18 @@ interface ICatalogProps {
 
 const Catalog: NextPage<ICatalogProps> = () => {
   const items = useSelector(selectProducts)
-  const [isAsideOpened, setAsideOpened] = React.useState(false);
-  const [isAsideBodyOpened, setAsideBodyOpened] = React.useState(false);
   const [activeView, setActiveView] = React.useState<"grid" | "list">("grid");  
 
   const AsideRef = React.useRef(null);
-  const asideBtnRef = React.useRef(null);
 
   const breadCrumbs = [
     { id: 1, link: ROUTES.HOME, text: "Главная" },
     { id: 2, link: ROUTES.CATALOG, text: "Каталог техники" },
   ];
 
-  const onAsideOpen: MouseEventHandler<HTMLButtonElement> = () => {
-    setAsideOpened(true);
-    setTimeout(() => setAsideBodyOpened(true), 100);
-    document.documentElement.classList.add("lock");
-  };
+  const isError = useSelector(selectProductsError) 
 
-  const onAsideClose: MouseEventHandler<HTMLButtonElement> = () => {
-    setAsideOpened(false);
-    setAsideBodyOpened(false);
-    document.documentElement.classList.remove("lock");
-  };
+  const onAsideOpen = React.useRef<null | (() => void)>(null)
 
   return (
     <>
@@ -55,33 +46,34 @@ const Catalog: NextPage<ICatalogProps> = () => {
       <div className="catalog-content">
         <div className="container">
           <div className="catalog-content__inner">
-            <CatalogAside 
-              ref={AsideRef} 
-              isAsideOpened={isAsideOpened} 
-              isAsideBodyOpened={isAsideBodyOpened} 
-              onAsideClose={onAsideClose}
-            />
+            <CatalogAside ref={AsideRef} onOpen={onAsideOpen} />
             <div className="catalog-content__body">
               <FilterControls 
                 activeView={activeView} 
-                ref={asideBtnRef} 
                 setActiveView={setActiveView} 
                 onAsideOpen={onAsideOpen} 
               />
-
-              <div className={`catalog-content__items ${activeView === "list" ? "catalog-content__items--list" : ""}`}>
-                {items &&
-                  items?.map(({ id, name, features, imgSrc }) => (
-                    <CatalogCard
-                      id={id}
-                      key={id}
-                      name={name}
-                      liftingCapacity={features.liftingCapacity.value}
-                      arrowLength={features.arrowLength.value}
-                      imgSrc={imgSrc}
-                    />
-                ))}
-              </div>
+              {isError
+                ? <Error />
+                : items?.length 
+                  ? (
+                    <div className={`catalog-content__items ${activeView === "list" ? "catalog-content__items--list" : ""}`}>
+                    {items &&
+                      items?.map(({ id, name, features, imgSrc }) => (
+                        <CatalogCard
+                          id={id}
+                          key={id}
+                          name={name}
+                          liftingCapacity={features.liftingCapacity.value}
+                          arrowLength={features.arrowLength.value}
+                          imgSrc={imgSrc}
+                        />
+                    ))}
+                  </div>
+                  )
+                  : (
+                    <AppEmpty />
+                )}
 
               <Pagination />
             </div>

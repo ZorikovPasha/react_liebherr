@@ -1,3 +1,5 @@
+@import '~rc-slider/assets/index.css';
+
 @import "_null.scss";
 @import "_global.scss";
 
@@ -17,6 +19,7 @@
 @import "_mob-menu.scss";
 @import "_floating-field.scss";
 @import "_loader.scss";
+@import "error.scss";
 
 @import "_animate.scss";
 @import "_media.scss";

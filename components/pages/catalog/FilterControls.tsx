@@ -1,13 +1,12 @@
 
 import React from 'react';
-import { MouseEventHandler } from "react";
 import { useDispatch } from 'react-redux';
 import Select, { ActionMeta, SingleValue } from 'react-select'
 import { setSort } from '../../../redux/slices/CatalogFiltersSlice';
 
 interface ICOntrolsProps {
   activeView: 'grid' | 'list';
-  onAsideOpen: MouseEventHandler<HTMLButtonElement>;
+  onAsideOpen: React.MutableRefObject<(() => void) | null>;
   setActiveView: React.Dispatch<React.SetStateAction<'grid' | 'list'>>
 }
 
@@ -22,6 +21,13 @@ type onSortChangeType = (newValue: SingleValue<{
 
 const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen, setActiveView, activeView }, asideBtnRef) => {
   const dispatch = useDispatch();
+  
+
+  console.log("controls");
+
+  const onToggleASide = () => {
+    onAsideOpen?.current && onAsideOpen.current()
+  }
   
   const sortOptions = [
     {value: "heght", label: "По высоте"},
@@ -55,7 +61,7 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
       <div className="catalog-controls__aside-toggle aside-toggle">
         <button 
           className="aside-toggle__btn" 
-          onClick={onAsideOpen}
+          onClick={onToggleASide}
           ref={asideBtnRef}
           >
           <img src="/static/images/aside-toggle.svg" alt="иконка переключатель" />

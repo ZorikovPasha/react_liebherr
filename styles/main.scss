@@ -1,5 +1,4 @@
 .top {
-
   // .top__inner
 
   &__inner {
@@ -220,6 +219,7 @@
   &__title {
     @extend %h2;
     margin-bottom: 55px;
+
     span {
       color: $Orange;
     }
@@ -243,6 +243,7 @@
       max-width: 45%;
       width: 100%;
       bottom: 79px;
+
       li {
         width: 100%;
         margin: 0;
@@ -268,7 +269,6 @@
 
 
 .slider-item {
-
   // .slider-item__body
 
   &__body {
@@ -325,7 +325,6 @@
 
 
 .guarantee {
-
   background: #E5E5E5;
   position: relative;
   z-index: 100;
@@ -380,7 +379,6 @@
     grid-gap: 37px 20px;
 
     width: 515px;
-    // width: 100%;
     margin-top: 10px;
   }
 
@@ -407,7 +405,6 @@
 }
 
 .numbers {
-
   padding: 90px 0;
   background-color: $black;
 
@@ -469,7 +466,6 @@
 
 
 .projects {
-
   background-color: #fff;
   margin-top: 120px;
 
@@ -564,7 +560,6 @@
   margin: 0 auto;
 }
 .projects-slider {
-
   max-width: 1400px;
   padding-top: 87px;
 
@@ -654,6 +649,7 @@
     font-family: 'PT Sans', sans-serif;
     padding-right: 40px;
     position: relative;
+
     &::after{
       content: "";
       position: absolute;
@@ -668,7 +664,6 @@
 }
 
 .catalog {
-
   padding: 120px 0;
 
   // .catalog__title
@@ -713,7 +708,6 @@
 }
 
 .cost {
-
   position: relative;
   padding: 61px 0 83px;
   background-color: $black;
@@ -814,7 +808,6 @@
     margin-bottom: 9px;
   }
 
-
   // .cost__item-text
 
   &__item-text {
@@ -828,11 +821,11 @@
 }
 
 .main-form {
-
   margin-top: 50px;
   padding: 22px 0;
   position: relative;
   background-color: #fff;
+
   &::before,
   &::after{
     content: "";
@@ -1016,7 +1009,7 @@
     position: relative;
 
     &::after {
-      @media (min-width:1412px) {
+      @media (min-width: 1412px) {
         content: "about";
         position: absolute;
         top: 21%;
@@ -1111,6 +1104,7 @@
 
   &__inner {
     position: relative;
+
     &::after,
     &::before {
       position: absolute;
@@ -1122,6 +1116,7 @@
       text-transform: uppercase;
       color: rgba(211,208,208,.2);
     }
+
     &::before {
       content: 'services';
       bottom: -130px;
@@ -1281,6 +1276,7 @@
     border: 1px solid #C4C4C4;
     background-color: transparent;
     color: #fff;
+    
     &,
     &::placeholder {
       font-family: 'Montserrat', sans-serif;

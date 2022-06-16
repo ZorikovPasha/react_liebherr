@@ -14,8 +14,8 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk(
   'products/fetch',
-  async (chunk: number) => {
-    const response = await publicApi.getMachinery(chunk)
+  async (query: string) => {
+    const response = await publicApi.getMachinery(query)
     
     return response
   }
@@ -43,9 +43,9 @@ export const modalsSlice = createSlice({
       state.isError = false
       state.items = action.payload.items
       state.total = action.payload.total
-      state.currentChunk = action.meta.arg
+      state.currentChunk = action.payload.chunk
     })
-    
+
     builder.addCase(HYDRATE, (state, action: PayloadType) => {
       return {
         ...state,

@@ -10,7 +10,6 @@ const Loader: React.FC = () => {
   const isShown = useSelector(selectLoaderState);
   const isLoading = useSelector(selectProductsLoading)
 
-
   React.useEffect(() => {
     portalRef.current = document.querySelector("#loader")
     setMounted(true)

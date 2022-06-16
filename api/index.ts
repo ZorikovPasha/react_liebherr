@@ -53,8 +53,8 @@ class PublicApi extends Api {
     super(config);
   }
 
-  getMachinery = (query: number) => {
-    return this.get<{ items: MachineryType[], total: number }>('/api/machinery?chunk=' + query);
+  getMachinery = (query: string) => {
+    return this.get<{ items: MachineryType[], total: number, chunk: number }>('/api/machinery' + query);
   };
 
   getSingleMachinery = (id: number)=> {

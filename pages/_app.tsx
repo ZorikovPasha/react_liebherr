@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 };
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
-  await store.dispatch(fetchProducts(1))
+  await store.dispatch(fetchProducts("?chunk=1"))
 
   return { pageProps: {} }
 });

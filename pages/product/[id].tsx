@@ -17,7 +17,7 @@ const Product: NextPage<IProductProps> = ({ machinery, similarOnes }) => {
   const breadCrumbs = [
     { id: 1, link: ROUTES.HOME, text: "Главная" }, 
     { id: 2, link: ROUTES.CATALOG, text: "Каталог техники" }, 
-    { id: 3, link: "", text: "Страница товара" }, 
+    { id: 3, link: "", text: machinery.name ?? "Страница товара" }, 
   ];
   
   return (

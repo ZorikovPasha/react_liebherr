@@ -8,7 +8,6 @@ type MachineryTypesType = {
 
 
 export const makeQueryFromParams = (
-  paginate: number,
   sort: string,
   weights: number[],
   types: MachineryTypesType,
@@ -30,5 +29,5 @@ export const makeQueryFromParams = (
     }
   }
   
-  return `${weightsQuery.substr(1)}${typesQuery}&lifting_capacity_from=${liftingCapacityFrom}&lifting_capacity_to=${liftingCapacityTo}&height_from=${heightFrom}&height_to=${heightTo}&arrow_length_from=${arrowLengthFrom}&arrow_length_to=${arrowLengthTo}&paginate=${paginate}&sort=${sort}`;
+  return `${weightsQuery.substr(1)}${typesQuery}&lifting_capacity_from=${liftingCapacityFrom}&lifting_capacity_to=${liftingCapacityTo}&height_from=${heightFrom}&height_to=${heightTo}&arrow_length_from=${arrowLengthFrom}&arrow_length_to=${arrowLengthTo}&sort=${sort}`;
 };

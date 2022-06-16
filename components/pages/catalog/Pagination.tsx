@@ -18,8 +18,9 @@ const Pagination: React.FC = () => {
   const between = pages.length > 5 
     ? React.useRef({ left: 2, right: pages.length - 2 }) 
     : pages.length === 5 
-      ? React.useRef({ left: 3, right: 3 })
+      ? React.useRef({ left: 2, right: 4 })
       : React.useRef(null)
+
   const betWeenLength = pages.length > 5 
   ? React.useRef(pages.length - 4) 
   : pages.length === 5 
@@ -35,7 +36,7 @@ const Pagination: React.FC = () => {
       ) {
         between.current.right -= 1
       }
-      dispatch(fetchProducts(--currentChunk))
+      dispatch(fetchProducts(`?chunk=${--currentChunk}`))
     }
   };
 
@@ -49,12 +50,12 @@ const Pagination: React.FC = () => {
         between.current.left += 1
       }
 
-      dispatch(fetchProducts(++currentChunk))
+      dispatch(fetchProducts(`?chunk=${++currentChunk}`))
     }
   };
 
   const onPageChange = (num: number) => {
-    dispatch(fetchProducts(num))
+    dispatch(fetchProducts(`?chunk=${num}`))
   };
 
   return (

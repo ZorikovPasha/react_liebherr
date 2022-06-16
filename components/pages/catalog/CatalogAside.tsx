@@ -1,26 +1,31 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import Range from 'rc-slider';
-import Router from "next/router";
-import AxiosError from "axios"
 
-import 'rc-slider/assets/index.css';
 import { makeQueryFromParams } from "../../../utils/makeQueryFromParams";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFliters } from "../../../redux/selectors";
-import { publicApi } from "../../../api";
-import { set } from "../../../redux/slices/productsSlice";
+import { fetchProducts } from "../../../redux/slices/productsSlice";
 
-interface IASideProps {
-  isAsideOpened: boolean;
-  isAsideBodyOpened: boolean;
-  onAsideClose: React.MouseEventHandler<HTMLButtonElement>;
+type AsidePropsType = {
+  onOpen: React.MutableRefObject<null | (() => void)>
 }
 
-const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({ 
-  isAsideOpened, 
-  isAsideBodyOpened, 
-  onAsideClose 
-}, AsideRef) => {
+export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ onOpen }, AsideRef) => {
+
+  const [isAsideOpened, setAsideOpened] = React.useState(false);
+  const [isAsideBodyOpened, setAsideBodyOpened] = React.useState(false);
+
+  onOpen.current = () => {
+    setAsideOpened(true);
+    setTimeout(() => setAsideBodyOpened(true), 100);
+    document.documentElement.classList.add("lock");
+  };
+
+  const onAsideClose: MouseEventHandler<HTMLButtonElement> = () => {
+    setAsideOpened(false);
+    setAsideBodyOpened(false);
+    document.documentElement.classList.remove("lock");
+  };
 
   const trackStyle = {
     backgroundColor: "#FCB427",
@@ -43,6 +48,10 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
     boxShadow: "none"
   };
 
+  const dispatch = useDispatch()
+
+  const { sort, weights } = useSelector(selectFliters);
+
   const [liftingCapacityFrom, setLiftingCapacityFrom] = React.useState(10);
   const [liftingCapacityTo, setLiftingCapacityTo] = React.useState(50);
 
@@ -52,30 +61,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
   const [arrowLengthFrom, setArrowLengthFrom] = React.useState(10);
   const [arrowLengthTo, setArrowLengthTo] = React.useState(50);
 
-  const onLiftCapacityFromChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setLiftingCapacityFrom(Number(e.target.value))
-  };
-
-  const onLiftCapacityToChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setLiftingCapacityTo(Number(e.target.value))
-  };
-
-  const onHeightFromChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setHeightFrom(Number(e.target.value))
-  };
-
-  const onHeightToChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setHeightTo(Number(e.target.value))
-  };
-
-  const onArrowLengthFromChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setArrowLengthFrom(Number(e.target.value))
-  };
-
-  const onArrowLengthToChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setArrowLengthTo(Number(e.target.value))
-  };
-
+  const onChangeRangeInput = (setState: React.Dispatch<React.SetStateAction<number>>, e: React.ChangeEvent<HTMLInputElement>) => setState(Number(e.target.value))
 
   const [isMobile, setMobile] = React.useState(false);
   const [isTracked, setTracked] = React.useState(false);
@@ -87,26 +73,21 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
   };
 
   const handleChangeRange = (
-    values: number | number[], 
     setFromCb: React.Dispatch<React.SetStateAction<number>>,
-    setToCb: React.Dispatch<React.SetStateAction<number>>
-    ) => {
+    setToCb: React.Dispatch<React.SetStateAction<number>>,
+    values: number | number[], 
+  ) => {
     if (Array.isArray(values)) {
       setFromCb(values[0]);
       setToCb(values[1])  
     } else {
       setFromCb(values);
     }
-  };
+  }
 
-  const dispatch = useDispatch()
-
-  const { paginate, sort, weights } = useSelector(selectFliters);
-
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const query = makeQueryFromParams(
-      paginate,
       sort,
       weights,
       {
@@ -122,17 +103,8 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
       arrowLengthFrom,
       arrowLengthTo
     );
-    Router.push({
-      pathname: '',
-      query,
-    })
-    publicApi.getMachinery(query).then(data => {
-      if (data instanceof AxiosError) {
-        return
-      }
 
-      dispatch(set(data))
-    });
+    dispatch(fetchProducts(query))
   };
 
   const onResetFilters = () => {
@@ -225,7 +197,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
                     type="number"
                     className="aside-filter__input aside-filter__input-from filter-weight__from"
                     value={liftingCapacityFrom}
-                    onChange={onLiftCapacityFromChange}
+                    onChange={onChangeRangeInput.bind(null, setLiftingCapacityFrom)}
                   />
                 </div>
                 <div className="aside-filter__input-box">
@@ -235,7 +207,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
                     type="number"
                     className="aside-filter__input aside-filter__input-to filter-weight__to"
                     value={liftingCapacityTo}
-                    onChange={onLiftCapacityToChange}
+                    onChange={onChangeRangeInput.bind(null, setLiftingCapacityTo)}
                   />
                 </div>
               </div>
@@ -249,7 +221,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
                 trackStyle={trackStyle}
                 railStyle={railStyle}
                 handleStyle={handleStyle}
-                onChange={(value) => handleChangeRange.call(null, value, setLiftingCapacityFrom, setLiftingCapacityTo)}
+                onChange={handleChangeRange.bind(null, setLiftingCapacityFrom, setLiftingCapacityTo)}
               />
             </div>
             <div className="aside-catalog__filter aside-filter filter-height">
@@ -262,7 +234,8 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
                     type="number"
                     className="aside-filter__input aside-filter__input-from filter-height__from"
                     value={heightFrom}
-                    onChange={onHeightFromChange}
+                    onChange={onChangeRangeInput.bind(null, setHeightFrom)}
+
                   />
                 </div>
                 <div className="aside-filter__input-box">
@@ -272,7 +245,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
                     type="number"
                     className="aside-filter__input aside-filter__input-to filter-height__to"
                     value={heightTo}
-                    onChange={onHeightToChange}
+                    onChange={onChangeRangeInput.bind(null, setHeightTo)}
                   />
                 </div>
               </div>
@@ -286,7 +259,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
                 trackStyle={trackStyle}
                 railStyle={railStyle}
                 handleStyle={handleStyle}
-                onChange={(value) => handleChangeRange.call(null, value, setHeightFrom, setHeightTo)}
+                onChange={handleChangeRange.bind(null, setHeightFrom, setHeightTo)}
               />
             </div>
             <div className="aside-catalog__filter aside-filter filter-length">
@@ -299,7 +272,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
                     type="number"
                     className="aside-filter__input aside-filter__input-from filter-length__from"
                     value={arrowLengthFrom}
-                    onChange={onArrowLengthFromChange}
+                    onChange={onChangeRangeInput.bind(null, setArrowLengthFrom)}
                   />
                 </div>
                 <div className="aside-filter__input-box">
@@ -309,7 +282,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
                     type="number"
                     className="aside-filter__input aside-filter__input-to filter-length__to"
                     value={arrowLengthTo}
-                    onChange={onArrowLengthToChange}
+                    onChange={onChangeRangeInput.bind(null, setArrowLengthTo)}
                   />
                 </div>
               </div>
@@ -323,7 +296,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
               trackStyle={trackStyle}
               railStyle={railStyle}
               handleStyle={handleStyle}
-              onChange={(value) => handleChangeRange.call(null, value, setArrowLengthFrom, setArrowLengthTo)}
+              onChange={handleChangeRange.bind(null, setArrowLengthFrom, setArrowLengthTo)}
             />
             </div>
             <button 
@@ -345,5 +318,3 @@ const CatalogAside = React.forwardRef<HTMLDivElement, IASideProps>( ({
     </aside>
   );
 });
-
-export default CatalogAside;
