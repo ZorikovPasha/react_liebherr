@@ -1,74 +1,107 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { setPaginate } from '../../../redux/slices/CatalogFiltersSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentChunk, selectTotal } from '../../../redux/selectors';
+import { fetchProducts } from '../../../redux/slices/productsSlice';
 
-interface IPagination {
-  catalogItemsCount: number,
-}
 
-const Pagination: React.FC<IPagination> = ({catalogItemsCount = 0}) => {
-  let [activePage, setActivePage] = React.useState(0);
-
-  const dispatch = useDispatch();
+const Pagination: React.FC = () => {
+  const dispatch = useDispatch()
+  const productsCount = useSelector(selectTotal) ?? 0
 
   const ITEMS_PER_PAGE = 10;
-  const pagesCount = Math.ceil(catalogItemsCount / ITEMS_PER_PAGE);
-  const pages = [...Array(pagesCount)].map((_,i) => i);
+  const pagesCount = Math.ceil(productsCount / ITEMS_PER_PAGE);
+  
+  const pages = [...Array(pagesCount)].map((_, i) => i + 1);
+  
+  let currentChunk = useSelector(selectCurrentChunk)
 
-
+  const between = pages.length > 5 
+    ? React.useRef({ left: 2, right: pages.length - 2 }) 
+    : pages.length === 5 
+      ? React.useRef({ left: 3, right: 3 })
+      : React.useRef(null)
+  const betWeenLength = pages.length > 5 
+  ? React.useRef(pages.length - 4) 
+  : pages.length === 5 
+    ? React.useRef(1)
+    : React.useRef(0)
 
   const onPrevPage = () => {
-    if (activePage > 0) {
-      setActivePage(--activePage);
-      dispatch(setPaginate(--activePage))
+    if (currentChunk > 0) {
+      if (
+        between.current 
+        && between.current.right + 1 === currentChunk
+        && between.current.left !== between.current.right
+      ) {
+        between.current.right -= 1
+      }
+      dispatch(fetchProducts(--currentChunk))
     }
   };
 
-  
   const onNextPage = () => {
-    if (activePage < pagesCount) {
-      setActivePage(++activePage);
-      dispatch(setPaginate(++activePage))
+    if (currentChunk < pagesCount) {
+      if (
+        between.current 
+        && between.current.left === currentChunk 
+        && between.current.left !== between.current.right
+      ) {
+        between.current.left += 1
+      }
+
+      dispatch(fetchProducts(++currentChunk))
     }
   };
 
   const onPageChange = (num: number) => {
-    setActivePage(num);
-    dispatch(setPaginate(num))
+    dispatch(fetchProducts(num))
   };
-
 
   return (
     <div className="pagination">
       <button 
-        className={`pagination__arrow`}
-        disabled={activePage <= 0}
+        className="pagination__arrow"
+        disabled={currentChunk <= 1}
         onClick={onPrevPage}
-        >
+      >
         <svg width="31" height="8" viewBox="0 0 31 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0.646446 4.35355C0.451183 4.15829 0.451183 3.84171 0.646446 3.64644L3.82843 0.464464C4.02369 0.269202 4.34027 0.269202 4.53553 0.464464C4.7308 0.659726 4.7308 0.976308 4.53553 1.17157L1.70711 4L4.53553 6.82842C4.73079 7.02369 4.73079 7.34027 4.53553 7.53553C4.34027 7.73079 4.02369 7.73079 3.82843 7.53553L0.646446 4.35355ZM31 4.5L0.999998 4.5L0.999998 3.5L31 3.5L31 4.5Z" fill="#535554" />
         </svg>
       </button>
       <ul className="pagination__list">
-        {pages.map(num => (
+        {pages.slice(0, between.current?.left || 2).map(num =>  (
           <li
             key={num}
-            className={`pagination__item ${activePage === num ? 'pagination__item--active' : '' }`}
+            className={`pagination__item ${currentChunk === num ? 'pagination__item--active' : '' }`}
             onClick={onPageChange.bind(null, num)}
-            >
-            <span className="pagination__link">{num + 1}</span>
+          >
+            <span className="pagination__link">{num}</span>
           </li>
         ))}
-
-        {/* <li className="pagination__item pagination__item--dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </li> */}
+        {betWeenLength 
+          && between?.current 
+          && between.current.left !== pages.length 
+          && between.current.left !== between.current.right 
+          && (
+          <li className="pagination__item pagination__item--dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </li>
+        )}
+        {pages.slice(betWeenLength?.current && between?.current && between.current.right || pages.length - 3).map(num =>  (
+          <li
+            key={num}
+            className={`pagination__item ${currentChunk === num ? 'pagination__item--active' : '' }`}
+            onClick={onPageChange.bind(null, num)}
+          >
+            <span className="pagination__link">{num}</span>
+          </li>
+        ))}
       </ul>
       <button 
         className={`pagination__arrow`}
-        disabled={activePage + 1 >= pagesCount}
+        disabled={currentChunk >= pagesCount}
         onClick={onNextPage}
         >
         <svg width="31" height="8" viewBox="0 0 31 8" fill="none" xmlns="http://www.w3.org/2000/svg">

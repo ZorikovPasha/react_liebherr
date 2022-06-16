@@ -43,8 +43,7 @@ class Api extends Axios {
     return this._axios.post(url, data)
       .then(this.success)
       .catch((error: AxiosError<Error>) => {
-        console.log(error.response);
-        return error?.response?.data;
+        return error;
       });
   }
 }
@@ -54,8 +53,8 @@ class PublicApi extends Api {
     super(config);
   }
 
-  getMachinery = (query: string) => {
-    return this.get<MachineryType[]>('/api/machinery' + query);
+  getMachinery = (query: number) => {
+    return this.get<{ items: MachineryType[], total: number }>('/api/machinery?chunk=' + query);
   };
 
   getSingleMachinery = (id: number)=> {

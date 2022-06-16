@@ -83,7 +83,7 @@ const Catalog: NextPage<ICatalogProps> = () => {
                 ))}
               </div>
 
-              <Pagination catalogItemsCount={items.length} />
+              <Pagination />
             </div>
           </div>
         </div>

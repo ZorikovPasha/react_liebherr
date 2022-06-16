@@ -3,7 +3,6 @@ import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   sort: "height",
-  paginate: 1,
   weights: [40],
 };
 
@@ -16,12 +15,6 @@ export const filtersSlice = createSlice({
       return {
         ...state, 
         sort: action.payload,
-      }
-    },
-    setPaginate: (state, action: PayloadAction<number>) => {
-      return {
-        ...state, 
-        paginate: action.payload,
       }
     },
     setWeight: (state, action: PayloadAction<number>) => {
@@ -41,5 +34,5 @@ export const filtersSlice = createSlice({
 });
 
 
-export const { setSort, setWeight, setPaginate } = filtersSlice.actions;
+export const { setSort, setWeight } = filtersSlice.actions;
 export const { reducer } = filtersSlice;

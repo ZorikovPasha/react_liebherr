@@ -3,8 +3,7 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app';
 import { wrapper } from '../redux/store';
 import { Layout } from '../components';
-import { set } from "../redux/slices/productsSlice";
-import { publicApi } from "../api";
+import { fetchProducts } from "../redux/slices/productsSlice";
 
 import '../styles/style.scss';
 
@@ -21,8 +20,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 };
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
-  const items = await publicApi.getMachinery("");
-  store.dispatch(set(items))
+  await store.dispatch(fetchProducts(1))
 
   return { pageProps: {} }
 });

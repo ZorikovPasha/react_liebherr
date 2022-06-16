@@ -3,19 +3,20 @@ import React from "react";
 import { ClientOnlyPortal } from "../";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
-import { selectPopupState } from "../../redux/selectors";
+import { selectPopupState, selectProductsError } from "../../redux/selectors";
 
 const PopupError: React.FC = () => {
   const dispatch = useDispatch();
 
   const popupState = useSelector(selectPopupState)
+  const isError = useSelector(selectProductsError) 
 
   const onClose = () => {
     document.documentElement.classList.remove('lock');
     dispatch(toggleModal({ name: "error", state: false }))
   };
 
-  return popupState.error ? (
+  return popupState.error || isError ? (
     <ClientOnlyPortal selector="#modal">
       <div className="popup">
         <div className="popup__body">

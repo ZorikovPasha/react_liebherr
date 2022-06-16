@@ -114,15 +114,23 @@
     .product-item__body {
       flex-direction: row;
       display: grid;
-      grid-template-columns: 200px 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 40% 1fr;
+      grid-template-rows: auto 1fr;
     }
 
     .product-item__images {
+      position: relative;
       grid-row: span 2;
     }
 
     .product-item__img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+
+      width: 100%;
       height: 100%;
     }
   }
