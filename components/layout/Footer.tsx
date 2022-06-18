@@ -1,9 +1,12 @@
 import React from 'react';
 import Link from "next/link";
-import { PopupRequest } from "..";
+import { useDispatch } from "react-redux";
+import { toggleModal } from '../../redux/slices/modalsSlice';
 
 
-const Footer: React.FC = ({ }) => {
+const Footer: React.FC = () => {
+  const dispatch = useDispatch();
+
   const footerLists = [
     [
       { text: "О компании", link: "/about" },
@@ -19,21 +22,13 @@ const Footer: React.FC = ({ }) => {
   ];
   const listsTitles = ["Клиентам", "Техника", "Услуги"];
 
-  const [isPopupRequestOpened, setPopupRequestOpened] = React.useState(false);
-
-  const handletOpenPopup = () => {
-    document.body.classList.add('lock');
-    setPopupRequestOpened(true);
-  };
-
-  const handletClosePopup = () => {
-    document.body.classList.remove('lock');
-    setPopupRequestOpened(false);
+  const onOpenPopup = () => {
+    dispatch(toggleModal({ name: "request", state: true }));
+    document.documentElement.classList.add('lock');
   };
 
   return (
     <footer className="footer">
-      {isPopupRequestOpened && <PopupRequest onClose={handletClosePopup}/>}
       <div className="container">
         <div className="footer__inner">
           <div className="footer__column">
@@ -59,7 +54,7 @@ const Footer: React.FC = ({ }) => {
           <div className="footer__column">
             <button 
               className="footer__btn"
-              onClick={handletOpenPopup}
+              onClick={onOpenPopup}
               >
                 Свяжитесь со мной
             </button>

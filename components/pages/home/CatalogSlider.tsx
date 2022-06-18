@@ -1,20 +1,24 @@
 import Link from "next/link";
 import React from "react";
-import Slider  from 'react-slick';
+import { useSelector } from "react-redux";
+import Slider, { Settings }  from 'react-slick';
 
 import { CatalogCard, SliderNextArrow, SliderPrevArrow } from "../../";
-import { IPropsMachinery } from "../../../types/componentsPropsTypes";
+import { selectProducts } from "../../../redux/selectors";
 
-const CatalogSlider: React.FC<IPropsMachinery> = ({ items } ) => {
+const CatalogSlider: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>();
-  const [activeSlide, setActiveSlide] = React.useState(0);
+  const [activeSlide, setActiveSlide] = React.useState(1);
 
-  const settings = {
+  const items = useSelector(selectProducts)
+
+  const settings: Settings = {
     arrows: true,
     dots: true,
     variableWidth: true,
     centerMode: true,
     infinite: false,
+    initialSlide: 1,
     prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
     nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === items.length - 1} />,
     afterChange: (current: number) => setActiveSlide(current),
@@ -38,6 +42,7 @@ const CatalogSlider: React.FC<IPropsMachinery> = ({ items } ) => {
               <CatalogCard 
                 key={id} 
                 id={id}
+                rootElClass="product-item--padding"
                 name={name}
                 imgSrc={imgSrc}
                 liftingCapacity={features.liftingCapacity.value}

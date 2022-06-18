@@ -8,9 +8,7 @@ const ReviewsCards: React.FC = () => {
   const [activeSlide, setActiveSlide] = React.useState(0);
 
   const reviews = [{ imgSrc: "static/images/reviews/1.jpg" }, { imgSrc: "static/images/reviews/2.jpg" }, { imgSrc: "static/images/reviews/3.jpg" }, { imgSrc: "static/images/reviews/1.jpg" }, { imgSrc: "static/images/reviews/2.jpg" }, { imgSrc: "static/images/reviews/3.jpg" }, { imgSrc: "static/images/reviews/1.jpg" }, { imgSrc: "static/images/reviews/2.jpg" }, { imgSrc: "static/images/reviews/3.jpg" }, { imgSrc: "static/images/reviews/1.jpg" }];
-  console.log(activeSlide, reviews.length);
   
-
   const settings = {
     slidesToShow: 3,
     slidesToScroll: 3,

@@ -1,16 +1,15 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ArticleType, ConstructionType, MachineryType } from "../types/dataTypes";
+import { ArticleType, ConstructionType, MachineryType, OrderType, RequestType } from "../types/dataTypes";
 
 export const apiConfig = {
   returnRejectedPromiseOnError: true,
-  baseURL: "http://localhost:5000",
+  baseURL: process.env.NODE_ENV === "production" ? "https://reactliebherrback.glitch.me/" : "http://localhost:5000",
   headers: {
     "Cache-Control": "no-cache, no-store, must-revalidate",
     "Content-Type": "application/json",
     Accept: "application/json",
   },
 }
-
 
 export class Axios {
   protected _axios: AxiosInstance;
@@ -43,8 +42,7 @@ class Api extends Axios {
     return this._axios.post(url, data)
       .then(this.success)
       .catch((error: AxiosError<Error>) => {
-        console.log(error.response);
-        return error?.response?.data;
+        return error;
       });
   }
 }
@@ -54,51 +52,45 @@ class PublicApi extends Api {
     super(config);
   }
 
-  getMachinery = () => {
-    return this.get<MachineryType[]>('/api/machinery');
+  getMachinery = (query: string) => {
+    return this.get<{ items: MachineryType[], total: number, chunk: number }>('/api/machinery' + query);
   };
 
   getSingleMachinery = (id: number)=> {
-    return this.post<{ machinery: MachineryType }, { id: number }>('/api/machinery', { id });
+    return this.post<{ machinery: MachineryType, similarOnes: MachineryType[] }, { id: number }>('/api/machinery', { id });
   };
 
   getSingleConstruction = (id: string) => {
-    return this.post<ConstructionType, { id: string }>('/api/construction', { id });
+    return this.post<{construction: ConstructionType, similarOnes: ConstructionType[]}, { id: string }>('/api/construction', { id });
   };
 
   getConstructions = () => {
-    return this.get<ConstructionType[]>('/api/constructions');
+    return this.get<{ constructions: ConstructionType[], hasMore: boolean }>('/api/constructions');
   };
 
-  getArticles = () => {
-    return this.get<ArticleType[]>('/api/articles');
+  getConstructionsIds = () => {
+    return this.get<{ items: number[] }>('/api/constructions/ids');
+  };
+
+  getArticles = (portionIdx: number) => {
+    return this.get<{ items: ArticleType[], hasMore: boolean}>('/api/articles?chunk=' + portionIdx);
+  };
+
+  getArticlesIds = () => {
+    return this.get<{ items: number[] }>('/api/articles/ids');
   };
 
   getSingleArticle = (id: string) => {
     return this.post<ArticleType, { id: string }>('/api/article', { id });
   };
-}
 
-
-
-class UserApi extends Api {
-  constructor(config: AxiosRequestConfig) {
-    super(config)
-    this._axios.interceptors.request.use((config) => {
-      return {
-        ...config,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      }
-    }, (error) => {
-        console.log(error);
-    });
+  sendRequest = (data: RequestType) => {
+    return this.post<{ success: Boolean }, RequestType>("/api/question", data)
   }
-  setToken = (token: string): void => {
-    localStorage.setItem('token', token);
+
+  makeOrder = (userData: OrderType) => {
+    return this.post<{ success: Boolean }, { id: string }>("/api/order", {...userData})
   }
 }
 
-export const UserApiClient = new UserApi(apiConfig);
 export const publicApi = new PublicApi(apiConfig);

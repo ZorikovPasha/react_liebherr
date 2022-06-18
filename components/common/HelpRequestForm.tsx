@@ -1,25 +1,58 @@
+import React from 'react'
+import * as yup from "yup";
+import { REGEX } from '../../utils/const';
+import { AppForm } from './AppForm';
+
 const HelpRequestForm: React.FC = () => {
+  const formSchema = yup.object().shape({
+    name: yup.string().required('Поле обязательно'),
+    phone: yup.string().required('Поле обязательно').matches(REGEX.phone, "Некорректный номер телефона"),
+    isAgree: yup.boolean().oneOf([true], ""),
+  });
+
+  const initValues = {
+    name: "",
+    phone: "",
+    isAgree: false,
+  };
+
+    const fields = React.useRef({
+      fields: {
+        name: {
+          inputClass: "help__form-input",
+          type: "text",
+          placeholder: "Имя",
+          labelClass: "help__form-label",
+          blockClass: "",
+          tag: "input"
+        },
+        phone: {
+          inputClass: "help__form-input",
+          type: "tel",
+          placeholder: "Телефон",
+          labelClass: "help__form-label",
+          blockClass: "",
+          tag: "input"
+        },
+      },
+      isAgree: false
+    })
+  
+
   return (
     <div className="help">
       <div className="help__container">
         <div className="container">
           <h2 className="help__title">Нужна помощь в подборе?</h2>
-          <form className="help__form" action="">
-            <div className="help__form-line">
-              <input className="help__form-input" type="text" placeholder="Имя" />
-              <input className="help__form-input input-mask" type="tel" placeholder="Телефон" />
-              <button className="help__form-btn btn" type="submit">
-                Получить консультацию
-              </button>
-            </div>
-            <label className="help__form-label">
-              <input className="help__form-real" type="checkbox" />
-              <span className="help__form-fake"></span>
-              <span className="help__form-agree">
-                Я согласен с <a href="#">условиями обработки</a> и использования моих персональных данных
-              </span>
-            </label>
-          </form>
+          <AppForm 
+            formClass="help__form"
+            fields={fields.current}
+            formSchema={formSchema} 
+            initValues={initValues}
+            buttonClass="help__form-btn btn" 
+            buttonText="Получить консультацию"
+            agreeLabelClass="help__form-label help__form-label--margin-top"
+          />
         </div>
       </div>
     </div>

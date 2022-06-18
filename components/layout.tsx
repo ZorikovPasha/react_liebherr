@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MobMenu, Header, PopupSuccess, Footer } from ".";
+import { MobMenu, Header, Footer, Loader, PopupRequest, PopupSuccess, PopupError } from ".";
 
 type LayoutProps = {
   children: React.ReactNode,
@@ -12,38 +12,41 @@ const Layout: React.FC<LayoutProps> = ({
   const [isMobMenuOpen, setMobMenuOpen] = React.useState(false);
   const [isMenuBodyOpened, setMenuBodyOpened] = React.useState(false);
 
-
-  const handleMobMennuButtonClick = React.useCallback(() => {
-    setMobMenuOpen(true);
-    document.body.classList.add("lock");
-    setTimeout(() => setMenuBodyOpened(true), 200);
-  }, []);
-
   const handleMobMennuCloseClick = React.useCallback(() => {
     setMobMenuOpen(false);
     setMenuBodyOpened(false);
-    document.body.classList.remove("lock");
+    document.documentElement.classList.remove("lock");
+  }, []);
+
+  const handleMobMennuButtonClick = React.useCallback(() => {
+    setMobMenuOpen(true);
+    document.documentElement.classList.add("lock");
+    setTimeout(() => setMenuBodyOpened(true), 200);
   }, []);
 
   return (
     <>
       <Header
-        handleMobMennuButtonClick={handleMobMennuButtonClick}/>
+        handleMobMennuButtonClick={handleMobMennuButtonClick}
+        />
       {<MobMenu
         handleMobMennuCloseClick={handleMobMennuCloseClick}
         isMobMenuOpen={isMobMenuOpen}
         isMenuBodyOpened={isMenuBodyOpened}
         />}
-      <div className="main">
-
-        <PopupSuccess
-          title="Ваша заявка отправлена"
-          text="Мы позвоним вам в самое ближайшее время"
-          buttonText="Вернуться"
-        />
+      <main className="main">
         {children}
-        <Footer />
-      </div>
+        <PopupRequest />
+        <PopupSuccess
+          title="Заявка отправлена"
+          text="Мы вам перезвоним в ближайшее время"
+          buttonText="Закрыть"
+        />
+        <PopupError />
+        <Loader />
+      </main>
+      <Footer />
+
     </>
   )
 };

@@ -1,41 +1,36 @@
 import React from 'react';
 import Link from "next/link";
-import { PopupRequest } from '..';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from '../../redux/slices/modalsSlice';
+import { ROUTES } from '../../utils/const';
 
 interface IHeaderProps {
-  handleMobMennuButtonClick: React.MouseEventHandler<HTMLButtonElement>
+  handleMobMennuButtonClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick}) => {
-
-  const [isPopupRequestOpened, setPopupRequestOpened] = React.useState(false);
-
-  const handletOpenPopup = () => {
-    document.body.classList.add('lock');
-    setPopupRequestOpened(true);
+  const dispatch = useDispatch();
+  const onOpenPopup = () => {
+    dispatch(toggleModal({ name: "request", state: true }));
+    document.documentElement.classList.add('lock');
   };
 
-  const handletClosePopup = () => {
-    document.body.classList.remove('lock');
-    setPopupRequestOpened(false);
-  };
   const links = [
-    { link: "/catalog", text: "Каталог" },
-    { link: "/objects", text: "Услуги" },
-    { link: "/about", text: "О компании" },
-    { link: "/objects", text: "Объекты" },
-    { link: "/contacts", text: "Цены" },
-    { link: "/blog", text: "Блог" },
-    { link: "/contacts", text: "Контакты" },
+    { link: ROUTES.CATALOG, text: "Каталог" },
+    { link: ROUTES.OBJECTS, text: "Услуги" },
+    { link: ROUTES.ABOUT, text: "О компании" },
+    { link: ROUTES.OBJECTS, text: "Объекты" },
+    { link: ROUTES.CONTACTS, text: "Цены" },
+    { link: ROUTES.BLOG, text: "Блог" },
+    { link: ROUTES.CONTACTS, text: "Контакты" },
   ];
   return (
     <header className="header">
-      {isPopupRequestOpened && <PopupRequest onClose={handletClosePopup}/>}
       <div className="header__top">
         <div className="container">
           <div className="header__top-inner">
             <div className="header__about">
-              <Link href="/">
+              <Link href={ROUTES.HOME}>
                 <a className="header__logo">
                   <img 
                     className="header__logo-img" 
@@ -53,7 +48,7 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
             </div>
             <button 
               className="header__btn"
-              onClick={handletOpenPopup}
+              onClick={onOpenPopup}
               >Свяжитесь со мной</button>
             <div className="header__tels">
               <a className="header__tel" href="tel:+74999299666">+7 (499)929-96-66</a>
@@ -85,12 +80,6 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
                 ))}
             </ul>
           </nav>
-          <div className="header__input-box">
-            <form action="" className="header__form">
-              <input type="text" className="header__input" />
-              <button className="header__input-search" type="submit"></button>  
-            </form>
-          </div>
         </div>
         </div>
       </div>

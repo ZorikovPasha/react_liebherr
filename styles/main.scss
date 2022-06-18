@@ -1,5 +1,4 @@
 .top {
-
   // .top__inner
 
   &__inner {
@@ -82,11 +81,6 @@
     line-height: 23px;
     color: #E2E2E2;
     font-family: 'Roboto', sans-serif;
-  }
-
-  // .top__slider-images
-
-  &__slider-images {
   }
 
   // .top__slider-img
@@ -221,16 +215,11 @@
     color: rgba(211, 208, 208, 0.2);
   }
 
-  // .rent__inner
-
-  &__inner {
-
-  }
-
   // .rent__title
   &__title {
     @extend %h2;
     margin-bottom: 55px;
+
     span {
       color: $Orange;
     }
@@ -239,9 +228,6 @@
   // .rent__slider
 
   &__slider {
-    margin-left: -76px;
-
-    
     .slick-btn {
       right: 12px;
       bottom: 109px;
@@ -252,11 +238,12 @@
 
     .slick-dots {
       position: absolute;
-      right: 12px;
+      right: 0;
       display: flex !important;
-      max-width: 47%;
+      max-width: 45%;
       width: 100%;
       bottom: 79px;
+
       li {
         width: 100%;
         margin: 0;
@@ -278,16 +265,10 @@
       background: #535554;
     }
   }
-
-  // .rent__slider-item
-
-  &__slider-item {
-  }
 }
 
 
 .slider-item {
-
   // .slider-item__body
 
   &__body {
@@ -344,7 +325,6 @@
 
 
 .guarantee {
-
   background: #E5E5E5;
   position: relative;
   z-index: 100;
@@ -399,7 +379,6 @@
     grid-gap: 37px 20px;
 
     width: 515px;
-    // width: 100%;
     margin-top: 10px;
   }
 
@@ -426,7 +405,6 @@
 }
 
 .numbers {
-
   padding: 90px 0;
   background-color: $black;
 
@@ -488,7 +466,6 @@
 
 
 .projects {
-
   background-color: #fff;
   margin-top: 120px;
 
@@ -527,8 +504,6 @@
 }
 
 .projects-nav {
-
-
   .slick-slide + .slick-slide {
     margin-left: 30px;
   } 
@@ -555,6 +530,7 @@
 
   .slick-current .projects-nav__img-wrapper {
     position: relative;
+
     &::after{
       content: "";
       position: absolute;
@@ -584,7 +560,6 @@
   margin: 0 auto;
 }
 .projects-slider {
-
   max-width: 1400px;
   padding-top: 87px;
 
@@ -594,11 +569,6 @@
   }
   .slick-prev {
     right: 89px;
-  }
-
-  // .projects-slider__item
-
-  &__item {
   }
 
   // .projects-slider__inner
@@ -649,6 +619,7 @@
     margin-bottom: 30px;
     padding-left: 31px;
     position: relative;
+
     &::after{
       content: "";
       position: absolute;
@@ -678,6 +649,7 @@
     font-family: 'PT Sans', sans-serif;
     padding-right: 40px;
     position: relative;
+
     &::after{
       content: "";
       position: absolute;
@@ -692,7 +664,6 @@
 }
 
 .catalog {
-
   padding: 120px 0;
 
   // .catalog__title
@@ -737,7 +708,6 @@
 }
 
 .cost {
-
   position: relative;
   padding: 61px 0 83px;
   background-color: $black;
@@ -838,7 +808,6 @@
     margin-bottom: 9px;
   }
 
-
   // .cost__item-text
 
   &__item-text {
@@ -852,11 +821,11 @@
 }
 
 .main-form {
-
   margin-top: 50px;
   padding: 22px 0;
   position: relative;
   background-color: #fff;
+
   &::before,
   &::after{
     content: "";
@@ -904,6 +873,7 @@
   &__title {
     @extend %h3;
     margin-bottom: 45px;
+
     span {
       color: $Orange;
     }
@@ -982,6 +952,11 @@
     cursor: pointer;
   }
 
+  &__checkbox-fake--error {
+    border: 2px solid red;
+  }
+
+
   &__checkbox-real:checked + .main-form__checkbox-fake::after {
     position: absolute;
     content: "";
@@ -1013,7 +988,6 @@
 }
 
 .main-about {
-
   padding: 159px 0 143px;
 
   background-color: #F3F3F3;
@@ -1035,7 +1009,7 @@
     position: relative;
 
     &::after {
-      @media (min-width:1412px) {
+      @media (min-width: 1412px) {
         content: "about";
         position: absolute;
         top: 21%;
@@ -1090,6 +1064,7 @@
     width: 100%;
     height: 100%;
     position: relative;
+
     &::after{
       content: "";
       position: absolute;
@@ -1124,12 +1099,12 @@
 }
 
 .services {
-
   padding: 54px 0 101px;
   background-color: #fff;
 
   &__inner {
     position: relative;
+
     &::after,
     &::before {
       position: absolute;
@@ -1141,6 +1116,7 @@
       text-transform: uppercase;
       color: rgba(211,208,208,.2);
     }
+
     &::before {
       content: 'services';
       bottom: -130px;
@@ -1226,7 +1202,6 @@
 
 
 .questions {
-
   background-image: url('../images/questions-bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
@@ -1274,6 +1249,10 @@
     padding-left: 33px;
   }
 
+  &__form-block + &__form-block {
+    margin-top: 30px;
+  }
+
   // .questions__text
 
   &__text {
@@ -1283,16 +1262,21 @@
     margin-bottom: 30px;
   }
 
+  &__form-message {
+    margin-top: 5px;
+    color: red;
+  }
+
   // .questions__form-input
 
   &__form-input {
     display: block;
     width: 100%;
-    margin-bottom: 30px;
     padding: 14px 20px;
     border: 1px solid #C4C4C4;
     background-color: transparent;
     color: #fff;
+    
     &,
     &::placeholder {
       font-family: 'Montserrat', sans-serif;
@@ -1314,8 +1298,8 @@
     resize: none;
     border: 1px solid #C4C4C4;
     background-color: transparent;
-    margin-bottom: 30px;
     color: #fff;
+
     &,
     &::placeholder {
       font-family: 'Montserrat', sans-serif;
@@ -1334,7 +1318,7 @@
   &__form-label {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 30px;
+    margin: 30px 0;
   }
 
   // .questions__form-real

@@ -1,13 +1,13 @@
+import React from 'react'
 import { NextPage } from "next";
-
-import { ContactsForm, ContactsBlock, BreadCrumbs } from "../components";
+import { ContactsBlock, BreadCrumbs, ContactsForm } from "../components";
+import { ROUTES } from '../utils/const';
 
 const Contacts: NextPage = () => {
   const breadCrumbs = [
-    { id: 1, link: "/", text: "Главная" }, 
-    { id: 2, link: "", text: "Каталог техники" }, 
+    { id: 1, link: ROUTES.HOME, text: "Главная" }, 
+    { id: 2, link: "", text: "Контакты" }, 
   ];
-  
 
   return (
     <>
@@ -16,8 +16,8 @@ const Contacts: NextPage = () => {
         <div className="container">
           <h2 className="contacts__title">Контакты</h2>
           <div className="contacts__inner">
-
             <ContactsBlock />
+
             <ContactsForm />
           </div>
 

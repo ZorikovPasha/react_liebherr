@@ -5,7 +5,6 @@ import Slider, { Settings } from "react-slick";
 import { SliderNextArrow, SliderPrevArrow } from "../../../components";
 import { ConstructionType } from "../../../types/dataTypes";
 
-
 interface ISliderProps {
   items: ConstructionType[]
 }
@@ -42,8 +41,9 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
   const [activeSlide, setActiveSlide] = React.useState(0);
 
   const ProjectSliderSettings: Settings = {
-    fade: true,
-    infinite: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
     prevArrow: <SliderPrevArrow onClick={thumbsNav?.slickPrev} isDisabled={activeSlide === 0} />,
@@ -72,7 +72,6 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
           <div className="projects-nav-wrapper">
             <Slider 
               {...projectsThumbsSettings} 
-
               className="projects-nav"
               asNavFor={projectsSliderNav} 
               ref={(slider1: Slider) => setThumbsNav(slider1)}
@@ -80,7 +79,7 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
               {previews?.map((src, idx) => (
                 <div className="projects-nav__item" key={src + idx}>
                   <div className="projects-nav__img-wrapper">
-                    <img className="projects-nav__img" src={src} alt="Выполнение проекта" />
+                    <img className="projects-nav__img" src={src} alt="Стройка с использованием кранов" />
                   </div>
                 </div>
               ))}
@@ -99,7 +98,7 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
                 <div className="projects-slider__item" key={id}>
                   <div className="projects-slider__inner">
                     <div className="projects-slider__images">
-                      <img className="projects-slider__img" src={preview} alt="Фото стройки" />
+                      <img className="projects-slider__img" src={preview} alt="Стройка с использованием кранов" />
                     </div>
                     <div className="projects-slider__info">
                       <p className="projects-slider__item-title">{title}</p>

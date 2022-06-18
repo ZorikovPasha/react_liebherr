@@ -3,15 +3,14 @@ import { publicApi } from "../api";
 
 import { AboutPreview, CatalogSlider, CostsRow, Guarantee, 
   QuestionsForm, RentSlider, ResultsInNumbers, ServicesPreviews, 
-  SupplyForm, Texts, Top, ProjectsSlider } from "../components";
-import { ConstructionType, MachineryType } from "../types/dataTypes";
+  Texts, Top, ProjectsSlider } from "../components";
+import { ConstructionType } from "../types/dataTypes";
 
 interface IHomeProps {
-  items: MachineryType[],
-  constructions: ConstructionType[]
+  constructions: { constructions: ConstructionType[], hasMpre: boolean }
 }
 
-const Home: NextPage<IHomeProps> = ({ items, constructions }) => {
+const Home: NextPage<IHomeProps> = ({ constructions }) => {
   return (
       <>
         <Top/>
@@ -22,13 +21,11 @@ const Home: NextPage<IHomeProps> = ({ items, constructions }) => {
 
         <ResultsInNumbers />
 
-        <ProjectsSlider items={constructions}/>
+        <ProjectsSlider items={constructions.constructions}/>
 
-        <CatalogSlider items={items}/>
+        <CatalogSlider />
 
         <CostsRow />
-
-        <SupplyForm />
 
         <AboutPreview />
 
@@ -48,10 +45,9 @@ export default Home;
 
 
 export const getStaticProps: GetStaticProps = async () => {
-  const items = await publicApi.getMachinery();
   const constructions = await publicApi.getConstructions();
 
   return { 
-    props: {items, constructions},
+    props: {constructions},
   }
 }

@@ -134,8 +134,6 @@
     min-height: 35px;
     overflow-x: auto;
     margin-bottom: 50px;
-    // border-bottom: 2px solid #C4C4C4;
-
   }
 
   &__toggle-box {
@@ -175,6 +173,7 @@
   &__toggle-item--pressed {
     font-weight: 700;
     position: relative;
+
     &::after{
       content: "";
       position: absolute;
@@ -195,9 +194,9 @@
 
   &__content {
     position: relative;
+
     &::after{
       @extend %banner;
-      
       content: "Eurocran";
       top: 77%;
       left: -63%;
@@ -231,6 +230,7 @@
   &__img {
     @extend %imgbox;
     padding-bottom: 95%;
+
     img {
       @extend %img;
     }
@@ -397,8 +397,8 @@
   .product__info .product-list__item:not(:last-child) {
     display: none;
   }
-  .product__info-btn {
-    margin-left: 31px;
+  .tabs__toggle-item + .tabs__toggle-item {
+    margin-left: 10px;
   }
 }
 

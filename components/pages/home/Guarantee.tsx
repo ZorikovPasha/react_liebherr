@@ -1,22 +1,18 @@
 import React from "react";
-import { PopupRequest } from "../..";
+import { useDispatch } from "react-redux";
+import { toggleModal } from "../../../redux/slices/modalsSlice";
 
 const Guarantee: React.FC = () => {
-  const [isPopupRequestOpened, setPopupRequestOpened] = React.useState(false);
+  const dispatch = useDispatch();
+  
+  const handleOpenPopup = () => {
+    dispatch(toggleModal({ name: "request", state: true }));
+    document.documentElement.classList.add('lock');
+  };
 
-  const handletOpenPopup = React.useCallback(() => {
-    document.body.classList.add('lock');
-    setPopupRequestOpened(true);
-  }, []);
-
-  const handletClosePopup = React.useCallback(() => {
-    document.body.classList.remove('lock');
-    setPopupRequestOpened(false);
-  }, []);
 
   return (
     <section className="guarantee">
-      {isPopupRequestOpened && <PopupRequest onClose={handletClosePopup}/>}
       <div className="container">
         <div className="guarantee__inner">
           <h2 className="guarantee__title">С нами надежно</h2>
@@ -28,7 +24,7 @@ const Guarantee: React.FC = () => {
               <p className="guarantee__text">Обращение в компанию гарантирует комплексный подход к решению поставленных задач. Получить больше информации можно у менеджеров Компании Еврокран.</p>
               <button 
                 className="guarantee__btn btn"
-                onClick={handletOpenPopup}
+                onClick={handleOpenPopup}
                 >Заказать звонок</button>
             </div>
             <div className="guarantee__items">

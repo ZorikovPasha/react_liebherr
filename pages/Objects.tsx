@@ -1,17 +1,21 @@
 import { GetStaticProps, NextPage } from "next";
+
 import { publicApi } from "../api";
 import { BreadCrumbs, ObjectCard, Texts } from "../components";
 import { ConstructionType } from "../types/dataTypes";
+import { ROUTES } from "../utils/const";
 
 interface IObjectsProps {
-  constructions: ConstructionType[]
+  constructions: { constructions: ConstructionType[], hasMore: boolean }
 }
 
 const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
   const breadCrumbs = [
-    { id: 1, link: "/", text: "Главная" }, 
+    { id: 1, link: ROUTES.HOME, text: "Главная" }, 
     { id: 2, link: "", text: "Объекты" }, 
   ];
+
+  const onLoadMore = () => {};
 
   return (
     <>
@@ -20,7 +24,7 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
         <div className="container">
           <h1 className="objects__title">Работа спецтехники от Компании Еврокран</h1>
           <div className="objects__items">
-            {constructions.map(({ id, preview, title }) => (
+            {constructions?.constructions?.map(({ id, preview, title }) => (
               <ObjectCard 
                 id={id}
                 key={id}
@@ -29,12 +33,16 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
               />
             ))}
           </div>
-          <div className="objects__btn-wrapper">
-            <button className="objects__btn">Загрузить ещё</button>
-          </div>
+          {constructions.hasMore && <div className="objects__btn-wrapper">
+            <button 
+              className="objects__btn"
+              onClick={onLoadMore}
+            >
+              Загрузить ещё
+            </button>
+          </div>}
         </div>
       </section>
-
       <Texts />
     </>
   );

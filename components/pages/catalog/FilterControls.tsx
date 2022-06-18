@@ -1,25 +1,64 @@
 
 import React from 'react';
-import { MouseEventHandler } from "react";
-import Select from 'react-select'
+import { useDispatch } from 'react-redux';
+import Select, { ActionMeta, SingleValue } from 'react-select'
+import { setSort } from '../../../redux/slices/CatalogFiltersSlice';
 
 interface ICOntrolsProps {
-onAsideOpen: MouseEventHandler<HTMLButtonElement>;
+  activeView: 'grid' | 'list';
+  onAsideOpen: React.MutableRefObject<(() => void) | null>;
+  setActiveView: React.Dispatch<React.SetStateAction<'grid' | 'list'>>
 }
-const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen }, asideBtnRef) => {
+
+type onSortChangeType = (newValue: SingleValue<{
+  value: string;
+  label: string;
+}>, actionMeta: ActionMeta<{
+  value: string;
+  label: string;
+}>) => void;
+
+
+const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen, setActiveView, activeView }, asideBtnRef) => {
+  const dispatch = useDispatch();
+  
+  const onToggleASide = () => {
+    onAsideOpen?.current && onAsideOpen.current()
+  }
+  
   const sortOptions = [
-    {value: "default", label: "По умолчанию"},
-    {value: "heght", label: "по высоте"},
-    {value: "liftingCapacity", label: "По грузоподъемности"},
-    {value: "length", label: "По длине"},
+    {value: "maxHeight:", label: "По высоте"},
+    {value: "liftingCapacity:", label: "По грузоподъемности"},
+    {value: "arrowLength:", label: "По длине"},
   ];
+
+  const [activeSortType, setActiveSortType] = React.useState<SingleValue<{
+    value: string,
+    label: string,
+  }>>(sortOptions[0]);
+
+  const onSortTypeChange: onSortChangeType = (value) => {
+    setActiveSortType(value);
+
+    if (value?.value) {
+      dispatch(setSort(value?.value));
+    }
+  };
+
+  const onChangeViewGrid = () => {
+    setActiveView('grid')
+  };
+
+  const onChangeViewList = () => {
+    setActiveView('list')
+  };
 
   return (
     <div className="catalog-content__controls catalog-controls">
       <div className="catalog-controls__aside-toggle aside-toggle">
         <button 
           className="aside-toggle__btn" 
-          onClick={onAsideOpen}
+          onClick={onToggleASide}
           ref={asideBtnRef}
           >
           <img src="/static/images/aside-toggle.svg" alt="иконка переключатель" />
@@ -28,16 +67,24 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
       <div className="catalog-controls__sort">
         <img src="/static/images/sort-icon.svg" alt="" />
         <Select
+          value={activeSortType}
           className="catalog-controls__sort-select"
           options={sortOptions} 
+          onChange={onSortTypeChange}
           />
       </div>
       <div className="catalog-controls__view view">
-        <button className="catalog-controls__btn view__btn-grid">
-          <img src="/static/images/view-grid.svg" alt="сетка" />
+        <button 
+          onClick={onChangeViewGrid}
+          className={`catalog-controls__btn view__btn-grid ${activeView === 'grid' ? 'catalog-controls__btn--active' : ''}`}
+          >
+          <img src="/static/images/view-grid.svg" alt="сетка иконка" />
         </button>
-        <button className="catalog-controls__btn view__btn-list">
-          <img src="/static/images/view-list.svg" alt="список" />
+        <button 
+          onClick={onChangeViewList}
+          className={`catalog-controls__btn view__btn-list ${activeView === 'list' ? 'catalog-controls__btn--active' : ''}`}
+          >
+          <img src="/static/images/view-list.svg" alt="список иконка" />
         </button>
       </div>
     </div>
