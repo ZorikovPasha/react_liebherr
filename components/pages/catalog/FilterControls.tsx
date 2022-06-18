@@ -91,4 +91,5 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
   );
 });
 
+FilterControls.displayName = "FilterControls"
 export default FilterControls;

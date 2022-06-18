@@ -43,7 +43,7 @@ const CatalogTabs: React.FC = () => {
     window.addEventListener("resize", onResize)
     onResize()
     return () => window.removeEventListener("resize", onResize)
-  }, [])
+  }, [tabs.length])
 
   const onShowMore = () => {
     setItemsToShow(itemsToShow === TABS_ON_MOBILE ? tabs.length : TABS_ON_MOBILE )

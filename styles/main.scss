@@ -39,6 +39,7 @@
       height: 66px;
       background-color: $yellowOrange;
       &.slick-disabled {
+        cursor: default;
         background: #CFCFCC;
         border: 1px solid #fff;
       }
@@ -204,6 +205,7 @@
   &::after{
     content: "Liebherr";
     position: absolute;
+    z-index: -1;
     font-weight: bold;
     top: 80px;
     right: 0;

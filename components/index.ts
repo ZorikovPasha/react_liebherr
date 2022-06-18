@@ -30,7 +30,7 @@ import ProductTabs from "./pages/product/ProductTabs";
 import SimilarOnesSlider from "./pages/product/SimilarOnesSlider";
 
 import CatalogTabs from "./pages/catalog/CatalogTabs";
-import { CatalogAside } from "./pages/catalog/CatalogAside";
+import CatalogAside from "./pages/catalog/CatalogAside";
 import Pagination from "./pages/catalog/Pagination";
 import FilterControls from "./pages/catalog/FilterControls";
 import CatalogCard from "./pages/catalog/CatalogCard";

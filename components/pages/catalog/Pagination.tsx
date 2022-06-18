@@ -13,17 +13,33 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query 
   
   const pages = [...Array(pagesCount)].map((_, i) => i + 1);
   
-  const between = pages.length > 5 
-    ? React.useRef({ left: 2, right: pages.length - 2 }) 
-    : pages.length === 5 
-      ? React.useRef({ left: 2, right: 4 })
-      : React.useRef(null)
+  const between = React.useRef(pages.length > 5 
+    ? { left: 2, right: pages.length - 2 }
+    : pages.length === 5
+      ? { left: 2, right: 4 }
+      : null) 
 
-  const betWeenLength = pages.length > 5 
-  ? React.useRef(pages.length - 4) 
-  : pages.length === 5 
-    ? React.useRef(1)
-    : React.useRef(0)
+  const betWeenLength = React.useRef(pages.length > 5 
+    ? pages.length - 4 
+    : pages.length === 5 
+      ? 1
+      : 0) 
+
+  const handleQuery = (chunk: number) => {
+    const params = query.current.split("&")
+    console.log("query.current", query.current);
+
+    params[params.length - 1] = `${query.current ? "" : "?"}chunk=${chunk}`
+    const q = params.join("&")
+
+    console.log(query.current);
+    
+    if (query.current) {
+      query.current = q
+    }
+
+    return q
+  }
 
   const onPrevPage = () => {
 
@@ -35,15 +51,8 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query 
       ) {
         between.current.right -= 1
       }
-
-      const params = query.current.split("&")
-      
-      params[params.length - 1] = `chunk=${--currentChunk}`
-      const q = params.join("&")
-  
-      query.current = q
-  
-      dispatch(fetchProducts(q))
+    
+      dispatch(fetchProducts(handleQuery(--currentChunk)))
     }
   };
 
@@ -57,30 +66,11 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query 
         between.current.left += 1
       }
 
-      const params = query.current.split("&")
-      
-      params[params.length - 1] = `chunk=${++currentChunk}`
-      const q = params.join("&")
-  
-      query.current = q
-
-      dispatch(fetchProducts(q))
+      dispatch(fetchProducts(handleQuery(++currentChunk)))
     }
   };
 
-  const onPageChange = (num: number) => {
-    const params = query.current.split("&")
-    console.log("query.current", query.current);
-    
-    params[params.length - 1] = `chunk=${num}`
-    const q = params.join("&")
-    console.log("q", q);
-
-    query.current = q
-
-    
-    dispatch(fetchProducts(q))
-  };
+  const onPageChange = (num: number) => dispatch(fetchProducts(handleQuery(num)));
 
   return (
     <div className="pagination">

@@ -25,7 +25,7 @@ const AnotherArticlesSlider: React.FC<IProps> = ({ currentArticle }) => {
       setArticles(data.items.filter(article => article.id !== currentArticle))
     })
 
-  }, [])
+  }, [currentArticle])
 
   const settings = {
     row: 1,
