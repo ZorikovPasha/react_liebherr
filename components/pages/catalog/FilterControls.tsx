@@ -22,17 +22,14 @@ type onSortChangeType = (newValue: SingleValue<{
 const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen, setActiveView, activeView }, asideBtnRef) => {
   const dispatch = useDispatch();
   
-
-  console.log("controls");
-
   const onToggleASide = () => {
     onAsideOpen?.current && onAsideOpen.current()
   }
   
   const sortOptions = [
-    {value: "heght", label: "По высоте"},
-    {value: "liftingCapacity", label: "По грузоподъемности"},
-    {value: "length", label: "По длине"},
+    {value: "maxHeight:", label: "По высоте"},
+    {value: "liftingCapacity:", label: "По грузоподъемности"},
+    {value: "arrowLength:", label: "По длине"},
   ];
 
   const [activeSortType, setActiveSortType] = React.useState<SingleValue<{

@@ -4,6 +4,7 @@ import { publicApi } from "../../api";
 
 import { AnotherArticlesSlider, BreadCrumbs } from "../../components";
 import { ArticleType } from "../../types/dataTypes";
+import { ROUTES } from "../../utils/const";
 
 interface IArticleProps {
   article: ArticleType
@@ -12,8 +13,8 @@ interface IArticleProps {
 const Article: NextPage<IArticleProps> = ({ article }) => {
   const { title, images, sections, subtitles } = article;
   const breadCrumbs = [
-    { id: 1, link: "/", text: "Главная" }, 
-    { id: 2, link: "/blog", text: "Блог" }, 
+    { id: 1, link: ROUTES.HOME, text: "Главная" }, 
+    { id: 2, link: ROUTES.BLOG, text: "Блог" }, 
     { id: 3, link: "", text: title }, 
   ];
 
@@ -30,7 +31,7 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
               </div>
             ))}
           </div>
-          {sections.map((section, index) => (
+          {sections?.map((section, index) => (
             <div key={index}>
               <h2 className="article-top__title" key={index}>{subtitles[index]}</h2>
               {section.map(({ text, isListItem }, idx) => (

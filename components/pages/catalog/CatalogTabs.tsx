@@ -34,7 +34,7 @@ const CatalogTabs: React.FC = () => {
 
   const TABS_ON_MOBILE = 9
 
-  const [activeTabs, setActiveTabs] = React.useState([0]) ;
+  const [activeTabs, setActiveTabs] = React.useState([-1]) ;
   const [itemsToShow, setItemsToShow] = React.useState(tabs.length)
 
   React.useEffect(() => {

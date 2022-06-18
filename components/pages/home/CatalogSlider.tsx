@@ -42,6 +42,7 @@ const CatalogSlider: React.FC = () => {
               <CatalogCard 
                 key={id} 
                 id={id}
+                rootElClass="product-item--padding"
                 name={name}
                 imgSrc={imgSrc}
                 liftingCapacity={features.liftingCapacity.value}

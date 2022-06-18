@@ -12,7 +12,6 @@ interface IObjectsProps {
 }
 
 const Object: NextPage<IObjectsProps> = ({ construction, similarOnes }) => {
-  
   const { title, text, images } = construction;
   
   const breadCrumbs = [

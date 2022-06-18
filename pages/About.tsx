@@ -3,12 +3,11 @@ import { NextPage } from "next";
 
 import { BreadCrumbs, ReviewsCards, ServicesPreviews, 
   Texts, CostsRow, ContactsForm } from "../components";
+import { ROUTES } from '../utils/const';
 
 const About: NextPage = () => {
-
-
   const breadCrumbs = [
-    { id: 1, link: "/", text: "Главная" }, 
+    { id: 1, link: ROUTES.HOME, text: "Главная" }, 
     { id: 2, link: "", text: "О компании" }, 
   ];
 

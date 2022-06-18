@@ -17,9 +17,10 @@ export const makeQueryFromParams = (
   heightTo: number,
   arrowLengthFrom: number,
   arrowLengthTo: number,
+  chunk: number
 ) => {
 
-  const weightsQuery = weights.reduce((accum, num) => accum + "&weight=" + num, "")
+  const weightsQuery = weights? weights.reduce((accum, num) => accum ? accum + "&weight=" + num : accum + "weight=" + num, "") : ""
   
   let typesQuery = "";
   let key: keyof typeof types;
@@ -29,5 +30,5 @@ export const makeQueryFromParams = (
     }
   }
   
-  return `${weightsQuery.substr(1)}${typesQuery}&lifting_capacity_from=${liftingCapacityFrom}&lifting_capacity_to=${liftingCapacityTo}&height_from=${heightFrom}&height_to=${heightTo}&arrow_length_from=${arrowLengthFrom}&arrow_length_to=${arrowLengthTo}&sort=${sort}`;
+  return `?${weightsQuery}${typesQuery}&liftingCapacity_from=${liftingCapacityFrom}&liftingCapacity_to=${liftingCapacityTo}&maxHeight_from=${heightFrom}&maxHeight_to=${heightTo}&arrowLength_from=${arrowLengthFrom}&arrowLength_to=${arrowLengthTo}&sort=${sort}&chunk=${chunk}`;
 };

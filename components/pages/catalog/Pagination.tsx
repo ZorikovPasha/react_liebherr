@@ -3,18 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentChunk, selectTotal } from '../../../redux/selectors';
 import { fetchProducts } from '../../../redux/slices/productsSlice';
 
-
-const Pagination: React.FC = () => {
+const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query }) => {
   const dispatch = useDispatch()
   const productsCount = useSelector(selectTotal) ?? 0
+  let currentChunk = useSelector(selectCurrentChunk)
 
   const ITEMS_PER_PAGE = 10;
   const pagesCount = Math.ceil(productsCount / ITEMS_PER_PAGE);
   
   const pages = [...Array(pagesCount)].map((_, i) => i + 1);
   
-  let currentChunk = useSelector(selectCurrentChunk)
-
   const between = pages.length > 5 
     ? React.useRef({ left: 2, right: pages.length - 2 }) 
     : pages.length === 5 
@@ -28,6 +26,7 @@ const Pagination: React.FC = () => {
     : React.useRef(0)
 
   const onPrevPage = () => {
+
     if (currentChunk > 0) {
       if (
         between.current 
@@ -36,7 +35,15 @@ const Pagination: React.FC = () => {
       ) {
         between.current.right -= 1
       }
-      dispatch(fetchProducts(`?chunk=${--currentChunk}`))
+
+      const params = query.current.split("&")
+      
+      params[params.length - 1] = `chunk=${--currentChunk}`
+      const q = params.join("&")
+  
+      query.current = q
+  
+      dispatch(fetchProducts(q))
     }
   };
 
@@ -50,12 +57,29 @@ const Pagination: React.FC = () => {
         between.current.left += 1
       }
 
-      dispatch(fetchProducts(`?chunk=${++currentChunk}`))
+      const params = query.current.split("&")
+      
+      params[params.length - 1] = `chunk=${++currentChunk}`
+      const q = params.join("&")
+  
+      query.current = q
+
+      dispatch(fetchProducts(q))
     }
   };
 
   const onPageChange = (num: number) => {
-    dispatch(fetchProducts(`?chunk=${num}`))
+    const params = query.current.split("&")
+    console.log("query.current", query.current);
+    
+    params[params.length - 1] = `chunk=${num}`
+    const q = params.join("&")
+    console.log("q", q);
+
+    query.current = q
+
+    
+    dispatch(fetchProducts(q))
   };
 
   return (
@@ -70,7 +94,7 @@ const Pagination: React.FC = () => {
         </svg>
       </button>
       <ul className="pagination__list">
-        {pages.slice(0, between.current?.left || 2).map(num =>  (
+        {pages.slice(0, between.current?.left || 2).map(num => (
           <li
             key={num}
             className={`pagination__item ${currentChunk === num ? 'pagination__item--active' : '' }`}
@@ -101,10 +125,10 @@ const Pagination: React.FC = () => {
         ))}
       </ul>
       <button 
-        className={`pagination__arrow`}
+        className="pagination__arrow"
         disabled={currentChunk >= pagesCount}
         onClick={onNextPage}
-        >
+      >
         <svg width="31" height="8" viewBox="0 0 31 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M30.3536 4.35355C30.5488 4.15829 30.5488 3.84171 30.3536 3.64644L27.1716 0.464464C26.9763 0.269202 26.6597 0.269202 26.4645 0.464464C26.2692 0.659726 26.2692 0.976308 26.4645 1.17157L29.2929 4L26.4645 6.82842C26.2692 7.02369 26.2692 7.34027 26.4645 7.53553C26.6597 7.73079 26.9763 7.73079 27.1716 7.53553L30.3536 4.35355ZM4.37114e-08 4.5L30 4.5L30 3.5L-4.37114e-08 3.5L4.37114e-08 4.5Z" fill="#535554" />
         </svg>

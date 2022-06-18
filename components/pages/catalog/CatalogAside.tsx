@@ -7,10 +7,11 @@ import { selectFliters } from "../../../redux/selectors";
 import { fetchProducts } from "../../../redux/slices/productsSlice";
 
 type AsidePropsType = {
+  query: React.MutableRefObject<string>
   onOpen: React.MutableRefObject<null | (() => void)>
 }
 
-export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ onOpen }, AsideRef) => {
+export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, onOpen }, AsideRef) => {
 
   const [isAsideOpened, setAsideOpened] = React.useState(false);
   const [isAsideBodyOpened, setAsideBodyOpened] = React.useState(false);
@@ -48,18 +49,27 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
     boxShadow: "none"
   };
 
+  const initialValues = {
+    liftingCapacityFrom: 20,
+    liftingCapacityTo: 500,
+    heightFrom: 10,
+    heightTo: 100,
+    arrowLengthFrom: 6,
+    arrowLengthTo: 10
+  }
+
   const dispatch = useDispatch()
 
   const { sort, weights } = useSelector(selectFliters);
 
-  const [liftingCapacityFrom, setLiftingCapacityFrom] = React.useState(10);
-  const [liftingCapacityTo, setLiftingCapacityTo] = React.useState(50);
+  const [liftingCapacityFrom, setLiftingCapacityFrom] = React.useState(initialValues.liftingCapacityFrom);
+  const [liftingCapacityTo, setLiftingCapacityTo] = React.useState(initialValues.liftingCapacityTo);
 
-  const [heightFrom, setHeightFrom] = React.useState(10);
-  const [heightTo, setHeightTo] = React.useState(50);
+  const [heightFrom, setHeightFrom] = React.useState(initialValues.heightFrom);
+  const [heightTo, setHeightTo] = React.useState(initialValues.heightTo);
 
-  const [arrowLengthFrom, setArrowLengthFrom] = React.useState(10);
-  const [arrowLengthTo, setArrowLengthTo] = React.useState(50);
+  const [arrowLengthFrom, setArrowLengthFrom] = React.useState(initialValues.arrowLengthFrom);
+  const [arrowLengthTo, setArrowLengthTo] = React.useState(initialValues.arrowLengthTo);
 
   const onChangeRangeInput = (setState: React.Dispatch<React.SetStateAction<number>>, e: React.ChangeEvent<HTMLInputElement>) => setState(Number(e.target.value))
 
@@ -87,7 +97,7 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    const query = makeQueryFromParams(
+    const newQuery = makeQueryFromParams(
       sort,
       weights,
       {
@@ -101,10 +111,14 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
       heightFrom,
       heightTo,
       arrowLengthFrom,
-      arrowLengthTo
+      arrowLengthTo,
+      1
     );
 
-    dispatch(fetchProducts(query))
+    if (query.current !== newQuery) {
+      query.current = newQuery
+      dispatch(fetchProducts(newQuery))  
+    }
   };
 
   const onResetFilters = () => {
@@ -113,14 +127,14 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
     setlowBed(false);
     setModular(false);
 
-    setLiftingCapacityFrom(10);
-    setLiftingCapacityTo(50);
+    setLiftingCapacityFrom(initialValues.liftingCapacityFrom);
+    setLiftingCapacityTo(initialValues.liftingCapacityTo);
 
-    setHeightFrom(10);
-    setHeightTo(50);
+    setHeightFrom(initialValues.heightFrom);
+    setHeightTo(initialValues.heightTo);
 
-    setArrowLengthFrom(10);
-    setArrowLengthTo(50);
+    setArrowLengthFrom(initialValues.arrowLengthFrom);
+    setArrowLengthTo(initialValues.arrowLengthTo);
   };
 
   return (
@@ -139,7 +153,10 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
           <p className="aside-catalog__title">Параметры</p>
         </div>
         <div className="aside-catalog__box">
-          <form className="aside-catalog__form" onSubmit={handleSubmit}>
+          <form 
+            className="aside-catalog__form" 
+            onSubmit={handleSubmit}
+          >
             <div className="aside-catalog__filter aside-filter">
               <p className="aside-filter__title">Вид техники</p>
               <label className="aside-filter__label">
@@ -213,9 +230,9 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
               </div>
               <Range
                 range 
-                step={1}
-                min={0}
-                max={150}
+                step={20}
+                min={150}
+                max={1400}
                 value={[liftingCapacityFrom, liftingCapacityTo]}
                 allowCross={false} 
                 trackStyle={trackStyle}
@@ -251,9 +268,9 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
               </div>
               <Range
                 range 
-                step={1}
+                step={10}
                 min={0}
-                max={150}
+                max={140}
                 value={[heightFrom, heightTo]}
                 allowCross={false} 
                 trackStyle={trackStyle}
@@ -289,8 +306,8 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
             <Range
               range 
               step={1}
-              min={0}
-              max={150}
+              min={5}
+              max={15}
               value={[arrowLengthFrom, arrowLengthTo]}
               allowCross={false} 
               trackStyle={trackStyle}

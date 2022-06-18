@@ -34,6 +34,8 @@ const Catalog: NextPage<ICatalogProps> = () => {
     { id: 2, link: ROUTES.CATALOG, text: "Каталог техники" },
   ];
 
+  const query = React.useRef("")
+
   const isError = useSelector(selectProductsError) 
 
   const onAsideOpen = React.useRef<null | (() => void)>(null)
@@ -46,7 +48,10 @@ const Catalog: NextPage<ICatalogProps> = () => {
       <div className="catalog-content">
         <div className="container">
           <div className="catalog-content__inner">
-            <CatalogAside ref={AsideRef} onOpen={onAsideOpen} />
+            <CatalogAside 
+              ref={AsideRef} 
+              query={query}
+              onOpen={onAsideOpen} />
             <div className="catalog-content__body">
               <FilterControls 
                 activeView={activeView} 
@@ -75,7 +80,7 @@ const Catalog: NextPage<ICatalogProps> = () => {
                     <AppEmpty />
                 )}
 
-              <Pagination />
+              <Pagination query={query} />
             </div>
           </div>
         </div>

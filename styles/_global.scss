@@ -644,11 +644,10 @@ button:active {
   }
 
   &__requisite {
-
     margin-top: 42px;
     padding-left: 50px;
-
     position: relative;
+
     &::after{
       content: "";
       position: absolute;
@@ -703,11 +702,10 @@ button:active {
   display: flex;
   flex-direction: column;
   max-width: 370px;
-  // padding: 0 5px;
   min-height: 100%;
 
-  &:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  &--padding {
+    padding: 0 5px;
   }
 
   &.product-item--wide {
@@ -720,6 +718,10 @@ button:active {
     flex-grow: 1;
     background-color: #fff;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
   }
 
   // .product-item__img

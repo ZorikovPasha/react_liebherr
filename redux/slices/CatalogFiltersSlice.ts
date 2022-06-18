@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
-  sort: "height",
-  weights: [40],
+  sort: "height_to",
+  weights: [] as number[],
 };
 
 

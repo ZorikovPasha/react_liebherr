@@ -6,12 +6,12 @@ interface ICardProps {
   imgSrc: string,
   liftingCapacity: number,
   arrowLength: number,
+  rootElClass?: string
 }
 
-
-const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, arrowLength }) => {
+const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, arrowLength, rootElClass="" }) => {
   return (
-    <div className="product-item" key={id}>
+    <div className={`product-item ${rootElClass}`} key={id}>
       <div className="product-item__body">
         <div className="product-item__images">
           <img className="product-item__img" src={imgSrc} alt="product" />

@@ -36,6 +36,8 @@ export const modalsSlice = createSlice({
     builder.addCase(fetchProducts.rejected, (state) => {
       state.isLoading = false
       state.isError = true
+      state.currentChunk = 1
+      state.total = 0
     })
 
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
