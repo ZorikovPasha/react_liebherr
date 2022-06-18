@@ -7,8 +7,6 @@ import { toggleModal } from "../../redux/slices/modalsSlice";
 import { AppTextField } from './AppTextField';
 import { toggleLoader } from '../../redux/slices/loaderSilce';
 import { selectProduct } from '../../redux/selectors';
-import { MachineryType } from '../../types/dataTypes';
-
 
 type fieldsType = {
   fields: {
@@ -65,10 +63,7 @@ export const AppForm: React.FC<AppFormPropsType> = ({
   const dispatch = useDispatch();
   const { query } = useRouter()
 
-  let desiredProduct: MachineryType | undefined
-  if (query.id && !Array.isArray(query.id)) {
-    desiredProduct = useSelector(selectProduct(Number(query.id)))
-  }
+  const desiredProduct = useSelector(selectProduct(Number(query.id)))
 
   const handleSubmit: handleSubmitType<typeof initValues> = async (userData) => {
     dispatch(toggleLoader(true))

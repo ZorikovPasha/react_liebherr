@@ -73,7 +73,7 @@ const About: NextPage = () => {
               </div>
               <div className="contacts__requisite">
                 <p className="contacts__sub">Реквизиты:</p>
-                <p>ООО "Компания Еврокран" </p>
+                <p>ООО &quot;Компания Еврокран&quot; </p>
                 <div className="contacts__requisite-box">
                   <p>ИНН:</p>
                   <p>7718999293</p>

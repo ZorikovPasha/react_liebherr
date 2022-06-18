@@ -170,6 +170,7 @@ button:active {
   
     &.slick-disabled {
       border: 2px solid transparent;
+      cursor: default;
       .slider-arr-wrapper svg path {fill: #C4C4C4;}
     }
     .slider-arr-wrapper {
@@ -291,6 +292,7 @@ button:active {
     height: 32px;
     border: 1px solid #FCB427;
     cursor: default;
+    pointer-events: none;
   }
 
   &__item--dots {

@@ -11,7 +11,7 @@ type AsidePropsType = {
   onOpen: React.MutableRefObject<null | (() => void)>
 }
 
-export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, onOpen }, AsideRef) => {
+const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, onOpen }, AsideRef) => {
 
   const [isAsideOpened, setAsideOpened] = React.useState(false);
   const [isAsideBodyOpened, setAsideBodyOpened] = React.useState(false);
@@ -335,3 +335,6 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ 
     </aside>
   );
 });
+
+CatalogAside.displayName = "CatalogAside"
+export default CatalogAside

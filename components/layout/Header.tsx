@@ -87,4 +87,6 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
   );
 });
 
+Header.displayName = "Header"
+
 export default Header;
