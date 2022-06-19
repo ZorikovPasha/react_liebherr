@@ -2,6 +2,7 @@ import React from 'react';
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { toggleModal } from '../../redux/slices/modalsSlice';
+import { ROUTES } from '../../utils/const';
 
 
 const Footer: React.FC = () => {
@@ -43,7 +44,7 @@ const Footer: React.FC = () => {
                 <ul className="footer__column-list column-list">
                   {arr.map(({ text }) => (
                     <li className="column-list__item" key={text}>
-                      <Link href="/catalog">
+                      <Link href={ROUTES.CATALOG}>
                         <a className="column-list__link">{text}</a>
                       </Link>
                     </li>

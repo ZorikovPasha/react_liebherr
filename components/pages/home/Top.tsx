@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import Slider, { Settings } from "react-slick";
 import { toggleModal } from "../../../redux/slices/modalsSlice";
+import { ROUTES } from "../../../utils/const";
 
 interface IArrowProps {
   onClick: (() => void) | undefined,
@@ -105,8 +106,8 @@ const Top: React.FC = () => {
                     >
                       Заказать звонок
                     </button>
-                  <Link href="/catalog">
-                    <a className="top__link">Каталог техники</a>
+                  <Link href={ROUTES.CATALOG}>
+                    <a className="top__link btn-line">Каталог техники</a>
                   </Link>
                 </div>
               </div>

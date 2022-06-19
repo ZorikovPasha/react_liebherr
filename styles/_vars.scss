@@ -78,14 +78,14 @@ $grey: #C4C4C4;
   font-weight: bold;
   font-size: 18px;
   line-height: 141.69%;
-  border: 1px solid #FCB427;
+  border: 1px solid $yellowOrange;
 
   &:hover {
-    border: 1px dashed #FCB427;
+    border: 1px dashed $yellowOrange;
   }
 
   &:active {
-    border: 1px dotted #FCB427;
+    border: 1px dotted $yellowOrange;
   }
 }
 

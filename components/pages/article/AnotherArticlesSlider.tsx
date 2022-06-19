@@ -6,6 +6,7 @@ import AxiosError from 'axios';
 import { ArticleCard, SliderNextArrow, SliderPrevArrow } from "../../../components";
 import { publicApi } from '../../../api';
 import { ArticleType } from '../../../types/dataTypes';
+import { ROUTES } from '../../../utils/const';
 
 interface IProps {
   currentArticle: number
@@ -61,7 +62,7 @@ const AnotherArticlesSlider: React.FC<IProps> = ({ currentArticle }) => {
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">
-          <Link href="/blog">
+          <Link href={ROUTES.BLOG}>
             <a className="another-ones__btn">
               Все статьи
             </a>

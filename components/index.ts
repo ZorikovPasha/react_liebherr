@@ -11,6 +11,7 @@ import Loader from "./common/Loader";
 import ClientOnlyPortal from "./common/ClientOnlyPortal";
 import { AppForm } from "./common/AppForm";
 import { ContactsForm } from "./common/ContactsForm";
+import PopupVideo from "./common/PopupVideo";
 import PopupError from "./common/PopupError";
 import { Error } from "./common/Error";
 import { AppEmpty } from "./common/AppEmpty";
@@ -39,6 +40,7 @@ import AnotherArticlesSlider from "./pages/article/AnotherArticlesSlider";
 import SceneFootage from "./pages/object/SceneFootage";
 import ObjectCard from "./pages/objects/ObjectCard";
 import ReviewsCards from "./pages/about/ReviewsCards";
+import { VideoPic } from "./pages/about/Video";
 import ArticleCard from "./pages/blog/ArticleCard";
 import ContactsBlock from "./pages/contacts/ContactsBlock";
 import AnotherObjectsSlider from "./pages/object/AnotherObjectsSlider";
@@ -55,4 +57,4 @@ export {PopupRequest, BreadCrumbs, Popup, Top, RentSlider, Guarantee, ProjectsSl
   CatalogCard, AnotherArticlesSlider, SceneFootage, ObjectCard, ReviewsCards, ArticleCard,
   Layout, MobMenu, Header, PopupSuccess, Footer, ContactsBlock, AnotherObjectsSlider,
   SliderNextArrow, SliderPrevArrow, Loader, ClientOnlyPortal, AppForm, ContactsForm,
-  PopupError, Error, AppEmpty };
+  PopupError, Error, AppEmpty, PopupVideo, VideoPic };

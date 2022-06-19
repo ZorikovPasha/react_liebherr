@@ -5,6 +5,7 @@ import Slider, { Settings }  from 'react-slick';
 
 import { CatalogCard, SliderNextArrow, SliderPrevArrow } from "../../";
 import { selectProducts } from "../../../redux/selectors";
+import { ROUTES } from "../../../utils/const";
 
 const CatalogSlider: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>();
@@ -52,8 +53,8 @@ const CatalogSlider: React.FC = () => {
           </Slider>
         </div>
         <div className="catalog__btn-wrapper">
-          <Link href="/catalog">
-            <a className="catalog__btn">Перейти в каталог</a>
+          <Link href={ROUTES.CATALOG}>
+            <a className="catalog__btn btn-line btn-line--orange">Перейти в каталог</a>
           </Link>
         </div>
       </div>

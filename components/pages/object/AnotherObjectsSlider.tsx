@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 
 import { SliderNextArrow, SliderPrevArrow } from '../../../components';
 import { ConstructionType } from "../../../types/dataTypes";
+import { ROUTES } from "../../../utils/const";
 
 
 interface ISlider {
@@ -48,7 +49,7 @@ const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
                 <img src={preview} alt="Фото объекта стройки" />
               </div>
               <h6 className="item-object__title">
-                <Link href={"/object/" + id}>
+                <Link href={ROUTES.OBJECT + id}>
                 <a className="item-object__link">
                   {title}
                 </a>
@@ -58,7 +59,7 @@ const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">
-          <Link href="/objects">
+          <Link href={ROUTES.OBJECTS}>
             <a className="another-ones__btn">
               Смотреть все
             </a>
