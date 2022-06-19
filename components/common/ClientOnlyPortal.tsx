@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { createPortal } from 'react-dom';
 
 interface iPortal {
-  selector: string
+  selector: string,
+  children: ReactNode
 }
 
 const ClientOnlyPortal: React.FC<iPortal> = ({ children, selector }) => {

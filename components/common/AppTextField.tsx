@@ -1,5 +1,5 @@
-import { FormikErrors } from 'formik'
-import React from 'react'
+import { FormikErrors, FormikTouched } from 'formik'
+import React, { ChangeEvent } from 'react'
 
 type AppTextFieldType = {
   blockClass: string,
@@ -9,10 +9,10 @@ type AppTextFieldType = {
   placeholder: string,
   labelClass: string,
   inputClass: string,
-  hasError: any,
+  hasError: boolean | "" | FormikTouched<any> | FormikTouched<any>[] | undefined,
   errorMessage: string | string[] | FormikErrors<any> | FormikErrors<any>[] | undefined,
-  handleChange: any,
-  handleBlur: any,
+  handleChange: (e: string | ChangeEvent<any>) => void,
+  handleBlur: (e: string | ChangeEvent<any>) => void,
   tag: string
 }
 
@@ -50,7 +50,7 @@ export const AppTextField: React.FC<AppTextFieldType> = ({
             ) : (
               <textarea 
                 name={name}
-                className={`${inputClass}  ${hasError ? "form-input--error": ""}`}
+                className={`${inputClass} ${hasError ? "form-input--error": ""}`}
                 placeholder={placeholder}
                 value={value}
                 onChange={handleChange}
@@ -60,7 +60,7 @@ export const AppTextField: React.FC<AppTextFieldType> = ({
           }
 
       </label>
-      { hasError && <p className="questions__form-message">{errorMessage}</p> }
+      { hasError && <p className="questions__form-message">{errorMessage?.toString()}</p> }
     </div>
   )
 }
