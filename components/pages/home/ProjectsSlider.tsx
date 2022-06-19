@@ -15,6 +15,8 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
     slidesToShow: 5,
     variableWidth: true,
     arrows: false,
+    infinite: true,
+    autoplaySpeed: 3000, 
     focusOnSelect: true,
     responsive: [
       {

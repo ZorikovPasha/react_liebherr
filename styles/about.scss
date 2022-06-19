@@ -64,9 +64,37 @@
     left: 50%;
 
     transform: translate(-50%, -50%);
+
+    &:hover {
+
+    }
   }
 }
 
+.anim-color path {
+  fill: black;
+    animation: AnimColor 3s linear infinite;
+}
+
+@keyframes AnimColor {
+  0% { fill: #C4C4C4 }
+  25% { fill: #2D2D2D } 
+  50% { fill: #FCB427 } 
+  75% { fill: #F3F3F3 } 
+  100% { fill: #FF971D }
+}
+
+.anim-color {
+  animation: scale 2s linear infinite;
+}
+
+@keyframes scale {
+  0% { transform: scale(0.95) }
+  25% { transform: scale(1.05) }
+  50% { transform: scale(0.95) }
+  75% { transform: scale(1) }
+  100% { transform: scale(0.95) }
+}
 
 .reviews {
 
@@ -82,10 +110,8 @@
   // .reviews__items
 
   &__items {
-    // display: grid;
-    // grid-template-columns: repeat(3, 1fr);
-    // grid-gap: 15px;
     margin: 0 -16px;
+
     .slick-btn {
       right: 12px;
       top: -58px;
@@ -103,11 +129,6 @@
         width: calc( 100% / 3 )
       }
     }
-  }
-
-  // .reviews__item
-
-  &__item {
   }
 
   // .reviews__item-images

@@ -107,7 +107,7 @@ const Top: React.FC = () => {
                       Заказать звонок
                     </button>
                   <Link href={ROUTES.CATALOG}>
-                    <a className="top__link">Каталог техники</a>
+                    <a className="top__link btn-line">Каталог техники</a>
                   </Link>
                 </div>
               </div>

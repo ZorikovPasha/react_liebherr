@@ -63,6 +63,10 @@
   color: $yellowOrange;
 }
 
-.form-input--error {
+input.form-input--error {
+  border: 1px solid red;
+}
+
+textarea.form-input--error {
   border: 1px solid red;
 }

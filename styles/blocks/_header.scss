@@ -64,7 +64,7 @@
       height: 21px;
       top: 0;
       left: 0;
-      background-image: url('../images/clock-icon.svg');
+      background-image: url('../../images/clock-icon.svg');
     }
   }
 
@@ -84,7 +84,7 @@
       top: 50%;
       transform: translate(0%, -50%);
       left: 0;
-      background-image: url('../images/mapmarker.svg');
+      background-image: url('../../images/mapmarker.svg');
     }
   }
 
@@ -121,15 +121,45 @@
   &__tels {
     position: relative;
     padding-left: 33px;
+
     &::after{
       content: "";
       position: absolute;
       width: 21px;
       height: 21px;
-      top: 50%;
+      top: 35%;
       left: 0px;
-      transform: translate(0%, -50%);
-      background-image: url('../images/tel-icon.svg');
+      background-image: url('../../images/tel-icon.svg');
+
+      @-webkit-keyframes ring{
+        0%{-webkit-transform: rotate(-15deg);transform: rotate(-15deg)}
+        2%{-webkit-transform: rotate(15deg);transform: rotate(15deg)}
+        4%{-webkit-transform: rotate(-18deg);transform: rotate(-18deg)}
+        6%{-webkit-transform: rotate(18deg);transform: rotate(18deg)}
+        8%{-webkit-transform: rotate(-22deg);transform: rotate(-22deg)}
+        10%{-webkit-transform: rotate(22deg);transform: rotate(22deg)}
+        12%{-webkit-transform: rotate(-18deg);transform: rotate(-18deg)}
+        14%{-webkit-transform: rotate(18deg);transform: rotate(18deg)}
+        16%{-webkit-transform: rotate(-12deg);transform: rotate(-12deg)}
+        18%{-webkit-transform: rotate(12deg);transform: rotate(12deg)}
+        20%{-webkit-transform: rotate(0deg);transform: rotate(0deg)}
+      }
+      @keyframes ring{
+        0%{-webkit-transform: rotate(-15deg);-ms-transform: rotate(-15deg);transform: rotate(-15deg)}
+        2%{-webkit-transform: rotate(15deg);-ms-transform: rotate(15deg);transform: rotate(15deg)}
+        4%{-webkit-transform: rotate(-18deg);-ms-transform: rotate(-18deg);transform: rotate(-18deg)}
+        6%{-webkit-transform: rotate(18deg);-ms-transform: rotate(18deg);transform: rotate(18deg)}
+        8%{-webkit-transform: rotate(-22deg);-ms-transform: rotate(-22deg);transform: rotate(-22deg)}
+        10%{-webkit-transform: rotate(22deg);-ms-transform: rotate(22deg);transform: rotate(22deg)}
+        12%{-webkit-transform: rotate(-18deg);-ms-transform: rotate(-18deg);transform: rotate(-18deg)}
+        14%{-webkit-transform: rotate(18deg);-ms-transform: rotate(18deg);transform: rotate(18deg)}
+        16%{-webkit-transform: rotate(-12deg);-ms-transform: rotate(-12deg);transform: rotate(-12deg)}
+        18%{-webkit-transform: rotate(12deg);-ms-transform: rotate(12deg);transform: rotate(12deg)}
+        20%{-webkit-transform: rotate(0deg);-ms-transform: rotate(0deg);transform: rotate(0deg)}
+      }
+
+      -webkit-animation: ring 2s ease infinite;
+      animation: ring 2s ease infinite;
     }
   }
 
@@ -158,16 +188,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 25px 0;
-  }
-
-  // .header__nav
-
-  &__nav {
-  }
-
-  // .header__nav-list
-
-  &__nav-list {
   }
 
   // .header__nav-item
@@ -238,6 +258,7 @@
     display: inline-block;
     cursor: pointer;
     z-index: 4;
+    
     &::after{
       content: "";
       position: absolute;
@@ -246,7 +267,7 @@
       width: 15px;
       height: 15px;
       z-index: 6;
-      background-image: url('../images/search.svg');
+      background-image: url('../../images/search.svg');
     }
   }
 }

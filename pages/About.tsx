@@ -2,7 +2,7 @@ import React from 'react'
 import { NextPage } from "next";
 
 import { BreadCrumbs, ReviewsCards, ServicesPreviews, 
-  Texts, CostsRow, ContactsForm } from "../components";
+  Texts, CostsRow, ContactsForm, VideoPic } from "../components";
 import { ROUTES } from '../utils/const';
 
 const About: NextPage = () => {
@@ -39,13 +39,7 @@ const About: NextPage = () => {
             </div>
           </div>
 
-          <div className="about__video wow animate__animated animate__fadeIn animate__delay-1s" data-wow-offset="200">
-            <div className="about__video-box">
-              <a className="about__video-play" data-fancybox href="https://youtu.be/0UUK4VDblXM">
-                <img src="static/images/play-btn.svg" alt="значок воспроизведения видео" />
-              </a>
-            </div>
-          </div>
+          <VideoPic />
         </div>
       </section>
 

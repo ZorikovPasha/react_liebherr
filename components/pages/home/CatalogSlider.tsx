@@ -54,7 +54,7 @@ const CatalogSlider: React.FC = () => {
         </div>
         <div className="catalog__btn-wrapper">
           <Link href={ROUTES.CATALOG}>
-            <a className="catalog__btn">Перейти в каталог</a>
+            <a className="catalog__btn btn-line btn-line--orange">Перейти в каталог</a>
           </Link>
         </div>
       </div>
