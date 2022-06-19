@@ -4,7 +4,6 @@ import * as yup from "yup";
 import { REGEX } from '../../utils/const';
 import { AppForm } from './AppForm';
 
-
 export const ContactsForm = () => {
   const formSchema = yup.object().shape({
     name: yup.string().required('Поле обязательно'),

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import React from 'react';
 
 import { SliderNextArrow, SliderPrevArrow } from "../../../components";
+import { ROUTES } from "../../../utils/const";
 
 const RentSlider: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>();
@@ -59,7 +60,7 @@ const RentSlider: React.FC = () => {
                   <div className="slider-item__info">
                     <h3 className="slider-item__title">{title}</h3>
                     <p className="slider-item__text">{text}</p>
-                    <Link href="/catalog">
+                    <Link href={ROUTES.CATALOG}>
                       <a className="slider-item__link btn">Выбрать спецтехнику</a>
                     </Link>
                   </div>

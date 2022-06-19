@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MouseEventHandler } from "react";
+import { ROUTES } from "../../utils/const";
 
 interface IMobMenuProps {
   handleMobMennuCloseClick:  MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
@@ -10,13 +11,13 @@ interface IMobMenuProps {
 const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuOpen, isMenuBodyOpened }) => {
 
   const menuItems = [
-    { link: "/catalog", text: "Каталог" },
-    { link: "/profile", text: "Услуги" },
-    { link: "/about", text: "О компании" },
-    { link: "/objects", text: "Объекты" },
-    { link: "/contacts", text: "Цены" },
-    { link: "/blog", text: "Блог" },
-    { link: "/contacts", text: "Контакты" },
+    { link: ROUTES.CATALOG, text: "Каталог" },
+    { link: ROUTES.OBJECTS, text: "Услуги" },
+    { link: ROUTES.ABOUT, text: "О компании" },
+    { link: ROUTES.OBJECTS, text: "Объекты" },
+    { link: ROUTES.CONTACTS, text: "Цены" },
+    { link: ROUTES.BLOG, text: "Блог" },
+    { link: ROUTES.CONTACTS, text: "Контакты" },
   ];
 
   return (

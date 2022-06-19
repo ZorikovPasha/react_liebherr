@@ -27,12 +27,9 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query 
 
   const handleQuery = (chunk: number) => {
     const params = query.current.split("&")
-    console.log("query.current", query.current);
 
     params[params.length - 1] = `${query.current ? "" : "?"}chunk=${chunk}`
     const q = params.join("&")
-
-    console.log(query.current);
     
     if (query.current) {
       query.current = q

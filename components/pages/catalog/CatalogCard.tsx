@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ROUTES } from "../../../utils/const";
 
 interface ICardProps {
   id: number,
@@ -17,7 +18,7 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
           <img className="product-item__img" src={imgSrc} alt="product" />
         </div>
         <div className="product-item__title-box">
-          <Link href={`/product/${id}`}>
+          <Link href={ROUTES.PRODUCT+id}>
             <a className="product-item__title product-item__title--big">{name}</a>
           </Link>
         </div>
@@ -28,11 +29,11 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
             <div className="product-item__text">Длина стрелы:</div>
             <div className="product-item__text">{arrowLength}</div>
           </div>
-          <Link href={`/product/${id}`}>
+          <Link href={ROUTES.PRODUCT+id}>
             <a className="product-item__link">Все характеристики</a>
           </Link>
           <Link 
-            href="/contacts"
+            href={ROUTES.CONTACTS}
             >
             <a 
               className="product-item__link"

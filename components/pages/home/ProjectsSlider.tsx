@@ -4,6 +4,7 @@ import Slider, { Settings } from "react-slick";
 
 import { SliderNextArrow, SliderPrevArrow } from "../../../components";
 import { ConstructionType } from "../../../types/dataTypes";
+import { ROUTES } from "../../../utils/const";
 
 interface ISliderProps {
   items: ConstructionType[]
@@ -104,7 +105,7 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
                       <p className="projects-slider__item-title">{title}</p>
                       <p className="projects-slider__item-location">{location}</p>
                       <p className="projects-slider__item-text">{text}</p>
-                      <Link href={`/object/${id}`}>
+                      <Link href={ROUTES.OBJECT+id}>
                         <a className="projects-slider__item-link">
                           Подробнее
                         </a>

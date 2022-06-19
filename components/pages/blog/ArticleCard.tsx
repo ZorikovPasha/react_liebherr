@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ROUTES } from "../../../utils/const";
 
 interface ICardProps {
   preview: string;
@@ -19,7 +20,7 @@ const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => 
           <p className="item-blog__text" data-crop="200">
             {subtitle}
           </p>
-          <Link href={"/article/" + id}>
+          <Link href={ROUTES.ARTICLE + id}>
             <a className="item-blog__btn btn">Подробнее</a>
           </Link>
         </div>

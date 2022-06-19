@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ROUTES } from "../../../utils/const";
 
 interface ICardProps {
   preview: string;
@@ -12,7 +13,7 @@ const ObjectCard: React.FC<ICardProps> = ({ id, preview, title }) => {
         <img src={preview} alt="Фото объекта строительства" />
       </div>
       <h6 className="item-object__title">
-        <Link href={'/object/' + id}>
+        <Link href={ROUTES.OBJECT + id}>
           <a className="item-object__link">
             {title}
           </a>
