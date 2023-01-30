@@ -1,7 +1,8 @@
 
 import React from 'react';
 import Slider from 'react-slick';
-import { CatalogCard, SliderPrevArrow, SliderNextArrow } from "../..";
+import { SliderPrevArrow, SliderNextArrow } from "../../common/SliderArrows";
+import CatalogCard from '../catalog/CatalogCard';
 import { MachineryType } from '../../../types/dataTypes';
 
 interface ISliderProps {

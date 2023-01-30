@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectPopupState } from "../../redux/selectors";
 
 import { toggleModal } from "../../redux/slices/modalsSlice";
-import ClientOnlyPortal from "./ClientOnlyPortal";
+// import ClientOnlyPortal from "./ClientOnlyPortal";
 
 interface IPopupMessageProps {
   title: string;
@@ -22,7 +22,7 @@ const PopupMessage: React.FC<IPopupMessageProps> = ({ title, text, buttonText })
   };
 
   return poupState.message ? (
-    <ClientOnlyPortal selector="#modal">
+    // <ClientOnlyPortal selector="#modal">
     <div className="popup-message">
       <div className="popup-message__body">
         <button className="popup-message__close" onClick={onClose}>
@@ -33,7 +33,7 @@ const PopupMessage: React.FC<IPopupMessageProps> = ({ title, text, buttonText })
         <button className="popup-message__btn" onClick={onClose}>{buttonText}</button>
       </div>
     </div>
-  </ClientOnlyPortal>
+  // </ClientOnlyPortal>
   ) : null
 };
 

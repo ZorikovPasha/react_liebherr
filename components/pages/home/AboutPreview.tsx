@@ -1,5 +1,5 @@
 import React from "react"
-import { PopupVideo } from "../.."
+import PopupVideo from "../../common/PopupVideo";
 
 const AboutPreview: React.FC = () => {
   const [isPlaying, setPlaying]  = React.useState(false)
@@ -15,7 +15,6 @@ const AboutPreview: React.FC = () => {
   }
 
   return (
-
     <section className="main-about">
       <div className="main-about__inner">
         <div className="container">

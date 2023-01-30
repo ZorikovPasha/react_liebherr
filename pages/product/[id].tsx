@@ -2,8 +2,11 @@ import { NextPage } from "next";
 import { GetServerSideProps } from 'next';
 
 import { publicApi } from "../../api";
-import { BreadCrumbs, HelpRequestForm, ProductTabs, ProductView,
-  SimilarOnesSlider } from "../../components";
+import BreadCrumbs from "../../components/common/BreadCrumbs";
+import HelpRequestForm from "../../components/common/HelpRequestForm";
+import ProductTabs from "../../components/pages/product/ProductTabs";
+import ProductView from "../../components/pages/product/ProductView";
+import SimilarOnesSlider from "../../components/pages/product/SimilarOnesSlider";
 import { MachineryType } from "../../types/dataTypes";
 import { ROUTES } from "../../utils/const";
 

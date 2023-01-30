@@ -2,7 +2,10 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import { ParsedUrlQuery } from "querystring";
 
 import { publicApi } from "../../api";
-import { AnotherObjectsSlider, BreadCrumbs, SceneFootage, Texts } from "../../components";
+import AnotherObjectsSlider from "../../components/pages/object/AnotherObjectsSlider";
+import BreadCrumbs from "../../components/common/BreadCrumbs";
+import Texts from "../../components/common/Texts";
+import SceneFootage from "../../components/pages/object/SceneFootage";
 import { ConstructionType } from "../../types/dataTypes";
 import { ROUTES } from '../../utils/const';
 

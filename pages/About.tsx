@@ -1,9 +1,15 @@
 import React from 'react'
 import { NextPage } from "next";
 
-import { BreadCrumbs, ReviewsCards, ServicesPreviews, 
-  Texts, CostsRow, ContactsForm, VideoPic } from "../components";
 import { ROUTES } from '../utils/const';
+import BreadCrumbs from "../components/common/BreadCrumbs";
+import ReviewsCards from "../components/pages/about/ReviewsCards";
+import ServicesPreviews from "../components/pages/home/ServicesPreviews";
+import Texts from "../components/common/Texts";
+import CostsRow from "../components/pages/home/CostsRow";
+import { ContactsForm } from "../components/common/ContactsForm";
+import { VideoPic } from "../components/pages/about/Video";
+
 
 const About: NextPage = () => {
   const breadCrumbs = [

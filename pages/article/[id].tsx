@@ -2,7 +2,8 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { publicApi } from "../../api";
 
-import { AnotherArticlesSlider, BreadCrumbs } from "../../components";
+import AnotherArticlesSlider from "../../components/pages/article/AnotherArticlesSlider";
+import BreadCrumbs from "../../components/common/BreadCrumbs";
 import { ArticleType } from "../../types/dataTypes";
 import { ROUTES } from "../../utils/const";
 
