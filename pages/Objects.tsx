@@ -1,7 +1,9 @@
 import { GetStaticProps, NextPage } from "next";
 
 import { publicApi } from "../api";
-import { BreadCrumbs, ObjectCard, Texts } from "../components";
+import BreadCrumbs from "../components/common/BreadCrumbs";
+import ObjectCard from "../components/pages/objects/ObjectCard";
+import Texts from "../components/common/Texts";
 import { ConstructionType } from "../types/dataTypes";
 import { ROUTES } from "../utils/const";
 

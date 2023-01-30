@@ -3,7 +3,8 @@ import Slider from 'react-slick';
 import React from 'react';
 import AxiosError from 'axios';
 
-import { ArticleCard, SliderNextArrow, SliderPrevArrow } from "../../../components";
+import { SliderNextArrow, SliderPrevArrow } from "../../../components/common/SliderArrows";
+import ArticleCard from "../../../components/pages/blog/ArticleCard"
 import { publicApi } from '../../../api';
 import { ArticleType } from '../../../types/dataTypes';
 import { ROUTES } from '../../../utils/const';

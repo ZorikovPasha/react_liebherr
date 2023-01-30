@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import Slider from 'react-slick';
 
-import { SliderNextArrow, SliderPrevArrow } from '../../../components';
+import { SliderNextArrow, SliderPrevArrow } from '../../../components/common/SliderArrows';
 import { ConstructionType } from "../../../types/dataTypes";
 import { ROUTES } from "../../../utils/const";
 

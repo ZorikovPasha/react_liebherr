@@ -1,11 +1,15 @@
 import { GetStaticProps, NextPage } from "next";
 import React from "react"
 import AxiosError from "axios";
+import { useDispatch } from "react-redux";
 
 import { publicApi } from "../api";
-import { BreadCrumbs, ArticleCard, Error } from "../components";
+import BreadCrumbs from "../components/common/BreadCrumbs";
+import ArticleCard from "../components/pages/blog/ArticleCard";
+import { Error } from "../components/common/Error";
+
+
 import { ArticleType } from "../types/dataTypes";
-import { useDispatch } from "react-redux";
 import { toggleLoader } from "../redux/slices/loaderSilce";
 import { ROUTES } from "../utils/const";
 

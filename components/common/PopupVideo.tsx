@@ -1,6 +1,5 @@
 import YouTube from 'react-youtube';
-
-import ClientOnlyPortal from "./ClientOnlyPortal";
+// import ClientOnlyPortal from "./ClientOnlyPortal";
 
 interface IPopupMessageProps {
   videoId: string
@@ -10,7 +9,7 @@ interface IPopupMessageProps {
 const PopupVideo: React.FC<IPopupMessageProps> = ({ videoId, onClose }) => {
 
   return (
-    <ClientOnlyPortal selector="#modal">
+    // <ClientOnlyPortal selector="#modal">
       <div className="popup">
         <div className="popup__body popup__body--video">
           <button className="popup__close" onClick={onClose}>
@@ -29,7 +28,7 @@ const PopupVideo: React.FC<IPopupMessageProps> = ({ videoId, onClose }) => {
           </div>
         </div>
       </div>
-  </ClientOnlyPortal>
+  // </ClientOnlyPortal>
   )
 };
 

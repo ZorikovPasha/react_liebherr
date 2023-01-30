@@ -1,9 +1,17 @@
 import { GetStaticProps, NextPage } from "next";
 import { publicApi } from "../api";
 
-import { AboutPreview, CatalogSlider, CostsRow, Guarantee, 
-  QuestionsForm, RentSlider, ResultsInNumbers, ServicesPreviews, 
-  Texts, Top, ProjectsSlider } from "../components";
+import AboutPreview from "../components/pages/home/AboutPreview";
+import CatalogSlider from "../components/pages/home/CatalogSlider";
+import CostsRow from "../components/pages/home/CostsRow";
+import Guarantee from "../components/pages/home/Guarantee";
+import QuestionsForm from "../components/common/QuestionsForm";
+import RentSlider from "../components/pages/home/RentSlider";
+import ResultsInNumbers from "../components/pages/home/ResultsInNumbers";
+import ServicesPreviews from "../components/pages/home/ServicesPreviews";
+import Texts from "../components/common/Texts";
+import Top from "../components/pages/home/Top";
+import ProjectsSlider from "../components/pages/home/ProjectsSlider";
 import { ConstructionType } from "../types/dataTypes";
 
 interface IHomeProps {

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import React from 'react';
 
-import { SliderNextArrow, SliderPrevArrow } from "../../../components";
+import { SliderNextArrow, SliderPrevArrow } from "../../../components/common/SliderArrows";
 import { ROUTES } from "../../../utils/const";
 
 const RentSlider: React.FC = () => {

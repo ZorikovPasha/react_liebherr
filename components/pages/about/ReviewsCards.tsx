@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import React from 'react';
 
-import { SliderNextArrow, SliderPrevArrow } from '../../../components';
+import { SliderNextArrow, SliderPrevArrow } from '../../../components/common/SliderArrows';
 
 const ReviewsCards: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>();

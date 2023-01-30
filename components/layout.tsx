@@ -1,7 +1,9 @@
 import React from 'react';
 import dynamic from 'next/dynamic'
 
-import { Header, Footer, Loader } from ".";
+import Header from "../components/layout/Header"
+import Footer from "../components/layout/Footer"
+import Loader from './common/Loader';
 
 const PopupRequest = dynamic(() => import('./common/Popup'), {
   loading: () => <Loader />,

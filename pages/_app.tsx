@@ -1,8 +1,7 @@
-import React from 'react';
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app';
 import { wrapper } from '../redux/store';
-import { Layout } from '../components';
+import Layout from '../components/layout';
 import { fetchProducts } from "../redux/slices/productsSlice";
 
 import '../styles/style.scss';

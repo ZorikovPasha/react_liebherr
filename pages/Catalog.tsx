@@ -1,22 +1,21 @@
 import { NextPage } from "next";
 import React from "react";
-import {
-  BreadCrumbs,
-  CatalogAside,
-  CatalogCard,
-  CatalogTabs,
-  ContactsBlock,
-  ContactsForm,
-  FilterControls,
-  HelpRequestForm,
-  Pagination,
-  Texts,
-  Error,
-  AppEmpty
-} from "../components";
+import { useSelector } from "react-redux";
+
+import BreadCrumbs from "../components/common/BreadCrumbs";
+import CatalogAside from "../components/pages/catalog/CatalogAside";
+import CatalogCard from "../components/pages/catalog/CatalogCard";
+import CatalogTabs from "../components/pages/catalog/CatalogTabs";
+import ContactsBlock from "../components/pages/contacts/ContactsBlock";
+import { ContactsForm } from "../components/common/ContactsForm";
+import FilterControls from "../components/pages/catalog/FilterControls";
+import HelpRequestForm from "../components/common/HelpRequestForm";
+import Pagination from "../components/pages/catalog/Pagination";
+import Texts from "../components/common/Texts";
+import { Error } from "../components/common/Error";
+import { AppEmpty } from "../components/common/AppEmpty";
 import { MachineryType } from "../types/dataTypes";
 import { ROUTES } from "../utils/const";
-import { useSelector } from "react-redux";
 import { selectProducts, selectProductsError } from "../redux/selectors";
 
 interface ICatalogProps {

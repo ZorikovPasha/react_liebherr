@@ -1,6 +1,8 @@
 import React from 'react'
 import { NextPage } from "next";
-import { ContactsBlock, BreadCrumbs, ContactsForm } from "../components";
+import ContactsBlock from "../components/pages/contacts/ContactsBlock";
+import BreadCrumbs from "../components/common/BreadCrumbs";
+import { ContactsForm } from "../components/common/ContactsForm";
 import { ROUTES } from '../utils/const';
 
 const Contacts: NextPage = () => {

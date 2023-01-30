@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ClientOnlyPortal } from "../";
+// import { ClientOnlyPortal } from "../";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
 import { selectPopupState } from "../../redux/selectors";
@@ -16,7 +16,7 @@ const PopupError: React.FC = () => {
   };
 
   return popupState.error ? (
-    <ClientOnlyPortal selector="#modal">
+    // <ClientOnlyPortal selector="#modal">
       <div className="popup">
         <div className="popup__body">
           <button 
@@ -35,7 +35,7 @@ const PopupError: React.FC = () => {
           </button>
         </div>
       </div>
-    </ClientOnlyPortal>
+    // </ClientOnlyPortal>
   ) : null
 };
 

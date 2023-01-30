@@ -1,7 +1,6 @@
 import React from "react";
 import * as yup from "yup";
 
-import { ClientOnlyPortal } from "../";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
 import { REGEX } from "../../utils/const";
@@ -64,7 +63,7 @@ const PopupRequest: React.FC = () => {
   };
 
   return popupState.order || popupState.request ? (
-    <ClientOnlyPortal selector="#modal">
+    // <ClientOnlyPortal selector="#modal">
       <div className="popup">
         <div className="popup__body">
           <button 
@@ -87,7 +86,7 @@ const PopupRequest: React.FC = () => {
           />
         </div>
       </div>
-    </ClientOnlyPortal>
+    // </ClientOnlyPortal>
   ) : null
 };
 

@@ -1,8 +1,7 @@
 
 import React from 'react';
 import Slider from 'react-slick';
-import { SliderPrevArrow, SliderNextArrow } from "../..";
-
+import { SliderPrevArrow, SliderNextArrow } from "../../common/SliderArrows";
 
 interface IFootage {
   title: string,
@@ -43,35 +42,35 @@ const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
       <div className="container">
         <h1 className="object-top__title">{title}</h1>
         <p className="object-top__text">{text}</p>
-          <Slider 
-            {...fullSliderSettings} 
-            className="object-top__slider"
-            asNavFor={thumbsNav} 
-            ref={(slider: Slider) => setFullSliderNav(slider)}
-            >
-            {images?.map((imgSrc) => (
-              <div className="object-top__slider-item" key={imgSrc}>
-                <div className="object-top__images">
-                  <img src={imgSrc} alt="Фото со стройки" />
-                </div>
+        <Slider 
+          className="object-top__slider"
+          asNavFor={thumbsNav} 
+          ref={(slider: Slider) => setFullSliderNav(slider)}
+          {...fullSliderSettings} 
+          >
+          {images?.map((imgSrc) =>
+            <div className="object-top__slider-item" key={imgSrc}>
+              <div className="object-top__images">
+                <img src={imgSrc} alt="Фото со стройки" />
               </div>
-            ))}
-          </Slider>
+            </div>
+          )}
+        </Slider>
 
-          <Slider 
-            {...thumbsSettings} 
-            className="object-top__thumbs"
-            asNavFor={fullSliderNav} 
-            ref={(slider: Slider) => setThumbsNav(slider)}
-            >
-            {images?.map(imgSrc => (
-              <div className="object-top__thumb" key={imgSrc}>
-                <div className="object-top__thumb-images">
-                  <img src={imgSrc} alt="Фото со стройки" />
-                </div>
+        <Slider 
+          className="object-top__thumbs"
+          asNavFor={fullSliderNav} 
+          ref={(slider: Slider) => setThumbsNav(slider)}
+          {...thumbsSettings} 
+        >
+          {images?.map(imgSrc => (
+            <div className="object-top__thumb" key={imgSrc}>
+              <div className="object-top__thumb-images">
+                <img src={imgSrc} alt="Фото со стройки" />
               </div>
-            ))}
-          </Slider>
+            </div>
+          ))}
+        </Slider>
       </div>
   </section>
   )
