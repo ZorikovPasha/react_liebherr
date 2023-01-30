@@ -49,20 +49,20 @@ const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
                 <img src={preview} alt="Фото объекта стройки" />
               </div>
               <h6 className="item-object__title">
-                <Link href={ROUTES.OBJECT + id}>
-                <a className="item-object__link">
+                <Link className="item-object__link" href={ROUTES.OBJECT + id}>
+                {/* <a className="item-object__link"> */}
                   {title}
-                </a>
+                {/* </a> */}
                 </Link>
               </h6>
             </div>
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">
-          <Link href={ROUTES.OBJECTS}>
-            <a className="another-ones__btn">
+          <Link className="another-ones__btn" href={ROUTES.OBJECTS}>
+            {/* <a className="another-ones__btn"> */}
               Смотреть все
-            </a>
+            {/* </a> */}
           </Link>
         </div>
       </div>

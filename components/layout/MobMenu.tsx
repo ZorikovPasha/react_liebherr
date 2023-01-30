@@ -34,10 +34,10 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
               key={text}
               onClick={handleMobMennuCloseClick}
               >
-              <Link href={link}>
-                <a className="mob-menu__list-link" data-item={text}>
+              <Link className="mob-menu__list-link" href={link}>
+                {/* <a className="mob-menu__list-link" data-item={text}> */}
                 {text}
-                </a>
+                {/* </a> */}
               </Link>
             </li>
           ))}

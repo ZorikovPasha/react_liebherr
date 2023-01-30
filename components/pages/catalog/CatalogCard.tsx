@@ -18,8 +18,10 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
           <img className="product-item__img" src={imgSrc} alt="product" />
         </div>
         <div className="product-item__title-box">
-          <Link href={ROUTES.PRODUCT+id}>
-            <a className="product-item__title product-item__title--big">{name}</a>
+          <Link className="product-item__title product-item__title--big" href={ROUTES.PRODUCT+id}>
+            {/* <a className="product-item__title product-item__title--big"> */}
+              {name}
+            {/* </a> */}
           </Link>
         </div>
         <div className="product-item__info">
@@ -29,15 +31,18 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
             <div className="product-item__text">Длина стрелы:</div>
             <div className="product-item__text">{arrowLength}</div>
           </div>
-          <Link href={ROUTES.PRODUCT+id}>
-            <a className="product-item__link">Все характеристики</a>
+          <Link className="product-item__link" href={ROUTES.PRODUCT+id}>
+            {/* <a className="product-item__link"> */}
+              Все характеристики
+            {/* </a> */}
           </Link>
           <Link 
             href={ROUTES.CONTACTS}
-            >
-            <a 
-              className="product-item__link"
-              >Арендовать</a>
+            className="product-item__link"
+          >
+            {/* <a className="product-item__link"> */}
+              Арендовать
+            {/* </a> */}
           </Link>
         </div>
       </div>

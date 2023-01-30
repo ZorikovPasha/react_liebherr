@@ -60,8 +60,10 @@ const RentSlider: React.FC = () => {
                   <div className="slider-item__info">
                     <h3 className="slider-item__title">{title}</h3>
                     <p className="slider-item__text">{text}</p>
-                    <Link href={ROUTES.CATALOG}>
-                      <a className="slider-item__link btn">Выбрать спецтехнику</a>
+                    <Link className="slider-item__link btn" href={ROUTES.CATALOG}>
+                      {/* <a className="slider-item__link btn"> */}
+                        Выбрать спецтехнику
+                      {/* </a> */}
                     </Link>
                   </div>
                 </div>

@@ -13,10 +13,10 @@ const ObjectCard: React.FC<ICardProps> = ({ id, preview, title }) => {
         <img src={preview} alt="Фото объекта строительства" />
       </div>
       <h6 className="item-object__title">
-        <Link href={`${ROUTES.OBJECT}/${id}`}>
-          <a className="item-object__link">
+        <Link className="item-object__link" href={`${ROUTES.OBJECT}/${id}`}>
+          {/* <a className="item-object__link"> */}
             {title}
-          </a>
+          {/* </a> */}
         </Link>
       </h6>
     </div>

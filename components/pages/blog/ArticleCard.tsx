@@ -20,8 +20,10 @@ const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => 
           <p className="item-blog__text" data-crop="200">
             {subtitle}
           </p>
-          <Link href={ROUTES.ARTICLE + id}>
-            <a className="item-blog__btn btn">Подробнее</a>
+          <Link className="item-blog__btn btn" href={ROUTES.ARTICLE + id}>
+            {/* <a className="item-blog__btn btn"> */}
+              Подробнее
+            {/* </a> */}
           </Link>
         </div>
       </div>

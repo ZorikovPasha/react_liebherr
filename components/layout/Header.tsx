@@ -30,14 +30,14 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
         <div className="container">
           <div className="header__top-inner">
             <div className="header__about">
-              <Link href={ROUTES.HOME}>
-                <a className="header__logo">
+              <Link href={ROUTES.HOME} className="header__logo">
+                {/* <a className="header__logo"> */}
                   <img 
                     className="header__logo-img" 
                     src="/static/images/logo.svg" 
                     alt="Логотип компани" 
                     />
-                </a>
+                {/* </a> */}
               </Link>
               <p className="header__about-text">Аренда спецтехники LIEBHERR c 2000 года</p>
             </div>
@@ -73,8 +73,10 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
               <ul className="header__nav-list">
                 {links.map(({ link, text }) => (
                   <li className="header__nav-item" key={text + link}>
-                    <Link href={link}>
-                      <a className="header__nav-link">{text}</a>
+                    <Link className="header__nav-link" href={link}>
+                      {/* <a className="header__nav-link"> */}
+                        {text}
+                      {/* </a> */}
                     </Link>
                 </li>
                 ))}

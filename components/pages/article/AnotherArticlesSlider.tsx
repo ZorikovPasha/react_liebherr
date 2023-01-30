@@ -62,10 +62,10 @@ const AnotherArticlesSlider: React.FC<IProps> = ({ currentArticle }) => {
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">
-          <Link href={ROUTES.BLOG}>
-            <a className="another-ones__btn">
+          <Link className="another-ones__btn" href={ROUTES.BLOG}>
+            {/* <a className="another-ones__btn"> */}
               Все статьи
-            </a>
+            {/* </a> */}
           </Link>
         </div>
       </div>

@@ -107,10 +107,10 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
                       <p className="projects-slider__item-title">{title}</p>
                       <p className="projects-slider__item-location">{location}</p>
                       <p className="projects-slider__item-text">{text}</p>
-                      <Link href={ROUTES.OBJECT+id}>
-                        <a className="projects-slider__item-link">
+                      <Link className="projects-slider__item-link" href={ROUTES.OBJECT+id}>
+                        {/* <a className="projects-slider__item-link"> */}
                           Подробнее
-                        </a>
+                        {/* </a> */}
                       </Link>
                     </div>
                   </div>

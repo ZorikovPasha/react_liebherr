@@ -14,10 +14,10 @@ const BreadCrumbs: React.FC<IBreadCrumbsProps> = ({ items }) => {
           {items && items.map(({ link, text , id}, idx) => (
             <li className="breadcrumbs__item" key={id}>
               { idx !== items.length - 1
-                ? <Link href={link}>
-                    <a className="breadcrumbs__link">
+                ? <Link href={link} className="breadcrumbs__link">
+                    {/* <a > */}
                       {text}
-                    </a>
+                    {/* </a> */}
                   </Link>
                 : <span className="breadcrumbs__link">{text}</span>}
             </li>

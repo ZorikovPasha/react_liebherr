@@ -21,10 +21,10 @@ const ServicesPreviews: React.FC = () => {
                 <div className="services__item-images">
                   <img className="services__item-img" src={imgSrc} alt="Превью услуги" />
                 </div>
-                <Link href={ROUTES.CATALOG}>
-                  <a className="services__item-link">
+                <Link className="services__item-link" href={ROUTES.CATALOG}>
+                  {/* <a className="services__item-link"> */}
                     {text}
-                  </a>
+                  {/* </a> */}
                 </Link>
               </div>
             ))}

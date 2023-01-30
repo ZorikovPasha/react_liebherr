@@ -44,8 +44,10 @@ const Footer: React.FC = () => {
                 <ul className="footer__column-list column-list">
                   {arr.map(({ text }) => (
                     <li className="column-list__item" key={text}>
-                      <Link href={ROUTES.CATALOG}>
-                        <a className="column-list__link">{text}</a>
+                      <Link href={ROUTES.CATALOG} className="column-list__link">
+                        {/* <a > */}
+                          {text}
+                        {/* </a> */}
                       </Link>
                     </li>
                   ))}
