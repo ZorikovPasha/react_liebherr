@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "../../../utils/const";
 
@@ -13,7 +14,13 @@ const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => 
     <div className="blog__item item-blog">
       <div className="blog__item-inner">
         <div className="item-blog__images">
-          <img src={preview} alt="Статья о строительной технике" />
+          <Image 
+            src={preview} 
+            width='100%'
+            height='100%'
+            alt="Статья о строительной технике"
+            layout="responsive"
+          />
         </div>
         <div className="item-blog__box">
           <h6 className="item-blog__title">{title}</h6>

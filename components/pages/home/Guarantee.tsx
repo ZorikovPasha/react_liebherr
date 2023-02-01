@@ -1,3 +1,4 @@
+import Image from "next/image"
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../../redux/slices/modalsSlice";
@@ -29,19 +30,55 @@ const Guarantee: React.FC = () => {
             </div>
             <div className="guarantee__items">
               <div className="guarantee__item">
-                <img className="guarantee__item-img" src="static/images/guarantee-1.svg" alt="guarantee" />
+                <div className="guarantee__item-img">
+                  <Image 
+                    className="guarantee__item-img" 
+                    src="/static/images/guarantee-1.svg" 
+                    alt="guarantee" 
+                    width='100%'
+                    height='100%'
+                    objectFit='contain'
+                  />
+                </div>
                 <p className="guarantee__item-title">Поставка техники точно в срок</p>
               </div>
               <div className="guarantee__item">
-                <img className="guarantee__item-img" src="static/images/guarantee-2.svg" alt="guarantee" />
+                <div className="guarantee__item-img">
+                  <Image 
+                    className="guarantee__item-img" 
+                    src="/static/images/guarantee-2.svg" 
+                    alt="guarantee" 
+                    width='100%'
+                    height='100%'
+                    objectFit='contain'
+                  />
+                </div>
                 <p className="guarantee__item-title">Сопровождение спецтехники</p>
               </div>
               <div className="guarantee__item">
-                <img className="guarantee__item-img" src="static/images/guarantee-3.svg" alt="guarantee" />
+                <div className="guarantee__item-img">
+                  <Image 
+                    className="guarantee__item-img" 
+                    src="/static/images/guarantee-3.svg" 
+                    alt="guarantee" 
+                    width='100%'
+                    height='100%'
+                    objectFit='contain'
+                  />
+                </div>
                 <p className="guarantee__item-title">Квалифицированнные специалисты</p>
               </div>
               <div className="guarantee__item">
-                <img className="guarantee__item-img" src="static/images/guarantee-4.svg" alt="guarantee" />
+                <div className="guarantee__item-img">
+                  <Image 
+                    className="guarantee__item-img" 
+                    src="/static/images/guarantee-4.svg" 
+                    alt="guarantee" 
+                    width='100%'
+                    height='100%'
+                    objectFit='contain'
+                  />
+                </div>
                 <p className="guarantee__item-title">Автопарк от ведущих мировых производителей</p>
               </div>
             </div>

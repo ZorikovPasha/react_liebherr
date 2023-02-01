@@ -9,11 +9,7 @@ import { publicApi } from '../../../api';
 import { ArticleType } from '../../../types/dataTypes';
 import { ROUTES } from '../../../utils/const';
 
-interface IProps {
-  currentArticle: number
-}
-
-const AnotherArticlesSlider: React.FC<IProps> = ({ currentArticle }) => {
+const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentArticle }) => {
   const [articles, setArticles] = React.useState<ArticleType[]>([])
   const [slider, setSlider] = React.useState<Slider>();
   const [activeSlide, setActiveSlide] = React.useState(0);
@@ -26,7 +22,6 @@ const AnotherArticlesSlider: React.FC<IProps> = ({ currentArticle }) => {
 
       setArticles(data.items.filter(article => article.id !== currentArticle))
     })
-
   }, [currentArticle])
 
   const settings = {
@@ -54,12 +49,18 @@ const AnotherArticlesSlider: React.FC<IProps> = ({ currentArticle }) => {
       <div className="container">
         <h2 className="another-ones__title">Другие статьи</h2>
         <Slider 
-          {...settings} 
           className="another-ones__slider"
+          {...settings} 
           ref={(slider: Slider) => setSlider(slider)}
           >
           {articles?.map(({ id, title, subtitle, preview }) => (
-            <ArticleCard preview={preview} title={title} subtitle={subtitle} id={id} key={id} />
+            <ArticleCard 
+              preview={preview} 
+              title={title} 
+              subtitle={subtitle} 
+              id={id} 
+              key={id} 
+            />
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">

@@ -61,13 +61,6 @@
     margin-bottom: 30px;
     padding: 0 10px;
   }
-
-
-
-  .main-form__container::after {
-    right: auto;
-    left: 432px;
-  }
 }
 
 @media (max-width:1010px) {
@@ -382,21 +375,8 @@
   .catalog__title {
     margin-right: -12px;
   }
-
-
-
   .cost__item {
     max-width: 290px;
-  }
-
-
-
-  .main-form__container {
-
-    &:after {
-      position: static;
-      display: none;
-    }
   }
 }
 

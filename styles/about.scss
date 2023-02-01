@@ -1,5 +1,4 @@
 .about {
-
   padding-bottom: 150px;
 
   // .about__container
@@ -44,11 +43,15 @@
 
     @extend %imgbox;
     height: 100%;
+  }
 
-    background-image: url('../images/about-big.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  &__images {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
   }
 
   &__video-box {
@@ -62,12 +65,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-
     transform: translate(-50%, -50%);
-
-    &:hover {
-
-    }
   }
 }
 
@@ -97,7 +95,6 @@
 }
 
 .reviews {
-
   padding: 166px 0 154px;
 
   // .reviews__title
@@ -131,16 +128,11 @@
     }
   }
 
-  // .reviews__item-images
-
   &__item-images {
-    @extend %imgbox;
+    position: relative;
+    min-height: 500px;
     margin: 0 16px;
-    padding-bottom: 124%;
-
-    img {
-      @extend %img;
-    }
+    max-width: 100%;
   }
 }
 

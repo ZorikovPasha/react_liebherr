@@ -7,8 +7,6 @@ import { publicApi } from "../api";
 import BreadCrumbs from "../components/common/BreadCrumbs";
 import ArticleCard from "../components/pages/blog/ArticleCard";
 import { Error } from "../components/common/Error";
-
-
 import { ArticleType } from "../types/dataTypes";
 import { toggleLoader } from "../redux/slices/loaderSilce";
 import { ROUTES } from "../utils/const";
@@ -54,19 +52,18 @@ const Blog: NextPage<IBlogProps> = ({ items, hasMore }) => {
           <h1 className="blog__title">СТАТЬИ О СПЕЦТЕХНИКЕ</h1>
           {isError
             ? <Error />
-            : (
+            : 
               <div className="blog__items">
-              {_?.map(({ id, title, subtitle, preview }) => (
-                <ArticleCard 
-                  key={id}
-                  id={id}
-                  title={title}
-                  subtitle={subtitle}
-                  preview={preview}
+                {_?.map(({ id, title, subtitle, preview }) => (
+                  <ArticleCard 
+                    key={id}
+                    id={id}
+                    title={title}
+                    subtitle={subtitle}
+                    preview={preview}
                   />
-              ))}
-            </div>
-          )}
+                ))}
+            </div>}
           {showMoreRef.current && <div className="blog__btn-wrapper">
             <button className="blog__btn" onClick={onLoadMore}>Загрузить ещё</button>
           </div>}

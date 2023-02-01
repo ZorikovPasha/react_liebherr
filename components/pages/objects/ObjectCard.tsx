@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "../../../utils/const";
 
@@ -9,8 +10,14 @@ interface ICardProps {
 const ObjectCard: React.FC<ICardProps> = ({ id, preview, title }) => {
   return (
     <div className="objects__item item-object">
-      <div className="item-object__images">
-        <img src={preview} alt="Фото объекта строительства" />
+      <div>
+        <Image 
+          src={preview} 
+          width='100%'
+          height='100%'
+          alt="Фото объекта строительства"
+          layout="responsive"
+        />
       </div>
       <h6 className="item-object__title">
         <Link href={`${ROUTES.OBJECT}/${id}`}>

@@ -1,6 +1,4 @@
 .catalog-tabs {
-  // .catalog-tabs__title
-
   &__title {
     @extend %h1;
     margin-bottom: 14px;
@@ -78,7 +76,6 @@
       width: 1118px;
       height: 318px;
     } 
-
   }
 
   // .catalog-content__body
@@ -210,10 +207,9 @@
     color: #FFFFFF;
   }
 }
+
 .aside-filter {
   margin-bottom: 30px;
-
-  // .aside-filter__title
 
   &__title {
     font-weight: 500;
@@ -253,9 +249,7 @@
     cursor: pointer;
     border: 1px solid #535554;
     background-color: transparent;
-
     cursor: pointer;
-
   }
 
   &__check-real:checked + .aside-filter__check-fake::after {
@@ -276,7 +270,6 @@
     font-size: 14px;
     line-height: 142.19%;
     padding-left: 10px;
-
     cursor: pointer;
   }
 
@@ -319,18 +312,13 @@
 }
 
 .aside-dropdown {
-
-  // .aside-dropdown__title
-
   &__title {
     position: relative;
-
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 15px;
     line-height: 142.19%;
     color: $black;
-
     padding-right: 39px;
     margin-bottom: 15px;
 
@@ -374,12 +362,9 @@
 .catalog-controls {
   position: relative;
   z-index: 4;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  // .catalog-controls__sort
 
   &__sort {
     display: flex;
@@ -590,9 +575,6 @@
 }
 
 .form-label {
-
-  // .form-label__checkbox-real
-
   &__checkbox-real {
     width: 1px;
     height: 1px;
@@ -632,8 +614,6 @@
     left: 1px;
     background-image: url('../images/checkmark.svg');
   }
-
-  // .form-label__text
 
   &__text {
     width: 100%;
@@ -845,9 +825,6 @@
   .pagination__item:nth-last-child(2) {
     display: none;
   }
-
-
-
 
   .help__title {
     padding-left: 0px;
