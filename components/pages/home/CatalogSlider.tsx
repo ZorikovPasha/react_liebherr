@@ -5,7 +5,6 @@ import Slider, { Settings }  from 'react-slick';
 
 import CatalogCard from "../catalog/CatalogCard";
 import { SliderNextArrow, SliderPrevArrow } from "../../common/SliderArrows"
-
 import { selectProducts } from "../../../redux/selectors";
 import { ROUTES } from "../../../utils/const";
 

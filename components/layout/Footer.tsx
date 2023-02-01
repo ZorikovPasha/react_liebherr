@@ -1,9 +1,9 @@
 import React from 'react';
+import Image from "next/image"
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { toggleModal } from '../../redux/slices/modalsSlice';
 import { ROUTES } from '../../utils/const';
-
 
 const Footer: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,16 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="footer__inner">
           <div className="footer__column">
-            <img className="footer__logo" src="/static/images/footer-logo.svg" alt="logo" />
+            <div className="footer__logo">
+              <Image 
+                src="/static/images/footer-logo.svg"
+                // layout="fill"
+                alt="logo"
+                width='100%'
+                height='100%'
+              />
+            </div>
+            {/* <img className="footer__logo" src="/static/images/footer-logo.svg" alt="logo" /> */}
             <p className="footer__about">Аренда мобильных и гусеничных кранов LIEBHERR</p>
             <p className="footer__rights">© 2000-2021 Все права защищены</p>
           </div>

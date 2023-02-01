@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react"
 import PopupVideo from "../../common/PopupVideo";
 
@@ -36,7 +37,12 @@ const AboutPreview: React.FC = () => {
                 <path d="M45.798 75.49V36.512L79.398 56l-33.6 19.488zm4.48-31.36v23.52l20.16-11.873-20.16-11.648z" />
               </svg>
             </button>
-
+            <div className="main-about__images">
+              <Image 
+                src="/static/images/about-img.jpg"
+                layout="fill"
+              />
+            </div>
             {isPlaying && <PopupVideo videoId="pNY9aw9iW3s" onClose={onClose} />}
           </div>
         </div>

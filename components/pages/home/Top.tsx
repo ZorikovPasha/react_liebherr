@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -13,9 +14,9 @@ interface IArrowProps {
 const SliderPrevArrow: React.FC<IArrowProps> = ({ onClick, isDisabled }) => {
   return (
     <button
-      onClick={onClick}  
-      type="button" 
-      className={`slick-btn slick-prev ${ isDisabled ? 'slick-disabled': ''}`}
+        type="button" 
+        className={`slick-btn slick-prev ${ isDisabled ? 'slick-disabled': ''}`}
+        onClick={onClick}  
       >
       <img src="static/images/slider-arr-left.svg" alt="" />
     </button>
@@ -42,10 +43,10 @@ const Top: React.FC = () => {
   const dispatch = useDispatch();
 
   const slides = [
-    { num: "01", total: "04", src: "static/images/top-bg.jpg" },
-    { num: "02", total: "04", src: "static/images/top-bg.jpg" },
-    { num: "03", total: "04", src: "static/images/top-bg.jpg" },
-    { num: "04", total: "04", src: "static/images/top-bg.jpg" },
+    { num: "01", total: "04", src: "/static/images/top-bg.webp" },
+    { num: "02", total: "04", src: "/static/images/top-bg.webp" },
+    { num: "03", total: "04", src: "/static/images/top-bg.webp" },
+    { num: "04", total: "04", src: "/static/images/top-bg.webp" },
   ];
 
   const settings: Settings = {
@@ -71,7 +72,6 @@ const Top: React.FC = () => {
     document.documentElement.classList.add('lock');
   };
 
-
   return (
     <section className="top">
       <div className="container-fluid">
@@ -80,7 +80,7 @@ const Top: React.FC = () => {
             className={`top__slider`} 
             {...settings}
             ref={(slider: Slider) => setSlider(slider)}
-            >
+          >
               {slides.map(({ num, total, src }) => (
                 <div className="top__slider-item" key={num + src}>
                   <div className="top__slider-numbers">
@@ -88,7 +88,12 @@ const Top: React.FC = () => {
                     <span className="top__slider-total">{total}</span>
                   </div>
                   <div className="top__slider-images">
-                    <img className="top__slider-img" src={src} alt="background image" />
+                    <div className="top__slider-img">
+                      <Image 
+                        src={src} 
+                        layout="fill"
+                      />
+                    </div>
                   </div>
                 </div>
               ))}

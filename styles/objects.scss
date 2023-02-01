@@ -1,14 +1,9 @@
 
 .objects {
-
-  // .objects__title
-
   &__title {
     @extend %h1;
     margin-bottom: 80px;
   }
-
-  // .objects__items
 
   &__items {
     display: grid;
@@ -17,24 +12,16 @@
     grid-row-gap: 30px;
   }
 
-  // .objects__item
-
-  &__item {
-  }
-
-  // .objects__btn-wrapper
-
   &__btn-wrapper {
     @extend %btn-wrapper;
   }
-
-  // .objects__btn
 
   &__btn {
     @extend %link-btn;
     padding: 12px 52px;
   }
 }
+
 .item-object {
   min-height: 100%;
   background-color: #fff;
@@ -43,26 +30,11 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 
-  // .item-object__images
-
-  &__images {
-    @extend %imgbox;
-    padding-bottom: 87%;
-
-    img {
-      @extend %img;
-    }
-  }
-
-  // .item-object__title
-
   &__title {
     font-weight: bold;
     font-size: 18px;
     padding: 15px 32px 25px 22px;
   }
-
-  // .item-object__link
 
   &__link {
     display: inline-block;

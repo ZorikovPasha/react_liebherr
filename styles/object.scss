@@ -1,7 +1,4 @@
 .object-top {
-
-  // .object-top__title
-
   &__title {
     @extend %h1;
     margin-bottom: 48px;
@@ -27,13 +24,6 @@
 
   }
 
-  // .object-top__slider-item
-
-  &__slider-item {
-  }
-
-  // .object-top__images
-
   &__images {
     @extend %imgbox;
     padding-bottom: 61%;
@@ -50,13 +40,6 @@
       margin-left: 30px;
     }
   }
-
-  // .object-top__thumb
-
-  &__thumb {
-  }
-
-  // .object-top__thumb-images
 
   &__thumb-images {
     max-width: 170px;

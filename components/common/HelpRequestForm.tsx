@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 import * as yup from "yup";
 import { REGEX } from '../../utils/const';
@@ -52,6 +53,12 @@ const HelpRequestForm: React.FC = () => {
             buttonClass="help__form-btn btn" 
             buttonText="Получить консультацию"
             agreeLabelClass="help__form-label help__form-label--margin-top"
+          />
+        </div>
+        <div className="help__images">
+          <Image 
+            src="/static/images/form-bg.png"
+            layout="fill"
           />
         </div>
       </div>

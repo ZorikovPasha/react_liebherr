@@ -360,8 +360,8 @@ button:active {
 
 .help {
   padding: 47px 0;
-
   position: relative;
+
   &::after,
   &::before {
     content: "";
@@ -386,23 +386,18 @@ button:active {
 
   &__container {
     position: relative;
-
-    margin: 0 auto;
     max-width: 1605px;
+    margin: 0 auto;
     padding: 76px 0 138px;
+  }
 
-    &::after{
-      content: "";
-      position: absolute;
-      z-index: -1;
-      right: -38px;
-      bottom: 0;
-      width: 964px;
-      height: 264px;
-      background-image: url('../images/form-bg.png');
-      background-repeat: no-repeat;
-    }
-
+  &__images {
+    position: absolute;
+    z-index: -1;
+    right: -38px;
+    bottom: 0;
+    width: 964px;
+    height: 264px;
   }
 
   // .help__title

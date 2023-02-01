@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link";
 import Slider from "react-slick";
 import React from 'react';
@@ -12,15 +13,13 @@ const RentSlider: React.FC = () => {
   const text = "Аренда гусеничного крана – актуальная услуга для многих строительных площадок. Использование спецтехники существенно упрощает погрузку - выгрузку материалов, оптимизирует рабочий процесс."
 
   const slides = [
-    { title: "Гусеничные краны", text, img: "static/images/items-rent/pic-1.png" },
-    { title: "Экскаваторы", text,  img: "static/images/items-rent/pic-2.webp" },
-    { title: "Бульдозеры", text,  img: "static/images/items-rent/pic-3.webp" },
-    { title: "Краны строительные", text,  img: "static/images/items-rent/pic-4.webp" },
-    { title: "Самосвалы", text,  img: "static/images/items-rent/pic-5.webp" },
-    { title: "Гидромолот", text,  img: "static/images/items-rent/pic-6.webp" },
+    { title: "Гусеничные краны", text, img: "/static/images/items-rent/pic-1.png" },
+    { title: "Экскаваторы", text,  img: "/static/images/items-rent/pic-2.webp" },
+    { title: "Бульдозеры", text,  img: "/static/images/items-rent/pic-3.webp" },
+    { title: "Краны строительные", text,  img: "/static/images/items-rent/pic-4.webp" },
+    { title: "Самосвалы", text,  img: "/static/images/items-rent/pic-5.webp" },
+    { title: "Гидромолот", text,  img: "/static/images/items-rent/pic-6.webp" },
   ];
-
-
 
   const settings = {
     dots: true,
@@ -55,7 +54,11 @@ const RentSlider: React.FC = () => {
               <div className="rent__slider-item slider-item" key={idx}>
                 <div className="slider-item__body">
                   <div className="slider-item__images wow animate__animated animate__fadeInLeft">
-                    <img src={img} alt="строительная техника" />
+                    <Image
+                      src={img}
+                      layout="fill"
+                      alt="строительная техника"
+                    />
                   </div>
                   <div className="slider-item__info">
                     <h3 className="slider-item__title">{title}</h3>

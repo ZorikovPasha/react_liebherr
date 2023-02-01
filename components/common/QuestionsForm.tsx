@@ -1,6 +1,6 @@
 import { Formik } from "formik";
+import Image from "next/image"
 import * as yup from "yup";
-
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
 import { handleSubmitType } from "./AppForm";
@@ -46,7 +46,7 @@ const QuestionsForm: React.FC = () => {
   return (
     <section className="questions">
       <div className="questions__container">
-        <div className=" container">
+        <div className="container">
           <div className="questions__inner">
             <h2 className="questions__title">Остались вопросы?</h2>
             <p className="questions__text">Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое ближайшее время</p>
@@ -157,6 +157,13 @@ const QuestionsForm: React.FC = () => {
             )}
           </Formik>
           </div>
+        </div>
+        <div className="questions__images">
+          <Image 
+            src="/static/images/questions-aside.png"
+            alt="product"
+            layout="fill"
+          />
         </div>
       </div>
     </section>

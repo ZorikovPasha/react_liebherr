@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { publicApi } from "../../api";
@@ -26,20 +27,30 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
         <div className="container">
           <h1 className="article-top__heading">{title}</h1>
           <div className="article-top__images">
-            {images?.map(src => (
+            {images?.map(src => 
               <div className="article-top__img" key={src}>
-                <img src={src} alt="Строительный кран" />
+                <Image 
+                  src={src} 
+                  layout="fill" 
+                  objectFit="cover"
+                  alt="Строительный кран"
+                />
               </div>
-            ))}
+            )}
           </div>
           {sections?.map((section, index) => (
             <div key={index}>
-              <h2 className="article-top__title" key={index}>{subtitles[index]}</h2>
-              {section.map(({ text, isListItem }, idx) => (
+              <h2 
+                className="article-top__title" 
+                key={index}
+              >
+                {subtitles[index]}
+              </h2>
+              {section.map(({ text, isListItem }, idx) => 
                 isListItem 
                   ? <li className="article-top__list-item" key={idx}>{text}</li>
                   : <p className="article-top__text" key={idx}>{text}</p>
-              ))}
+              )}
             </div>
           ))}
         </div>

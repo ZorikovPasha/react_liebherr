@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "../../../utils/const";
 
@@ -15,7 +16,14 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
     <div className={`product-item ${rootElClass}`} key={id}>
       <div className="product-item__body">
         <div className="product-item__images">
-          <img className="product-item__img" src={imgSrc} alt="product" />
+          <Image 
+            src={imgSrc} 
+            width='100%'
+            className="product-item__img"
+            height='100%'
+            alt="product"
+            layout="responsive"
+          />
         </div>
         <div className="product-item__title-box">
           <Link href={ROUTES.PRODUCT+id}>

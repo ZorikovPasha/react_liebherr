@@ -1,13 +1,24 @@
 import Slider from "react-slick";
 import React from 'react';
-
 import { SliderNextArrow, SliderPrevArrow } from '../../../components/common/SliderArrows';
+import Image from "next/image";
 
 const ReviewsCards: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>();
   const [activeSlide, setActiveSlide] = React.useState(0);
 
-  const reviews = [{ imgSrc: "static/images/reviews/1.jpg" }, { imgSrc: "static/images/reviews/2.jpg" }, { imgSrc: "static/images/reviews/3.jpg" }, { imgSrc: "static/images/reviews/1.jpg" }, { imgSrc: "static/images/reviews/2.jpg" }, { imgSrc: "static/images/reviews/3.jpg" }, { imgSrc: "static/images/reviews/1.jpg" }, { imgSrc: "static/images/reviews/2.jpg" }, { imgSrc: "static/images/reviews/3.jpg" }, { imgSrc: "static/images/reviews/1.jpg" }];
+  const reviews = [
+    { imgSrc: "/static/images/reviews/1.jpg" }, 
+    { imgSrc: "/static/images/reviews/2.jpg" }, 
+    { imgSrc: "/static/images/reviews/3.jpg" }, 
+    { imgSrc: "/static/images/reviews/1.jpg" }, 
+    { imgSrc: "/static/images/reviews/2.jpg" }, 
+    { imgSrc: "/static/images/reviews/3.jpg" }, 
+    { imgSrc: "/static/images/reviews/1.jpg" }, 
+    { imgSrc: "/static/images/reviews/2.jpg" }, 
+    { imgSrc: "/static/images/reviews/3.jpg" }, 
+    { imgSrc: "/static/images/reviews/1.jpg" }
+  ];
   
   const settings = {
     slidesToShow: 3,
@@ -49,7 +60,12 @@ const ReviewsCards: React.FC = () => {
           {reviews.map(({ imgSrc }, idx) => (
             <div className="reviews__item" key={idx}>
               <div className="reviews__item-images">
-                <img src={imgSrc} alt="Карточка отзыва клиента" />
+                <Image 
+                  src={imgSrc} 
+                  alt="Карточка отзыва клиента"
+                  layout="fill" 
+                  objectFit="cover"
+                />
               </div>
             </div>
           ))}

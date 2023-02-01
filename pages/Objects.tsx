@@ -1,5 +1,4 @@
 import { GetStaticProps, NextPage } from "next";
-
 import { publicApi } from "../api";
 import BreadCrumbs from "../components/common/BreadCrumbs";
 import ObjectCard from "../components/pages/objects/ObjectCard";
