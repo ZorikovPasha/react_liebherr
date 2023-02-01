@@ -17,7 +17,7 @@ const Contacts: NextPage = () => {
       <section className="contacts">
         <div className="container">
           <h2 className="contacts__title">Контакты</h2>
-          <div className="contacts__inner">
+          <div className="contacts__inner flex jcsb">
             <ContactsBlock />
 
             <ContactsForm />

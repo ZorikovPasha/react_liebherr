@@ -1,12 +1,9 @@
 .about {
   padding-bottom: 150px;
 
-  // .about__container
-
   &__container {
     max-width: 1600px;
     margin: 0 auto;
-    position: relative;
   }
 
   // .about__title
@@ -14,12 +11,6 @@
   &__title {
     @extend %h1;
     margin-bottom: 50px;
-  }
-
-  // .about__inner
-
-  &__inner {
-    display: flex;
   }
 
   // .about__text
@@ -55,7 +46,6 @@
   }
 
   &__video-box {
-    position: relative;
     height: 100%;
   }
 
@@ -129,7 +119,6 @@
   }
 
   &__item-images {
-    position: relative;
     min-height: 500px;
     margin: 0 16px;
     max-width: 100%;

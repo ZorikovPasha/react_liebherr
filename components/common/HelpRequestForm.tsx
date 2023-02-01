@@ -23,7 +23,7 @@ const HelpRequestForm: React.FC = () => {
           inputClass: "help__form-input",
           type: "text",
           placeholder: "Имя",
-          labelClass: "help__form-label",
+          labelClass: "help__form-label flex",
           blockClass: "",
           tag: "input"
         },
@@ -31,7 +31,7 @@ const HelpRequestForm: React.FC = () => {
           inputClass: "help__form-input",
           type: "tel",
           placeholder: "Телефон",
-          labelClass: "help__form-label",
+          labelClass: "help__form-label flex",
           blockClass: "",
           tag: "input"
         },
@@ -41,7 +41,7 @@ const HelpRequestForm: React.FC = () => {
   
 
   return (
-    <div className="help">
+    <div className="help rel before after">
       <div className="help__container">
         <div className="container">
           <h2 className="help__title">Нужна помощь в подборе?</h2>
@@ -52,7 +52,7 @@ const HelpRequestForm: React.FC = () => {
             initValues={initValues}
             buttonClass="help__form-btn btn" 
             buttonText="Получить консультацию"
-            agreeLabelClass="help__form-label help__form-label--margin-top"
+            agreeLabelClass="help__form-label help__form-label--margin-top flex"
           />
         </div>
         <div className="help__images">

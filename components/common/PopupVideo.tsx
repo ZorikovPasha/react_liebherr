@@ -15,7 +15,7 @@ const PopupVideo: React.FC<IPopupMessageProps> = ({ videoId, onClose }) => {
           <button className="popup__close" onClick={onClose}>
             <img src="/static/images/close.svg" alt="close icon" />
           </button>
-          <div className="popup__video">
+          <div className="popup__video rel">
           <YouTube
             videoId={videoId}
             opts={{ autoplay: 1, width: "100%", height: "100%" }}

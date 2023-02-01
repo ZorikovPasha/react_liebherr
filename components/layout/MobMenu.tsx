@@ -27,7 +27,7 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
           <span></span>
           <span></span>
         </button>
-        <ul className="mob-menu__list">
+        <ul className="mob-menu__list flex">
           {menuItems.map(({ link, text }) => (
             <li 
               className="mob-menu__list-item" 
@@ -35,7 +35,7 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
               onClick={handleMobMennuCloseClick}
               >
               <Link href={link}>
-                <a className="mob-menu__list-link" data-item={text}>
+                <a className="mob-menu__list-link rel" data-item={text}>
                 {text}
                 </a>
               </Link>

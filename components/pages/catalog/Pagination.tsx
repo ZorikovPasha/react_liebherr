@@ -70,7 +70,7 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query 
   const onPageChange = (num: number) => dispatch(fetchProducts(handleQuery(num)));
 
   return (
-    <div className="pagination">
+    <div className="pagination flex aic">
       <button 
         className="pagination__arrow"
         disabled={currentChunk <= 1}
@@ -80,11 +80,11 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query 
           <path d="M0.646446 4.35355C0.451183 4.15829 0.451183 3.84171 0.646446 3.64644L3.82843 0.464464C4.02369 0.269202 4.34027 0.269202 4.53553 0.464464C4.7308 0.659726 4.7308 0.976308 4.53553 1.17157L1.70711 4L4.53553 6.82842C4.73079 7.02369 4.73079 7.34027 4.53553 7.53553C4.34027 7.73079 4.02369 7.73079 3.82843 7.53553L0.646446 4.35355ZM31 4.5L0.999998 4.5L0.999998 3.5L31 3.5L31 4.5Z" fill="#535554" />
         </svg>
       </button>
-      <ul className="pagination__list">
+      <ul className="pagination__list flex">
         {pages.slice(0, between.current?.left || 2).map(num => (
           <li
             key={num}
-            className={`pagination__item ${currentChunk === num ? 'pagination__item--active' : '' }`}
+            className={`pagination__item flex aic jcc ${currentChunk === num ? 'pagination__item--active' : '' }`}
             onClick={onPageChange.bind(null, num)}
           >
             <span className="pagination__link">{num}</span>
@@ -95,7 +95,7 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query 
           && between.current.left !== pages.length 
           && between.current.left !== between.current.right 
           && (
-          <li className="pagination__item pagination__item--dots">
+          <li className="pagination__item flex aic jcc pagination__item--dots flex">
             <span></span>
             <span></span>
             <span></span>
@@ -104,7 +104,7 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string>}> = ({ query 
         {pages.slice(betWeenLength?.current && between?.current && between.current.right || pages.length - 3).map(num =>  (
           <li
             key={num}
-            className={`pagination__item ${currentChunk === num ? 'pagination__item--active' : '' }`}
+            className={`pagination__item aic flex jcc ${currentChunk === num ? 'pagination__item--active' : '' }`}
             onClick={onPageChange.bind(null, num)}
           >
             <span className="pagination__link">{num}</span>

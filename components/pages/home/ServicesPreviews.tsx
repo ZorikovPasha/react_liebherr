@@ -14,11 +14,11 @@ const ServicesPreviews: React.FC = () => {
   return (
     <section className="services">
       <div className="container">
-        <div className="services__inner">
+        <div className="services__inner rel">
           <h2 className="services__title">Услуги</h2>
           <div className="services__items">
             {servicesItems.map(({ text, imgSrc }) => (
-              <div className="services__item" key={text}>
+              <div className="services__item rel flex" key={text}>
                 <Image 
                   src={imgSrc} 
                   width='100%'

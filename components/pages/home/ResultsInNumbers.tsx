@@ -1,9 +1,9 @@
 
 const ResultsInNumbers: React.FC = () => {
   return (
-    <section className="numbers">
+    <section className="numbers rel after before">
       <div className="container">
-        <div className="numbers__items wow animate__animated animate__fadeIn animate__delay-1s">
+        <div className="numbers__items flex aic jcsb wow animate__animated animate__fadeIn animate__delay-1s">
           <div className="numbers__item">
             <p className="numbers__number">
               <img src="static/images/20.png" alt="number" />

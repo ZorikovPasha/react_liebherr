@@ -70,7 +70,6 @@
   }
 
   &__list {
-    display: flex;
     flex-direction: column;
     margin-bottom: 45px;
   }
@@ -82,15 +81,12 @@
 
 
   &__list-link {
-    position: relative;
     font-size: 20px;
     line-height: 24px;
     font-weight: 700;
     letter-spacing: 2px;
-    // color: #fff;
 
     --fill-color: #FFBF1D;
-    position: relative;
     display: block;
     text-decoration: none;
     text-transform: uppercase;
@@ -103,26 +99,6 @@
     &:hover {
       background-size: 100%;
     }
-
-    // &::before {
-    //   content: attr(data-item);
-    //   transition: 0.5s;
-    //   color: #FFBF1D;
-    //   position: absolute;
-    //   top: 0;
-    //   bottom: 0;
-    //   left: 0;
-    //   right: 0;
-    //   width: 0;
-    //   overflow: hidden;
-    // }
-
-    // &:hover {
-    //   &::before {
-    //     width: 100%;
-    //     transition: all 0.3s ease-in-out;
-    //   }
-    // }
   }
 
   &__list-item + &__list-item {

@@ -53,7 +53,7 @@ const Blog: NextPage<IBlogProps> = ({ items, hasMore }) => {
           {isError
             ? <Error />
             : 
-              <div className="blog__items">
+              <div className="blog__items rel">
                 {_?.map(({ id, title, subtitle, preview }) => (
                   <ArticleCard 
                     key={id}

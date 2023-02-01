@@ -12,7 +12,7 @@ interface ICardProps {
 const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => {
   return (
     <div className="blog__item item-blog">
-      <div className="blog__item-inner">
+      <div className="blog__item-inner flex">
         <div className="item-blog__images">
           <Image 
             src={preview} 
@@ -22,7 +22,7 @@ const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => 
             layout="responsive"
           />
         </div>
-        <div className="item-blog__box">
+        <div className="item-blog__box flex">
           <h6 className="item-blog__title">{title}</h6>
           <p className="item-blog__text" data-crop="200">
             {subtitle}

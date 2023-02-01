@@ -17,7 +17,7 @@ const AboutPreview: React.FC = () => {
 
   return (
     <section className="main-about">
-      <div className="main-about__inner">
+      <div className="main-about__inner rel flex">
         <div className="container">
           <div className="main-about__box">
             <h3 className="main-about__title">О нас</h3>
@@ -29,7 +29,7 @@ const AboutPreview: React.FC = () => {
           </div>
         </div>
         <div className="main-about__video">
-          <div className="main-about__video-box">
+          <div className="main-about__video-box rel after">
             <button className="main-about__play" onClick={onPlay}>
               <svg className="anim-color" width="113" height="112" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="56.998" cy="56.001" r="38.154" fill="transparent"/>
