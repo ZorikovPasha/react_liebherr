@@ -68,7 +68,7 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
   return (
     <section className="projects">
       <div className="container-fluid">
-        <div className="projects__inner">
+        <div className="projects__inner rel">
           <div className="container">
             <h2 className="projects__title">Реализованные проекты</h2>
           </div>
@@ -106,7 +106,7 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
               >
               {items?.map(({ title, location, text, id, preview }) => 
                 <div className="projects-slider__item" key={id}>
-                  <div className="projects-slider__inner">
+                  <div className="projects-slider__inner flex">
                     <div className="projects-slider__images">
                       <div className="projects-slider__img">
                         <Image 
@@ -118,10 +118,10 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
                     </div>
                     <div className="projects-slider__info">
                       <p className="projects-slider__item-title">{title}</p>
-                      <p className="projects-slider__item-location">{location}</p>
+                      <p className="projects-slider__item-location rel after">{location}</p>
                       <p className="projects-slider__item-text">{text}</p>
                       <Link href={ROUTES.OBJECT+id}>
-                        <a className="projects-slider__item-link">
+                        <a className="projects-slider__item-link rel after">
                           Подробнее
                         </a>
                       </Link>

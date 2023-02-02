@@ -28,15 +28,11 @@
 
   &__more {
     display: none;
-    position: relative;
-
     text-align: center;
     margin: 17px auto 0 auto;
     padding: 0 20px 4px 20px;
 
     &::after{
-      content: "";
-      position: absolute;
       bottom: 0;
       left: 50%;
       transform: translate(-50%, 0);
@@ -55,9 +51,6 @@
   // .catalog-content__inner
 
   &__inner {
-    position: relative;
-    display: flex;
-
     &::after{
       @extend %banner;
 
@@ -135,7 +128,6 @@
 
 .aside-catalog {
   &__body {
-    position: relative;
     max-width: 271px;
     width: 100%;
     overflow-y: auto;
@@ -218,13 +210,6 @@
     margin-bottom: 14px;
   }
 
-  // .aside-filter__label
-
-  &__label {
-    display: flex;
-    align-items: center;
-  }
-
   &__label + &__label {
     margin-top: 15px;
   }
@@ -242,7 +227,6 @@
   // .aside-filter__check-fake
 
   &__check-fake {
-    position: relative;
     display: inline-block;
     width: 15px;
     height: 15px;
@@ -274,14 +258,10 @@
   }
 
   &__line {
-    display: flex;
-    align-items: center;
     margin-bottom: 15px;
   }
 
   &__input-box {
-    display: flex;
-    align-items: center;
     border: 1px solid #535554;
     height: 22px;
     width: 84px;
@@ -360,16 +340,7 @@
 
 
 .catalog-controls {
-  position: relative;
   z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &__sort {
-    display: flex;
-    align-items: center;
-  }
 
   &__sort-select {
     margin-left: 15px;
@@ -381,11 +352,7 @@
     margin-right: 15px;
   }
 
-  // .catalog-controls__view
-
   &__view {
-    display: flex;
-    align-items: center;
     margin-left: auto;
   }
 
@@ -419,7 +386,6 @@
   border-radius: 3px;
   cursor: pointer;
 
-  position: relative;
   &::after,
   &::before {
     content: "";
@@ -496,7 +462,6 @@
 
 
 .form-contacts {
-
   &__block+  &__block {
     margin-top: 30px;
   }
@@ -525,13 +490,6 @@
     }
   }
 
-  // .form-contacts__line
-
-  &__line {
-    display: flex;
-    justify-content: space-between;
-  }
-
   // .form-contacts__area
 
   &__area {
@@ -556,14 +514,6 @@
       color: #8C8A8A;
     }
 
-  }
-
-  // .form-contacts__label
-
-  &__label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
   }
 
   // .form-contacts__btn
@@ -592,7 +542,6 @@
     background: transparent;
     border: 1px solid #2D2D2D;
     border-radius: 2px;
-    position: relative;
     cursor: pointer;
 
     &--error {
@@ -680,9 +629,6 @@
   }
   .help__title {
     text-align: center;
-  }
-  .help__form-line {
-    flex-direction: column;
   }
   .help__images {
     left: 418px;

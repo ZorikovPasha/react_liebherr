@@ -45,9 +45,9 @@ const QuestionsForm: React.FC = () => {
 
   return (
     <section className="questions">
-      <div className="questions__container">
+      <div className="questions__container rel">
         <div className="container">
-          <div className="questions__inner">
+          <div className="questions__inner rel">
             <h2 className="questions__title">Остались вопросы?</h2>
             <p className="questions__text">Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое ближайшее время</p>
             <Formik 
@@ -60,7 +60,7 @@ const QuestionsForm: React.FC = () => {
                 <div className="questions__form-block">
                   <label 
                     htmlFor="name" 
-                    className="popup__label form-label"
+                    className="popup__label flex form-label"
                     />
                   <input 
                     id="name"
@@ -78,7 +78,7 @@ const QuestionsForm: React.FC = () => {
                 <div className="questions__form-block">
                   <label 
                     htmlFor="phone" 
-                    className="popup__label form-label"
+                    className="popup__label flex form-label"
                     />
                   <input 
                     id="phone"
@@ -95,7 +95,7 @@ const QuestionsForm: React.FC = () => {
                 <div className="questions__form-block">
                   <label 
                     htmlFor="email" 
-                    className="popup__label form-label"
+                    className="popup__label flex form-label"
                     />
                   <input 
                     id="email"
@@ -113,7 +113,7 @@ const QuestionsForm: React.FC = () => {
                 <div className="questions__form-block">
                   <label 
                     htmlFor="questions-area" 
-                    className="popup__label form-label"
+                    className="popup__label flex form-label"
                     />
                   <textarea 
                     id="questions-area"
@@ -128,7 +128,7 @@ const QuestionsForm: React.FC = () => {
                 </div>
 
                 <label 
-                  className="questions__form-label"
+                  className="questions__form-label flex"
                   htmlFor="questions-form-agree"
                   >
                   <input

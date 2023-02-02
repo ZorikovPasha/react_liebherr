@@ -35,7 +35,7 @@ const ProductView: React.FC<IView> = ({ info }) => {
     <section className="product">
       <div className="container">
         <h1 className="product__title">Гусеничный кран Liebherr LR 1750</h1>
-        <div className="product__inner">
+        <div className="product__inner rel flex">
           <div className="product__images">
             <Slider 
               {...slidesSettings}
@@ -45,7 +45,7 @@ const ProductView: React.FC<IView> = ({ info }) => {
               >
               {info?.thumbs?.map((imgSrc, idx) => (
                 <div className="product__slider-item" key={idx}>
-                  <div className="product__slider-images">
+                  <div className="product__slider-images rel">
                     <img src={imgSrc} alt="Строительная техника" />
                   </div>
                 </div>
@@ -69,7 +69,7 @@ const ProductView: React.FC<IView> = ({ info }) => {
           <div className="product__info">
             <ul className="product__info-list product-list">
               {info?.features && Object.entries(info.features)?.map(arr => (
-                <li className="product-list__item" key={arr[1].value}>
+                <li className="product-list__item flex  aic" key={arr[1].value}>
                   <p className="product-list__text">{arr[1].text}:</p>
                   <p className="product-list__text">{arr[1].value }</p>
                 </li>

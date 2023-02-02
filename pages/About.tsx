@@ -25,9 +25,9 @@ const About: NextPage = () => {
           <h1 className="about__title">О Компании Еврокран</h1>
         </div>
 
-        <div className="about__container">
+        <div className="about__container rel">
           <div className="container">
-            <div className="about__inner">
+            <div className="flex">
               <div className="about__text">
                 <p>Компания ЕвроКран – это команда специалистов, обеспечивающих эффективное использование высокопроизводительных немецких автокранов марки LIEBHERR. Мы работаем с 2000 года и за это время не раз доказали свой профессионализм и компетентность: сегодня нам доверяют крупнейшие предприятия России.</p>
                 <p>Наши операторы автокранов – это профессионалы с опытом и всеми необходимыми навыками, прошедшие обучение в самой фирме LIEBHERR.</p>
@@ -57,21 +57,21 @@ const About: NextPage = () => {
       <section className="contacts">
         <div className="container">
           <h2 className="contacts__title">Контакты</h2>
-          <div className="contacts__inner">
+          <div className="contacts__inner flex jcsb">
             <div className="contacts__content">
-              <a className="contacts__address" href="#">г. Москва, Россия, 117628,м. Бульвар Дмитрия Донского, ул. Куликовская, 12 </a>
-              <div className="contacts__box">
-                <div className="contacts__phones">
+              <a className="contacts__address rel after" href="#">г. Москва, Россия, 117628,м. Бульвар Дмитрия Донского, ул. Куликовская, 12 </a>
+              <div className="contacts__box flex jcsb">
+                <div className="contacts__phones rel after">
                   <a className="contacts__phone" href="tel:+74999299666">+7 (499)929-96-66</a>
                   <a className="contacts__phone" href="tel:+79853645518">+7 (985)364-55-18</a>
                   <a className="contacts__phone" href="tel:+79852262030">+7 (985)226-20-30</a>
                 </div>
                 <div className="contacts__time">
-                  <a className="contacts__mail" href="mailto:evro-k@yandex.ru">evro-k@yandex.ru</a>
-                  <p className="contacts__schedule">10:00 - 17:00</p>  
+                  <a className="contacts__mail rel after" href="mailto:evro-k@yandex.ru">evro-k@yandex.ru</a>
+                  <p className="contacts__schedule rel after">10:00 - 17:00</p>  
                 </div>
               </div>
-              <div className="contacts__requisite">
+              <div className="contacts__requisite rel after">
                 <p className="contacts__sub">Реквизиты:</p>
                 <p>ООО &quot;Компания Еврокран&quot; </p>
                 <div className="contacts__requisite-box">

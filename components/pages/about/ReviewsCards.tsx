@@ -59,7 +59,7 @@ const ReviewsCards: React.FC = () => {
           >
           {reviews.map(({ imgSrc }, idx) => (
             <div className="reviews__item" key={idx}>
-              <div className="reviews__item-images">
+              <div className="reviews__item-images rel">
                 <Image 
                   src={imgSrc} 
                   alt="Карточка отзыва клиента"

@@ -54,7 +54,7 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
   };
 
   return (
-    <div className="catalog-content__controls catalog-controls">
+    <div className="catalog-content__controls catalog-controls rel flex aic jcsb">
       <div className="catalog-controls__aside-toggle aside-toggle">
         <button 
           className="aside-toggle__btn" 
@@ -64,7 +64,7 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
           <img src="/static/images/aside-toggle.svg" alt="иконка переключатель" />
         </button>
       </div>
-      <div className="catalog-controls__sort">
+      <div className="flex aic">
         <img src="/static/images/sort-icon.svg" alt="" />
         <Select
           value={activeSortType}
@@ -73,7 +73,7 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
           onChange={onSortTypeChange}
           />
       </div>
-      <div className="catalog-controls__view view">
+      <div className="catalog-controls__view view flex aic">
         <button 
           onClick={onChangeViewGrid}
           className={`catalog-controls__btn view__btn-grid ${activeView === 'grid' ? 'catalog-controls__btn--active' : ''}`}

@@ -57,7 +57,7 @@ export const AppForm: React.FC<AppFormPropsType> = ({
   buttonClass="",
   buttonText,
   formClass="",
-  agreeLabelClass="popup__label form-label",
+  agreeLabelClass="popup__label flex form-label",
   isOrder=false
 }) => {
   const dispatch = useDispatch();
@@ -140,7 +140,7 @@ export const AppForm: React.FC<AppFormPropsType> = ({
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <span className={`form-label__checkbox-fake ${touched.isAgree && errors.isAgree ? 'form-label__checkbox-fake--error': '' }`}/>
+            <span className={`form-label__checkbox-fake rel ${touched.isAgree && errors.isAgree ? 'form-label__checkbox-fake--error': '' }`}/>
             <span className="form-label__text">
               Я согласен с <a href="#">условиями обработки</a> и использования моих персональных данных
             </span>

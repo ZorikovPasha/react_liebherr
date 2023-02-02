@@ -91,6 +91,35 @@ button:active {
 .footer {
   flex: 0 0 auto;
 }
+.rel {
+  position: relative;
+}
+
+.flex {
+  display: flex;
+}
+
+.aic {
+  align-items: center;
+}
+
+.jcc {
+  justify-content: center;
+}
+
+.jcsb {
+  justify-content: space-between;
+}
+
+.after::after {
+  position: absolute;
+  content: "";
+}
+
+.before::before {
+  position: absolute;
+  content: "";
+}
 
 .btn {
   font-family: 'PT Sans', sans-serif;
@@ -112,7 +141,6 @@ button:active {
 }
 
 .breadcrumbs {
-
   padding: 30px 0 60px;
 
   // .breadcrumbs__item
@@ -123,7 +151,7 @@ button:active {
     line-height: 156.69%;
     color: $black;
     margin-right: 6px;
-    position: relative;
+    
     &::after{
       content: ' - ';
       position: absolute;
@@ -237,9 +265,6 @@ button:active {
 }
 
 .pagination {
-
-  display: flex;
-  align-items: center;
   justify-content: center;
 
   &__arrow:disabled {
@@ -250,23 +275,14 @@ button:active {
     fill: #C4C4C4;
   }
 
-
-  // .breadcrumbs__list
-
   &__list {
-    display: flex;
     align-items: flex-end;
     margin: 0 15px;
   }
 
-  // .breadcrumbs__item
-
   &__item {
     min-width: 23px;
     height: 23px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: 1px solid #C4C4C4;
     cursor: pointer;
   }
@@ -283,8 +299,6 @@ button:active {
     color: #8C8A8A;
   }
 
-  // .breadcrumbs__item--active
-
   &__item--active {
     min-width: 28px;
     height: 32px;
@@ -295,9 +309,9 @@ button:active {
 
   &__item--dots {
     border: none;
-    display: flex;
     align-items: flex-end;
     cursor: default;
+
     span {
       width: 5px;
       height: 5px;
@@ -317,7 +331,6 @@ button:active {
 }
 
 .block-text {
-
   padding: 120px 0;
 
   // .block-text__title
@@ -340,12 +353,10 @@ button:active {
   // .block-text__list-item
 
   &__list-item {
-    position: relative;
     padding-left: 20px;
     margin-bottom: 20px;
+
     &::after{
-      content: "";
-      position: absolute;
       top: 50%;
       transform: translate(0%, -50%);
       left: 0;
@@ -360,12 +371,9 @@ button:active {
 
 .help {
   padding: 47px 0;
-  position: relative;
 
   &::after,
   &::before {
-    content: "";
-    position: absolute;
     background-image: url('../images/lines.svg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -424,15 +432,6 @@ button:active {
     margin-top: 30px;
   }
 
-  // .help__form-line
-
-  &__form-line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-  }
-
   // .help__form-input
 
   &__form-input {
@@ -470,7 +469,6 @@ button:active {
   }
 
   &__form-label {
-    display: flex;
     align-items: flex-start;
     grid-row: 2 / 3;
     grid-column: 1 / 3;
@@ -507,16 +505,8 @@ button:active {
 }
 
 .contacts {
-
   padding: 48px 0;
   background-color: #fff;
-
-  // .contacts__inner
-
-  &__inner {
-    display: flex;
-    justify-content: space-between;
-  }
 
   // .contacts__content
 
@@ -546,10 +536,8 @@ button:active {
   &__address {
     margin: 24px 0;
     padding-left: 50px;
-    position: relative;
+
     &::after{
-      content: "";
-      position: absolute;
       width: 30px;
       height: 30px;
       left: 0;
@@ -559,11 +547,7 @@ button:active {
     }
   }
 
-  // .contacts__box
-
   &__box {
-    display: flex;
-    justify-content: space-between;
     max-width: 493px;
   }
 
@@ -571,10 +555,8 @@ button:active {
 
   &__phones {
     padding-left: 50px;
-    position: relative;
+
     &::after{
-      content: "";
-      position: absolute;
       width: 30px;
       height: 30px;
       left: 0;
@@ -595,11 +577,9 @@ button:active {
 
   &__mail {
     padding-left: 50px;
-    position: relative;
     margin-bottom: 21px;
+
     &::after{
-      content: "";
-      position: absolute;
       width: 30px;
       height: 23px;
       left: 0;
@@ -607,17 +587,14 @@ button:active {
       transform: translate(0%, -50%);
       background-image: url('../images/contacts-mail.svg');
     }
-
   }
 
   // .contacts__schedule
 
   &__schedule {
     padding-left: 50px;
-    position: relative;
+
     &::after{
-      content: "";
-      position: absolute;
       width: 30px;
       height: 30px;
       left: 0;
@@ -641,11 +618,8 @@ button:active {
   &__requisite {
     margin-top: 42px;
     padding-left: 50px;
-    position: relative;
 
     &::after{
-      content: "";
-      position: absolute;
       top: 50%;
       left: 0;
       transform: translate(0, -50%);
@@ -675,7 +649,6 @@ button:active {
   padding: 50px 0;
 
   &__images {
-    display: flex;
     justify-content: center;
     margin-bottom: 30px;
 
@@ -694,7 +667,6 @@ button:active {
 
 .product-item {
   overflow: hidden;
-  display: flex;
   flex-direction: column;
   max-width: 370px;
   min-height: 100%;
@@ -708,7 +680,6 @@ button:active {
   }
 
   &__body {
-    display: flex;
     flex-direction: column;
     flex-grow: 1;
     background-color: #fff;
@@ -730,7 +701,6 @@ button:active {
 
   &__info {
     flex-grow: 1;
-    display: flex;
     flex-direction: column;
     padding: 0px 24px 20px;
   }
@@ -745,17 +715,13 @@ button:active {
     height: 61px;
   }
 
-
   &__title-box {
     padding: 8px 24px 0;
-    position: relative;
     border-bottom: 1px solid #FCD571;
     flex-grow: 1;
 
     &::before,
     &::after{
-      content: "";
-      position: absolute;
       width: 10px;
       height: 100%;
       top: 0;
@@ -769,7 +735,6 @@ button:active {
       background-image: url('../images/decor-right.svg');
     }
   }
-
 
   // .product-item__title
 
@@ -815,8 +780,6 @@ button:active {
   // .product-item__link
 
   &__link {
-    position: relative;
-
     font-family: 'PT Sans', sans-serif;
     font-weight: bold;
     font-size: 18px;
@@ -827,16 +790,11 @@ button:active {
     padding-right: 25px;
 
     &::after{
-      content: "";
-      position: absolute;
       top: 50%;
       right: 0;
-
       width: 18px;
       height: 8px;
-
       transform: translate(0%, -50%);
-
       background-image: url('../images/catalog-arr.svg');
     }
   }

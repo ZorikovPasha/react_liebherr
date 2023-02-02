@@ -32,7 +32,7 @@ const PopupRequest: React.FC = () => {
         inputClass: "popup__input",
         type: "text",
         placeholder: "Ваше имя",
-        labelClass: "popup__label form-label",
+        labelClass: "popup__label flex form-label",
         blockClass: "",
         tag: "input"
       },
@@ -40,7 +40,7 @@ const PopupRequest: React.FC = () => {
         inputClass: "popup__input",
         type: "tel",
         placeholder: "Ваш телефон",
-        labelClass: "popup__label form-label",
+        labelClass: "popup__label flex form-label",
         blockClass: "",
         tag: "input"
       },
@@ -48,7 +48,7 @@ const PopupRequest: React.FC = () => {
         inputClass: "popup__input",
         type: "text",
         placeholder: "Ваша почта",
-        labelClass: "popup__label form-label",
+        labelClass: "popup__label flex form-label",
         blockClass: "",
         tag: "input"
       },

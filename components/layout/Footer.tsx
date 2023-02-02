@@ -31,18 +31,16 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer__inner">
+        <div className="footer__inner flex jcsb">
           <div className="footer__column">
             <div className="footer__logo">
               <Image 
                 src="/static/images/footer-logo.svg"
-                // layout="fill"
                 alt="logo"
                 width='100%'
                 height='100%'
               />
             </div>
-            {/* <img className="footer__logo" src="/static/images/footer-logo.svg" alt="logo" /> */}
             <p className="footer__about">Аренда мобильных и гусеничных кранов LIEBHERR</p>
             <p className="footer__rights">© 2000-2021 Все права защищены</p>
           </div>

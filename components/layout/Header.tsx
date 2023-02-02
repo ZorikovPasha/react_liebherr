@@ -28,9 +28,9 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
     <header className="header">
       <div className="header__top">
         <div className="container">
-          <div className="header__top-inner">
-            <div className="header__about">
-              <Link href={ROUTES.HOME}>
+          <div className="header__top-inner flex aic jcsb">
+            <div className="header__about flex aic jcsb">
+              <Link href={ROUTES.HOME} prefetch={false}>
                 <a className="header__logo">
                   <img 
                     className="header__logo-img" 
@@ -41,16 +41,16 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
               </Link>
               <p className="header__about-text">Аренда спецтехники LIEBHERR c 2000 года</p>
             </div>
-            <div className="header__info">
-              <p className="header__schedule">10:00-17:00</p>
-              <span className="header__address">г. Москва, <br />
+            <div className="header__info flex aic">
+              <p className="header__schedule rel after">10:00-17:00</p>
+              <span className="header__address rel after">г. Москва, <br />
                 ул. Куликовская, 12</span>
             </div>
             <button 
               className="header__btn"
               onClick={onOpenPopup}
               >Свяжитесь со мной</button>
-            <div className="header__tels">
+            <div className="header__tels rel after">
               <a className="header__tel" href="tel:+74999299666">+7 (499)929-96-66</a>
               <a className="header__tel" href="tel:+79853645518">+7 (985)364-55-18</a>
               <a className="header__tel" href="tel:+79852262030">+7 (985)226-20-30</a>
@@ -61,7 +61,7 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
 
       <div className="header__bottom">
         <div className="container">
-          <div className="header__bottom-inner">
+          <div className="header__bottom-inner rel flex aic jcsb">
 
             <button className="menu-btn" onClick={handleMobMennuButtonClick}>
               <div className="menu-btn__line"></div>
@@ -71,13 +71,13 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
 
             <nav className="header__nav">
               <ul className="header__nav-list">
-                {links.map(({ link, text }) => (
+                {links.map(({ link, text }) => 
                   <li className="header__nav-item" key={text + link}>
                     <Link href={link}>
-                      <a className="header__nav-link">{text}</a>
+                      <a className="header__nav-link rel after">{text}</a>
                     </Link>
                 </li>
-                ))}
+                )}
             </ul>
           </nav>
         </div>

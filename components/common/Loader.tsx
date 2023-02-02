@@ -17,7 +17,7 @@ const Loader: React.FC = () => {
   
   return mounted && (isShown || isLoading) && portalRef.current 
     ? createPortal(
-    <div className="loader">
+    <div className="loader flex aic">
       <div className="dots"></div>
     </div>, portalRef.current
   ) : null

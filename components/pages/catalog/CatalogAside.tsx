@@ -140,7 +140,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
   return (
     <aside className={`catalog-content__aside aside-catalog ${isAsideOpened ? "opened" : ""}`}>
       <div 
-        className={`aside-catalog__body ${isAsideBodyOpened ? "opened" : ""}`} 
+        className={`aside-catalog__body rel ${isAsideBodyOpened ? "opened" : ""}`} 
         ref={AsideRef}
       >
         <button 
@@ -159,7 +159,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
           >
             <div className="aside-catalog__filter aside-filter">
               <p className="aside-filter__title">Вид техники</p>
-              <label className="aside-filter__label">
+              <label className="flex aic">
                 <input
                   name="machinery_type"
                   type="checkbox"
@@ -167,10 +167,10 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
                   checked={isMobile}
                   onChange={onTypeToggle.bind(null, isMobile, setMobile)}
                 />
-                <span className="aside-filter__check-fake" />
+                <span className="aside-filter__check-fake rel" />
                 <span className="aside-filter__text">Мобильные краны</span>
               </label>
-              <label className="aside-filter__label">
+              <label className="flex aic">
                 <input
                   name="machinery_type"
                   type="checkbox"
@@ -178,10 +178,10 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
                   checked={isTracked}
                   onChange={onTypeToggle.bind(null, isTracked, setTracked)}
                 />
-                <span className="aside-filter__check-fake" />
+                <span className="aside-filter__check-fake rel" />
                 <span className="aside-filter__text">Гусеничные краны</span>
               </label>
-              <label className="aside-filter__label">
+              <label className="flex aic">
                 <input
                   name="machinery_type"
                   type="checkbox"
@@ -189,10 +189,10 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
                   checked={islowBed}
                   onChange={onTypeToggle.bind(null, islowBed, setlowBed)}
                 />
-                <span className="aside-filter__check-fake" />
+                <span className="aside-filter__check-fake rel" />
                 <span className="aside-filter__text">Низкорамные тралы</span>
               </label>
-              <label className="aside-filter__label">
+              <label className="flex aic">
                 <input
                   name=""
                   type="checkbox"
@@ -200,14 +200,14 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
                   checked={isModular}
                   onChange={onTypeToggle.bind(null, isModular, setModular)}
                 />
-                <span className="aside-filter__check-fake" />
+                <span className="aside-filter__check-fake rel" />
                 <span className="aside-filter__text">Модульные платформы</span>
               </label>
             </div>
             <div className="aside-catalog__filter aside-filter filter-weight">
               <p className="aside-filter__title">Грузоподъемность т.</p>
-              <div className="aside-filter__line">
-                <div className="aside-filter__input-box">
+              <div className="aside-filter__line flex aic">
+                <div className="aside-filter__input-box flex aic">
                   <span className="aside-filter__from">от</span>
                   <input
                     name="lifting_capacity_from"
@@ -217,7 +217,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
                     onChange={onChangeRangeInput.bind(null, setLiftingCapacityFrom)}
                   />
                 </div>
-                <div className="aside-filter__input-box">
+                <div className="aside-filter__input-box flex aic">
                   <span className="aside-filter__from">до</span>
                   <input
                     name="lifting_capacity_to"
@@ -243,8 +243,8 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
             </div>
             <div className="aside-catalog__filter aside-filter filter-height">
               <p className="aside-filter__title">Высота подъема, м.</p>
-              <div className="aside-filter__line">
-                <div className="aside-filter__input-box">
+              <div className="aside-filter__line flex aic">
+              <div className="aside-filter__input-box flex aic">
                   <span className="aside-filter__from">от</span>
                   <input
                     name="height_from"
@@ -255,7 +255,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
 
                   />
                 </div>
-                <div className="aside-filter__input-box">
+                <div className="aside-filter__input-box flex aic">
                   <span className="aside-filter__from">до</span>
                   <input
                     name="height_to"
@@ -281,8 +281,8 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
             </div>
             <div className="aside-catalog__filter aside-filter filter-length">
               <p className="aside-filter__title">Длина стрелы, м.</p>
-              <div className="aside-filter__line">
-                <div className="aside-filter__input-box">
+              <div className="aside-filter__line flex aic">
+              <div className="aside-filter__input-box flex aic">
                   <span className="aside-filter__from">от</span>
                   <input
                     name="arrow_length_from"
@@ -292,7 +292,7 @@ const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(({ query, 
                     onChange={onChangeRangeInput.bind(null, setArrowLengthFrom)}
                   />
                 </div>
-                <div className="aside-filter__input-box">
+                <div className="aside-filter__input-box flex aic">
                   <span className="aside-filter__from">до</span>
                   <input
                     name="arrow_length_to"

@@ -39,7 +39,7 @@ const RentSlider: React.FC = () => {
   };
 
   return (
-    <section className="rent">
+    <section className="rent rel">
       <div className="container">
         <div className="rent__inner">
           <h2 className="rent__title">
@@ -52,7 +52,7 @@ const RentSlider: React.FC = () => {
             >
             {slides.map(({ title, text, img }, idx) => (
               <div className="rent__slider-item slider-item" key={idx}>
-                <div className="slider-item__body">
+                <div className="slider-item__body flex">
                   <div className="slider-item__images wow animate__animated animate__fadeInLeft">
                     <Image
                       src={img}
@@ -60,7 +60,7 @@ const RentSlider: React.FC = () => {
                       alt="строительная техника"
                     />
                   </div>
-                  <div className="slider-item__info">
+                  <div className="slider-item__info rel">
                     <h3 className="slider-item__title">{title}</h3>
                     <p className="slider-item__text">{text}</p>
                     <Link href={ROUTES.CATALOG}>

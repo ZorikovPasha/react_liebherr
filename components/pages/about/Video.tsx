@@ -23,7 +23,7 @@ export const VideoPic = () => {
   return (
     <>
       <div className="about__video wow animate__animated animate__fadeIn animate__delay-1s">
-        <div className="about__video-box">
+        <div className="about__video-box rel">
           <button className="about__video-play" onClick={onPlay}>
             <svg className="anim-color" width="113" height="112" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="56.998" cy="56.001" r="38.154" fill="transparent"/>

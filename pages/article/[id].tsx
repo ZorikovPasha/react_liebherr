@@ -26,7 +26,7 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
       <section className="article-top">
         <div className="container">
           <h1 className="article-top__heading">{title}</h1>
-          <div className="article-top__images">
+          <div className="article-top__images flex jcsb">
             {images?.map(src => 
               <div className="article-top__img" key={src}>
                 <Image 
@@ -48,7 +48,7 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
               </h2>
               {section.map(({ text, isListItem }, idx) => 
                 isListItem 
-                  ? <li className="article-top__list-item" key={idx}>{text}</li>
+                  ? <li className="article-top__list-item rel after" key={idx}>{text}</li>
                   : <p className="article-top__text" key={idx}>{text}</p>
               )}
             </div>

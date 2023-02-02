@@ -7,9 +7,6 @@
   }
 
   &__inner {
-    display: flex;
-
-    position: relative;
     &::after{
       @extend %banner;
       content: "Liebherr";
@@ -33,7 +30,6 @@
   // .product__slider-images
 
   &__slider-images {
-    position: relative;
     padding-bottom: 74%;
 
     img {
@@ -57,7 +53,6 @@
 
   &__thumb-images {
     @extend %imgbox;
-    // max-width: 171px;
     margin: 0 15px;
     padding-bottom: 58%;
     cursor: pointer;
@@ -88,12 +83,8 @@
 .product-list {
   margin-bottom: 30px;
 
-  // .product-list__item
-
   &__item {
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
   }
 
   // .product-list__text
@@ -120,7 +111,6 @@
   padding-bottom: 50px;
 
   &__toggle {
-    position: relative;
     min-height: 35px;
     overflow-x: auto;
     margin-bottom: 50px;
@@ -137,8 +127,6 @@
     min-height: 35px;
 
     &::after{
-      content: "";
-      position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
@@ -162,11 +150,8 @@
 
   &__toggle-item--pressed {
     font-weight: 700;
-    position: relative;
 
     &::after{
-      content: "";
-      position: absolute;
       z-index: 4;
       bottom: -2px;
       left: 0;
@@ -183,8 +168,6 @@
   // .tabs__content
 
   &__content {
-    position: relative;
-
     &::after{
       @extend %banner;
       content: "Eurocran";
@@ -225,14 +208,6 @@
 }
 
 .item-specs {
-  &__box {
-    display: flex;
-    justify-content: space-between;
-
-  }
-
-  // .item-specs__item
-
   &__item {
     width: calc( (100% - 90px) / 4 );
   }

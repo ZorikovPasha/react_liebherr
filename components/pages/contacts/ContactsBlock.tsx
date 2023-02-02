@@ -1,11 +1,11 @@
 const ContactsBlock: React.FC = () => {
   return (
     <div className="contacts__content">
-      <a className="contacts__address" href="#">
+      <a className="contacts__address rel after" href="#">
         г. Москва, Россия, 117628,м. Бульвар Дмитрия Донского, ул. Куликовская, 12{" "}
       </a>
-      <div className="contacts__box">
-        <div className="contacts__phones">
+      <div className="contacts__box flex jcsb">
+        <div className="contacts__phones rel after">
           <a className="contacts__phone" href="tel:+74999299666">
             +7 (499)929-96-66
           </a>
@@ -17,13 +17,13 @@ const ContactsBlock: React.FC = () => {
           </a>
         </div>
         <div className="contacts__time">
-          <a className="contacts__mail" href="mailto:evro-k@yandex.ru">
+          <a className="contacts__mail rel after" href="mailto:evro-k@yandex.ru">
             evro-k@yandex.ru
           </a>
-          <p className="contacts__schedule">10:00 - 17:00</p>
+          <p className="contacts__schedule rel after">10:00 - 17:00</p>
         </div>
       </div>
-      <div className="contacts__requisite">
+      <div className="contacts__requisite rel">
         <p className="contacts__sub">Реквизиты:</p>
         <p>ООО &quot;Компания Еврокран&quot; </p>
         <div className="contacts__requisite-box">

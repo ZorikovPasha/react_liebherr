@@ -77,7 +77,7 @@ const CatalogTabs: React.FC = () => {
           }
         </div>
         <button 
-          className="catalog-tabs__more"
+          className="catalog-tabs__more rel after"
           onClick={onShowMore}
           >{itemsToShow === tabs.length? "скрыть" : "ещё"}
         </button>

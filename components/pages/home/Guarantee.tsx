@@ -13,11 +13,11 @@ const Guarantee: React.FC = () => {
 
 
   return (
-    <section className="guarantee">
+    <section className="guarantee rel">
       <div className="container">
         <div className="guarantee__inner">
           <h2 className="guarantee__title">С нами надежно</h2>
-          <div className="guarantee__body">
+          <div className="guarantee__body flex">
             <div className="guarantee__info">
               <p className="guarantee__text">Компания Еврокран успешно работает на территории РФ с 2000 года.</p>
               <p className="guarantee__text">В нашем автопарке гусеничные и мобильные краны известного немецкого бренда.</p>
@@ -29,7 +29,7 @@ const Guarantee: React.FC = () => {
                 >Заказать звонок</button>
             </div>
             <div className="guarantee__items">
-              <div className="guarantee__item">
+              <div className="guarantee__item flex aic">
                 <div className="guarantee__item-img">
                   <Image 
                     className="guarantee__item-img" 
@@ -42,7 +42,7 @@ const Guarantee: React.FC = () => {
                 </div>
                 <p className="guarantee__item-title">Поставка техники точно в срок</p>
               </div>
-              <div className="guarantee__item">
+              <div className="guarantee__item flex aic">
                 <div className="guarantee__item-img">
                   <Image 
                     className="guarantee__item-img" 
@@ -55,7 +55,7 @@ const Guarantee: React.FC = () => {
                 </div>
                 <p className="guarantee__item-title">Сопровождение спецтехники</p>
               </div>
-              <div className="guarantee__item">
+              <div className="guarantee__item flex aic">
                 <div className="guarantee__item-img">
                   <Image 
                     className="guarantee__item-img" 
@@ -68,7 +68,7 @@ const Guarantee: React.FC = () => {
                 </div>
                 <p className="guarantee__item-title">Квалифицированнные специалисты</p>
               </div>
-              <div className="guarantee__item">
+              <div className="guarantee__item flex aic">
                 <div className="guarantee__item-img">
                   <Image 
                     className="guarantee__item-img" 

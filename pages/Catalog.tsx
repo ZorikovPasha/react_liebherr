@@ -46,7 +46,7 @@ const Catalog: NextPage<ICatalogProps> = () => {
 
       <div className="catalog-content">
         <div className="container">
-          <div className="catalog-content__inner">
+          <div className="catalog-content__inner rel flex">
             <CatalogAside 
               ref={AsideRef} 
               query={query}
@@ -91,7 +91,7 @@ const Catalog: NextPage<ICatalogProps> = () => {
       <section className="contacts">
         <div className="container">
           <h2 className="contacts__title">Контакты</h2>
-          <div className="contacts__inner">
+          <div className="contacts__inner flex jcsb">
             <ContactsBlock />
 
             <ContactsForm />

@@ -13,8 +13,8 @@ interface ICardProps {
 
 const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, arrowLength, rootElClass="" }) => {
   return (
-    <div className={`product-item ${rootElClass}`} key={id}>
-      <div className="product-item__body">
+    <div className={`product-item flex ${rootElClass}`} key={id}>
+      <div className="product-item__body flex">
         <div className="product-item__images">
           <Image 
             src={imgSrc} 
@@ -25,12 +25,12 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
             layout="responsive"
           />
         </div>
-        <div className="product-item__title-box">
+        <div className="product-item__title-box rel after before">
           <Link href={ROUTES.PRODUCT+id}>
             <a className="product-item__title product-item__title--big">{name}</a>
           </Link>
         </div>
-        <div className="product-item__info">
+        <div className="product-item__info flex">
           <div className="product-item__box">
             <div className="product-item__text">Грузоподъемность:</div>
             <div className="product-item__text">{liftingCapacity}</div>
@@ -38,13 +38,13 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
             <div className="product-item__text">{arrowLength}</div>
           </div>
           <Link href={ROUTES.PRODUCT+id}>
-            <a className="product-item__link">Все характеристики</a>
+            <a className="product-item__link rel after">Все характеристики</a>
           </Link>
           <Link 
             href={ROUTES.CONTACTS}
             >
             <a 
-              className="product-item__link"
+              className="product-item__link rel after"
               >Арендовать</a>
           </Link>
         </div>

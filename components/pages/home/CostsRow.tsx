@@ -6,11 +6,11 @@ const CostsRow: React.FC = () => {
     { imgSrc: "static/images/cost-4.png", text: "Обозначенная в прайс-листе стоимость услуг включает НДС – 20 %." },
   ];
   return (
-    <section className="cost">
+    <section className="cost rel after before">
       <div className="container">
         <div className="cost__inner">
           <h2 className="cost__title">Из чего складывается стоимость аренды</h2>
-          <div className="cost__items">
+          <div className="cost__items flex jcsb">
             {costsItems.map(({ imgSrc, text }, idx) => (
               <div className="cost__item" key={imgSrc}>
                 <p className={`cost__item-num cost__item-num--${idx + 1}`}>
