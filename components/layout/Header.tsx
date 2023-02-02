@@ -21,7 +21,7 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
     { link: ROUTES.ABOUT, text: "О компании" },
     { link: ROUTES.OBJECTS, text: "Объекты" },
     { link: ROUTES.CONTACTS, text: "Цены" },
-    { link: ROUTES.BLOG, text: "Блог" },
+    { link: ROUTES.ARTICLES, text: "Блог" },
     { link: ROUTES.CONTACTS, text: "Контакты" },
   ];
   return (

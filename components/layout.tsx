@@ -1,6 +1,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic'
-
+import { useRouter } from 'next/router'
 import Header from "../components/layout/Header"
 import Footer from "../components/layout/Footer"
 import Loader from './common/Loader';
@@ -25,11 +25,13 @@ type LayoutProps = {
   children: React.ReactNode,
 };
 
-const Layout: React.FC<LayoutProps> = ({
-  children,
-}) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMobMenuOpen, setMobMenuOpen] = React.useState(false);
   const [isMenuBodyOpened, setMenuBodyOpened] = React.useState(false);
+
+  const router = useRouter()
+  
+  React.useEffect(() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }), [router.pathname])
 
   const handleMobMennuCloseClick = React.useCallback(() => {
     setMobMenuOpen(false);

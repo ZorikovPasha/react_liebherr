@@ -64,7 +64,7 @@ const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentAr
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">
-          <Link href={ROUTES.BLOG}>
+          <Link href={ROUTES.ARTICLES}>
             <a className="another-ones__btn">
               Все статьи
             </a>

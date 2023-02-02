@@ -64,7 +64,6 @@ const ReviewsCards: React.FC = () => {
                   src={imgSrc} 
                   alt="Карточка отзыва клиента"
                   layout="fill" 
-                  objectFit="cover"
                 />
               </div>
             </div>

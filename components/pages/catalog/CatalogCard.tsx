@@ -26,7 +26,7 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
           />
         </div>
         <div className="product-item__title-box rel after before">
-          <Link href={ROUTES.PRODUCT+id}>
+          <Link href={ROUTES.CATALOG+id}>
             <a className="product-item__title product-item__title--big">{name}</a>
           </Link>
         </div>
@@ -37,7 +37,7 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
             <div className="product-item__text">Длина стрелы:</div>
             <div className="product-item__text">{arrowLength}</div>
           </div>
-          <Link href={ROUTES.PRODUCT+id}>
+          <Link href={ROUTES.CATALOG+id}>
             <a className="product-item__link rel after">Все характеристики</a>
           </Link>
           <Link 

@@ -1,0 +1,13 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "targets": {
+          "browsers": ["last 4 versions", "not ie"]
+        },
+        "useBuiltIns": "usage"
+      }
+    ]
+  ]
+}

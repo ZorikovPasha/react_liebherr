@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const ProductTabs: React.FC = () => {
@@ -17,8 +18,6 @@ const ProductTabs: React.FC = () => {
   const handleTabClick = (param: number) => {
     setActiveTab(param)
   };
-
-
 
   return (
     <section className="tabs">
@@ -46,31 +45,55 @@ const ProductTabs: React.FC = () => {
 
             <div className="item-content__images">
               <div className="item-content__img">
-                <img src="/static/images/depict-1.jpg" alt="" />
+                <Image 
+                  className="guarantee__item-img" 
+                  src="/static/images/depict-1.jpg" 
+                  alt="" 
+                  width='100%'
+                  height='100%'
+                />
               </div>
               <div className="item-content__img">
-                <img src="/static/images/depict-2.jpg" alt="" />
+                <Image 
+                  className="guarantee__item-img" 
+                  src="/static/images/depict-2.jpg" 
+                  alt="" 
+                  width='100%'
+                  height='100%'
+                />
               </div>
               <div className="item-content__img">
-                <img src="/static/images/depict-3.jpg" alt="" />
+                <Image 
+                  className="guarantee__item-img" 
+                  src="/static/images/depict-3.jpg" 
+                  alt="" 
+                  width='100%'
+                  height='100%'
+                />
               </div>
             </div>
           </div>}
-          { activeTab === 1 && <div className="tabs__content-item">
+          {activeTab === 1 && <div className="tabs__content-item">
             <ul className="product__info-list product-list">
-              { Object.entries(info).map(arr => (
-                  <li className="product-list__item flex aic" key={arr[1].value}>
-                    <p className="product-list__text">{arr[1].text}:</p>
-                    <p className="product-list__text">{arr[1].value }</p>
-                  </li>
-                )) }
+              {Object.entries(info).map(arr => 
+                <li className="product-list__item flex aic" key={arr[1].value}>
+                  <p className="product-list__text">{arr[1].text}:</p>
+                  <p className="product-list__text">{arr[1].value }</p>
+                </li>
+              )}
             </ul>
           </div>}
-          { activeTab === 2 && <div className="tabs__content-item item-specs">
+          {activeTab === 2 && <div className="tabs__content-item item-specs">
             <div className="item-specs__box flex jcsb">
               <div className="item-specs__item">
                 <div className="item-specs__images">
-                  <img src="/static/images/specifications/1.jpg" alt="Спецификация" />
+                  <Image 
+                    className="guarantee__item-img" 
+                    src="/static/images/specifications/1.jpg" 
+                    alt="Спецификация" 
+                    width='100%'
+                    height='100%'
+                  />
                 </div>
                 <a className="item-specs__link" href="#">
                   скачать
@@ -78,7 +101,13 @@ const ProductTabs: React.FC = () => {
               </div>
               <div className="item-specs__item">
                 <div className="item-specs__images">
-                  <img src="/static/images/specifications/1.jpg" alt="Спецификация" />
+                  <Image 
+                    className="guarantee__item-img" 
+                    src="/static/images/specifications/1.jpg" 
+                    alt="Спецификация" 
+                    width='100%'
+                    height='100%'
+                  />
                 </div>
                 <a className="item-specs__link" href="#">
                   скачать
@@ -86,7 +115,13 @@ const ProductTabs: React.FC = () => {
               </div>
               <div className="item-specs__item">
                 <div className="item-specs__images">
-                  <img src="/static/images/specifications/1.jpg" alt="Спецификация" />
+                  <Image 
+                    className="guarantee__item-img" 
+                    src="/static/images/specifications/1.jpg" 
+                    alt="Спецификация" 
+                    width='100%'
+                    height='100%'
+                  />
                 </div>
                 <a className="item-specs__link" href="#">
                   скачать
@@ -94,7 +129,13 @@ const ProductTabs: React.FC = () => {
               </div>
               <div className="item-specs__item">
                 <div className="item-specs__images">
-                  <img src="/static/images/specifications/1.jpg" alt="Спецификация" />
+                  <Image 
+                    className="guarantee__item-img" 
+                    src="/static/images/specifications/1.jpg" 
+                    alt="Спецификация" 
+                    width='100%'
+                    height='100%'
+                  />
                 </div>
                 <a className="item-specs__link" href="#">
                   скачать

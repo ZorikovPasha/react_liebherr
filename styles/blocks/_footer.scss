@@ -1,5 +1,4 @@
 .footer {
-
   background: #2D2D2D;
   color: #FFFFFF;
   padding: 54px 0 47px;
@@ -60,11 +59,6 @@
     color: #FFFFFF;
   }
 
-  // .footer__column-list
-
-  &__column-list {
-  }
-
   // .footer__btn
 
   &__btn {
@@ -90,14 +84,14 @@
     opacity: .7;
   }
 
-  // .footer__social
+  &__socials {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 6px;
+  }
 
   &__social {
     cursor: pointer;
-  }
-
-  &__social + &__social {
-    margin-left: 8px;
   }
 
   // .footer__tel
@@ -113,12 +107,6 @@
 }
 
 .column-list {
-
-  // .column-list__item
-
-  &__item {
-  }
-
   &__item + &__item {
     margin-top: 6px;
   }
@@ -128,6 +116,7 @@
   &__link {
     font-size: 12px;
     line-height: 15px;
+
     &:hover {
       text-decoration: underline;
     }

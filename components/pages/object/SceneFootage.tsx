@@ -1,4 +1,5 @@
 
+import Image from 'next/image';
 import React from 'react';
 import Slider from 'react-slick';
 import { SliderPrevArrow, SliderNextArrow } from "../../common/SliderArrows";
@@ -51,7 +52,11 @@ const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
           {images?.map((imgSrc) =>
             <div className="object-top__slider-item" key={imgSrc}>
               <div className="object-top__images">
-                <img src={imgSrc} alt="Фото со стройки" />
+                <Image 
+                  src={imgSrc}
+                  alt="Фото объекта стройки" 
+                  layout='fill'
+                />
               </div>
             </div>
           )}
@@ -63,13 +68,19 @@ const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
           ref={(slider: Slider) => setThumbsNav(slider)}
           {...thumbsSettings} 
         >
-          {images?.map(imgSrc => (
+          {images?.map(imgSrc => 
             <div className="object-top__thumb" key={imgSrc}>
               <div className="object-top__thumb-images">
-                <img src={imgSrc} alt="Фото со стройки" />
+                <Image 
+                  src={imgSrc}
+                  alt="Фото объекта стройки" 
+                  width='100%'
+                  height='100%'
+                  objectFit='cover'
+                />
               </div>
             </div>
-          ))}
+          )}
         </Slider>
       </div>
   </section>

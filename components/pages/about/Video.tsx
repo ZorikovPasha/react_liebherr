@@ -35,8 +35,6 @@ export const VideoPic = () => {
         <div className="about__images">
           <Image 
             src="/static/images/about-big.jpg" 
-            width='100%'
-            height='100%'
             objectFit="cover"
             layout='fill'
           />
