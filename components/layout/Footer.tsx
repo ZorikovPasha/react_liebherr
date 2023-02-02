@@ -18,8 +18,19 @@ const Footer: React.FC = () => {
       { text: "Прайс-лист", link: "/about" },
       { text: "Контакты", link: "/contacts" },
     ],
-    [{ text: "Гусеничные краны" }, { text: "Мобильные краны" }, { text: "Низеорамные краны" }, { text: "Модульные платформы" }],
-    [{ text: "Аренда гусеничного крана" }, { text: "Аренда мобильного крана" }, { text: "Аренда башенного крана" }, { text: "Перевозка негабаритного груза" }, { text: "Разработка ппрк" }],
+    [
+      { text: "Гусеничные краны" }, 
+      { text: "Мобильные краны" }, 
+      { text: "Низеорамные краны" }, 
+      { text: "Модульные платформы" }
+    ],
+    [
+      { text: "Аренда гусеничного крана" }, 
+      { text: "Аренда мобильного крана" }, 
+      { text: "Аренда башенного крана" }, 
+      { text: "Перевозка негабаритного груза" }, 
+      { text: "Разработка ппрк" }
+    ],
   ];
   const listsTitles = ["Клиентам", "Техника", "Услуги"];
 
@@ -67,21 +78,51 @@ const Footer: React.FC = () => {
                 Свяжитесь со мной
             </button>
             <div className="footer__socials">
-              <span className="footer__social">
-                <img src="/static/images/social-1.svg" alt="instagram" />
-              </span>
-              <span className="footer__social">
-                <img src="/static/images/social-2.svg" alt="twitter" />
-              </span>
-              <span className="footer__social">
-                <img src="/static/images/social-3.svg" alt="whatsapp" />
-              </span>
-              <span className="footer__social">
-                <img src="/static/images/social-4.svg" alt="vkontacte" />
-              </span>
-              <span className="footer__social">
-                <img src="/static/images/social-5.svg" alt="yandex" />
-              </span>
+              <div>
+                <Image 
+                  className='footer__social'
+                  src="/static/images/social-1.svg" 
+                  alt="" 
+                  width={24}
+                  height={25}
+                /> 
+              </div>
+              <div>
+                <Image 
+                  className='footer__social'
+                  src="/static/images/social-2.svg" 
+                  alt="twitter" 
+                  width={24}
+                  height={25}
+                /> 
+              </div>
+              <div>
+                <Image 
+                  className='footer__social'
+                  src="/static/images/social-3.svg" 
+                  alt="whatsapp" 
+                  width={24}
+                  height={25}
+                /> 
+              </div>
+              <div>
+                <Image 
+                  className='footer__social'
+                  src="/static/images/social-4.svg" 
+                  alt="vkontacte" 
+                  width={24}
+                  height={25}
+                /> 
+              </div>
+              <div>
+                <Image 
+                  className='footer__social'
+                  src="/static/images/social-5.svg" 
+                  alt="yandex" 
+                  width={24}
+                  height={25}
+                /> 
+              </div>
             </div>
           </div>
           <div className="footer__column">

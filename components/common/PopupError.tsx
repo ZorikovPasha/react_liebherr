@@ -4,6 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
 import { selectPopupState } from "../../redux/selectors";
+import Image from "next/image";
 
 const PopupError: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,8 +23,13 @@ const PopupError: React.FC = () => {
           <button 
             className="popup__close" 
             onClick={onClose}
-            >
-            <img src="/static/images/close.svg" alt="close icon" />
+          >
+            <Image 
+              src="/static/images/close.svg" 
+              alt="close" 
+              width={24}
+              height={24}
+            /> 
           </button>
           <h3 className="popup__title">Что-то пошло не так..</h3>
           <p className="popup__text">Пожалуйста, повторите попытку</p>

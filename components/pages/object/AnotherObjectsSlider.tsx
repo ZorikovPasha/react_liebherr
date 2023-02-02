@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Slider from 'react-slick';
@@ -42,21 +43,25 @@ const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
           className="another-ones__slider" 
           {...settings}
           ref={(slider: Slider) => setSlider(slider)}
-          >
-        {items && items?.map(({ id, title, preview }) => (
+        >
+          {items && items?.map(({ id, title, preview }) => 
             <div className=" item-object" key={id}>
-              <div className="item-object__images">
-                <img src={preview} alt="Фото объекта стройки" />
+              <div className="item-object__images rel">
+                <Image 
+                  src={preview}
+                  layout="fill"
+                  alt="Фото объекта стройки" 
+                />
               </div>
               <h6 className="item-object__title">
-                <Link href={ROUTES.OBJECT + id}>
+                <Link href={ROUTES.OBJECTS + id}>
                 <a className="item-object__link">
                   {title}
                 </a>
                 </Link>
               </h6>
             </div>
-          ))}
+          )}
         </Slider>
         <div className="another-ones__btn-wrapper">
           <Link href={ROUTES.OBJECTS}>

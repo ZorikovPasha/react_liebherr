@@ -1,5 +1,6 @@
 import React from "react";
 import * as yup from "yup";
+import Image from "next/image"
 
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
@@ -69,8 +70,13 @@ const PopupRequest: React.FC = () => {
           <button 
             className="popup__close" 
             onClick={onClose}
-            >
-            <img src="/static/images/close.svg" alt="close icon" />
+          >
+            <Image 
+              src="/static/images/close.svg" 
+              alt="close" 
+              width={24}
+              height={24}
+            /> 
           </button>
           <h3 className="popup__title">Арендовать спецтехнику</h3>
           <p className="popup__text">Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое ближайшее время</p>

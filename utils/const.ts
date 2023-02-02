@@ -4,12 +4,9 @@ export const REGEX = {
 
 export const ROUTES = {
   HOME: "/",
-  OBJECTS: "/objects",
-  OBJECT: "/object",
-  BLOG: "/blog",
+  OBJECTS: "/objects/",
   CATALOG: "/catalog",
-  ABOUT: "/about",
+  ABOUT: "/about/",
   CONTACTS: "/contacts",
-  ARTICLE: "/article/",
-  PRODUCT: "/product/"
+  ARTICLES: "/articles/",
 } 

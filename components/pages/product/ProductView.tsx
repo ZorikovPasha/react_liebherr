@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Slider from 'react-slick';
@@ -46,7 +47,13 @@ const ProductView: React.FC<IView> = ({ info }) => {
               {info?.thumbs?.map((imgSrc, idx) => (
                 <div className="product__slider-item" key={idx}>
                   <div className="product__slider-images rel">
-                    <img src={imgSrc} alt="Строительная техника" />
+                    <Image 
+                      src={imgSrc}
+                      alt="Строительная техника" 
+                      width='100%'
+                      height='100%'
+                      objectFit='contain'
+                    />
                   </div>
                 </div>
               ))}
@@ -60,7 +67,13 @@ const ProductView: React.FC<IView> = ({ info }) => {
               {info?.thumbs?.map((imgSrc, idx) => (
                 <div className="product__thumb" key={idx}>
                   <div className="product__thumb-images">
-                    <img src={imgSrc} alt="Строительная техника" />
+                    <Image 
+                      src={imgSrc}
+                      alt="Строительная техника" 
+                      width='100%'
+                      height='100%'
+                      objectFit='contain'
+                    />
                   </div>
                 </div>
               ))}
@@ -68,14 +81,20 @@ const ProductView: React.FC<IView> = ({ info }) => {
           </div>
           <div className="product__info">
             <ul className="product__info-list product-list">
-              {info?.features && Object.entries(info.features)?.map(arr => (
-                <li className="product-list__item flex  aic" key={arr[1].value}>
+              {info?.features && Object.entries(info.features)?.map(arr => 
+                <li 
+                  className="product-list__item flex aic" 
+                  key={arr[1].value}
+                >
                   <p className="product-list__text">{arr[1].text}:</p>
                   <p className="product-list__text">{arr[1].value }</p>
                 </li>
-              ))}
+              )}
             </ul>
-            <button className="product__info-btn btn" onClick={onOrder}>
+            <button 
+              className="product__info-btn btn" 
+              onClick={onOrder}
+            >
               Заказать
             </button>
           </div>
