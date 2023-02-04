@@ -43,8 +43,8 @@ const ProductView: React.FC<IView> = ({ info }) => {
               className="product__slider"
               asNavFor={thumbsSlider} 
               ref={(slider1: Slider) => setFullSlider(slider1)}
-              >
-              {info?.thumbs?.map((imgSrc, idx) => (
+            >
+              {info?.thumbs?.map((imgSrc, idx) => 
                 <div className="product__slider-item" key={idx}>
                   <div className="product__slider-images rel">
                     <Image 
@@ -52,27 +52,28 @@ const ProductView: React.FC<IView> = ({ info }) => {
                       alt="Строительная техника" 
                       width='100%'
                       height='100%'
-                      objectFit='contain'
+                      layout='fill'
                     />
                   </div>
                 </div>
-              ))}
+              )}
             </Slider>
             <Slider 
               {...thumsSettings}
               className="product__thumbs"
               asNavFor={fullSlider} 
               ref={(slider2: Slider) => setThumbsSlider(slider2)}
-              >
+            >
               {info?.thumbs?.map((imgSrc, idx) => (
                 <div className="product__thumb" key={idx}>
                   <div className="product__thumb-images">
                     <Image 
                       src={imgSrc}
-                      alt="Строительная техника" 
                       width='100%'
                       height='100%'
-                      objectFit='contain'
+                      layout='fill'
+                      objectFit='cover'
+                      alt="Строительная техника" 
                     />
                   </div>
                 </div>

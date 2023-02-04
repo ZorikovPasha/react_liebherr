@@ -1,5 +1,4 @@
-import { FormikErrors, FormikTouched } from 'formik'
-import React, { ChangeEvent } from 'react'
+import React from 'react'
 
 type AppTextFieldType = {
   blockClass: string,
@@ -9,11 +8,10 @@ type AppTextFieldType = {
   placeholder: string,
   labelClass: string,
   inputClass: string,
-  hasError: boolean | "" | FormikTouched<any> | FormikTouched<any>[] | undefined,
-  errorMessage: string | string[] | FormikErrors<any> | FormikErrors<any>[] | undefined,
-  handleChange: (e: string | ChangeEvent<any>) => void,
-  handleBlur: (e: string | ChangeEvent<any>) => void,
+  hasError: boolean,
+  errorMessage: string,
   tag: string
+  handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
 }
 
 export const AppTextField: React.FC<AppTextFieldType> = ({ 
@@ -28,37 +26,32 @@ export const AppTextField: React.FC<AppTextFieldType> = ({
   labelClass,
   inputClass, 
   handleChange, 
-  handleBlur
 }) => {
   return (
     <div className={blockClass}>
       <label 
         htmlFor={name}
         className={labelClass}
-        >
-          {tag === "input"
-            ? (
-              <input 
-                name={name}
-                className={`${inputClass}  ${hasError ? "form-input--error": ""}`}
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            ) : (
-              <textarea 
-                name={name}
-                className={`${inputClass} ${hasError ? "form-input--error": ""}`}
-                placeholder={placeholder}
-                value={value}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            )
-          }
-
+      >
+        {tag === "input"
+          ? 
+            <input 
+              value={value}
+              name={name}
+              className={`${inputClass}  ${hasError ? "form-input--error": ""}`}
+              type={type}
+              placeholder={placeholder}
+              onChange={handleChange}
+            />
+          : 
+            <textarea 
+              value={value}
+              name={name}
+              className={`${inputClass} ${hasError ? "form-input--error": ""}`}
+              placeholder={placeholder}
+              onChange={handleChange}
+            />
+        }
       </label>
       { hasError && <p className="questions__form-message">{errorMessage?.toString()}</p> }
     </div>

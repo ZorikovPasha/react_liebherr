@@ -10,26 +10,26 @@ const Footer: React.FC = () => {
 
   const footerLists = [
     [
-      { text: "О компании", link: "/about" },
-      { text: "Услуги", link: "/contacts" },
-      { text: "Каталог техники", link: "/catalog" },
-      { text: "Аренда кранов", link: "/blog" },
-      { text: "Наши работы", link: "/objects" },
-      { text: "Прайс-лист", link: "/about" },
-      { text: "Контакты", link: "/contacts" },
+      { text: "О компании", link: ROUTES.ABOUT },
+      { text: "Услуги", link: ROUTES.CONTACTS },
+      { text: "Каталог техники", link: ROUTES.CATALOG },
+      { text: "Аренда кранов", link: ROUTES.ARTICLES },
+      { text: "Наши работы", link: ROUTES.OBJECTS },
+      { text: "Прайс-лист", link: ROUTES.ABOUT },
+      { text: "Контакты", link: ROUTES.CONTACTS },
     ],
     [
-      { text: "Гусеничные краны" }, 
-      { text: "Мобильные краны" }, 
-      { text: "Низеорамные краны" }, 
-      { text: "Модульные платформы" }
+      { text: "Гусеничные краны", link: ROUTES.CATALOG }, 
+      { text: "Мобильные краны", link: ROUTES.CATALOG }, 
+      { text: "Низеорамные краны", link: ROUTES.CATALOG }, 
+      { text: "Модульные платформы", link: ROUTES.CATALOG }
     ],
     [
-      { text: "Аренда гусеничного крана" }, 
-      { text: "Аренда мобильного крана" }, 
-      { text: "Аренда башенного крана" }, 
-      { text: "Перевозка негабаритного груза" }, 
-      { text: "Разработка ппрк" }
+      { text: "Аренда гусеничного крана", link: ROUTES.CONTACTS }, 
+      { text: "Аренда мобильного крана", link: ROUTES.CONTACTS }, 
+      { text: "Аренда башенного крана", link: ROUTES.CONTACTS }, 
+      { text: "Перевозка негабаритного груза", link: ROUTES.CONTACTS }, 
+      { text: "Разработка ппрк", link: ROUTES.CONTACTS }
     ],
   ];
   const listsTitles = ["Клиентам", "Техника", "Услуги"];
@@ -44,32 +44,29 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="footer__inner flex jcsb">
           <div className="footer__column">
-            <div className="footer__logo">
-              <Image 
-                src="/static/images/footer-logo.svg"
-                alt="logo"
-                width='100%'
-                height='100%'
-              />
+            <div className="footer__logo rel">
+              <img src="/static/images/footer-logo.svg" alt="logo" />
             </div>
             <p className="footer__about">Аренда мобильных и гусеничных кранов LIEBHERR</p>
             <p className="footer__rights">© 2000-2021 Все права защищены</p>
           </div>
-          {footerLists &&
-            footerLists.map((arr, idx) => (
-              <div className="footer__column" key={idx}>
-                <p className="footer__column-title">{listsTitles[idx]}</p>
-                <ul className="footer__column-list column-list">
-                  {arr.map(({ text }) => (
-                    <li className="column-list__item" key={text}>
-                      <Link href={ROUTES.CATALOG}>
-                        <a className="column-list__link">{text}</a>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          {footerLists?.map((arr, idx) => 
+            <div className="footer__column" key={idx}>
+              <p className="footer__column-title">{listsTitles[idx]}</p>
+              <ul className="footer__column-list column-list">
+                {arr.map(({ text, link }) => 
+                  <li 
+                    className="column-list__item" 
+                    key={text}
+                  >
+                    <Link href={link}>
+                      <a className="column-list__link">{text}</a>
+                    </Link>
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
           <div className="footer__column">
             <button 
               className="footer__btn"

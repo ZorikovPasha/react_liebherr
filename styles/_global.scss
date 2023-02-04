@@ -16,13 +16,11 @@ html {
   }
 }
 
-
 *, 
 *::after,
 *::before {
   box-sizing: inherit;
 }
-
 
 body {
 	min-width: 320px;
@@ -34,6 +32,11 @@ body {
   line-height: 25px;
   color: $black;
   background: #f3f3f3;
+}
+
+input,
+textarea {
+  display: block;
 }
 
 .container {

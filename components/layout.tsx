@@ -1,9 +1,9 @@
 import React from 'react';
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import Header from "../components/layout/Header"
 import Footer from "../components/layout/Footer"
 import Loader from './common/Loader';
+import { useRouter } from 'next/router';
 
 const PopupRequest = dynamic(() => import('./common/Popup'), {
   loading: () => <Loader />,

@@ -15,9 +15,7 @@ const ProductTabs: React.FC = () => {
 
   const tabs = [ 'Описание', 'Характеристики', 'Документация' ];
 
-  const handleTabClick = (param: number) => {
-    setActiveTab(param)
-  };
+  const handleTabClick = (param: number) => () => setActiveTab(param)
 
   return (
     <section className="tabs">
@@ -28,7 +26,7 @@ const ProductTabs: React.FC = () => {
               <span 
                 key={idx}
                 className={`tabs__toggle-item ${ idx === activeTab ? 'tabs__toggle-item--pressed rel after' : ''}`}
-                onClick={handleTabClick.bind(null, idx)}
+                onClick={handleTabClick(idx)}
               >
                 {t}
               </span>
@@ -46,29 +44,32 @@ const ProductTabs: React.FC = () => {
             <div className="item-content__images">
               <div className="item-content__img">
                 <Image 
-                  className="guarantee__item-img" 
                   src="/static/images/depict-1.jpg" 
                   alt="" 
                   width='100%'
                   height='100%'
+                  objectFit='cover'
+                  layout='fill'
                 />
               </div>
               <div className="item-content__img">
                 <Image 
-                  className="guarantee__item-img" 
                   src="/static/images/depict-2.jpg" 
                   alt="" 
                   width='100%'
                   height='100%'
+                  objectFit='cover'
+                  layout='fill'
                 />
               </div>
               <div className="item-content__img">
                 <Image 
-                  className="guarantee__item-img" 
                   src="/static/images/depict-3.jpg" 
                   alt="" 
                   width='100%'
                   height='100%'
+                  objectFit='cover'
+                  layout='fill'
                 />
               </div>
             </div>
@@ -93,6 +94,7 @@ const ProductTabs: React.FC = () => {
                     alt="Спецификация" 
                     width='100%'
                     height='100%'
+                    layout='fill'
                   />
                 </div>
                 <a className="item-specs__link" href="#">
@@ -102,11 +104,11 @@ const ProductTabs: React.FC = () => {
               <div className="item-specs__item">
                 <div className="item-specs__images">
                   <Image 
-                    className="guarantee__item-img" 
                     src="/static/images/specifications/1.jpg" 
                     alt="Спецификация" 
                     width='100%'
                     height='100%'
+                    layout='fill'
                   />
                 </div>
                 <a className="item-specs__link" href="#">
@@ -116,11 +118,11 @@ const ProductTabs: React.FC = () => {
               <div className="item-specs__item">
                 <div className="item-specs__images">
                   <Image 
-                    className="guarantee__item-img" 
                     src="/static/images/specifications/1.jpg" 
                     alt="Спецификация" 
                     width='100%'
                     height='100%'
+                    layout='fill'
                   />
                 </div>
                 <a className="item-specs__link" href="#">
@@ -130,11 +132,11 @@ const ProductTabs: React.FC = () => {
               <div className="item-specs__item">
                 <div className="item-specs__images">
                   <Image 
-                    className="guarantee__item-img" 
                     src="/static/images/specifications/1.jpg" 
                     alt="Спецификация" 
                     width='100%'
                     height='100%'
+                    layout='fill'
                   />
                 </div>
                 <a className="item-specs__link" href="#">
