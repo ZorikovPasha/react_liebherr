@@ -15,9 +15,7 @@ const initialState = {
 export const fetchProducts = createAsyncThunk(
   'products/fetch',
   async (query: string) => {
-    const response = await publicApi.getMachinery(query)
-    
-    return response
+    return publicApi.getMachinery(query)
   }
 )
 

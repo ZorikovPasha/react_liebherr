@@ -2,7 +2,7 @@
 
 html {
   box-sizing: border-box;
-  scroll-behavior: smooth; // with whis on scroll on route doesnt work
+  scroll-behavior: smooth;
   overflow-x: hidden;
   height: 100%;
   $scroll-gap: calc(100vw - 100%);
