@@ -63,7 +63,11 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick})
         <div className="container">
           <div className="header__bottom-inner rel flex aic jcsb">
 
-            <button className="menu-btn" onClick={handleMobMennuButtonClick}>
+            <button 
+              className="menu-btn" 
+              aria-label="open mobile menu"
+              onClick={handleMobMennuButtonClick}
+            >
               <div className="menu-btn__line"></div>
               <div className="menu-btn__line"></div>
               <div className="menu-btn__line"></div>

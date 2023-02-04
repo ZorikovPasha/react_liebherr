@@ -60,12 +60,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <Header
         handleMobMennuButtonClick={handleMobMennuButtonClick}
-        />
-      {<MobMenu
+      />
+      <MobMenu
         handleMobMennuCloseClick={handleMobMennuCloseClick}
         isMobMenuOpen={isMobMenuOpen}
         isMenuBodyOpened={isMenuBodyOpened}
-        />}
+        />
       <main className="main">
         <SmoothScroll>
           {children}
@@ -80,7 +80,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Loader />
       </main>
       <Footer />
-
     </>
   )
 };

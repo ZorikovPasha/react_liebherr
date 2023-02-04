@@ -12,6 +12,7 @@ import { ConstructionType } from "../types/dataTypes";
 import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "../utils/const";
+import Head from "next/head";
 
 interface IHomeProps {
   constructions: { constructions: ConstructionType[], hasMpre: boolean }
@@ -35,6 +36,11 @@ export const servicesItems = [
 const Home: NextPage<IHomeProps> = ({ constructions }) => {
   return (
       <>
+        <Head>
+          <meta name="description" content="Аренда строительной техники" />
+          <meta name="title" content="Liebherr" />
+        </Head>
+
         <Top/>
 
         <RentSlider />

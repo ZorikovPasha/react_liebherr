@@ -7,6 +7,7 @@ import BreadCrumbs from "../../components/common/BreadCrumbs";
 import SceneFootage from "../../components/pages/object/SceneFootage";
 import { ConstructionType } from "../../types/dataTypes";
 import { ROUTES } from '../../utils/const';
+import Head from 'next/head';
 
 interface IObjectsProps {
   construction: ConstructionType,
@@ -24,6 +25,11 @@ const Object: NextPage<IObjectsProps> = ({ construction, similarOnes }) => {
 
   return (
     <>
+      <Head>
+        <meta name="description" content="Объект строительства компании Liebherr" />
+        <meta name="title" content={construction.title} />
+      </Head>
+
       <BreadCrumbs items={breadCrumbs} />
 
       <SceneFootage title={title} text={text} images={images}/>

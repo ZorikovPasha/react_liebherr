@@ -10,7 +10,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta name="description" content="Liebherr - аренда строительной техники" />
           <meta name="robots" content="index, follow" />
           <meta name="keywords" content="Строительная техника, краны, машины" />
           <meta charSet="UTF-8" />
@@ -18,7 +17,7 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=PT+Sans:wght@700&family=Roboto:wght@300;500;700;900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=PT+Sans:wght@700&&display=swap"
             rel="stylesheet"
           />
 
