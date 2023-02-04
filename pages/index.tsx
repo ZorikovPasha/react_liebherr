@@ -38,7 +38,7 @@ const Home: NextPage<IHomeProps> = ({ constructions }) => {
       <>
         <Head>
           <meta name="description" content="Аренда строительной техники" />
-          <meta name="title" content="Liebherr" />
+          <title>Liebherr</title>
         </Head>
 
         <Top/>

@@ -25,7 +25,7 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
     <>
       <Head>
         <meta name="description" content="Строительная компания Liebherr" />
-        <meta name="title" content={title} />
+        <title>{title}</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />

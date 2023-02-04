@@ -15,7 +15,7 @@ const Contacts: NextPage = () => {
     <>
       <Head>
         <meta name="description" content="Свяжитесь с нами" />
-        <meta name="title" content="Liebherr" />
+        <title>Контакты</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />
