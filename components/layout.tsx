@@ -25,6 +25,17 @@ type LayoutProps = {
   children: React.ReactNode,
 };
 
+type SmoothScrollType = (pros: {children: React.ReactNode}) => React.ReactElement
+
+const SmoothScroll: SmoothScrollType = ({ children }) => {
+  const router = useRouter()
+
+  React.useEffect(() => {
+    setTimeout(() => document.querySelector('header')?.scrollIntoView({ block: "start", behavior: "smooth" }), 200)
+  } , [router.pathname]);
+  return <>{children}</>
+}
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMobMenuOpen, setMobMenuOpen] = React.useState(false);
   const [isMenuBodyOpened, setMenuBodyOpened] = React.useState(false);
@@ -56,7 +67,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         isMenuBodyOpened={isMenuBodyOpened}
         />}
       <main className="main">
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
         <PopupRequest />
         <PopupSuccess
           title="Заявка отправлена"

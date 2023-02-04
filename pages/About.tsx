@@ -10,7 +10,6 @@ import { costsItems, servicesItems } from '.';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
 const About: NextPage = () => {
   const breadCrumbs = [
     { id: 1, link: ROUTES.HOME, text: "Главная" }, 
