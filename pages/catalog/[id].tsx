@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import { GetServerSideProps } from 'next';
+import Head from "next/head";
 
 import { publicApi } from "../../api";
 import BreadCrumbs from "../../components/common/BreadCrumbs";
@@ -24,6 +25,11 @@ const Product: NextPage<IProductProps> = ({ machinery, similarOnes }) => {
   
   return (
     <>
+      <Head>
+        <meta name="description" content="Строительная компания Liebherr" />
+        <meta name="title" content={machinery.name} />
+      </Head>
+
       <BreadCrumbs items={breadCrumbs} />
       <ProductView info={machinery}/>
 

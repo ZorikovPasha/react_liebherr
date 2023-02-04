@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import BreadCrumbs from "../components/common/BreadCrumbs";
 import { ContactsForm } from "../components/common/ContactsForm";
 import { ROUTES } from '../utils/const';
+import Head from 'next/head';
 
 const Contacts: NextPage = () => {
   const breadCrumbs = [
@@ -12,6 +13,11 @@ const Contacts: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <meta name="description" content="Свяжитесь с нами" />
+        <meta name="title" content="Liebherr" />
+      </Head>
+
       <BreadCrumbs items={breadCrumbs} />
       <section className="contacts">
         <div className="container">

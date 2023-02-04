@@ -7,6 +7,7 @@ import AnotherArticlesSlider from "../../components/pages/article/AnotherArticle
 import BreadCrumbs from "../../components/common/BreadCrumbs";
 import { ArticleType } from "../../types/dataTypes";
 import { ROUTES } from "../../utils/const";
+import Head from "next/head";
 
 interface IArticleProps {
   article: ArticleType
@@ -22,6 +23,11 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
 
   return (
     <>
+      <Head>
+        <meta name="description" content="Строительная компания Liebherr" />
+        <meta name="title" content={title} />
+      </Head>
+
       <BreadCrumbs items={breadCrumbs} />
       <section className="article-top">
         <div className="container">

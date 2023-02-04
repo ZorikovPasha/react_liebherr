@@ -39,8 +39,8 @@ const CatalogSlider: React.FC = () => {
             className="catalog-slider"
             {...settings}
             ref={(slider1: Slider) => setSlider(slider1)}
-             >
-            {items && items?.map(({ id, name, imgSrc, features }) => (
+          >
+            {items?.map(({ id, name, imgSrc, features }) => 
               <CatalogCard 
                 key={id} 
                 id={id}
@@ -49,8 +49,8 @@ const CatalogSlider: React.FC = () => {
                 imgSrc={imgSrc}
                 liftingCapacity={features.liftingCapacity.value}
                 arrowLength={features.arrowLength.value}
-                />
-            ))}
+              />
+            )}
           </Slider>
         </div>
         <div className="catalog__btn-wrapper">

@@ -10,6 +10,7 @@ import { Error } from "../../components/common/Error";
 import { ArticleType } from "../../types/dataTypes";
 import { toggleLoader } from "../../redux/slices/loaderSilce";
 import { ROUTES } from "../../utils/const";
+import Head from "next/head";
 
 interface IBlogProps {
   items: ArticleType[]
@@ -46,6 +47,11 @@ const Blog: NextPage<IBlogProps> = ({ items, hasMore }) => {
 
   return (
     <>
+      <Head>
+        <meta name="description" content="Строительная компания Liebherr" />
+        <meta name="title" content="Блог" />
+      </Head>
+
       <BreadCrumbs items={breadCrumbs} />
       <section className="blog">
         <div className="container">

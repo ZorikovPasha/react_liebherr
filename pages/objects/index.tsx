@@ -1,4 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
+import Head from "next/head";
 import { publicApi } from "../../api";
 import BreadCrumbs from "../../components/common/BreadCrumbs";
 import ObjectCard from "../../components/pages/objects/ObjectCard";
@@ -19,6 +20,11 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
 
   return (
     <>
+      <Head>
+        <meta name="description" content="Объекты строительства компании Liebherr" />
+        <meta name="title" content="Объекты Liebherr" />
+      </Head>
+
       <BreadCrumbs items={breadCrumbs} />
       <section className="objects">
         <div className="container">

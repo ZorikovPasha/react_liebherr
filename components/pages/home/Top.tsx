@@ -92,6 +92,7 @@ const Top: React.FC = () => {
                       <Image 
                         src={src} 
                         layout="fill"
+                        alt=""
                       />
                     </div>
                   </div>
