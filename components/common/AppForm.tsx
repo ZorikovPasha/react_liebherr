@@ -1,5 +1,4 @@
 import React from 'react'
-import { Formik, FormikHelpers } from "formik";
 import { publicApi } from '../../api';
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';
@@ -17,6 +16,10 @@ type fieldsType = {
       labelClass: string,
       blockClass: string,
       tag: string
+      value: string
+      isValid: boolean
+      errorMessage: string
+      validateFn: (s: string) => boolean
     },
     phone?: {
       inputClass: string,
@@ -25,6 +28,10 @@ type fieldsType = {
       labelClass: string,
       blockClass: string,
       tag: string
+      value: string
+      isValid: boolean
+      errorMessage: string
+      validateFn: (s: string) => boolean
     },
     email?: {
       inputClass: string,
@@ -33,14 +40,29 @@ type fieldsType = {
       labelClass: string,
       blockClass: string,
       tag: string
+      value: string
+      isValid: boolean
+      errorMessage: string
+      validateFn: (s: string) => boolean
+    },
+    message?: {
+      inputClass: string,
+      type: string,
+      placeholder: string,
+      labelClass: string,
+      blockClass: string,
+      tag: string
+      value: string
+      isValid: boolean
+      errorMessage: string
+      validateFn: (s: string) => boolean
     },
   }
+  isAgree: boolean
 }
 
 type AppFormPropsType = {
   fields: fieldsType,
-  formSchema: any,
-  initValues: any,
   buttonClass: string,
   buttonText: string,
   formClass: string,
@@ -48,35 +70,67 @@ type AppFormPropsType = {
   isOrder?: boolean
 }
 
-export type handleSubmitType<T> = ((values: T, formikHelpers: FormikHelpers<T>) => void | Promise<unknown>)
-
 export const AppForm: React.FC<AppFormPropsType> = ({ 
   fields,
-  formSchema, 
-  initValues,
   buttonClass="",
   buttonText,
   formClass="",
   agreeLabelClass="popup__label flex form-label",
   isOrder=false
 }) => {
+  const [showErrors, setShowErrors] = React.useState(false)
+  const [state, setState] = React.useState(fields)
   const dispatch = useDispatch();
   const { query } = useRouter()
 
   const desiredProduct = useSelector(selectProduct(Number(query.id)))
 
-  const handleSubmit: handleSubmitType<typeof initValues> = async (userData) => {
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = ({ target: { value, name } }) => 
+    setState(prev => ({
+      ...prev,
+      fields: {
+        ...prev.fields,
+        [name]: {
+          ...prev.fields[name as keyof typeof state.fields],
+          value,
+          isValid: prev.fields[name as keyof typeof state.fields]?.validateFn(value),
+        },
+      },
+    }))
+  
+  const onAgree = () => setState(prev => ({
+    ...prev,
+    isAgree: !prev.isAgree
+  }))
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault()
+    setShowErrors(true)
+
+    let isValid = true;
+    (Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
+      if (!state.fields[key]?.isValid) {
+        isValid = false
+      }
+    })
+
+    if (!isValid || !state.isAgree) {
+      return
+    }
+
+    const dto = {} as { [key in keyof typeof state.fields | "id" ]: string }
+
+    (Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
+      dto[key] = state.fields[key]?.value ?? ""
+    })
+
+    if (isOrder && desiredProduct?._id) {
+      dto.id = desiredProduct._id
+    }
+
     dispatch(toggleLoader(true))
 
-    let res;
-    
-    if (isOrder) {
-      const data = { ...userData, id: desiredProduct?._id }
-      
-      res = await publicApi.makeOrder(data)
-    } else {
-      res = await publicApi.sendRequest(userData)
-    }
+    const res = await (isOrder ? publicApi.makeOrder(dto) : publicApi.sendRequest(dto))
 
     dispatch(toggleLoader(false))
 
@@ -92,68 +146,44 @@ export const AppForm: React.FC<AppFormPropsType> = ({
   };
 
   return (
-    <Formik 
-      initialValues={initValues} 
-      validationSchema={formSchema} 
-      onSubmit={handleSubmit}
-    >
-      {({ values, touched, errors, handleChange, handleBlur, handleSubmit }) => (
-        <form 
-          className={formClass}
-          onSubmit={handleSubmit}
-          >
-            {Object.entries(fields.fields).map(([name, field]) => {
-              const { 
-                blockClass,
-                inputClass,
-                type,
-                placeholder,
-                labelClass,
-                tag
-              } = field;
-
-              return (
-                <AppTextField 
-                  key={name}
-                  tag={tag}
-                  blockClass={blockClass}
-                  name={name}
-                  hasError={errors[name] && touched[name]}
-                  type={type}
-                  value={values[name]}
-                  placeholder={placeholder}
-                  labelClass={labelClass}
-                  inputClass={inputClass}
-                  errorMessage={errors[name]}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                />
-              )
-            })}
-
-          <label className={agreeLabelClass} >
-            <input 
-              name="isAgree"
-              className="form-label__checkbox-real" 
-              type="checkbox"
-              checked={values.isAgree}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <span className={`form-label__checkbox-fake rel ${touched.isAgree && errors.isAgree ? 'form-label__checkbox-fake--error': '' }`}/>
-            <span className="form-label__text">
-              Я согласен с <a href="#">условиями обработки</a> и использования моих персональных данных
-            </span>
-          </label>
-
-          <button 
-            className={buttonClass}
-            type="submit"
-          >
-            {buttonText}
-          </button>
-        </form>
+    <form className={formClass} onSubmit={handleSubmit}>
+      {Object.entries(state.fields).map(([name, { value, isValid, tag, labelClass, placeholder, type, inputClass, blockClass, errorMessage }]) => 
+        <AppTextField
+          value={value} 
+          key={name}
+          tag={tag}
+          blockClass={blockClass}
+          name={name}
+          hasError={showErrors && !isValid}
+          type={type}
+          placeholder={placeholder}
+          labelClass={labelClass}
+          inputClass={inputClass}
+          errorMessage={errorMessage}
+          handleChange={onChange}
+        />
       )}
-    </Formik>
+
+      <label className={agreeLabelClass} >
+        <input 
+          name="isAgree"
+          className="form-label__checkbox-real" 
+          type="checkbox"
+          checked={state.isAgree}
+          onChange={onAgree}
+        />
+        <span className={`form-label__checkbox-fake rel ${showErrors && !state.isAgree ? 'form-label__checkbox-fake--error': '' }`}/>
+        <span className="form-label__text">
+          Я согласен с <a href="#">условиями обработки</a> и использования моих персональных данных
+        </span>
+      </label>
+
+      <button 
+        className={buttonClass}
+        type="submit"
+      >
+        {buttonText}
+      </button>
+    </form>
   )
 }

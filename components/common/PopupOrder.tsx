@@ -1,5 +1,4 @@
 import React from "react";
-import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toggleModal } from "../../redux/slices/modalsSlice";
@@ -10,47 +9,45 @@ import { selectPopupState } from "../../redux/selectors";
 const PopupRequest: React.FC = () => {
   const dispatch = useDispatch();
 
-  const formSchema = yup.object().shape({
-    name: yup.string().required('Поле обязательно'),
-    email: yup.string().email("Некорректный адрес электронной почты").required('Поле обязательно'),
-    phone: yup.string().required('Поле обязательно').matches(REGEX.phone, "Некорректный номер телефона"),
-    isAgree: yup.boolean().oneOf([true])
-  });
-
-  const initValues = {
-    name: "",
-    phone: "",
-    email: "",
-    isAgree: false,
-  };
-
   const popupState = useSelector(selectPopupState)
 
   const fields = React.useRef({
     fields: {
       name: {
+        value: "",
+        isValid: false,
         inputClass: "popup__input",
         type: "text",
         placeholder: "Ваше имя",
         labelClass: "popup__label flex form-label",
         blockClass: "",
-        tag: "input"
+        tag: "input",
+        errorMessage: "Поле не заполнено",
+        validateFn: (str: string) => str.length > 0
       },
       phone: {
+        value: "",
+        isValid: false,
         inputClass: "popup__input",
         type: "tel",
         placeholder: "Ваш телефон",
         labelClass: "popup__label flex form-label",
         blockClass: "",
-        tag: "input"
+        tag: "input",
+        errorMessage: "Поле заполнено некорректно",
+        validateFn: (str: string) => REGEX.phone.test(str)
       },
       email: {
+        value: "",
+        isValid: false,
         inputClass: "popup__input",
         type: "text",
         placeholder: "Ваша почта",
         labelClass: "popup__label flex form-label",
         blockClass: "",
-        tag: "input"
+        tag: "input",
+        errorMessage: "Поле заполнено некорректно",
+        validateFn: (str: string) => REGEX.email.test(str)
       },
     },
     isAgree: false
@@ -78,8 +75,6 @@ const PopupRequest: React.FC = () => {
           <AppForm 
             formClass="popup__form"
             fields={fields.current}
-            formSchema={formSchema} 
-            initValues={initValues}
             buttonClass="popup__btn btn" 
             buttonText="Оставить заявку"
             isOrder={popupState.order}

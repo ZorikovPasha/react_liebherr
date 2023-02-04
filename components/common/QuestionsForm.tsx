@@ -1,29 +1,114 @@
-import { Formik } from "formik";
+import React from "react"
 import Image from "next/image"
-import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
-import { handleSubmitType } from "./AppForm";
 import { publicApi } from "../../api";
-
+import { REGEX } from "../../utils/const";
 
 const QuestionsForm: React.FC = () => {
   const dispatch = useDispatch();
 
-  const formSchema = yup.object().shape({
-    name: yup.string().required('Поле обязательно'),
-    email: yup.string().email("Некорректный адрес электронной почты").required('Поле обязательно'),
-    phone: yup.string().required('Поле обязательно').matches(/^((\+7|7|8)+([0-9]){10})$|\b\d{3}[-.]?\d{3}[-.]?\d{4}/, "Некорректный номер телефона"),
-    message: yup.string().required('Поле обязательно'),
-    isAgree: yup.boolean().oneOf([true],'Поле обязательно')
-  });
+  const [showErrors, setShowErrors] = React.useState(false)
+  const [state, setState] = React.useState({
+    fields: {
+      name: {
+        value: "",
+        isValid: false,
+        tag: "input",
+        inputClass: "form-contacts__input",
+        type: "text",
+        placeholder: "Ваше имя",
+        labelClass: "form-label",
+        blockClass: "form-contacts__block",
+        errorMessage: "Поле не заполнено",
+        validateFn: (str: string) => str.length > 0
+      },
+      phone: {
+        value: "",
+        isValid: false,
+        tag: "input",
+        inputClass: "form-contacts__input",
+        type: "tel",
+        placeholder: "Ваш телефон",
+        labelClass: "form-label",
+        blockClass: "form-contacts__block",
+        errorMessage: "Поле заполнено некорректно",
+        validateFn: (str: string) => REGEX.phone.test(str)
+      },
+      email: {
+        value: "",
+        isValid: false,
+        tag: "input",
+        inputClass: "form-contacts__input",
+        type: "text",
+        placeholder: "Ваша почта",
+        labelClass: "form-label",
+        blockClass: "form-contacts__block",
+        errorMessage: "Поле заполнено некорректно",
+        validateFn: (str: string) => REGEX.email.test(str)
+      },
+      message: {
+        value: "",
+        isValid: false,
+        tag: "textarea",
+        inputClass: "form-contacts__area",
+        type: "text",
+        placeholder: "Оставьте ваш вопрос",
+        labelClass: "form-label",
+        blockClass: "form-contacts__block",
+        errorMessage: "Поле не заполнено",
+        validateFn: (str: string) => str.length > 0
+      },
+    },
+    isAgree: false
+  })
 
-  const userFormValues = {
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-    isAgree: false,
+  const onAgree = () => setState(prev => ({
+    ...prev,
+    isAgree: !prev.isAgree
+  }))
+
+  const onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = ({ target: { value, name } }) => 
+    setState(prev => ({
+      ...prev,
+      fields: {
+        ...prev.fields,
+        [name]: {
+          ...prev.fields[name as keyof typeof state.fields],
+          value,
+          isValid: prev.fields[name as keyof typeof state.fields]?.validateFn(value),
+        },
+      },
+    }))
+  
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault()
+    setShowErrors(true)
+    let isValid = true;
+    (Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
+      if (!state.fields[key]?.isValid) {
+        isValid = false
+      }
+    })
+
+    if (!isValid || !state.isAgree) {
+      return
+    }
+
+    const dto = {} as { [key in keyof typeof state.fields]: string }
+
+    (Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
+      dto[key] = state.fields[key]?.value ?? ""
+    })
+
+    const res = await publicApi.sendRequest(dto)
+
+    if (res?.success) {
+      onSuccess();
+    } else {
+      dispatch(toggleModal({ name: "error", state: true }));
+      document.documentElement.classList.add('lock');
+    }
   };
 
   const onSuccess = () => {
@@ -31,17 +116,7 @@ const QuestionsForm: React.FC = () => {
     document.documentElement.classList.add('lock');
   };
 
-  const handleSubmit: handleSubmitType<typeof userFormValues> = async (userData, { resetForm }) => {
-    const res = await publicApi.sendRequest(userData)
-
-    if (res?.success) {
-      onSuccess();
-      resetForm();
-    } else {
-      dispatch(toggleModal({ name: "error", state: true }));
-      document.documentElement.classList.add('lock');
-    }
-  };
+  const { name, email, phone, message } = state.fields
 
   return (
     <section className="questions">
@@ -50,12 +125,6 @@ const QuestionsForm: React.FC = () => {
           <div className="questions__inner rel">
             <h2 className="questions__title">Остались вопросы?</h2>
             <p className="questions__text">Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое ближайшее время</p>
-            <Formik 
-              initialValues={userFormValues} 
-              validationSchema={formSchema} 
-              onSubmit={handleSubmit}
-            >
-            {({ values, touched, errors, handleChange, handleBlur, handleSubmit }) => (
               <form className="questions__form" onSubmit={handleSubmit}>
                 <div className="questions__form-block">
                   <label 
@@ -65,14 +134,13 @@ const QuestionsForm: React.FC = () => {
                   <input 
                     id="name"
                     name="name"
-                    className={`questions__form-input ${errors.name && touched.name ? 'form-input--error' : ''} `}
+                    className={`questions__form-input ${showErrors && !name.isValid ? 'form-input--error' : ''} `}
                     type="text" 
                     placeholder="Ваше имя"
-                    value={values.name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                    value={name.value}
+                    onChange={onChange}
                   />
-                  { errors.name && touched.name && <p className="questions__form-message">{errors.name}</p> }
+                  {showErrors && !name.isValid && <p className="questions__form-message">{name.errorMessage}</p> }
                 </div>
 
                 <div className="questions__form-block">
@@ -83,14 +151,13 @@ const QuestionsForm: React.FC = () => {
                   <input 
                     id="phone"
                     name="phone"
-                    className={`questions__form-input ${errors.phone && touched.phone ? 'form-input--error' : ''} `}
+                    className={`questions__form-input ${showErrors && !phone.isValid ? 'form-input--error' : ''} `}
                     type="tel" 
                     placeholder="Ваш телефон"
-                    value={values.phone}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                  { errors.phone && touched.phone && <p className="questions__form-message">{errors.phone}</p> }
+                    value={phone.value}
+                    onChange={onChange}
+                  />
+                  {showErrors && !phone.isValid && <p className="questions__form-message">{phone.errorMessage}</p> }
                 </div>
                 <div className="questions__form-block">
                   <label 
@@ -100,48 +167,45 @@ const QuestionsForm: React.FC = () => {
                   <input 
                     id="email"
                     name="email"
-                    className={`questions__form-input ${errors.email && touched.email ? 'form-input--error' : ''} `}
+                    className={`questions__form-input ${showErrors && !email.isValid ? 'form-input--error' : ''} `}
                     type="text" 
                     placeholder="Ваша почта"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                    value={email.value}
+                    onChange={onChange}
                     />
-                  { errors.email && touched.email && <p className="questions__form-message">{errors.email}</p> }
+                  {showErrors && !email.isValid && <p className="questions__form-message">{email.errorMessage}</p> }
                 </div>
 
                 <div className="questions__form-block">
                   <label 
                     htmlFor="questions-area" 
                     className="popup__label flex form-label"
-                    />
+                  />
                   <textarea 
                     id="questions-area"
                     name="message"
-                    className={`questions__form-textarea ${errors.message && touched.message ? 'form-input--error' : ''} `}
+                    className={`questions__form-textarea ${showErrors && !message.isValid ? 'form-input--error' : ''} `}
                     placeholder="Оставьте ваш вопрос"
-                    value={values.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                  { errors.message && touched.message && <p className="questions__form-message">{errors.message}</p> }
+                    value={message.value}
+                    onChange={onChange}
+                  />
+                  {showErrors && !message.isValid && <p className="questions__form-message">{message.errorMessage}</p> }
                 </div>
 
                 <label 
                   className="questions__form-label flex"
                   htmlFor="questions-form-agree"
-                  >
+                >
                   <input
                     id="questions-form-agree"
                     name="isAgree"
                     className="questions__form-real" 
                     type="checkbox"
-                    checked={values.isAgree}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
+                    checked={state.isAgree}
+                    onChange={onAgree}
+                  />
                   <span 
-                    className={`questions__form-fake ${touched.isAgree && errors.isAgree ? 'form-input--error': '' }`}
+                    className={`questions__form-fake ${showErrors && !state.isAgree ? 'form-input--error': '' }`}
                     />
                   <span className="questions__form-agree">
                     Я согласен с <a href="#">условиями обработки</a> и использования моих персональных данных
@@ -150,12 +214,10 @@ const QuestionsForm: React.FC = () => {
                 <button 
                   className="questions__form-btn btn" 
                   type="submit"
-                  >
+                >
                   Заказать звонок
                 </button>
             </form>
-            )}
-          </Formik>
           </div>
         </div>
         <div className="questions__images">

@@ -40,12 +40,10 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
           <Link href={ROUTES.CATALOG+id}>
             <a className="product-item__link rel after">Все характеристики</a>
           </Link>
-          <Link 
-            href={ROUTES.CONTACTS}
-            >
-            <a 
-              className="product-item__link rel after"
-              >Арендовать</a>
+          <Link href={ROUTES.CONTACTS}>
+            <a className="product-item__link rel after">
+              Арендовать
+            </a>
           </Link>
         </div>
       </div>

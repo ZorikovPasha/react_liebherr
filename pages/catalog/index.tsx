@@ -48,7 +48,8 @@ const Catalog: NextPage<ICatalogProps> = () => {
             <CatalogAside 
               ref={AsideRef} 
               query={query}
-              onOpen={onAsideOpen} />
+              onOpen={onAsideOpen} 
+            />
             <div className="catalog-content__body">
               <FilterControls 
                 activeView={activeView} 
@@ -58,10 +59,9 @@ const Catalog: NextPage<ICatalogProps> = () => {
               {isError
                 ? <Error />
                 : items?.length 
-                  ? (
+                  ? 
                     <div className={`catalog-content__items ${activeView === "list" ? "catalog-content__items--list" : ""}`}>
-                    {items &&
-                      items?.map(({ id, name, features, imgSrc }) => (
+                      {items?.map(({ id, name, features, imgSrc }) => 
                         <CatalogCard
                           id={id}
                           key={id}
@@ -70,13 +70,10 @@ const Catalog: NextPage<ICatalogProps> = () => {
                           arrowLength={features.arrowLength.value}
                           imgSrc={imgSrc}
                         />
-                    ))}
-                  </div>
-                  )
-                  : (
-                    <AppEmpty />
-                )}
-
+                      )}
+                    </div>
+                  : <AppEmpty />
+                }
               <Pagination query={query} />
             </div>
           </div>

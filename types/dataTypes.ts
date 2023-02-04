@@ -64,6 +64,5 @@ export interface RequestType {
 }
 
 export interface OrderType extends RequestType {
-  isAgree: boolean,
   id: string
 }
