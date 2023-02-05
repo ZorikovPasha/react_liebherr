@@ -1,23 +1,28 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ROUTES } from "../../../utils/const";
+import Image from 'next/image'
+import Link from 'next/link'
+import { ROUTES } from '../../../utils/const'
 
 interface ICardProps {
-  preview: string;
-  title: string;
-  subtitle: string;
-  id: number;
+  preview: string
+  title: string
+  subtitle: string
+  id: number
 }
 
-const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => {
+const ArticleCard: React.FC<ICardProps> = ({
+  preview,
+  title,
+  subtitle,
+  id,
+}) => {
   return (
     <div className="blog__item item-blog">
       <div className="blog__item-inner flex">
         <div className="item-blog__images">
-          <Image 
-            src={preview} 
-            width='100%'
-            height='100%'
+          <Image
+            src={preview}
+            width="100%"
+            height="100%"
             alt="Статья о строительной технике"
             layout="responsive"
           />
@@ -33,7 +38,7 @@ const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => 
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ArticleCard;
+export default ArticleCard

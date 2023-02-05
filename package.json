@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "export": "next build && next export"
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\" && git add .",
+    "export": "next build && next export",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
@@ -36,7 +37,21 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^13.1.6",
     "@types/react-input-mask": "^3.0.2",
-    "eslint": "8.10.0",
-    "eslint-config-next": "12.1.0"
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "eslint": "^8.10.0",
+    "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "npm run lint"
+    ]
   }
 }

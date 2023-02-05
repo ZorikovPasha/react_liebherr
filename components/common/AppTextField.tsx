@@ -1,75 +1,77 @@
 import React from 'react'
-import InputMask from 'react-input-mask';
+import InputMask from 'react-input-mask'
 
 type AppTextFieldType = {
-  blockClass?: string,
-  name: string,
-  type: string,
-  value: string,
-  placeholder: string,
-  labelClass: string,
-  inputClass: string,
-  hasError: boolean,
-  errorMessage: string,
+  blockClass?: string
+  name: string
+  type: string
+  value: string
+  placeholder: string
+  labelClass: string
+  inputClass: string
+  hasError: boolean
+  errorMessage: string
   tag: string
   mask?: string
   handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
 }
 
-export const AppTextField: React.FC<AppTextFieldType> = ({ 
-  blockClass, 
+export const AppTextField: React.FC<AppTextFieldType> = ({
+  blockClass,
   tag,
-  name, 
+  name,
   hasError,
-  errorMessage, 
-  type, 
-  value, 
-  mask="",
-  placeholder, 
+  errorMessage,
+  type,
+  value,
+  mask = '',
+  placeholder,
   labelClass,
-  inputClass, 
-  handleChange, 
+  inputClass,
+  handleChange,
 }) => {
   return (
     <div className={blockClass}>
-      <label 
-        htmlFor={name}
-        className={labelClass}
-      >
-        {tag === "input"
-          ? 
-          mask 
-            ?
-              <InputMask 
-                value={value}
-                name={name}
-                mask={mask}
-                maskChar="_"
-                className={`${inputClass}  ${hasError ? "form-input--error": ""}`}
-                type={type}
-                placeholder={placeholder}
-                onChange={handleChange}
-              />
-            : 
-              <input 
-                value={value}
-                name={name}
-                className={`${inputClass}  ${hasError ? "form-input--error": ""}`}
-                type={type}
-                placeholder={placeholder}
-                onChange={handleChange}
-              />
-          : 
-            <textarea 
+      <label htmlFor={name} className={labelClass}>
+        {tag === 'input' ? (
+          mask ? (
+            <InputMask
               value={value}
               name={name}
-              className={`${inputClass} ${hasError ? "form-input--error": ""}`}
+              mask={mask}
+              maskChar="_"
+              className={`${inputClass}  ${
+                hasError ? 'form-input--error' : ''
+              }`}
+              type={type}
               placeholder={placeholder}
               onChange={handleChange}
             />
-        }
+          ) : (
+            <input
+              value={value}
+              name={name}
+              className={`${inputClass}  ${
+                hasError ? 'form-input--error' : ''
+              }`}
+              type={type}
+              placeholder={placeholder}
+              onChange={handleChange}
+            />
+          )
+        ) : (
+          <textarea
+            value={value}
+            name={name}
+            className={`${inputClass} ${hasError ? 'form-input--error' : ''}`}
+            placeholder={placeholder}
+            onChange={handleChange}
+          />
+        )}
       </label>
-      {hasError && <p className="questions__form-message">{errorMessage?.toString()}</p>}
+      {hasError && (
+        <p className="questions__form-message">{errorMessage?.toString()}</p>
+      )}
     </div>
   )
 }

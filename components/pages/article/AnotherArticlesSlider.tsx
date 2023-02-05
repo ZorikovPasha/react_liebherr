@@ -1,26 +1,31 @@
-import Link from 'next/link';
-import Slider from 'react-slick';
-import React from 'react';
-import AxiosError from 'axios';
+import Link from 'next/link'
+import Slider from 'react-slick'
+import React from 'react'
+import AxiosError from 'axios'
 
-import { SliderNextArrow, SliderPrevArrow } from "../../../components/common/SliderArrows";
-import ArticleCard from "../../../components/pages/blog/ArticleCard"
-import { publicApi } from '../../../api';
-import { ArticleType } from '../../../types/dataTypes';
-import { ROUTES } from '../../../utils/const';
+import {
+  SliderNextArrow,
+  SliderPrevArrow,
+} from '../../../components/common/SliderArrows'
+import ArticleCard from '../../../components/pages/blog/ArticleCard'
+import { publicApi } from '../../../api'
+import { ArticleType } from '../../../types/dataTypes'
+import { ROUTES } from '../../../utils/const'
 
-const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentArticle }) => {
+const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({
+  currentArticle,
+}) => {
   const [articles, setArticles] = React.useState<ArticleType[]>([])
-  const [slider, setSlider] = React.useState<Slider>();
-  const [activeSlide, setActiveSlide] = React.useState(0);
+  const [slider, setSlider] = React.useState<Slider>()
+  const [activeSlide, setActiveSlide] = React.useState(0)
 
   React.useEffect(() => {
-    publicApi.getArticles(1).then(data => {
+    publicApi.getArticles(1).then((data) => {
       if (data instanceof AxiosError) {
         return
       }
 
-      setArticles(data.items.filter(article => article.id !== currentArticle))
+      setArticles(data.items.filter((article) => article.id !== currentArticle))
     })
   }, [currentArticle])
 
@@ -30,8 +35,18 @@ const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentAr
     slidesToScroll: 3,
     dots: false,
     infinite: false,
-    prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
-    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === articles.length - 3} />,
+    prevArrow: (
+      <SliderPrevArrow
+        onClick={slider?.slickPrev}
+        isDisabled={activeSlide === 0}
+      />
+    ),
+    nextArrow: (
+      <SliderNextArrow
+        onClick={slider?.slickNext}
+        isDisabled={activeSlide === articles.length - 3}
+      />
+    ),
     afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
@@ -39,40 +54,38 @@ const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentAr
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-        }
+        },
       },
-    ]
+    ],
   }
 
   return (
     <div className="article__another-ones another-ones">
       <div className="container">
         <h2 className="another-ones__title">Другие статьи</h2>
-        <Slider 
+        <Slider
           className="another-ones__slider"
-          {...settings} 
+          {...settings}
           ref={(slider: Slider) => setSlider(slider)}
-          >
+        >
           {articles?.map(({ id, title, subtitle, preview }) => (
-            <ArticleCard 
-              preview={preview} 
-              title={title} 
-              subtitle={subtitle} 
-              id={id} 
-              key={id} 
+            <ArticleCard
+              preview={preview}
+              title={title}
+              subtitle={subtitle}
+              id={id}
+              key={id}
             />
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">
           <Link href={ROUTES.ARTICLES}>
-            <a className="another-ones__btn">
-              Все статьи
-            </a>
+            <a className="another-ones__btn">Все статьи</a>
           </Link>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AnotherArticlesSlider;
+export default AnotherArticlesSlider
