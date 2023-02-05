@@ -27,7 +27,7 @@ const Product: NextPage<IProductProps> = ({ machinery, similarOnes }) => {
     <>
       <Head>
         <meta name="description" content="Строительная компания Liebherr" />
-        <meta name="title" content={machinery.name} />
+        <title>{machinery.name}</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />

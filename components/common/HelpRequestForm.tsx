@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React from 'react'
-import { REGEX } from '../../utils/const';
 import { AppForm } from './AppForm';
 
 const HelpRequestForm: React.FC = () => {
@@ -23,12 +22,13 @@ const HelpRequestForm: React.FC = () => {
         isValid: false,
         inputClass: "help__form-input",
         type: "tel",
-        placeholder: "Телефон",
+        mask: "+79999999999",
+        placeholder: "+7__________",
         labelClass: "help__form-label flex",
         blockClass: "",
         tag: "input",
         errorMessage: "Поле заполнено некорректно",
-        validateFn: (str: string) => REGEX.phone.test(str)
+        validateFn: (str: string) => !str.includes("_")
       },
     },
     isAgree: false

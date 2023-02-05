@@ -27,7 +27,7 @@ const Object: NextPage<IObjectsProps> = ({ construction, similarOnes }) => {
     <>
       <Head>
         <meta name="description" content="Объект строительства компании Liebherr" />
-        <meta name="title" content={construction.title} />
+        <title>{construction.title}</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />

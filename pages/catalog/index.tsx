@@ -42,7 +42,7 @@ const Catalog: NextPage<ICatalogProps> = () => {
     <>
       <Head>
         <meta name="description" content="Каталог строительной техники компании Liebherr" />
-        <meta name="title" content="Каталог" />
+        <title>Каталог</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />

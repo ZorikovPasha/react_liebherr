@@ -21,7 +21,7 @@ const About: NextPage = () => {
     <>
       <Head>
         <meta name="description" content="О компании Liebherr" />
-        <meta name="title" content="Liebherr" />
+        <title>Liebherr</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />

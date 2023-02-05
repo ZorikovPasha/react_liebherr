@@ -10,48 +10,52 @@ import { selectProduct } from '../../redux/selectors';
 type fieldsType = {
   fields: {
     name: {
-      inputClass: string,
-      type: string,
-      placeholder: string,
-      labelClass: string,
-      blockClass: string,
+      inputClass: string
+      type: string
+      placeholder: string
+      labelClass: string
+      blockClass?: string
       tag: string
       value: string
+      mask?: string
       isValid: boolean
       errorMessage: string
       validateFn: (s: string) => boolean
     },
     phone?: {
-      inputClass: string,
-      type: string,
-      placeholder: string,
-      labelClass: string,
-      blockClass: string,
+      inputClass: string
+      type: string
+      placeholder: string
+      labelClass: string
+      blockClass?: string
       tag: string
+      mask?: string
       value: string
       isValid: boolean
       errorMessage: string
       validateFn: (s: string) => boolean
     },
     email?: {
-      inputClass: string,
-      type: string,
-      placeholder: string,
-      labelClass: string,
-      blockClass: string,
+      inputClass: string
+      type: string
+      placeholder: string
+      labelClass: string
+      blockClass?: string
       tag: string
+      mask?: string
       value: string
       isValid: boolean
       errorMessage: string
       validateFn: (s: string) => boolean
     },
     message?: {
-      inputClass: string,
-      type: string,
-      placeholder: string,
-      labelClass: string,
-      blockClass: string,
+      inputClass: string
+      type: string
+      placeholder: string
+      labelClass: string
+      blockClass?: string
       tag: string
+      mask?: string
       value: string
       isValid: boolean
       errorMessage: string
@@ -139,6 +143,15 @@ export const AppForm: React.FC<AppFormPropsType> = ({
         ? dispatch(toggleModal({ name: "order", state: false }))
         : dispatch(toggleModal({ name: "request", state: false }));
       dispatch(toggleModal({ name: "message", state: true }));
+      (Object.keys(state.fields) as Array<keyof typeof state.fields>).forEach((key)=> {
+        if (key in state.fields) {
+          //@ts-ignore
+          state.fields[key].value = ""
+          //@ts-ignore
+          state.fields[key].isValid = false
+        }
+      })
+      setState({ ...state })
     } else {
       dispatch(toggleModal({ name: "error", state: true }));
       document.documentElement.classList.add('lock');
@@ -147,7 +160,7 @@ export const AppForm: React.FC<AppFormPropsType> = ({
 
   return (
     <form className={formClass} onSubmit={handleSubmit}>
-      {Object.entries(state.fields).map(([name, { value, isValid, tag, labelClass, placeholder, type, inputClass, blockClass, errorMessage }]) => 
+      {Object.entries(state.fields).map(([name, { value, isValid, tag, labelClass, placeholder, type, mask, inputClass, blockClass, errorMessage }]) => 
         <AppTextField
           value={value} 
           key={name}
@@ -156,6 +169,7 @@ export const AppForm: React.FC<AppFormPropsType> = ({
           name={name}
           hasError={showErrors && !isValid}
           type={type}
+          mask={mask}
           placeholder={placeholder}
           labelClass={labelClass}
           inputClass={inputClass}

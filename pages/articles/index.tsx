@@ -49,7 +49,7 @@ const Blog: NextPage<IBlogProps> = ({ items, hasMore }) => {
     <>
       <Head>
         <meta name="description" content="Строительная компания Liebherr" />
-        <meta name="title" content="Блог" />
+        <title>Блог</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />

@@ -22,7 +22,7 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
     <>
       <Head>
         <meta name="description" content="Объекты строительства компании Liebherr" />
-        <meta name="title" content="Объекты Liebherr" />
+        <title>Объекты Liebherr</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />
