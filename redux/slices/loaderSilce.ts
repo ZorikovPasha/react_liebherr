@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { HYDRATE } from "next-redux-wrapper";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
 
 const initialState = {
-  shown: false
+  shown: false,
 }
 
 export const modalsSlice = createSlice({
@@ -10,19 +10,19 @@ export const modalsSlice = createSlice({
   initialState,
   reducers: {
     toggleLoader: (state, action: PayloadAction<boolean>) => {
-      state.shown = action.payload;
-    }
+      state.shown = action.payload
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
       return {
         ...state,
         ...action.payload.loader,
-      };
+      }
     },
   },
 })
 
-export const { toggleLoader } = modalsSlice.actions;
+export const { toggleLoader } = modalsSlice.actions
 
-export const { reducer } = modalsSlice;
+export const { reducer } = modalsSlice

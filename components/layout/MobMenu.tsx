@@ -1,24 +1,27 @@
-import Link from "next/link";
-import { MouseEventHandler } from "react";
-import { ROUTES } from "../../utils/const";
+import Link from 'next/link'
+import { MouseEventHandler } from 'react'
+import { ROUTES } from '../../utils/const'
 
 interface IMobMenuProps {
-  handleMobMennuCloseClick:  MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
-  isMobMenuOpen: boolean;
-  isMenuBodyOpened: boolean;
+  handleMobMennuCloseClick: MouseEventHandler<HTMLButtonElement | HTMLLIElement>
+  isMobMenuOpen: boolean
+  isMenuBodyOpened: boolean
 }
 
-const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuOpen, isMenuBodyOpened }) => {
-
+const MobMenu: React.FC<IMobMenuProps> = ({
+  handleMobMennuCloseClick,
+  isMobMenuOpen,
+  isMenuBodyOpened,
+}) => {
   const menuItems = [
-    { link: ROUTES.CATALOG, text: "Каталог" },
-    { link: ROUTES.OBJECTS, text: "Услуги" },
-    { link: ROUTES.ABOUT, text: "О компании" },
-    { link: ROUTES.OBJECTS, text: "Объекты" },
-    { link: ROUTES.CONTACTS, text: "Цены" },
-    { link: ROUTES.ARTICLES, text: "Блог" },
-    { link: ROUTES.CONTACTS, text: "Контакты" },
-  ];
+    { link: ROUTES.CATALOG, text: 'Каталог' },
+    { link: ROUTES.OBJECTS, text: 'Услуги' },
+    { link: ROUTES.ABOUT, text: 'О компании' },
+    { link: ROUTES.OBJECTS, text: 'Объекты' },
+    { link: ROUTES.CONTACTS, text: 'Цены' },
+    { link: ROUTES.ARTICLES, text: 'Блог' },
+    { link: ROUTES.CONTACTS, text: 'Контакты' },
+  ]
 
   return (
     <div className={`mob-menu ${isMobMenuOpen ? 'opened' : ''}`}>
@@ -29,22 +32,22 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
         </button>
         <ul className="mob-menu__list flex">
           {menuItems.map(({ link, text }) => (
-            <li 
-              className="mob-menu__list-item" 
+            <li
+              className="mob-menu__list-item"
               key={text}
               onClick={handleMobMennuCloseClick}
-              >
+            >
               <Link href={link}>
                 <a className="mob-menu__list-link rel" data-item={text}>
-                {text}
+                  {text}
                 </a>
               </Link>
             </li>
           ))}
-      </ul>
+        </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MobMenu;
+export default MobMenu

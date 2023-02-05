@@ -1,4 +1,4 @@
-import { MachineryType } from "./dataTypes";
+import { MachineryType } from './dataTypes'
 
 export interface IPropsMachinery {
   items: MachineryType[]

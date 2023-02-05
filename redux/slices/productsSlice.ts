@@ -1,26 +1,25 @@
-import { Action, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { HYDRATE } from "next-redux-wrapper";
-import { publicApi } from "../../api";
-import { MachineryType } from "../../types/dataTypes";
+import { Action, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
+import { publicApi } from '../../api'
+import { MachineryType } from '../../types/dataTypes'
 
 const initialState = {
   items: [] as MachineryType[],
   total: 0,
   currentChunk: 1,
   isLoading: false,
-  isError: false
+  isError: false,
 }
-
 
 export const fetchProducts = createAsyncThunk(
   'products/fetch',
   async (query: string) => {
     return publicApi.getMachinery(query)
-  }
+  },
 )
 
-interface PayloadType extends Action<"__NEXT_REDUX_WRAPPER_HYDRATE__"> {
-  payload: {rootReducer: {products: [] }}
+interface PayloadType extends Action<'__NEXT_REDUX_WRAPPER_HYDRATE__'> {
+  payload: { rootReducer: { products: [] } }
 }
 
 export const modalsSlice = createSlice({
@@ -49,10 +48,10 @@ export const modalsSlice = createSlice({
     builder.addCase(HYDRATE, (state, action: PayloadType) => {
       return {
         ...state,
-        ...action.payload.rootReducer.products  
+        ...action.payload.rootReducer.products,
       }
     })
   },
 })
 
-export const { reducer } = modalsSlice;
+export const { reducer } = modalsSlice
