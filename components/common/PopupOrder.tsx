@@ -20,7 +20,6 @@ const PopupRequest: React.FC = () => {
         type: "text",
         placeholder: "Ваше имя",
         labelClass: "popup__label flex form-label",
-        blockClass: "",
         tag: "input",
         errorMessage: "Поле не заполнено",
         validateFn: (str: string) => str.length > 0
@@ -30,12 +29,12 @@ const PopupRequest: React.FC = () => {
         isValid: false,
         inputClass: "popup__input",
         type: "tel",
-        placeholder: "Ваш телефон",
+        placeholder: "+7__________",
         labelClass: "popup__label flex form-label",
-        blockClass: "",
+        mask: "+79999999999",
         tag: "input",
         errorMessage: "Поле заполнено некорректно",
-        validateFn: (str: string) => REGEX.phone.test(str)
+        validateFn: (str: string) => !str.includes("_")
       },
       email: {
         value: "",
@@ -44,7 +43,6 @@ const PopupRequest: React.FC = () => {
         type: "text",
         placeholder: "Ваша почта",
         labelClass: "popup__label flex form-label",
-        blockClass: "",
         tag: "input",
         errorMessage: "Поле заполнено некорректно",
         validateFn: (str: string) => REGEX.email.test(str)

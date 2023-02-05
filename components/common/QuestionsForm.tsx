@@ -1,4 +1,5 @@
 import React from "react"
+import InputMask from 'react-input-mask';
 import Image from "next/image"
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../redux/slices/modalsSlice";
@@ -29,11 +30,12 @@ const QuestionsForm: React.FC = () => {
         tag: "input",
         inputClass: "form-contacts__input",
         type: "tel",
-        placeholder: "Ваш телефон",
+        placeholder: "+7__________",
+        mask: "+79999999999",
         labelClass: "form-label",
         blockClass: "form-contacts__block",
         errorMessage: "Поле заполнено некорректно",
-        validateFn: (str: string) => REGEX.phone.test(str)
+        validateFn: (str: string) => !str.includes("_")
       },
       email: {
         value: "",
@@ -85,7 +87,7 @@ const QuestionsForm: React.FC = () => {
     e.preventDefault()
     setShowErrors(true)
     let isValid = true;
-    (Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
+    (Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key) => {
       if (!state.fields[key]?.isValid) {
         isValid = false
       }
@@ -97,23 +99,24 @@ const QuestionsForm: React.FC = () => {
 
     const dto = {} as { [key in keyof typeof state.fields]: string }
 
-    (Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
+    (Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key) => {
       dto[key] = state.fields[key]?.value ?? ""
     })
 
     const res = await publicApi.sendRequest(dto)
 
     if (res?.success) {
-      onSuccess();
+      dispatch(toggleModal({ name: "message", state: true }));
+      document.documentElement.classList.add('lock');
+      (Object.keys(state.fields) as Array<keyof typeof state.fields>).forEach((key)=> {
+        state.fields[key].value = ""
+        state.fields[key].isValid = false
+      })
+      setState({ ...state })
     } else {
       dispatch(toggleModal({ name: "error", state: true }));
       document.documentElement.classList.add('lock');
     }
-  };
-
-  const onSuccess = () => {
-    dispatch(toggleModal({ name: "message", state: true }));
-    document.documentElement.classList.add('lock');
   };
 
   const { name, email, phone, message } = state.fields
@@ -132,7 +135,6 @@ const QuestionsForm: React.FC = () => {
                     className="popup__label flex form-label"
                     />
                   <input 
-                    id="name"
                     name="name"
                     className={`questions__form-input ${showErrors && !name.isValid ? 'form-input--error' : ''} `}
                     type="text" 
@@ -147,14 +149,15 @@ const QuestionsForm: React.FC = () => {
                   <label 
                     htmlFor="phone" 
                     className="popup__label flex form-label"
-                    />
-                  <input 
-                    id="phone"
-                    name="phone"
-                    className={`questions__form-input ${showErrors && !phone.isValid ? 'form-input--error' : ''} `}
-                    type="tel" 
-                    placeholder="Ваш телефон"
+                  />
+                  <InputMask 
                     value={phone.value}
+                    name="phone"
+                    mask={phone.mask}
+                    maskChar="_"
+                    className={`questions__form-input ${showErrors && !phone.isValid ? 'form-input--error' : ''} `}
+                    type={phone.type}
+                    placeholder={phone.placeholder}
                     onChange={onChange}
                   />
                   {showErrors && !phone.isValid && <p className="questions__form-message">{phone.errorMessage}</p> }
@@ -163,9 +166,8 @@ const QuestionsForm: React.FC = () => {
                   <label 
                     htmlFor="email" 
                     className="popup__label flex form-label"
-                    />
+                  />
                   <input 
-                    id="email"
                     name="email"
                     className={`questions__form-input ${showErrors && !email.isValid ? 'form-input--error' : ''} `}
                     type="text" 
@@ -182,7 +184,6 @@ const QuestionsForm: React.FC = () => {
                     className="popup__label flex form-label"
                   />
                   <textarea 
-                    id="questions-area"
                     name="message"
                     className={`questions__form-textarea ${showErrors && !message.isValid ? 'form-input--error' : ''} `}
                     placeholder="Оставьте ваш вопрос"

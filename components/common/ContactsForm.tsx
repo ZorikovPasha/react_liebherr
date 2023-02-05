@@ -23,11 +23,12 @@ export const ContactsForm = () => {
         tag: "input",
         inputClass: "form-contacts__input",
         type: "tel",
-        placeholder: "Ваш телефон",
+        mask: "+79999999999",
+        placeholder: "+7__________",
         labelClass: "form-label",
         blockClass: "form-contacts__block",
         errorMessage: "Поле заполнено некорректно",
-        validateFn: (str: string) => REGEX.phone.test(str)
+        validateFn: (str: string) => !str.includes("_")
       },
       email: {
         value: "",
