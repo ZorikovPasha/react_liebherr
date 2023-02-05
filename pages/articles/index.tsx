@@ -61,13 +61,7 @@ const Blog: NextPage<IBlogProps> = ({ items, hasMore }) => {
           ) : (
             <div className="blog__items rel">
               {_?.map(({ id, title, subtitle, preview }) => (
-                <ArticleCard
-                  key={id}
-                  id={id}
-                  title={title}
-                  subtitle={subtitle}
-                  preview={preview}
-                />
+                <ArticleCard key={id} id={id} title={title} subtitle={subtitle} preview={preview} />
               ))}
             </div>
           )}

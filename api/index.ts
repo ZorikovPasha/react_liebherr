@@ -1,23 +1,9 @@
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from 'axios'
-import {
-  ArticleType,
-  ConstructionType,
-  MachineryType,
-  OrderType,
-  RequestType,
-} from '../types/dataTypes'
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { ArticleType, ConstructionType, MachineryType, OrderType, RequestType } from '../types/dataTypes'
 
 export const apiConfig = {
   returnRejectedPromiseOnError: true,
-  baseURL:
-    process.env.NODE_ENV === 'production'
-      ? 'https://reactliebherrback.glitch.me/'
-      : 'http://localhost:5000',
+  baseURL: process.env.NODE_ENV === 'production' ? 'https://reactliebherrback.glitch.me/' : 'http://localhost:5000',
   headers: {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
     'Content-Type': 'application/json',
@@ -69,29 +55,19 @@ class PublicApi extends Api {
   }
 
   getMachinery = (query: string) => {
-    return this.get<{ items: MachineryType[]; total: number; chunk: number }>(
-      '/api/machinery' + query,
-    )
+    return this.get<{ items: MachineryType[]; total: number; chunk: number }>('/api/machinery' + query)
   }
 
   getSingleMachinery = (id: number) => {
-    return this.post<
-      { machinery: MachineryType; similarOnes: MachineryType[] },
-      { id: number }
-    >('/api/machinery', { id })
+    return this.post<{ machinery: MachineryType; similarOnes: MachineryType[] }, { id: number }>('/api/machinery', { id })
   }
 
   getSingleConstruction = (id: string) => {
-    return this.post<
-      { construction: ConstructionType; similarOnes: ConstructionType[] },
-      { id: string }
-    >('/api/construction', { id })
+    return this.post<{ construction: ConstructionType; similarOnes: ConstructionType[] }, { id: string }>('/api/construction', { id })
   }
 
   getConstructions = () => {
-    return this.get<{ constructions: ConstructionType[]; hasMore: boolean }>(
-      '/api/constructions',
-    )
+    return this.get<{ constructions: ConstructionType[]; hasMore: boolean }>('/api/constructions')
   }
 
   getConstructionsIds = () => {
@@ -99,9 +75,7 @@ class PublicApi extends Api {
   }
 
   getArticles = (portionIdx: number) => {
-    return this.get<{ items: ArticleType[]; hasMore: boolean }>(
-      '/api/articles?chunk=' + portionIdx,
-    )
+    return this.get<{ items: ArticleType[]; hasMore: boolean }>('/api/articles?chunk=' + portionIdx)
   }
 
   getArticlesIds = () => {

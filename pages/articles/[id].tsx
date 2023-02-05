@@ -35,12 +35,7 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
           <div className="article-top__images flex jcsb">
             {images?.map((src) => (
               <div className="article-top__img" key={src}>
-                <Image
-                  src={src}
-                  layout="fill"
-                  objectFit="cover"
-                  alt="Строительный кран"
-                />
+                <Image src={src} layout="fill" objectFit="cover" alt="Строительный кран" />
               </div>
             ))}
           </div>
@@ -89,10 +84,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await publicApi.getArticlesIds()
 
   return {
-    paths: data.items.reduce(
-      (accum: PType[], next) => [...accum, { params: { id: next.toString() } }],
-      [],
-    ),
+    paths: data.items.reduce((accum: PType[], next) => [...accum, { params: { id: next.toString() } }], []),
     fallback: false,
   }
 }

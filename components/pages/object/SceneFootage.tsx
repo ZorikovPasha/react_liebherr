@@ -24,18 +24,8 @@ const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
   const fullSliderSettings = {
     fade: true,
     infinite: false,
-    prevArrow: (
-      <SliderPrevArrow
-        onClick={thumbsNav?.slickPrev}
-        isDisabled={activeSlide === 0}
-      />
-    ),
-    nextArrow: (
-      <SliderNextArrow
-        onClick={thumbsNav?.slickNext}
-        isDisabled={activeSlide === images.length - 1}
-      />
-    ),
+    prevArrow: <SliderPrevArrow onClick={thumbsNav?.slickPrev} isDisabled={activeSlide === 0} />,
+    nextArrow: <SliderNextArrow onClick={thumbsNav?.slickNext} isDisabled={activeSlide === images.length - 1} />,
     afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
@@ -52,12 +42,7 @@ const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
       <div className="container">
         <h1 className="object-top__title">{title}</h1>
         <p className="object-top__text">{text}</p>
-        <Slider
-          className="object-top__slider"
-          asNavFor={thumbsNav}
-          ref={(slider: Slider) => setFullSliderNav(slider)}
-          {...fullSliderSettings}
-        >
+        <Slider className="object-top__slider" asNavFor={thumbsNav} ref={(slider: Slider) => setFullSliderNav(slider)} {...fullSliderSettings}>
           {images?.map((imgSrc) => (
             <div className="object-top__slider-item" key={imgSrc}>
               <div className="object-top__images">
@@ -67,22 +52,11 @@ const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
           ))}
         </Slider>
 
-        <Slider
-          className="object-top__thumbs"
-          asNavFor={fullSliderNav}
-          ref={(slider: Slider) => setThumbsNav(slider)}
-          {...thumbsSettings}
-        >
+        <Slider className="object-top__thumbs" asNavFor={fullSliderNav} ref={(slider: Slider) => setThumbsNav(slider)} {...thumbsSettings}>
           {images?.map((imgSrc) => (
             <div className="object-top__thumb" key={imgSrc}>
               <div className="object-top__thumb-images">
-                <Image
-                  src={imgSrc}
-                  alt="Фото объекта стройки"
-                  width="100%"
-                  height="100%"
-                  objectFit="cover"
-                />
+                <Image src={imgSrc} alt="Фото объекта стройки" width="100%" height="100%" objectFit="cover" />
               </div>
             </div>
           ))}

@@ -21,18 +21,8 @@ const CatalogSlider: React.FC = () => {
     centerMode: true,
     infinite: false,
     initialSlide: 1,
-    prevArrow: (
-      <SliderPrevArrow
-        onClick={slider?.slickPrev}
-        isDisabled={activeSlide === 0}
-      />
-    ),
-    nextArrow: (
-      <SliderNextArrow
-        onClick={slider?.slickNext}
-        isDisabled={activeSlide === items.length - 1}
-      />
-    ),
+    prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === items.length - 1} />,
     afterChange: (current: number) => setActiveSlide(current),
     responsive: [],
   }
@@ -44,29 +34,15 @@ const CatalogSlider: React.FC = () => {
       </div>
       <div className="container-fluid">
         <div className="catalog-slider">
-          <Slider
-            className="catalog-slider"
-            {...settings}
-            ref={(slider1: Slider) => setSlider(slider1)}
-          >
+          <Slider className="catalog-slider" {...settings} ref={(slider1: Slider) => setSlider(slider1)}>
             {items?.map(({ id, name, imgSrc, features }) => (
-              <CatalogCard
-                key={id}
-                id={id}
-                rootElClass="product-item--padding"
-                name={name}
-                imgSrc={imgSrc}
-                liftingCapacity={features.liftingCapacity.value}
-                arrowLength={features.arrowLength.value}
-              />
+              <CatalogCard key={id} id={id} rootElClass="product-item--padding" name={name} imgSrc={imgSrc} liftingCapacity={features.liftingCapacity.value} arrowLength={features.arrowLength.value} />
             ))}
           </Slider>
         </div>
         <div className="catalog__btn-wrapper">
           <Link href={ROUTES.CATALOG}>
-            <a className="catalog__btn btn-line btn-line--orange">
-              Перейти в каталог
-            </a>
+            <a className="catalog__btn btn-line btn-line--orange">Перейти в каталог</a>
           </Link>
         </div>
       </div>

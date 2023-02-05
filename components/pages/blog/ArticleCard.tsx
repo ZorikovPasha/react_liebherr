@@ -9,23 +9,12 @@ interface ICardProps {
   id: number
 }
 
-const ArticleCard: React.FC<ICardProps> = ({
-  preview,
-  title,
-  subtitle,
-  id,
-}) => {
+const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => {
   return (
     <div className="blog__item item-blog">
       <div className="blog__item-inner flex">
         <div className="item-blog__images">
-          <Image
-            src={preview}
-            width="100%"
-            height="100%"
-            alt="Статья о строительной технике"
-            layout="responsive"
-          />
+          <Image src={preview} width="100%" height="100%" alt="Статья о строительной технике" layout="responsive" />
         </div>
         <div className="item-blog__box flex">
           <h6 className="item-blog__title">{title}</h6>

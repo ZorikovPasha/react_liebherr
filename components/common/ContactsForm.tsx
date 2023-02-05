@@ -57,12 +57,5 @@ export const ContactsForm = () => {
     },
     isAgree: false,
   })
-  return (
-    <AppForm
-      formClass="popup__form"
-      fields={fields.current}
-      buttonClass="popup__btn btn"
-      buttonText="Оставить заявку"
-    />
-  )
+  return <AppForm formClass="popup__form" fields={fields.current} buttonClass="popup__btn btn" buttonText="Оставить заявку" />
 }

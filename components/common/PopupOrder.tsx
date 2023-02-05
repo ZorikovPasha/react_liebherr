@@ -65,18 +65,9 @@ const PopupRequest: React.FC = () => {
           <img src="/static/images/close.svg" alt="close icon" />
         </button>
         <h3 className="popup__title">Арендовать спецтехнику</h3>
-        <p className="popup__text">
-          Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое
-          ближайшее время
-        </p>
+        <p className="popup__text">Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое ближайшее время</p>
 
-        <AppForm
-          formClass="popup__form"
-          fields={fields.current}
-          buttonClass="popup__btn btn"
-          buttonText="Оставить заявку"
-          isOrder={popupState.order}
-        />
+        <AppForm formClass="popup__form" fields={fields.current} buttonClass="popup__btn btn" buttonText="Оставить заявку" isOrder={popupState.order} />
       </div>
     </div>
     // </ClientOnlyPortal>

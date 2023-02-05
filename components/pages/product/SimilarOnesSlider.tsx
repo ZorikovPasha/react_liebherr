@@ -19,18 +19,8 @@ const SimilarOnesSlider: React.FC<ISliderProps> = ({ items }) => {
     centerMode: true,
     infinite: false,
     initialSlide: 2,
-    prevArrow: (
-      <SliderPrevArrow
-        onClick={slider?.slickPrev}
-        isDisabled={activeSlide === 0}
-      />
-    ),
-    nextArrow: (
-      <SliderNextArrow
-        onClick={slider?.slickNext}
-        isDisabled={activeSlide === items?.length - 2}
-      />
-    ),
+    prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === items?.length - 2} />,
     afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
@@ -58,22 +48,8 @@ const SimilarOnesSlider: React.FC<ISliderProps> = ({ items }) => {
       <div className="container">
         <h2 className="similar__title">Похожие краны</h2>
         <div className="similar__items">
-          <Slider
-            className="similar__items"
-            {...settings}
-            ref={(slider: Slider) => setSlider(slider)}
-          >
-            {items &&
-              items?.map(({ id, name, features, imgSrc }) => (
-                <CatalogCard
-                  id={id}
-                  key={id}
-                  name={name}
-                  liftingCapacity={features.liftingCapacity.value}
-                  arrowLength={features.arrowLength.value}
-                  imgSrc={imgSrc}
-                />
-              ))}
+          <Slider className="similar__items" {...settings} ref={(slider: Slider) => setSlider(slider)}>
+            {items && items?.map(({ id, name, features, imgSrc }) => <CatalogCard id={id} key={id} name={name} liftingCapacity={features.liftingCapacity.value} arrowLength={features.arrowLength.value} imgSrc={imgSrc} />)}
           </Slider>
         </div>
       </div>

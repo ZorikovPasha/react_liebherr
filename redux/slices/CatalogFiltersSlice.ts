@@ -17,11 +17,7 @@ export const filtersSlice = createSlice({
       }
     },
     setWeight: (state, action: PayloadAction<number>) => {
-      state.weights.includes(action.payload)
-        ? (state.weights = state.weights.filter(
-            (num) => num !== action.payload,
-          ))
-        : state.weights.push(action.payload)
+      state.weights.includes(action.payload) ? (state.weights = state.weights.filter((num) => num !== action.payload)) : state.weights.push(action.payload)
     },
   },
   extraReducers: {

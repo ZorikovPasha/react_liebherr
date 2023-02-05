@@ -13,11 +13,7 @@ interface IArrowProps {
 
 const SliderPrevArrow: React.FC<IArrowProps> = ({ onClick, isDisabled }) => {
   return (
-    <button
-      type="button"
-      className={`slick-btn slick-prev ${isDisabled ? 'slick-disabled' : ''}`}
-      onClick={onClick}
-    >
+    <button type="button" className={`slick-btn slick-prev ${isDisabled ? 'slick-disabled' : ''}`} onClick={onClick}>
       <img src="static/images/slider-arr-left.svg" alt="" />
     </button>
   )
@@ -25,11 +21,7 @@ const SliderPrevArrow: React.FC<IArrowProps> = ({ onClick, isDisabled }) => {
 
 const SliderNextArrow: React.FC<IArrowProps> = ({ onClick, isDisabled }) => {
   return (
-    <button
-      onClick={onClick}
-      type="button"
-      className={`slick-btn slick-next ${isDisabled ? 'slick-disabled' : ''}`}
-    >
+    <button onClick={onClick} type="button" className={`slick-btn slick-next ${isDisabled ? 'slick-disabled' : ''}`}>
       <img src="static/images/slider-arr-right.svg" alt="" />
     </button>
   )
@@ -53,18 +45,8 @@ const Top: React.FC = () => {
     draggable: true,
     fade: true,
     infinite: false,
-    prevArrow: (
-      <SliderPrevArrow
-        onClick={slider?.slickPrev}
-        isDisabled={activeSlide === 0}
-      />
-    ),
-    nextArrow: (
-      <SliderNextArrow
-        onClick={slider?.slickNext}
-        isDisabled={activeSlide === slides.length - 1}
-      />
-    ),
+    prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === slides.length - 1} />,
     afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
@@ -85,11 +67,7 @@ const Top: React.FC = () => {
     <section className="top">
       <div className="container-fluid">
         <div className="top__inner rel after">
-          <Slider
-            className={`top__slider`}
-            {...settings}
-            ref={(slider: Slider) => setSlider(slider)}
-          >
+          <Slider className={`top__slider`} {...settings} ref={(slider: Slider) => setSlider(slider)}>
             {slides.map(({ num, total, src }) => (
               <div className="rel" key={num + src}>
                 <div className="top__slider-numbers">
@@ -108,13 +86,8 @@ const Top: React.FC = () => {
           <div className="top__content after">
             <div className="top__container container">
               <div className="top__content-box rel">
-                <h1 className="top__title rel after animate__animated animate__fadeIn animate__delay-1s">
-                  Аренда спецтехники Liebherr для любых задач
-                </h1>
-                <p className="top__text animate__animated animate__fadeIn animate__delay-2s">
-                  Мобильные, гусеничные и башенные краны LIEBHERR в аренду для
-                  любых задач и грузов. работаем по всей России
-                </p>
+                <h1 className="top__title rel after animate__animated animate__fadeIn animate__delay-1s">Аренда спецтехники Liebherr для любых задач</h1>
+                <p className="top__text animate__animated animate__fadeIn animate__delay-2s">Мобильные, гусеничные и башенные краны LIEBHERR в аренду для любых задач и грузов. работаем по всей России</p>
                 <div className="top__btns flex aic jcsb animate__animated animate__fadeIn animate__delay-2s">
                   <button className="top__callme btn" onClick={handleOpenPopup}>
                     Заказать звонок

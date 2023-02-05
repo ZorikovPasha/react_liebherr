@@ -74,14 +74,7 @@ type AppFormPropsType = {
   isOrder?: boolean
 }
 
-export const AppForm: React.FC<AppFormPropsType> = ({
-  fields,
-  buttonClass = '',
-  buttonText,
-  formClass = '',
-  agreeLabelClass = 'popup__label flex form-label',
-  isOrder = false,
-}) => {
+export const AppForm: React.FC<AppFormPropsType> = ({ fields, buttonClass = '', buttonText, formClass = '', agreeLabelClass = 'popup__label flex form-label', isOrder = false }) => {
   const [showErrors, setShowErrors] = React.useState(false)
   const [state, setState] = React.useState(fields)
   const dispatch = useDispatch()
@@ -89,9 +82,7 @@ export const AppForm: React.FC<AppFormPropsType> = ({
 
   const desiredProduct = useSelector(selectProduct(Number(query.id)))
 
-  const onChange: React.ChangeEventHandler<HTMLInputElement> = ({
-    target: { value, name },
-  }) =>
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = ({ target: { value, name } }) =>
     setState((prev) => ({
       ...prev,
       fields: {
@@ -99,8 +90,7 @@ export const AppForm: React.FC<AppFormPropsType> = ({
         [name]: {
           ...prev.fields[name as keyof typeof state.fields],
           value,
-          isValid:
-            prev.fields[name as keyof typeof state.fields]?.validateFn(value),
+          isValid: prev.fields[name as keyof typeof state.fields]?.validateFn(value),
         },
       },
     }))
@@ -116,13 +106,11 @@ export const AppForm: React.FC<AppFormPropsType> = ({
     setShowErrors(true)
 
     let isValid = true
-    ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).map(
-      (key: keyof typeof state.fields) => {
-        if (!state.fields[key]?.isValid) {
-          isValid = false
-        }
-      },
-    )
+    ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
+      if (!state.fields[key]?.isValid) {
+        isValid = false
+      }
+    })
 
     if (!isValid || !state.isAgree) {
       return
@@ -130,11 +118,9 @@ export const AppForm: React.FC<AppFormPropsType> = ({
 
     const dto = {} as { [key in keyof typeof state.fields | 'id']: string }
 
-    ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).map(
-      (key: keyof typeof state.fields) => {
-        dto[key] = state.fields[key]?.value ?? ''
-      },
-    )
+    ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
+      dto[key] = state.fields[key]?.value ?? ''
+    })
 
     if (isOrder && desiredProduct?._id) {
       dto.id = desiredProduct._id
@@ -142,27 +128,21 @@ export const AppForm: React.FC<AppFormPropsType> = ({
 
     dispatch(toggleLoader(true))
 
-    const res = await (isOrder
-      ? publicApi.makeOrder(dto)
-      : publicApi.sendRequest(dto))
+    const res = await (isOrder ? publicApi.makeOrder(dto) : publicApi.sendRequest(dto))
 
     dispatch(toggleLoader(false))
 
     if (res?.success) {
-      isOrder
-        ? dispatch(toggleModal({ name: 'order', state: false }))
-        : dispatch(toggleModal({ name: 'request', state: false }))
+      isOrder ? dispatch(toggleModal({ name: 'order', state: false })) : dispatch(toggleModal({ name: 'request', state: false }))
       dispatch(toggleModal({ name: 'message', state: true }))
-      ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).forEach(
-        (key) => {
-          if (key in state.fields) {
-            //@ts-ignore
-            state.fields[key].value = ''
-            //@ts-ignore
-            state.fields[key].isValid = false
-          }
-        },
-      )
+      ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).forEach((key) => {
+        if (key in state.fields) {
+          //@ts-ignore
+          state.fields[key].value = ''
+          //@ts-ignore
+          state.fields[key].isValid = false
+        }
+      })
       setState({ ...state })
     } else {
       dispatch(toggleModal({ name: 'error', state: true }))
@@ -172,58 +152,29 @@ export const AppForm: React.FC<AppFormPropsType> = ({
 
   return (
     <form className={formClass} onSubmit={handleSubmit}>
-      {Object.entries(state.fields).map(
-        ([
-          name,
-          {
-            value,
-            isValid,
-            tag,
-            labelClass,
-            placeholder,
-            type,
-            mask,
-            inputClass,
-            blockClass,
-            errorMessage,
-          },
-        ]) => (
-          <AppTextField
-            value={value}
-            key={name}
-            tag={tag}
-            blockClass={blockClass}
-            name={name}
-            hasError={showErrors && !isValid}
-            type={type}
-            mask={mask}
-            placeholder={placeholder}
-            labelClass={labelClass}
-            inputClass={inputClass}
-            errorMessage={errorMessage}
-            handleChange={onChange}
-          />
-        ),
-      )}
+      {Object.entries(state.fields).map(([name, { value, isValid, tag, labelClass, placeholder, type, mask, inputClass, blockClass, errorMessage }]) => (
+        <AppTextField
+          value={value}
+          key={name}
+          tag={tag}
+          blockClass={blockClass}
+          name={name}
+          hasError={showErrors && !isValid}
+          type={type}
+          mask={mask}
+          placeholder={placeholder}
+          labelClass={labelClass}
+          inputClass={inputClass}
+          errorMessage={errorMessage}
+          handleChange={onChange}
+        />
+      ))}
 
       <label className={agreeLabelClass}>
-        <input
-          name="isAgree"
-          className="form-label__checkbox-real"
-          type="checkbox"
-          checked={state.isAgree}
-          onChange={onAgree}
-        />
-        <span
-          className={`form-label__checkbox-fake rel ${
-            showErrors && !state.isAgree
-              ? 'form-label__checkbox-fake--error'
-              : ''
-          }`}
-        />
+        <input name="isAgree" className="form-label__checkbox-real" type="checkbox" checked={state.isAgree} onChange={onAgree} />
+        <span className={`form-label__checkbox-fake rel ${showErrors && !state.isAgree ? 'form-label__checkbox-fake--error' : ''}`} />
         <span className="form-label__text">
-          Я согласен с <a href="#">условиями обработки</a> и использования моих
-          персональных данных
+          Я согласен с <a href="#">условиями обработки</a> и использования моих персональных данных
         </span>
       </label>
 

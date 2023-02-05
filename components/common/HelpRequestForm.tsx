@@ -39,13 +39,7 @@ const HelpRequestForm: React.FC = () => {
       <div className="help__container">
         <div className="container">
           <h2 className="help__title">Нужна помощь в подборе?</h2>
-          <AppForm
-            formClass="help__form"
-            fields={fields.current}
-            buttonClass="help__form-btn btn"
-            buttonText="Получить консультацию"
-            agreeLabelClass="help__form-label help__form-label--margin-top flex"
-          />
+          <AppForm formClass="help__form" fields={fields.current} buttonClass="help__form-btn btn" buttonText="Получить консультацию" agreeLabelClass="help__form-label help__form-label--margin-top flex" />
         </div>
         <div className="help__images">
           <Image src="/static/images/form-bg.png" layout="fill" />

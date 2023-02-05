@@ -38,43 +38,20 @@ const ProductView: React.FC<IView> = ({ info }) => {
         <h1 className="product__title">Гусеничный кран Liebherr LR 1750</h1>
         <div className="product__inner rel flex">
           <div className="product__images">
-            <Slider
-              {...slidesSettings}
-              className="product__slider"
-              asNavFor={thumbsSlider}
-              ref={(slider1: Slider) => setFullSlider(slider1)}
-            >
+            <Slider {...slidesSettings} className="product__slider" asNavFor={thumbsSlider} ref={(slider1: Slider) => setFullSlider(slider1)}>
               {info?.thumbs?.map((imgSrc, idx) => (
                 <div className="product__slider-item" key={idx}>
                   <div className="product__slider-images rel">
-                    <Image
-                      src={imgSrc}
-                      alt="Строительная техника"
-                      width="100%"
-                      height="100%"
-                      layout="fill"
-                    />
+                    <Image src={imgSrc} alt="Строительная техника" width="100%" height="100%" layout="fill" />
                   </div>
                 </div>
               ))}
             </Slider>
-            <Slider
-              {...thumsSettings}
-              className="product__thumbs"
-              asNavFor={fullSlider}
-              ref={(slider2: Slider) => setThumbsSlider(slider2)}
-            >
+            <Slider {...thumsSettings} className="product__thumbs" asNavFor={fullSlider} ref={(slider2: Slider) => setThumbsSlider(slider2)}>
               {info?.thumbs?.map((imgSrc, idx) => (
                 <div className="product__thumb" key={idx}>
                   <div className="product__thumb-images">
-                    <Image
-                      src={imgSrc}
-                      width="100%"
-                      height="100%"
-                      layout="fill"
-                      objectFit="cover"
-                      alt="Строительная техника"
-                    />
+                    <Image src={imgSrc} width="100%" height="100%" layout="fill" objectFit="cover" alt="Строительная техника" />
                   </div>
                 </div>
               ))}
@@ -84,10 +61,7 @@ const ProductView: React.FC<IView> = ({ info }) => {
             <ul className="product__info-list product-list">
               {info?.features &&
                 Object.entries(info.features)?.map((arr) => (
-                  <li
-                    className="product-list__item flex aic"
-                    key={arr[1].value}
-                  >
+                  <li className="product-list__item flex aic" key={arr[1].value}>
                     <p className="product-list__text">{arr[1].text}:</p>
                     <p className="product-list__text">{arr[1].value}</p>
                   </li>

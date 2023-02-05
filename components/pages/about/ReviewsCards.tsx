@@ -1,9 +1,6 @@
 import Slider from 'react-slick'
 import React from 'react'
-import {
-  SliderNextArrow,
-  SliderPrevArrow,
-} from '../../../components/common/SliderArrows'
+import { SliderNextArrow, SliderPrevArrow } from '../../../components/common/SliderArrows'
 import Image from 'next/image'
 
 const ReviewsCards: React.FC = () => {
@@ -28,18 +25,8 @@ const ReviewsCards: React.FC = () => {
     slidesToScroll: 3,
     dots: true,
     infinite: false,
-    prevArrow: (
-      <SliderPrevArrow
-        onClick={slider?.slickPrev}
-        isDisabled={activeSlide === 0}
-      />
-    ),
-    nextArrow: (
-      <SliderNextArrow
-        onClick={slider?.slickNext}
-        isDisabled={activeSlide === reviews.length - 3}
-      />
-    ),
+    prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === reviews.length - 3} />,
     afterChange: (current: number) => setActiveSlide(current),
 
     responsive: [
@@ -65,19 +52,11 @@ const ReviewsCards: React.FC = () => {
     <section className="reviews">
       <div className="container">
         <h2 className="reviews__title">Клиенты говорят о нас</h2>
-        <Slider
-          className="reviews__items wow animate__animated animate__fadeIn"
-          {...settings}
-          ref={(slider: Slider) => setSlider(slider)}
-        >
+        <Slider className="reviews__items wow animate__animated animate__fadeIn" {...settings} ref={(slider: Slider) => setSlider(slider)}>
           {reviews.map(({ imgSrc }, idx) => (
             <div className="reviews__item" key={idx}>
               <div className="reviews__item-images rel">
-                <Image
-                  src={imgSrc}
-                  alt="Карточка отзыва клиента"
-                  layout="fill"
-                />
+                <Image src={imgSrc} alt="Карточка отзыва клиента" layout="fill" />
               </div>
             </div>
           ))}

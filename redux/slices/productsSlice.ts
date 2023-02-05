@@ -11,12 +11,9 @@ const initialState = {
   isError: false,
 }
 
-export const fetchProducts = createAsyncThunk(
-  'products/fetch',
-  async (query: string) => {
-    return publicApi.getMachinery(query)
-  },
-)
+export const fetchProducts = createAsyncThunk('products/fetch', async (query: string) => {
+  return publicApi.getMachinery(query)
+})
 
 interface PayloadType extends Action<'__NEXT_REDUX_WRAPPER_HYDRATE__'> {
   payload: { rootReducer: { products: [] } }
