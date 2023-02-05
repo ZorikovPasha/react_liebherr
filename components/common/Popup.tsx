@@ -54,8 +54,7 @@ const PopupRequest: React.FC = () => {
 
   const onClose = () => {
     document.documentElement.classList.remove('lock')
-    popupState.request &&
-      dispatch(toggleModal({ name: 'request', state: false }))
+    popupState.request && dispatch(toggleModal({ name: 'request', state: false }))
     popupState.order && dispatch(toggleModal({ name: 'order', state: false }))
   }
 
@@ -64,26 +63,12 @@ const PopupRequest: React.FC = () => {
     <div className="popup">
       <div className="popup__body">
         <button className="popup__close" onClick={onClose}>
-          <Image
-            src="/static/images/close.svg"
-            alt="close"
-            width={24}
-            height={24}
-          />
+          <Image src="/static/images/close.svg" alt="close" width={24} height={24} />
         </button>
         <h3 className="popup__title">Арендовать спецтехнику</h3>
-        <p className="popup__text">
-          Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое
-          ближайшее время
-        </p>
+        <p className="popup__text">Оставьте заявку на звонок и мы ответим на все ваши вопросы в самое ближайшее время</p>
 
-        <AppForm
-          formClass="popup__form"
-          fields={fields.current}
-          buttonClass="popup__btn btn"
-          buttonText="Оставить заявку"
-          isOrder={popupState.order}
-        />
+        <AppForm formClass="popup__form" fields={fields.current} buttonClass="popup__btn btn" buttonText="Оставить заявку" isOrder={popupState.order} />
       </div>
     </div>
   ) : // </ClientOnlyPortal>

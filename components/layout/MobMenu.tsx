@@ -8,11 +8,7 @@ interface IMobMenuProps {
   isMenuBodyOpened: boolean
 }
 
-const MobMenu: React.FC<IMobMenuProps> = ({
-  handleMobMennuCloseClick,
-  isMobMenuOpen,
-  isMenuBodyOpened,
-}) => {
+const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuOpen, isMenuBodyOpened }) => {
   const menuItems = [
     { link: ROUTES.CATALOG, text: 'Каталог' },
     { link: ROUTES.OBJECTS, text: 'Услуги' },
@@ -32,11 +28,7 @@ const MobMenu: React.FC<IMobMenuProps> = ({
         </button>
         <ul className="mob-menu__list flex">
           {menuItems.map(({ link, text }) => (
-            <li
-              className="mob-menu__list-item"
-              key={text}
-              onClick={handleMobMennuCloseClick}
-            >
+            <li className="mob-menu__list-item" key={text} onClick={handleMobMennuCloseClick}>
               <Link href={link}>
                 <a className="mob-menu__list-link rel" data-item={text}>
                   {text}

@@ -11,32 +11,16 @@ interface ICardProps {
   rootElClass?: string
 }
 
-const CatalogCard: React.FC<ICardProps> = ({
-  id,
-  imgSrc,
-  name,
-  liftingCapacity,
-  arrowLength,
-  rootElClass = '',
-}) => {
+const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, arrowLength, rootElClass = '' }) => {
   return (
     <div className={`product-item flex ${rootElClass}`} key={id}>
       <div className="product-item__body flex">
         <div className="product-item__images">
-          <Image
-            src={imgSrc}
-            width="100%"
-            className="product-item__img"
-            height="100%"
-            alt="product"
-            layout="responsive"
-          />
+          <Image src={imgSrc} width="100%" className="product-item__img" height="100%" alt="product" layout="responsive" />
         </div>
         <div className="product-item__title-box rel after before">
           <Link href={ROUTES.CATALOG + id}>
-            <a className="product-item__title product-item__title--big">
-              {name}
-            </a>
+            <a className="product-item__title product-item__title--big">{name}</a>
           </Link>
         </div>
         <div className="product-item__info flex">

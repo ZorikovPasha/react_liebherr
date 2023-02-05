@@ -47,9 +47,7 @@ const Footer: React.FC = () => {
             <div className="footer__logo rel">
               <img src="/static/images/footer-logo.svg" alt="logo" />
             </div>
-            <p className="footer__about">
-              Аренда мобильных и гусеничных кранов LIEBHERR
-            </p>
+            <p className="footer__about">Аренда мобильных и гусеничных кранов LIEBHERR</p>
             <p className="footer__rights">© 2000-2021 Все права защищены</p>
           </div>
           {footerLists?.map((arr, idx) => (
@@ -72,49 +70,19 @@ const Footer: React.FC = () => {
             </button>
             <div className="footer__socials">
               <div>
-                <Image
-                  className="footer__social"
-                  src="/static/images/social-1.svg"
-                  alt=""
-                  width={24}
-                  height={25}
-                />
+                <Image className="footer__social" src="/static/images/social-1.svg" alt="" width={24} height={25} />
               </div>
               <div>
-                <Image
-                  className="footer__social"
-                  src="/static/images/social-2.svg"
-                  alt="twitter"
-                  width={24}
-                  height={25}
-                />
+                <Image className="footer__social" src="/static/images/social-2.svg" alt="twitter" width={24} height={25} />
               </div>
               <div>
-                <Image
-                  className="footer__social"
-                  src="/static/images/social-3.svg"
-                  alt="whatsapp"
-                  width={24}
-                  height={25}
-                />
+                <Image className="footer__social" src="/static/images/social-3.svg" alt="whatsapp" width={24} height={25} />
               </div>
               <div>
-                <Image
-                  className="footer__social"
-                  src="/static/images/social-4.svg"
-                  alt="vkontacte"
-                  width={24}
-                  height={25}
-                />
+                <Image className="footer__social" src="/static/images/social-4.svg" alt="vkontacte" width={24} height={25} />
               </div>
               <div>
-                <Image
-                  className="footer__social"
-                  src="/static/images/social-5.svg"
-                  alt="yandex"
-                  width={24}
-                  height={25}
-                />
+                <Image className="footer__social" src="/static/images/social-5.svg" alt="yandex" width={24} height={25} />
               </div>
             </div>
           </div>

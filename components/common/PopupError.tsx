@@ -21,12 +21,7 @@ const PopupError: React.FC = () => {
     <div className="popup">
       <div className="popup__body">
         <button className="popup__close" onClick={onClose}>
-          <Image
-            src="/static/images/close.svg"
-            alt="close"
-            width={24}
-            height={24}
-          />
+          <Image src="/static/images/close.svg" alt="close" width={24} height={24} />
         </button>
         <h3 className="popup__title">Что-то пошло не так..</h3>
         <p className="popup__text">Пожалуйста, повторите попытку</p>

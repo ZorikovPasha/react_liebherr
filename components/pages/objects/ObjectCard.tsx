@@ -11,13 +11,7 @@ const ObjectCard: React.FC<ICardProps> = ({ id, preview, title }) => {
   return (
     <div className="objects__item item-object">
       <div>
-        <Image
-          src={preview}
-          width="100%"
-          height="100%"
-          alt="Фото объекта строительства"
-          layout="responsive"
-        />
+        <Image src={preview} width="100%" height="100%" alt="Фото объекта строительства" layout="responsive" />
       </div>
       <h6 className="item-object__title">
         <Link href={ROUTES.OBJECTS + id}>

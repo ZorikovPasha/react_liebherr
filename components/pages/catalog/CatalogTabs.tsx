@@ -38,8 +38,7 @@ const CatalogTabs: React.FC = () => {
   const [itemsToShow, setItemsToShow] = React.useState(tabs.length)
 
   React.useEffect(() => {
-    const onResize = () =>
-      setItemsToShow(window.innerWidth < 768 ? TABS_ON_MOBILE : tabs.length)
+    const onResize = () => setItemsToShow(window.innerWidth < 768 ? TABS_ON_MOBILE : tabs.length)
 
     window.addEventListener('resize', onResize)
     onResize()
@@ -47,9 +46,7 @@ const CatalogTabs: React.FC = () => {
   }, [tabs.length])
 
   const onShowMore = () => {
-    setItemsToShow(
-      itemsToShow === TABS_ON_MOBILE ? tabs.length : TABS_ON_MOBILE,
-    )
+    setItemsToShow(itemsToShow === TABS_ON_MOBILE ? tabs.length : TABS_ON_MOBILE)
   }
 
   const onTabClick = (idx: number) => {
@@ -68,14 +65,7 @@ const CatalogTabs: React.FC = () => {
         <h1 className="catalog-tabs__title">Каталог техники</h1>
         <div className="catalog-tabs__items">
           {tabs.slice(0, itemsToShow).map(({ filter, text }, idx) => (
-            <button
-              className={`catalog-tabs__item ${
-                activeTabs.includes(idx) ? 'pressed' : ''
-              }`}
-              data-filter={filter}
-              key={filter}
-              onClick={onTabClick.bind(null, idx)}
-            >
+            <button className={`catalog-tabs__item ${activeTabs.includes(idx) ? 'pressed' : ''}`} data-filter={filter} key={filter} onClick={onTabClick.bind(null, idx)}>
               {text}
             </button>
           ))}

@@ -3,10 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import Slider from 'react-slick'
 
-import {
-  SliderNextArrow,
-  SliderPrevArrow,
-} from '../../../components/common/SliderArrows'
+import { SliderNextArrow, SliderPrevArrow } from '../../../components/common/SliderArrows'
 import { ConstructionType } from '../../../types/dataTypes'
 import { ROUTES } from '../../../utils/const'
 
@@ -23,18 +20,8 @@ const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
     slidesToScroll: 3,
     dots: false,
     infinite: false,
-    prevArrow: (
-      <SliderPrevArrow
-        onClick={slider?.slickPrev}
-        isDisabled={activeSlide === 0}
-      />
-    ),
-    nextArrow: (
-      <SliderNextArrow
-        onClick={slider?.slickNext}
-        isDisabled={activeSlide === items?.length - 2}
-      />
-    ),
+    prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === items?.length - 2} />,
     afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
@@ -51,20 +38,12 @@ const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
     <div className="another-ones">
       <div className="container">
         <h2 className="another-ones__title">Другие объекты</h2>
-        <Slider
-          className="another-ones__slider"
-          {...settings}
-          ref={(slider: Slider) => setSlider(slider)}
-        >
+        <Slider className="another-ones__slider" {...settings} ref={(slider: Slider) => setSlider(slider)}>
           {items &&
             items?.map(({ id, title, preview }) => (
               <div className=" item-object" key={id}>
                 <div className="item-object__images rel">
-                  <Image
-                    src={preview}
-                    layout="fill"
-                    alt="Фото объекта стройки"
-                  />
+                  <Image src={preview} layout="fill" alt="Фото объекта стройки" />
                 </div>
                 <h6 className="item-object__title">
                   <Link href={ROUTES.OBJECTS + id}>

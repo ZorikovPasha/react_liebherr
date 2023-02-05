@@ -1,11 +1,4 @@
-import {
-  Action,
-  AnyAction,
-  combineReducers,
-  configureStore,
-  ThunkAction,
-  ThunkDispatch,
-} from '@reduxjs/toolkit'
+import { Action, AnyAction, combineReducers, configureStore, ThunkAction, ThunkDispatch } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 import { reducer as modalsReducer } from './slices/modalsSlice'
 import { reducer as filtersReducer } from './slices/CatalogFiltersSlice'
@@ -29,12 +22,7 @@ const makeStore = () =>
 
 export type AppStore = ReturnType<typeof makeStore>
 export type AppState = ReturnType<AppStore['getState']>
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppState,
-  unknown,
-  Action
->
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>
 export type NextThunkDispatch = ThunkDispatch<AppState, void, AnyAction>
 
 export const wrapper = createWrapper<AppStore>(makeStore)

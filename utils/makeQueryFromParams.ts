@@ -17,13 +17,7 @@ export const makeQueryFromParams = (
   arrowLengthTo: number,
   chunk: number,
 ) => {
-  const weightsQuery = weights
-    ? weights.reduce(
-        (accum, num) =>
-          accum ? accum + '&weight=' + num : accum + 'weight=' + num,
-        '',
-      )
-    : ''
+  const weightsQuery = weights ? weights.reduce((accum, num) => (accum ? accum + '&weight=' + num : accum + 'weight=' + num), '') : ''
 
   let typesQuery = ''
   let key: keyof typeof types

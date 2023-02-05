@@ -11,11 +11,7 @@ interface IPopupMessageProps {
   buttonText: string
 }
 
-const PopupMessage: React.FC<IPopupMessageProps> = ({
-  title,
-  text,
-  buttonText,
-}) => {
+const PopupMessage: React.FC<IPopupMessageProps> = ({ title, text, buttonText }) => {
   const dispatch = useDispatch()
 
   const poupState = useSelector(selectPopupState)
