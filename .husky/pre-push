@@ -2,7 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 cd client
-npm run stylelint
-npx next lint
-npm run format
-git add .
+npm run typecheck
