@@ -9,6 +9,7 @@
     "stylelint": "stylelint --fix",
     "format": "prettier --write \"./src/**/*.{ts,tsx,js,jsx}\"",
     "export": "next export",
+    "lint":"next lint",
     "prepare": "cd .. && npx husky install",
     "typecheck": "tsc"
   },
