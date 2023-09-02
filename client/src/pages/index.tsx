@@ -15,7 +15,7 @@ import { ConstructionType } from '../types/dataTypes'
 import { ROUTES } from '../utils/const'
 
 interface IHomeProps {
-  constructions: { constructions: ConstructionType[]; hasMpre: boolean }
+  constructions: { constructions: ConstructionType[] }
 }
 export const costsItems = [
   {
