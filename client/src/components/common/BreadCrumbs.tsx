@@ -6,7 +6,7 @@ interface IBreadCrumbsProps {
   items: breadCrumbsItemType[]
 }
 
-const BreadCrumbs: React.FC<IBreadCrumbsProps> = ({ items }) => {
+export const BreadCrumbs: React.FC<IBreadCrumbsProps> = ({ items }) => {
   return (
     <div className="breadcrumbs">
       <div className="container">
@@ -27,5 +27,3 @@ const BreadCrumbs: React.FC<IBreadCrumbsProps> = ({ items }) => {
     </div>
   )
 }
-
-export default BreadCrumbs

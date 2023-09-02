@@ -3,7 +3,7 @@ import { REGEX } from '../../utils/const'
 import { AppForm } from './AppForm'
 
 export const ContactsForm = () => {
-  const fields = React.useRef({
+  const fields = {
     fields: {
       name: {
         value: '',
@@ -56,13 +56,6 @@ export const ContactsForm = () => {
       },
     },
     isAgree: false,
-  })
-  return (
-    <AppForm
-      formClass="popup__form"
-      fields={fields.current}
-      buttonClass="popup__btn btn"
-      buttonText="Оставить заявку"
-    />
-  )
+  }
+  return <AppForm formClass="popup__form" fields={fields} buttonClass="popup__btn btn" buttonText="Оставить заявку" />
 }

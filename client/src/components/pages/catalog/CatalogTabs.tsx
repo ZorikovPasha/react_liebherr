@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setWeight } from '../../../redux/slices/CatalogFiltersSlice'
 
-const CatalogTabs: React.FC = () => {
+export const CatalogTabs = () => {
   const dispatch = useDispatch()
 
   const tabs = [
@@ -82,5 +82,3 @@ const CatalogTabs: React.FC = () => {
     </section>
   )
 }
-
-export default CatalogTabs

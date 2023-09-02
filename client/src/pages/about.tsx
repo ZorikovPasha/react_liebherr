@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 import { ROUTES } from '../utils/const'
-import BreadCrumbs from '../components/common/BreadCrumbs'
+import { BreadCrumbs } from '../components/common/BreadCrumbs'
 import ReviewsCards from '../components/pages/about/ReviewsCards'
 import { ContactsForm } from '../components/common/ContactsForm'
 import { VideoPic } from '../components/pages/about/Video'

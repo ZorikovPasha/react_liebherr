@@ -27,7 +27,7 @@ const SliderNextArrow: React.FC<IArrowProps> = ({ onClick, isDisabled }) => {
   )
 }
 
-const Top: React.FC = () => {
+export const Top: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(0)
 
@@ -109,5 +109,3 @@ const Top: React.FC = () => {
     </section>
   )
 }
-
-export default Top

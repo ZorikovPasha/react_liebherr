@@ -1,27 +1,22 @@
 import { NextPage } from 'next'
 import React from 'react'
 import { useSelector } from 'react-redux'
-
-import BreadCrumbs from '../../components/common/BreadCrumbs'
-import CatalogAside from '../../components/pages/catalog/CatalogAside'
-import CatalogCard from '../../components/pages/catalog/CatalogCard'
-import CatalogTabs from '../../components/pages/catalog/CatalogTabs'
-import { ContactsForm } from '../../components/common/ContactsForm'
-import FilterControls from '../../components/pages/catalog/FilterControls'
-import HelpRequestForm from '../../components/common/HelpRequestForm'
-import Pagination from '../../components/pages/catalog/Pagination'
-import { Error } from '../../components/common/Error'
-import { AppEmpty } from '../../components/common/AppEmpty'
-import { MachineryType } from '../../types/dataTypes'
-import { ROUTES } from '../../utils/const'
-import { selectProducts, selectProductsError } from '../../redux/selectors'
 import Head from 'next/head'
 
-interface ICatalogProps {
-  items: MachineryType[]
-}
+import { BreadCrumbs } from '../../components/common/BreadCrumbs'
+import { CatalogAside } from '../../components/pages/catalog/CatalogAside'
+import { CatalogCard } from '../../components/pages/catalog/CatalogCard'
+import { CatalogTabs } from '../../components/pages/catalog/CatalogTabs'
+import { ContactsForm } from '../../components/common/ContactsForm'
+import { FilterControls } from '../../components/pages/catalog/FilterControls'
+import { HelpRequestForm } from '../../components/common/HelpRequestForm'
+import { Pagination } from '../../components/pages/catalog/Pagination'
+import { Error } from '../../components/common/Error'
+import { AppEmpty } from '../../components/common/AppEmpty'
+import { ROUTES } from '../../utils/const'
+import { selectProducts, selectProductsError } from '../../redux/selectors'
 
-const Catalog: NextPage<ICatalogProps> = () => {
+const Catalog: NextPage = () => {
   const items = useSelector(selectProducts)
   const [activeView, setActiveView] = React.useState<'grid' | 'list'>('grid')
 

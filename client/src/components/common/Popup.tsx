@@ -7,12 +7,12 @@ import { REGEX } from '../../utils/const'
 import { AppForm } from './AppForm'
 import { selectPopupState } from '../../redux/selectors'
 
-const PopupRequest: React.FC = () => {
+export const PopupRequest: React.FC = () => {
   const dispatch = useDispatch()
 
   const popupState = useSelector(selectPopupState)
 
-  const fields = React.useRef({
+  const fields = {
     fields: {
       name: {
         value: '',
@@ -50,7 +50,7 @@ const PopupRequest: React.FC = () => {
       },
     },
     isAgree: false,
-  })
+  }
 
   const onClose = () => {
     document.documentElement.classList.remove('lock')
@@ -59,7 +59,6 @@ const PopupRequest: React.FC = () => {
   }
 
   return popupState.order || popupState.request ? (
-    // <ClientOnlyPortal selector="#modal">
     <div className="popup">
       <div className="popup__body">
         <button className="popup__close" onClick={onClose}>
@@ -72,15 +71,12 @@ const PopupRequest: React.FC = () => {
 
         <AppForm
           formClass="popup__form"
-          fields={fields.current}
+          fields={fields}
           buttonClass="popup__btn btn"
           buttonText="Оставить заявку"
           isOrder={popupState.order}
         />
       </div>
     </div>
-  ) : // </ClientOnlyPortal>
-  null
+  ) : null
 }
-
-export default PopupRequest

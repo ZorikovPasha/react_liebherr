@@ -1,10 +1,9 @@
 import Image from 'next/image'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { ParsedUrlQuery } from 'querystring'
 import { publicApi } from '../../api'
 
-import AnotherArticlesSlider from '../../components/pages/article/AnotherArticlesSlider'
-import BreadCrumbs from '../../components/common/BreadCrumbs'
+import { AnotherArticlesSlider } from '../../components/pages/article/AnotherArticlesSlider'
+import { BreadCrumbs } from '../../components/common/BreadCrumbs'
 import { ArticleType } from '../../types/dataTypes'
 import { ROUTES } from '../../utils/const'
 import Head from 'next/head'
@@ -90,12 +89,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-interface IParams extends ParsedUrlQuery {
-  id: string
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { id } = params as IParams
+export const getStaticProps: GetStaticProps<IArticleProps> = async ({ params }) => {
+  const { id } = params || {}
   const article = await publicApi.getSingleArticle(id)
 
   return { props: { article } }

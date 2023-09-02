@@ -1,13 +1,13 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import { ParsedUrlQuery } from 'querystring'
+import Head from 'next/head'
 
 import { publicApi } from '../../api'
-import AnotherObjectsSlider from '../../components/pages/object/AnotherObjectsSlider'
-import BreadCrumbs from '../../components/common/BreadCrumbs'
-import SceneFootage from '../../components/pages/object/SceneFootage'
+import { AnotherObjectsSlider } from '../../components/pages/object/AnotherObjectsSlider'
+import { BreadCrumbs } from '../../components/common/BreadCrumbs'
+import { SceneFootage } from '../../components/pages/object/SceneFootage'
 import { ConstructionType } from '../../types/dataTypes'
 import { ROUTES } from '../../utils/const'
-import Head from 'next/head'
 
 interface IObjectsProps {
   construction: ConstructionType
@@ -113,7 +113,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<IObjectsProps> = async ({ params }) => {
   const { id } = params as IParams
   const { construction, similarOnes } = await publicApi.getSingleConstruction(id)
 

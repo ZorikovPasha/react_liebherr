@@ -11,7 +11,7 @@ interface ISliderProps {
   items: ConstructionType[]
 }
 
-const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
+export const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
   const projectsThumbsSettings: Settings = {
     slidesToShow: 5,
     variableWidth: true,
@@ -125,5 +125,3 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
     </section>
   )
 }
-
-export default ProjectsSlider

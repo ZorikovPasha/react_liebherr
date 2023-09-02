@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { useSelector } from 'react-redux'
 import { selectLoaderState, selectProductsLoading } from '../../redux/selectors'
 
-const Loader: React.FC = () => {
+export const Loader: React.FC = () => {
   const portalRef = React.useRef<Element | null>(null)
   const [mounted, setMounted] = React.useState(false)
 
@@ -24,5 +24,3 @@ const Loader: React.FC = () => {
       )
     : null
 }
-
-export default Loader

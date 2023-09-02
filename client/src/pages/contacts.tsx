@@ -1,9 +1,10 @@
 import React from 'react'
 import { NextPage } from 'next'
-import BreadCrumbs from '../components/common/BreadCrumbs'
+import Head from 'next/head'
+
+import { BreadCrumbs } from '../components/common/BreadCrumbs'
 import { ContactsForm } from '../components/common/ContactsForm'
 import { ROUTES } from '../utils/const'
-import Head from 'next/head'
 
 const Contacts: NextPage = () => {
   const breadCrumbs = [

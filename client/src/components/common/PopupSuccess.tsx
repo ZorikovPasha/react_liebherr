@@ -1,9 +1,7 @@
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { selectPopupState } from '../../redux/selectors'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { selectPopupState } from '../../redux/selectors'
 import { toggleModal } from '../../redux/slices/modalsSlice'
-// import ClientOnlyPortal from "./ClientOnlyPortal";
 
 interface IPopupMessageProps {
   title: string
@@ -11,7 +9,7 @@ interface IPopupMessageProps {
   buttonText: string
 }
 
-const PopupMessage: React.FC<IPopupMessageProps> = ({ title, text, buttonText }) => {
+export const PopupSuccess: React.FC<IPopupMessageProps> = ({ title, text, buttonText }) => {
   const dispatch = useDispatch()
 
   const poupState = useSelector(selectPopupState)
@@ -22,7 +20,6 @@ const PopupMessage: React.FC<IPopupMessageProps> = ({ title, text, buttonText })
   }
 
   return poupState.message ? (
-    // <ClientOnlyPortal selector="#modal">
     <div className="popup-message">
       <div className="popup-message__body">
         <button className="popup-message__close" onClick={onClose}>
@@ -35,8 +32,5 @@ const PopupMessage: React.FC<IPopupMessageProps> = ({ title, text, buttonText })
         </button>
       </div>
     </div>
-  ) : // </ClientOnlyPortal>
-  null
+  ) : null
 }
-
-export default PopupMessage

@@ -1,0 +1,28 @@
+name: Building apps
+on: [push, workflow_dispatch]
+jobs: 
+  building_front:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.14.2
+      - run: |
+          cd client
+          npm ci
+          npm run lintstyles
+          npm run lint
+          npm run typecheck
+          npm run test
+          npm run build
+      - name: 🚀 Deploy to Netlify
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir="./client/dist" --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DIR: dist
+
+  

@@ -1,12 +1,11 @@
 import React from 'react'
-
-// import { ClientOnlyPortal } from "../";
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleModal } from '../../redux/slices/modalsSlice'
-import { selectPopupState } from '../../redux/selectors'
 import Image from 'next/image'
 
-const PopupError: React.FC = () => {
+import { toggleModal } from '../../redux/slices/modalsSlice'
+import { selectPopupState } from '../../redux/selectors'
+
+export const PopupError: React.FC = () => {
   const dispatch = useDispatch()
 
   const popupState = useSelector(selectPopupState)
@@ -17,7 +16,6 @@ const PopupError: React.FC = () => {
   }
 
   return popupState.error ? (
-    // <ClientOnlyPortal selector="#modal">
     <div className="popup">
       <div className="popup__body">
         <button className="popup__close" onClick={onClose}>
@@ -30,8 +28,5 @@ const PopupError: React.FC = () => {
         </button>
       </div>
     </div>
-  ) : // </ClientOnlyPortal>
-  null
+  ) : null
 }
-
-export default PopupError

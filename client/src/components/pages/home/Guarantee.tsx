@@ -1,9 +1,8 @@
 import Image from 'next/image'
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleModal } from '../../../redux/slices/modalsSlice'
 
-const Guarantee: React.FC = () => {
+export const Guarantee = () => {
   const dispatch = useDispatch()
 
   const handleOpenPopup = () => {
@@ -94,5 +93,3 @@ const Guarantee: React.FC = () => {
     </section>
   )
 }
-
-export default Guarantee

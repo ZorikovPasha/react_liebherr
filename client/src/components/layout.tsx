@@ -1,25 +1,13 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
-import Header from '../components/layout/Header'
-import Footer from '../components/layout/Footer'
-import Loader from './common/Loader'
 import { useRouter } from 'next/router'
 
-const PopupRequest = dynamic(() => import('./common/Popup'), {
-  loading: () => <Loader />,
-})
-
-const PopupSuccess = dynamic(() => import('./common/PopupSuccess'), {
-  loading: () => <Loader />,
-})
-
-const PopupError = dynamic(() => import('./common/PopupError'), {
-  loading: () => <Loader />,
-})
-
-const MobMenu = dynamic(() => import('./layout/MobMenu'), {
-  loading: () => <Loader />,
-})
+import { Header } from '../components/layout/Header'
+import { Footer } from '../components/layout/Footer'
+import { Loader } from './common/Loader'
+import { PopupRequest } from './common/Popup'
+import { PopupSuccess } from './common/PopupSuccess'
+import { PopupError } from './common/PopupError'
+import { MobMenu } from './layout/MobMenu'
 
 type LayoutProps = {
   children: React.ReactNode

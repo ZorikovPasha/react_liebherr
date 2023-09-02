@@ -9,7 +9,7 @@ interface IFootage {
   images: string[]
 }
 
-const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
+export const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
   const [fullSliderNav, setFullSliderNav] = React.useState<Slider>()
   const [thumbsNav, setThumbsNav] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(0)
@@ -75,5 +75,3 @@ const SceneFootage: React.FC<IFootage> = ({ title, text, images }) => {
     </section>
   )
 }
-
-export default SceneFootage
