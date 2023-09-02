@@ -30,9 +30,7 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
           {menuItems.map(({ link, text }) => (
             <li className="mob-menu__list-item" key={text} onClick={handleMobMennuCloseClick}>
               <Link href={link}>
-                <a className="mob-menu__list-link rel" data-item={text}>
-                  {text}
-                </a>
+                <a className="mob-menu__list-link rel">{text}</a>
               </Link>
             </li>
           ))}

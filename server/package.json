@@ -1,0 +1,23 @@
+{
+  "name": "react_liebherr",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.4",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.21",
+    "cross-env": "^7.0.3"
+  },
+  "engines": {
+    "node": "14.17.1"
+  }
+}
