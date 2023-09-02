@@ -11,7 +11,7 @@ interface ISlider {
   items: ConstructionType[]
 }
 
-const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
+export const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
   const [slider, setSlider] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(0)
 
@@ -62,5 +62,3 @@ const AnotherObjectsSlider: React.FC<ISlider> = ({ items }) => {
     </div>
   )
 }
-
-export default AnotherObjectsSlider

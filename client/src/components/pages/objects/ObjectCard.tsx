@@ -7,7 +7,7 @@ interface ICardProps {
   id: number
   title: string
 }
-const ObjectCard: React.FC<ICardProps> = ({ id, preview, title }) => {
+export const ObjectCard: React.FC<ICardProps> = ({ id, preview, title }) => {
   return (
     <div className="objects__item item-object">
       <div>
@@ -21,5 +21,3 @@ const ObjectCard: React.FC<ICardProps> = ({ id, preview, title }) => {
     </div>
   )
 }
-
-export default ObjectCard

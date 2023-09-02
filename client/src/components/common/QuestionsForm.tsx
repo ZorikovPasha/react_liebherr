@@ -2,15 +2,15 @@ import React from 'react'
 import InputMask from 'react-input-mask'
 import Image from 'next/image'
 import { useDispatch } from 'react-redux'
+
 import { toggleModal } from '../../redux/slices/modalsSlice'
 import { publicApi } from '../../api'
 import { REGEX } from '../../utils/const'
 
-const QuestionsForm: React.FC = () => {
+export const QuestionsForm: React.FC = () => {
   const dispatch = useDispatch()
 
-  const [showErrors, setShowErrors] = React.useState(false)
-  const [state, setState] = React.useState({
+  const initialFields = {
     fields: {
       name: {
         value: '',
@@ -63,7 +63,10 @@ const QuestionsForm: React.FC = () => {
       },
     },
     isAgree: false,
-  })
+  }
+
+  const [showErrors, setShowErrors] = React.useState(false)
+  const [state, setState] = React.useState(initialFields)
 
   const onAgree = () =>
     setState((prev) => ({
@@ -87,34 +90,29 @@ const QuestionsForm: React.FC = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     setShowErrors(true)
-    let isValid = true
-    ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key) => {
-      if (!state.fields[key]?.isValid) {
-        isValid = false
-      }
-    })
+    const isValid = Object.values(state.fields).every((props) => props.isValid)
 
     if (!isValid || !state.isAgree) {
       return
     }
 
-    const dto = {} as { [key in keyof typeof state.fields]: string }
+    const dto = {
+      name: state.fields.name.value,
+      phone: state.fields.phone.value,
+      email: state.fields.email.value,
+      message: state.fields.message.value,
+    }
 
-    ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key) => {
-      dto[key] = state.fields[key]?.value ?? ''
-    })
+    try {
+      const res = await publicApi.sendRequest(dto)
+      if (!res?.success) {
+        return
+      }
 
-    const res = await publicApi.sendRequest(dto)
-
-    if (res?.success) {
       dispatch(toggleModal({ name: 'message', state: true }))
       document.documentElement.classList.add('lock')
-      ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).forEach((key) => {
-        state.fields[key].value = ''
-        state.fields[key].isValid = false
-      })
-      setState({ ...state })
-    } else {
+      setState(initialFields)
+    } catch (error) {
       dispatch(toggleModal({ name: 'error', state: true }))
       document.documentElement.classList.add('lock')
     }
@@ -211,5 +209,3 @@ const QuestionsForm: React.FC = () => {
     </section>
   )
 }
-
-export default QuestionsForm

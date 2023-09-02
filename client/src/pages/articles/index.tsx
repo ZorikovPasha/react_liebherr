@@ -1,16 +1,15 @@
 import { GetStaticProps, NextPage } from 'next'
 import React from 'react'
-import AxiosError from 'axios'
 import { useDispatch } from 'react-redux'
+import Head from 'next/head'
 
 import { publicApi } from '../../api'
-import BreadCrumbs from '../../components/common/BreadCrumbs'
+import { BreadCrumbs } from '../../components/common/BreadCrumbs'
 import ArticleCard from '../../components/pages/blog/ArticleCard'
 import { Error } from '../../components/common/Error'
 import { ArticleType } from '../../types/dataTypes'
 import { toggleLoader } from '../../redux/slices/loaderSilce'
 import { ROUTES } from '../../utils/const'
-import Head from 'next/head'
 
 interface IBlogProps {
   items: ArticleType[]
@@ -30,19 +29,19 @@ const Blog: NextPage<IBlogProps> = ({ items, hasMore }) => {
   const [_, setArticles] = React.useState(items)
   const [isError, setError] = React.useState(false)
 
-  const onLoadMore = () => {
+  const onLoadMore = async () => {
     dispatch(toggleLoader(true))
 
-    publicApi.getArticles(activeChunkIdx.current + 1).then((data) => {
-      if (data instanceof AxiosError) {
-        setError(true)
-      }
+    try {
+      const data = await publicApi.getArticles(activeChunkIdx.current + 1)
       activeChunkIdx.current += 1
       showMoreRef.current = data.hasMore
       setArticles(data.items)
       setError(false)
       dispatch(toggleLoader(false))
-    })
+    } catch (error) {
+      setError(true)
+    }
   }
 
   return (
@@ -80,8 +79,10 @@ const Blog: NextPage<IBlogProps> = ({ items, hasMore }) => {
 
 export default Blog
 
-export const getStaticProps: GetStaticProps = async () => {
-  const articlesInfo = await publicApi.getArticles(1)
+export const getStaticProps: GetStaticProps<IBlogProps> = async () => {
+  try {
+  } catch (error) {}
 
+  const articlesInfo = await publicApi.getArticles(1)
   return { props: { items: articlesInfo.items, hasMore: articlesInfo.hasMore } }
 }

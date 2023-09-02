@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
-import PopupVideo from '../../common/PopupVideo'
+import { PopupVideo } from '../../common/PopupVideo'
 
-const AboutPreview: React.FC = () => {
+export const AboutPreview: React.FC = () => {
   const [isPlaying, setPlaying] = React.useState(false)
 
   const onPlay = () => {
@@ -57,5 +57,3 @@ const AboutPreview: React.FC = () => {
     </section>
   )
 }
-
-export default AboutPreview

@@ -1,8 +1,9 @@
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
+
 import { publicApi } from '../../api'
-import BreadCrumbs from '../../components/common/BreadCrumbs'
-import ObjectCard from '../../components/pages/objects/ObjectCard'
+import { BreadCrumbs } from '../../components/common/BreadCrumbs'
+import { ObjectCard } from '../../components/pages/objects/ObjectCard'
 import { ConstructionType } from '../../types/dataTypes'
 import { ROUTES } from '../../utils/const'
 
@@ -105,7 +106,7 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
 
 export default Objects
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<IObjectsProps> = async () => {
   const constructions = await publicApi.getConstructions()
   return { props: { constructions } }
 }

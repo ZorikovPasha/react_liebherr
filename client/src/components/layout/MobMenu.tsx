@@ -8,7 +8,7 @@ interface IMobMenuProps {
   isMenuBodyOpened: boolean
 }
 
-const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuOpen, isMenuBodyOpened }) => {
+export const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuOpen, isMenuBodyOpened }) => {
   const menuItems = [
     { link: ROUTES.CATALOG, text: 'Каталог' },
     { link: ROUTES.OBJECTS, text: 'Услуги' },
@@ -39,5 +39,3 @@ const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuO
     </div>
   )
 }
-
-export default MobMenu

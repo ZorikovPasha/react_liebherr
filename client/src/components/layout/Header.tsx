@@ -8,7 +8,7 @@ interface IHeaderProps {
   handleMobMennuButtonClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick }) => {
+export const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick }) => {
   const dispatch = useDispatch()
   const onOpenPopup = () => {
     dispatch(toggleModal({ name: 'request', state: true }))
@@ -90,5 +90,3 @@ const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick }
 })
 
 Header.displayName = 'Header'
-
-export default Header

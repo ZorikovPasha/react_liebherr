@@ -3,12 +3,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Slider, { Settings } from 'react-slick'
 
-import CatalogCard from '../catalog/CatalogCard'
+import { CatalogCard } from '../catalog/CatalogCard'
 import { SliderNextArrow, SliderPrevArrow } from '../../common/SliderArrows'
 import { selectProducts } from '../../../redux/selectors'
 import { ROUTES } from '../../../utils/const'
 
-const CatalogSlider: React.FC = () => {
+export const CatalogSlider: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(1)
 
@@ -57,5 +57,3 @@ const CatalogSlider: React.FC = () => {
     </section>
   )
 }
-
-export default CatalogSlider

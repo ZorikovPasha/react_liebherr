@@ -3,11 +3,11 @@ import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 
 import { publicApi } from '../../api'
-import BreadCrumbs from '../../components/common/BreadCrumbs'
-import HelpRequestForm from '../../components/common/HelpRequestForm'
-import ProductTabs from '../../components/pages/product/ProductTabs'
-import ProductView from '../../components/pages/product/ProductView'
-import SimilarOnesSlider from '../../components/pages/product/SimilarOnesSlider'
+import { BreadCrumbs } from '../../components/common/BreadCrumbs'
+import { HelpRequestForm } from '../../components/common/HelpRequestForm'
+import { ProductTabs } from '../../components/pages/product/ProductTabs'
+import { ProductView } from '../../components/pages/product/ProductView'
+import { SimilarOnesSlider } from '../../components/pages/product/SimilarOnesSlider'
 import { MachineryType } from '../../types/dataTypes'
 import { ROUTES } from '../../utils/const'
 
@@ -99,7 +99,7 @@ const Product: NextPage<IProductProps> = ({ machinery, similarOnes }) => {
 
 export default Product
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps<IProductProps> = async ({ query }) => {
   const { machinery, similarOnes } = await publicApi.getSingleMachinery(Number(query.id))
 
   return {

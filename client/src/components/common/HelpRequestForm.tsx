@@ -1,9 +1,8 @@
 import Image from 'next/image'
-import React from 'react'
 import { AppForm } from './AppForm'
 
-const HelpRequestForm: React.FC = () => {
-  const fields = React.useRef({
+export const HelpRequestForm = () => {
+  const fields = {
     fields: {
       name: {
         value: '',
@@ -32,7 +31,7 @@ const HelpRequestForm: React.FC = () => {
       },
     },
     isAgree: false,
-  })
+  }
 
   return (
     <div className="help rel before after">
@@ -41,7 +40,7 @@ const HelpRequestForm: React.FC = () => {
           <h2 className="help__title">Нужна помощь в подборе?</h2>
           <AppForm
             formClass="help__form"
-            fields={fields.current}
+            fields={fields}
             buttonClass="help__form-btn btn"
             buttonText="Получить консультацию"
             agreeLabelClass="help__form-label help__form-label--margin-top flex"
@@ -54,5 +53,3 @@ const HelpRequestForm: React.FC = () => {
     </div>
   )
 }
-
-export default HelpRequestForm

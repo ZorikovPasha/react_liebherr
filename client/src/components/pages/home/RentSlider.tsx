@@ -2,10 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Slider from 'react-slick'
 import React from 'react'
+
 import { SliderNextArrow, SliderPrevArrow } from '../../../components/common/SliderArrows'
 import { ROUTES } from '../../../utils/const'
 
-const RentSlider: React.FC = () => {
+export const RentSlider: React.FC = () => {
   const [slider, setSlider] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(0)
 
@@ -76,5 +77,3 @@ const RentSlider: React.FC = () => {
     </section>
   )
 }
-
-export default RentSlider

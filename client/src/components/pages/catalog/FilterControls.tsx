@@ -20,7 +20,7 @@ type onSortChangeType = (
   }>,
 ) => void
 
-const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(
+export const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(
   ({ onAsideOpen, setActiveView, activeView }, asideBtnRef) => {
     const dispatch = useDispatch()
 
@@ -97,4 +97,3 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(
 )
 
 FilterControls.displayName = 'FilterControls'
-export default FilterControls

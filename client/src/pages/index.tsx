@@ -1,18 +1,18 @@
 import { GetStaticProps, NextPage } from 'next'
-import { publicApi } from '../api'
-
-import AboutPreview from '../components/pages/home/AboutPreview'
-import CatalogSlider from '../components/pages/home/CatalogSlider'
-import Guarantee from '../components/pages/home/Guarantee'
-import QuestionsForm from '../components/common/QuestionsForm'
-import RentSlider from '../components/pages/home/RentSlider'
-import Top from '../components/pages/home/Top'
-import ProjectsSlider from '../components/pages/home/ProjectsSlider'
-import { ConstructionType } from '../types/dataTypes'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { publicApi } from '../api'
+import { AboutPreview } from '../components/pages/home/AboutPreview'
+import { CatalogSlider } from '../components/pages/home/CatalogSlider'
+import { Guarantee } from '../components/pages/home/Guarantee'
+import { QuestionsForm } from '../components/common/QuestionsForm'
+import { RentSlider } from '../components/pages/home/RentSlider'
+import { Top } from '../components/pages/home/Top'
+import { ProjectsSlider } from '../components/pages/home/ProjectsSlider'
+import { ConstructionType } from '../types/dataTypes'
 import { ROUTES } from '../utils/const'
-import Head from 'next/head'
 
 interface IHomeProps {
   constructions: { constructions: ConstructionType[]; hasMpre: boolean }
@@ -215,7 +215,7 @@ const Home: NextPage<IHomeProps> = ({ constructions }) => {
 }
 export default Home
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<IHomeProps> = async () => {
   const constructions = await publicApi.getConstructions()
 
   return {

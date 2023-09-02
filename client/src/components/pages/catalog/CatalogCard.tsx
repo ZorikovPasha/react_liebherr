@@ -11,7 +11,14 @@ interface ICardProps {
   rootElClass?: string
 }
 
-const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, arrowLength, rootElClass = '' }) => {
+export const CatalogCard: React.FC<ICardProps> = ({
+  id,
+  imgSrc,
+  name,
+  liftingCapacity,
+  arrowLength,
+  rootElClass = '',
+}) => {
   return (
     <div className={`product-item flex ${rootElClass}`} key={id}>
       <div className="product-item__body flex">
@@ -48,5 +55,3 @@ const CatalogCard: React.FC<ICardProps> = ({ id, imgSrc, name, liftingCapacity, 
     </div>
   )
 }
-
-export default CatalogCard

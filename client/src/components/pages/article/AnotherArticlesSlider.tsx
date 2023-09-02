@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Slider from 'react-slick'
 import React from 'react'
-import AxiosError from 'axios'
 
 import { SliderNextArrow, SliderPrevArrow } from '../../../components/common/SliderArrows'
 import ArticleCard from '../../../components/pages/blog/ArticleCard'
@@ -9,17 +8,13 @@ import { publicApi } from '../../../api'
 import { ArticleType } from '../../../types/dataTypes'
 import { ROUTES } from '../../../utils/const'
 
-const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentArticle }) => {
+export const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentArticle }) => {
   const [articles, setArticles] = React.useState<ArticleType[]>([])
   const [slider, setSlider] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(0)
 
   React.useEffect(() => {
     publicApi.getArticles(1).then((data) => {
-      if (data instanceof AxiosError) {
-        return
-      }
-
       setArticles(data.items.filter((article) => article.id !== currentArticle))
     })
   }, [currentArticle])
@@ -62,5 +57,3 @@ const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentAr
     </div>
   )
 }
-
-export default AnotherArticlesSlider

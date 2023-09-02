@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const ProductTabs: React.FC = () => {
+export const ProductTabs = () => {
   const [activeTab, setActiveTab] = React.useState(0)
   const info = {
     liftingCapacity: { text: 'Максимальная грузоподъемность', value: 750 },
@@ -169,5 +169,3 @@ const ProductTabs: React.FC = () => {
     </section>
   )
 }
-
-export default ProductTabs

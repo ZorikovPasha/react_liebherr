@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectCurrentChunk, selectTotal } from '../../../redux/selectors'
 import { fetchProducts } from '../../../redux/slices/productsSlice'
 
-const Pagination: React.FC<{ query: React.MutableRefObject<string> }> = ({ query }) => {
+export const Pagination: React.FC<{ query: React.MutableRefObject<string> }> = ({ query }) => {
   const dispatch = useDispatch()
   const productsCount = useSelector(selectTotal) ?? 0
   let currentChunk = useSelector(selectCurrentChunk)
@@ -111,5 +111,3 @@ const Pagination: React.FC<{ query: React.MutableRefObject<string> }> = ({ query
     </div>
   )
 }
-
-export default Pagination

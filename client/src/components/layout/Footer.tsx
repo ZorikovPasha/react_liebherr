@@ -1,11 +1,10 @@
-import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import { toggleModal } from '../../redux/slices/modalsSlice'
 import { ROUTES } from '../../utils/const'
 
-const Footer: React.FC = () => {
+export const Footer = () => {
   const dispatch = useDispatch()
 
   const footerLists = [
@@ -127,5 +126,3 @@ const Footer: React.FC = () => {
     </footer>
   )
 }
-
-export default Footer

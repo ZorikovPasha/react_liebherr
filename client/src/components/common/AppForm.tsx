@@ -1,6 +1,7 @@
 import React from 'react'
-import { publicApi } from '../../api'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { publicApi } from '../../api'
 import { useRouter } from 'next/router'
 import { toggleModal } from '../../redux/slices/modalsSlice'
 import { AppTextField } from './AppTextField'
@@ -112,11 +113,8 @@ export const AppForm: React.FC<AppFormPropsType> = ({
     e.preventDefault()
     setShowErrors(true)
 
-    let isValid = true
-    ;(Object.keys(state.fields) as Array<keyof typeof state.fields>).map((key: keyof typeof state.fields) => {
-      if (!state.fields[key]?.isValid) {
-        isValid = false
-      }
+    const isValid = Object.values(state.fields).every((props) => {
+      return props.isValid
     })
 
     if (!isValid || !state.isAgree) {

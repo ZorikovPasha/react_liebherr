@@ -8,7 +8,7 @@ interface ISliderProps {
   items: MachineryType[]
 }
 
-const SimilarOnesSlider: React.FC<ISliderProps> = ({ items }) => {
+export const SimilarOnesSlider: React.FC<ISliderProps> = ({ items }) => {
   const [slider, setSlider] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(0)
 
@@ -66,5 +66,3 @@ const SimilarOnesSlider: React.FC<ISliderProps> = ({ items }) => {
     </section>
   )
 }
-
-export default SimilarOnesSlider

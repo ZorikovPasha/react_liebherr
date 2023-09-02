@@ -6,7 +6,7 @@ import { REGEX } from '../../utils/const'
 import { AppForm } from './AppForm'
 import { selectPopupState } from '../../redux/selectors'
 
-const PopupRequest: React.FC = () => {
+export const PopupRequest: React.FC = () => {
   const dispatch = useDispatch()
 
   const popupState = useSelector(selectPopupState)
@@ -58,7 +58,6 @@ const PopupRequest: React.FC = () => {
   }
 
   return (
-    // <ClientOnlyPortal selector="#modal">
     <div className="popup">
       <div className="popup__body">
         <button className="popup__close" onClick={onClose}>
@@ -78,8 +77,5 @@ const PopupRequest: React.FC = () => {
         />
       </div>
     </div>
-    // </ClientOnlyPortal>
   )
 }
-
-export default PopupRequest

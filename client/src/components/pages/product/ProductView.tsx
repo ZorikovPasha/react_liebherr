@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import Slider from 'react-slick'
+
 import { toggleModal } from '../../../redux/slices/modalsSlice'
 import { MachineryType } from '../../../types/dataTypes'
 
@@ -9,7 +10,7 @@ interface IView {
   info: MachineryType
 }
 
-const ProductView: React.FC<IView> = ({ info }) => {
+export const ProductView: React.FC<IView> = ({ info }) => {
   const [thumbsSlider, setThumbsSlider] = React.useState<Slider>()
   const [fullSlider, setFullSlider] = React.useState<Slider>()
 
@@ -93,5 +94,3 @@ const ProductView: React.FC<IView> = ({ info }) => {
     </section>
   )
 }
-
-export default ProductView
