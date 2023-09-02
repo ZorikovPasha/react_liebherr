@@ -91,6 +91,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<IArticleProps> = async ({ params }) => {
   const { id } = params || {}
+  if (typeof id !== 'string') {
+    return {
+      notFound: true,
+    }
+  }
   const article = await publicApi.getSingleArticle(id)
 
   return { props: { article } }

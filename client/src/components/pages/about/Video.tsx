@@ -1,10 +1,7 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
-import Loader from '../../common/Loader'
 import Image from 'next/image'
-const PopupVideo = dynamic(() => import('../../common/PopupVideo'), {
-  loading: () => <Loader />,
-})
+
+import { PopupVideo } from '../../common/PopupVideo'
 
 export const VideoPic = () => {
   const [isPlaying, setPlaying] = React.useState(false)
