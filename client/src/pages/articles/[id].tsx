@@ -29,6 +29,7 @@ const Article: NextPage<IArticleProps> = ({ article }) => {
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />
+
       <section className="article-top">
         <div className="container">
           <h1 className="article-top__heading">{title}</h1>

@@ -1,5 +1,8 @@
 import React from 'react'
 import { NextPage } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import Head from 'next/head'
 
 import { ROUTES } from '../utils/const'
 import BreadCrumbs from '../components/common/BreadCrumbs'
@@ -7,9 +10,6 @@ import ReviewsCards from '../components/pages/about/ReviewsCards'
 import { ContactsForm } from '../components/common/ContactsForm'
 import { VideoPic } from '../components/pages/about/Video'
 import { costsItems, servicesItems } from '.'
-import Image from 'next/image'
-import Link from 'next/link'
-import Head from 'next/head'
 
 const About: NextPage = () => {
   const breadCrumbs = [
