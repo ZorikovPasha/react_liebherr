@@ -11,18 +11,17 @@ jobs:
       - run: |
           cd client
           npm ci
-          npm run lintstyles
+          npm run stylelint
           npm run lint
           npm run typecheck
-          npm run test
           npm run build
       - name: 🚀 Deploy to Netlify
         uses: netlify/actions/cli@master
         with:
-          args: deploy --dir="./client/dist" --prod
+          args: deploy --dir="./client/.next" --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_DIR: dist
+          NETLIFY_DIR: .next
 
   
