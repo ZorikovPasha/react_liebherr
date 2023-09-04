@@ -3,7 +3,7 @@ import { ArticleType, ConstructionType, MachineryType, OrderType, RequestType } 
 
 export const apiConfig = {
   returnRejectedPromiseOnError: true,
-  baseURL: process.env.NODE_ENV === 'production' ? 'https://reactliebherrback.glitch.me/' : 'http://localhost:5000',
+  baseURL: process.env.BACKEND,
   headers: {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
     'Content-Type': 'application/json',

@@ -3,3 +3,9 @@
 
 cd client
 npm run typecheck
+
+cd ../server
+npm run lint
+npm run test
+npm run test:e2e
+npm run build
