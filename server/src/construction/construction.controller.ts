@@ -14,15 +14,13 @@ import {
 import { ConstructionService } from './construction.service';
 import { CreateConstructionDto } from './dto/create-construction.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ImageService } from 'src/image.service';
-import { PrismaClient } from '@prisma/client';
+import { ImageService } from 'src/image/image.service';
 
 @Controller('construction')
 export class ConstructionController {
   constructor(
     private readonly constructionService: ConstructionService,
     private readonly imageService: ImageService,
-    private readonly prismaClient: PrismaClient,
   ) {}
 
   @Post()
@@ -67,9 +65,7 @@ export class ConstructionController {
       });
     }
 
-    const savedPreview = await this.prismaClient.image.create({
-      data: await this.imageService.prepareForInsert(preview),
-    });
+    const savedPreview = await this.imageService.create(preview);
 
     const data = {
       title,

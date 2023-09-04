@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import sizeOf from 'buffer-image-size';
 import sharp from 'sharp';
 import crypto from 'crypto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
-export const replaceSpacesWithUnderscores = (str: string): string => {
+const replaceSpacesWithUnderscores = (str: string): string => {
   let formattedString = '';
   str.split('').forEach((char) => {
     if (char === ' ') {
@@ -18,6 +19,8 @@ export const replaceSpacesWithUnderscores = (str: string): string => {
 
 @Injectable()
 export class ImageService {
+  constructor(private prisma: PrismaService) {}
+
   async prepareForInsert(image: Express.Multer.File) {
     const imageDimensions = sizeOf(image.buffer);
     const hash = crypto.createHash('md5');
@@ -51,5 +54,11 @@ export class ImageService {
     };
 
     return photo;
+  }
+
+  async create(file: Express.Multer.File) {
+    return this.prisma.image.create({
+      data: await this.prepareForInsert(file),
+    });
   }
 }

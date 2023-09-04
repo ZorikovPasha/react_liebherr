@@ -14,15 +14,13 @@ import { MachineryService } from './machinery.service';
 import { CreateMachineryDto } from './dto/create-machinery.dto';
 import { BadRequestException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ImageService } from 'src/image.service';
-import { PrismaClient } from '@prisma/client';
+import { ImageService } from 'src/image/image.service';
 
 @Controller('machinery')
 export class MachineryController {
   constructor(
     private readonly machineryService: MachineryService,
     private readonly imageService: ImageService,
-    private readonly prismaClient: PrismaClient,
   ) {}
 
   @Get()
@@ -142,9 +140,7 @@ export class MachineryController {
       });
     }
 
-    const savedImage = await this.prismaClient.image.create({
-      data: await this.imageService.prepareForInsert(file),
-    });
+    const savedImage = await this.imageService.create(file);
 
     return this.machineryService.create({
       data: {
