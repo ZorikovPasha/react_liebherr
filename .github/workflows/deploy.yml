@@ -3,6 +3,7 @@ on: [push, workflow_dispatch]
 jobs: 
   building_front:
     runs-on: ubuntu-latest
+    needs: [building_backend]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -14,6 +15,7 @@ jobs:
           npm run stylelint
           npm run lint
           npm run typecheck
+          # npm run test
           npm run build
       - name: 🚀 Deploy to Netlify
         uses: netlify/actions/cli@master
@@ -23,5 +25,25 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DIR: .next
-
+  building_backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.14.2
+      - run: |
+          cd server
+          npm ci
+          npm run lint
+          npx tsc
+          npm run test
+          # npm run test:e2e
+          npm run build
+      - name: 🚀 Deploy to Render.com
+        uses: bankfliptech/deploy-to-render@v1
+        with:
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+          deployHookURL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
   
