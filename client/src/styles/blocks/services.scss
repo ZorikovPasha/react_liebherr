@@ -1,0 +1,80 @@
+
+.services {
+  padding: 54px 0 101px;
+  background-color: #fff;
+
+  &__inner {
+    &::after,
+    &::before {
+      position: absolute;
+      font-family: "PT Sans",sans-serif;
+      font-weight: bold;
+      height: 160px;
+      font-size: 132px;
+      line-height: 160px;
+      text-transform: uppercase;
+      color: rgba(211,208,208,.2);
+    }
+
+    &::before {
+      content: 'services';
+      bottom: -130px;
+      right: -200px;
+      width: 660px;
+    }
+
+    &::after {
+      content: "LIEBHERR";
+      top: 50px;
+      left: -218px;
+      width: 665px;
+    }
+  }
+
+  &__title {
+    @extend %h2;
+    margin-bottom: 55px;
+  }
+
+  &__items {
+    display: grid;  
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+  }
+
+  &__item {
+    z-index: 4;
+    flex-direction: column;
+    background-color: #fff;
+  }
+
+  &__item-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__item-link {
+    display: block;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 142.19%;
+    text-align: center;
+
+    flex-grow: 1;
+    min-height: 83px;
+    padding: 18px 20px 13px 20px;
+    color: #FFFFFF;
+    background-color: $yellowOrange;
+    opacity: 1;
+    transition: all .2s;
+    &:hover {
+      opacity: .8;
+    }
+  }
+}

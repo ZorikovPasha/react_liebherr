@@ -1,0 +1,74 @@
+
+.catalog-content {
+  padding-top: 50px;
+  overflow: hidden;
+
+  &__inner {
+    &::after{
+      @extend %banner;
+
+      content: "Eurocran";
+      bottom: 19%;
+      left: -62%;
+      width: 1218px;
+      height: 318px;
+    }
+    &::before {
+      @extend %banner;
+
+      content: 'Liebherr';
+      top: 18%;
+      right: -59%;
+      width: 1118px;
+      height: 318px;
+    } 
+  }
+
+  &__body {
+    width: 100%;
+    margin-left: 30px;
+    padding-bottom: 120px;
+  }
+
+  &__controls {
+    margin-bottom: 26px;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 48px;
+  }
+
+  &__items.catalog-content__items--list {
+    grid-template-columns: 1fr;
+
+    .product-item {
+      max-width: 100%;
+    }
+
+    .product-item__body {
+      flex-direction: row;
+      display: grid;
+      grid-template-columns: 40% 1fr;
+      grid-template-rows: auto 1fr;
+    }
+
+    .product-item__images {
+      position: relative;
+      grid-row: span 2;
+    }
+
+    .product-item__img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

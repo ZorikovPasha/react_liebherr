@@ -1,0 +1,49 @@
+
+.menu-btn {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 20px;
+  z-index: 7;
+  transform: translate(0, -50%);
+  background-color: transparent;
+  border: none;
+
+  &:hover:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(#000, .2);
+  }
+
+  &.active {
+    div:nth-child(2) {
+      opacity: 0;
+    }
+    div:nth-child(1) {
+      transform: translateY(5px) rotate(135deg);
+    }
+    div:nth-child(3) {
+      transform: translateY(-9px) rotate(-135deg);
+    }
+  }
+
+  div {
+    width: 40px;
+    height: 4px;
+    background-color: #000000;
+    transition: all .5s;
+    &:htn-child(2) {
+      width: 20px;
+    }
+  } 
+  div + div {
+    margin-top: 8px;
+  }
+}
+

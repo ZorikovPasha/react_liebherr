@@ -1,0 +1,149 @@
+
+.product-item {
+  overflow: hidden;
+  flex-direction: column;
+  max-width: 370px;
+  min-height: 100%;
+
+  &--padding {
+    padding: 0 5px;
+  }
+
+  &.product-item--wide {
+    max-width: 100%;
+  }
+
+  &__body {
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #fff;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  &__info {
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 0px 24px 20px;
+  }
+
+  &__info--catalog {
+    padding: 15px 20px 20px 22px;
+  }
+
+  &__info--catalog::before,
+  &__info--catalog::after {
+    width: 12px;
+    height: 61px;
+  }
+
+  &__title-box {
+    padding: 8px 24px 0;
+    border-bottom: 1px solid #FCD571;
+    flex-grow: 1;
+
+    &::before,
+    &::after{
+      width: 10px;
+      height: 100%;
+      top: 0;
+    }
+    &::before {
+      left: 0;
+      background-image: url('/static/images/decor-left.svg');
+    }
+    &::after {
+      right: 0;
+      background-image: url('/static/images/decor-right.svg');
+    }
+  }
+
+  &__title {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  &__title--big {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  &__box {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 8px 10px;
+    margin-top: auto;
+    margin-bottom: 8px;
+    padding-top: 20px;
+  }
+
+  &__box--small {
+    grid-template-columns: 150px auto;
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  &__text--small {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  &__link {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 141.69%;
+
+    align-self: flex-start;
+    white-space: nowrap;
+    padding-right: 25px;
+
+    &::after{
+      top: 50%;
+      right: 0;
+      width: 18px;
+      height: 8px;
+      transform: translate(0%, -50%);
+      background-image: url('/static/images/catalog-arr.svg');
+    }
+  }
+
+  &__link:hover:after {
+    right: -10px;
+  }
+
+  &__link + &__link {
+    margin-top: 22px;
+  }
+
+  &__btn {
+    display: block;
+
+    text-align: center;
+
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+
+  }
+
+  &__btn--left {
+    margin-left: 0;
+  }
+}

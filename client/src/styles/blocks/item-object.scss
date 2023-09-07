@@ -1,0 +1,29 @@
+.item-object {
+  min-height: 100%;
+  background-color: #fff;
+
+  &:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 15px 32px 25px 22px;
+
+    @media #{$mobile} {
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 110%;
+      padding: 15px 20px;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+  }
+
+  &__images {
+    height: 300px;
+  }
+}

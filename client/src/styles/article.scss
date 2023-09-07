@@ -1,14 +1,10 @@
 .article-top {
   padding-bottom: 120px;
 
-  // .article-top__title
-
   &__heading {
     @extend %h1;
     margin-bottom: 30px;
   }
-
-  // .article-top__text
 
   &__text {
     margin-bottom: 25px;
@@ -16,28 +12,36 @@
 
   &__images {
     margin-bottom: 50px;
-  }
 
-  // .article-top__img
+    @media #{$tablet} {
+      padding: 0 85px;
+    }
+
+    @media #{$mobile} {
+      flex-direction: column;
+      padding: 0;
+    }
+  }
 
   &__img {
     width: calc( (100% - 30px) / 2);
     @extend %imgbox;
     padding-bottom: 42%;
 
+    @media #{$mobile} {
+      width: 100%;
+      padding-bottom: 87%;
+    }
+
     img {
       @extend %img;
     }
   }
 
-  // .article-top__title
-
   &__title {
     @extend %h2;
     margin-bottom: 31px;
   }
-  
-  // .article-top__list
   
   &__list {
     margin-bottom: 25px;
@@ -55,8 +59,6 @@
       background-color: #000;
     }
   }
-  
-  // .article-top__text--last
   
   &__text--last {
     margin-bottom: 50px;

@@ -1,0 +1,85 @@
+
+.aside-filter {
+  margin-bottom: 30px;
+
+  &__title {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 142.19%;
+    margin-bottom: 14px;
+  }
+
+  &__label + &__label {
+    margin-top: 15px;
+  }
+
+  &__check-real {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    opacity: 0;
+    appearance: none;
+  }
+
+  &__check-fake {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border: 1px solid #535554;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__check-real:checked + .aside-filter__check-fake::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 11px;
+    height: 8px;
+    background-image: url('/static/images/checkmark.svg');
+  }
+
+  &__text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 142.19%;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+
+  &__line {
+    margin-bottom: 15px;
+  }
+
+  &__input-box {
+    border: 1px solid #535554;
+    height: 22px;
+    width: 84px;
+  }
+
+  &__input-box + &__input-box {
+    margin-left: 25px;
+  }
+
+  &__from,
+  &__to {
+    font-size: 12px;
+    line-height: 142.19%;
+    margin-right: 5px;
+    margin-left: 8px;
+  }
+
+  &__input {
+    font-size: 12px;
+    line-height: 142.19%;
+    color: #C4C4C4;
+    width: 52px;
+    height: 22px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+  }
+}

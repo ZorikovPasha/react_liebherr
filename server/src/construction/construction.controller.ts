@@ -16,7 +16,7 @@ import { CreateConstructionDto } from './dto/create-construction.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ImageService } from 'src/image/image.service';
 
-@Controller('construction')
+@Controller('api/construction')
 export class ConstructionController {
   constructor(
     private readonly constructionService: ConstructionService,
@@ -77,13 +77,19 @@ export class ConstructionController {
   }
 
   @Get()
-  findAll() {
-    return this.constructionService.findAll();
+  async findAll() {
+    return {
+      constructions: await this.constructionService.findAll(),
+    };
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.constructionService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const item = await this.constructionService.findOne(+id);
+    return {
+      item: item,
+      similarOnes: [],
+    };
   }
 
   @Delete(':id')

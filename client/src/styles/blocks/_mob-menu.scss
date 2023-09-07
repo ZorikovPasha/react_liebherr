@@ -1,6 +1,4 @@
 .mob-menu {
-  // display: none;
-
   position: fixed;
   z-index: 150;
   top: 0;
@@ -24,10 +22,8 @@
   &__body {
     width: 100%;
     min-height: 100%;
-
     transform: translate(-200%, 0);
     transition: all .3s .1s;
-  
     padding: 80px 30px;
     text-align: center;
     background-color: #000;
@@ -35,7 +31,6 @@
     &.opened {
       transform: translate(0%, 0);
     }
-
   }
 
   &__close {
@@ -78,7 +73,6 @@
     padding-bottom: 5px;
     border-bottom: 2px solid #FFBF1D;
   }
-
 
   &__list-link {
     font-size: 20px;

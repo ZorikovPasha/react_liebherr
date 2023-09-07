@@ -1,0 +1,88 @@
+.main-about {
+  padding: 159px 0 143px;
+  background-color: #F3F3F3;
+
+  &__box {
+    margin-right: 43px;
+    max-width: 48.5%;
+
+    &::after {
+      @media (min-width: 1412px) {
+        content: "about";
+        position: absolute;
+        top: 21%;
+        left: -54%;
+        width: 475px;
+        height: 160px;
+        transform: rotate( -90deg);
+        font-family: "PT Sans",sans-serif;
+        font-weight: bold;
+        font-size: 132px;
+        line-height: 160px;
+        text-transform: uppercase;
+        color: rgba(211,208,208,.2);
+      } 
+    }
+  }
+
+  &__title {
+    @extend %h2;
+    margin-bottom: 41px;
+  }
+
+  &__text {
+    font-size: 18px;
+    p + p {
+      margin-top: 27px;
+    }
+    margin-bottom: 58px;
+  }
+
+  &__video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 48.8%;
+    height: 100%;
+  }
+
+  &__images {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  &__video-box {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+
+    &::after {
+      right: 0;
+      bottom: -23px;
+      background-image: url('/static/images/about-decor.svg');
+      width: 278px;
+      height: 23px;
+      background-size: cover;
+      background-position: bottom;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__play {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__play-img {
+    width: 76px;
+    height: 76px;
+    object-fit: cover;
+  }
+}

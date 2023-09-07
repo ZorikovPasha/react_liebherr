@@ -16,7 +16,7 @@ import { BadRequestException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ImageService } from 'src/image/image.service';
 
-@Controller('machinery')
+@Controller('api/machinery')
 export class MachineryController {
   constructor(
     private readonly machineryService: MachineryService,
@@ -25,7 +25,11 @@ export class MachineryController {
 
   @Get()
   async getAll() {
-    return this.machineryService.findAll();
+    const items = await this.machineryService.findAll();
+    return {
+      items: items,
+      total: items.length,
+    };
   }
 
   @Post()
@@ -160,7 +164,11 @@ export class MachineryController {
 
   @Get(':id')
   async getOne(@Param('id') id: number) {
-    return this.machineryService.findOne(id);
+    const item = await this.machineryService.findOne(id);
+    return {
+      item: item,
+      similarOnes: [],
+    };
   }
 
   @Delete(':id')
