@@ -1,0 +1,31 @@
+.block-text {
+  padding: 120px 0;
+
+  &__title {
+    @extend %h2;
+    margin-bottom: 35px;
+  }
+
+  &__text {
+    margin-bottom: 20px;
+  }
+
+  &__text + &__title {
+    margin-top: 50px;
+  }
+
+  &__list-item {
+    padding-left: 20px;
+    margin-bottom: 20px;
+
+    &::after{
+      top: 50%;
+      transform: translate(0%, -50%);
+      left: 0;
+      width: 10px;
+      height: 10px;
+      background-color: $yellowOrange;
+      border-radius: 1px;
+    }
+  }
+}

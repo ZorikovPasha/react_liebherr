@@ -1,0 +1,30 @@
+
+.catalog-controls {
+  z-index: 4;
+
+  &__sort-select {
+    margin-left: 15px;
+    width: 192px;
+  }
+
+  &__aside-toggle {
+    display: none;
+    margin-right: 15px;
+  }
+
+  &__view {
+    margin-left: auto;
+  }
+
+  &__btn {
+    opacity: .6;
+  }
+
+  &__btn--active {
+    opacity: 1;
+  }
+
+  &__btn + &__btn {
+    margin-left: 10px;
+  }
+}

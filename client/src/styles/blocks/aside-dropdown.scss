@@ -1,0 +1,49 @@
+
+.aside-dropdown {
+  &__title {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 142.19%;
+    color: $black;
+    padding-right: 39px;
+    margin-bottom: 15px;
+
+    cursor: pointer;
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      background: #C4C4C4;
+      transition: all .2s;
+    }
+
+    &.to-open::before {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__list {
+    margin-bottom: 25px;
+  }
+
+  &__list-item + &__list-item {
+    margin-top: 13px;
+  }
+
+  &__link {
+    font-size: 12px;
+    line-height: 142.19%;
+  }
+}
+
+.dropdown {
+  position: relative;
+  margin-left: 23px;
+}
+

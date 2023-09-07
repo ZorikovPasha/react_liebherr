@@ -1,0 +1,28 @@
+
+.projects {
+  background-color: #fff;
+  margin-top: 120px;
+
+  &__inner {
+    padding: 50px 0 50px;
+
+    &::after{
+      content: "Eurocran";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-weight: bold;
+      font-size: 110px;
+      line-height: 141.69%;
+      text-transform: uppercase;
+      color: rgba(211, 208, 208, 0.2);
+      width: 650px;
+      height: 115px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 58px;
+    @extend %h2;
+  }
+}

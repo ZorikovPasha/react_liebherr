@@ -1,5 +1,4 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
-import { ParsedUrlQuery } from 'querystring'
 import Head from 'next/head'
 
 import { publicApi } from '../../api'
@@ -10,24 +9,24 @@ import { ConstructionType } from '../../types/dataTypes'
 import { ROUTES } from '../../utils/const'
 
 interface IObjectsProps {
-  construction: ConstructionType
+  item: ConstructionType
   similarOnes: ConstructionType[]
 }
 
-const Object: NextPage<IObjectsProps> = ({ construction, similarOnes }) => {
-  const { title, text, images } = construction
+const Object: NextPage<IObjectsProps> = ({ item, similarOnes }) => {
+  const { title, text, images } = item
 
   const breadCrumbs = [
     { id: 1, link: ROUTES.HOME, text: 'Главная' },
     { id: 2, link: ROUTES.OBJECTS, text: 'Объекты' },
-    { id: 3, link: '', text: construction.title },
+    { id: 3, link: '', text: item.title },
   ]
 
   return (
     <>
       <Head>
         <meta name="description" content="Объект строительства компании Liebherr" />
-        <title>{construction.title}</title>
+        <title>{item.title}</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />
@@ -98,24 +97,31 @@ const Object: NextPage<IObjectsProps> = ({ construction, similarOnes }) => {
 
 export default Object
 
-interface IParams extends ParsedUrlQuery {
-  id: string
-}
-
 type PType = { params: { id: string } }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await publicApi.getConstructionsIds()
+  const dto = await publicApi.getConstructions()
 
   return {
-    paths: data.items.reduce((accum: PType[], next) => [...accum, { params: { id: next.toString() } }], []),
+    paths: dto.constructions.reduce((accum: PType[], next) => [...accum, { params: { id: next.toString() } }], []),
     fallback: false,
   }
 }
 
 export const getStaticProps: GetStaticProps<IObjectsProps> = async ({ params }) => {
-  const { id } = params as IParams
-  const { construction, similarOnes } = await publicApi.getSingleConstruction(id)
+  const { id } = params || {}
 
-  return { props: { construction, similarOnes } }
+  if (!id) {
+    return {
+      notFound: true,
+    }
+  }
+  const dto = await publicApi.getSingleConstruction(Array.isArray(id) ? id[0] : id)
+
+  return {
+    props: {
+      item: dto.item,
+      similarOnes: dto.similarOnes,
+    },
+  }
 }

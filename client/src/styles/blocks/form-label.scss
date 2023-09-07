@@ -1,0 +1,61 @@
+
+.form-label {
+  &__checkbox-real {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    opacity: 0;
+    appearance: none;
+  }
+
+  &__checkbox-fake {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: transparent;
+    border: 1px solid #2D2D2D;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &--error {
+      border: 1px solid red;
+    }
+  }
+
+  &__checkbox-real:focus + .form-label__checkbox-fake {
+    border: 3px solid #000;
+  }
+
+
+  &__checkbox-real:checked + .form-label__checkbox-fake::after {
+    position: absolute;
+    content: "";
+    width: 11px;
+    height: 7px;
+    top: 5px;
+    left: 1px;
+    background-image: url('/static/images/checkmark.svg');
+  }
+
+  &__text {
+    width: 100%;
+    padding-left: 10px;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 120%;
+    cursor: pointer;
+
+    a {
+      display: inline;
+      text-decoration: underline;
+    }
+  }
+
+  &--margin-left {
+    margin-left: 15px;
+  }
+
+  &--fgrow {
+    flex-grow: 1;
+  }
+}

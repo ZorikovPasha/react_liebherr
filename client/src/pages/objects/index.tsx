@@ -8,7 +8,7 @@ import { ConstructionType } from '../../types/dataTypes'
 import { ROUTES } from '../../utils/const'
 
 interface IObjectsProps {
-  constructions: { constructions: ConstructionType[]; hasMore: boolean }
+  constructions: ConstructionType[]
 }
 
 const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
@@ -17,7 +17,7 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
     { id: 2, link: '', text: 'Объекты' },
   ]
 
-  const onLoadMore = () => {}
+  // const onLoadMore = () => {}
 
   return (
     <>
@@ -30,18 +30,20 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
       <section className="objects">
         <div className="container">
           <h1 className="objects__title">Работа спецтехники от Компании Еврокран</h1>
-          <div className="objects__items">
-            {constructions?.constructions?.map(({ id, preview, title }) => (
-              <ObjectCard id={id} key={id} title={title} preview={preview} />
-            ))}
-          </div>
-          {constructions.hasMore && (
+          {constructions.length ? (
+            <div className="objects__items">
+              {constructions?.map(({ id, preview, title }) => (
+                <ObjectCard id={id} key={id} title={title} preview={preview} />
+              ))}
+            </div>
+          ) : null}
+          {/* {constructions && (
             <div className="objects__btn-wrapper">
               <button className="objects__btn" onClick={onLoadMore}>
                 Загрузить ещё
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </section>
       <section className="block-text">
@@ -107,6 +109,6 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
 export default Objects
 
 export const getStaticProps: GetStaticProps<IObjectsProps> = async () => {
-  const constructions = await publicApi.getConstructions()
-  return { props: { constructions } }
+  const dto = await publicApi.getConstructions()
+  return { props: dto }
 }

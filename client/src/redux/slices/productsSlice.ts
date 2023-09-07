@@ -39,7 +39,7 @@ export const modalsSlice = createSlice({
       state.isError = false
       state.items = action.payload.items
       state.total = action.payload.total
-      state.currentChunk = action.payload.chunk
+      // state.currentChunk = action.payload.chunk
     })
 
     builder.addCase(HYDRATE, (state, action: PayloadType) => {

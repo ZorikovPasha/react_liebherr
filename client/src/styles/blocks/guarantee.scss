@@ -1,0 +1,55 @@
+
+.guarantee {
+  background: #E5E5E5;
+  z-index: 100;
+
+  &__inner {
+    padding: 126px 0 50px;
+  }
+
+  &__title {
+    @extend %h2;
+    margin-bottom: 65px;
+  }
+
+  &__info {
+    width: calc( 100% - 446px );
+    margin-right: 72px;
+  }
+
+  &__text {
+    line-height: 156.69%;
+    margin-bottom: 32px;
+  }
+
+  &__btn {
+    border: none;
+    width: 219px;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: minmax(auto, 195px) minmax(auto, 236px);
+    grid-template-rows: repeat( 2, minmax(auto, 146px));
+    grid-gap: 37px 20px;
+
+    width: 515px;
+    margin-top: 10px;
+  }
+
+  &__item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  &__item-img {
+    max-width: 80px;
+    margin-bottom: 20px;
+  }
+
+  &__item-title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 142.19%;
+  }
+}

@@ -8,7 +8,7 @@ import { SliderNextArrow, SliderPrevArrow } from '../../common/SliderArrows'
 import { selectProducts } from '../../../redux/selectors'
 import { ROUTES } from '../../../utils/const'
 
-export const CatalogSlider: React.FC = () => {
+export const CatalogSlider = () => {
   const [slider, setSlider] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(1)
 

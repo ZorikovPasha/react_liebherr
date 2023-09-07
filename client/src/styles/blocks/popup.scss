@@ -1,8 +1,6 @@
 .popup {
   @extend %pop-up;
 
-  // .popup__body
-
   &__body {
     @extend %pop-up-body;
 
@@ -27,14 +25,10 @@
     padding-top: 56.25%;
   }
 
-  // .popup__title
-
   &__title {
     @extend %h3;
     margin: 0 20px 26px 0;
   }
-
-  // .popup__text
 
   &__text {
     margin-bottom: 30px;
@@ -43,8 +37,6 @@
   &__form-block + &__form-block {
     margin-top: 30px;
   }
-
-  // .popup__input
 
   &__input {
     display: inline-block;

@@ -12,26 +12,26 @@ import { MachineryType } from '../../types/dataTypes'
 import { ROUTES } from '../../utils/const'
 
 interface IProductProps {
-  machinery: MachineryType
+  item: MachineryType
   similarOnes: MachineryType[]
 }
 
-const Product: NextPage<IProductProps> = ({ machinery, similarOnes }) => {
+const Product: NextPage<IProductProps> = ({ item, similarOnes }) => {
   const breadCrumbs = [
     { id: 1, link: ROUTES.HOME, text: 'Главная' },
     { id: 2, link: ROUTES.CATALOG, text: 'Каталог техники' },
-    { id: 3, link: '', text: machinery.name ?? 'Страница товара' },
+    { id: 3, link: '', text: item.name ?? 'Страница товара' },
   ]
 
   return (
     <>
       <Head>
         <meta name="description" content="Строительная компания Liebherr" />
-        <title>{machinery.name}</title>
+        <title>{item.name}</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />
-      <ProductView info={machinery} />
+      <ProductView info={item} />
 
       <ProductTabs />
 
@@ -100,9 +100,14 @@ const Product: NextPage<IProductProps> = ({ machinery, similarOnes }) => {
 export default Product
 
 export const getServerSideProps: GetServerSideProps<IProductProps> = async ({ query }) => {
-  const { machinery, similarOnes } = await publicApi.getSingleMachinery(Number(query.id))
+  if (!query.id) {
+    return {
+      notFound: true,
+    }
+  }
+  const { item, similarOnes } = await publicApi.getSingleMachinery(Number(query.id))
 
   return {
-    props: { machinery, similarOnes },
+    props: { item, similarOnes },
   }
 }

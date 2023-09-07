@@ -1,0 +1,30 @@
+
+.product-list {
+  margin-bottom: 30px;
+
+  @media #{$mobile} {
+    margin-top: 33px;
+  }
+
+  &__item {
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-weight: 500;
+
+    &:first-child {
+      max-width: 293px;
+      width: 100%;
+    }
+  }
+
+  &__text + &__text {
+    margin-left: 27px;
+  }
+
+  &__text--bold {
+    font-weight: 700;
+  }
+}
+

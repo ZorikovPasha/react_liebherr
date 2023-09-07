@@ -1,9 +1,10 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { ArticleType, ConstructionType, MachineryType, OrderType, RequestType } from '../types/dataTypes'
+import { ArticleType, OrderType, RequestType } from '../types/dataTypes'
+import { IConstructionsRes, IMachineryRes, ISingleConstructionRes, ISingleMachineryRes } from './types'
 
 export const apiConfig = {
   returnRejectedPromiseOnError: true,
-  baseURL: process.env.NODE_ENV === 'production' ? 'https://reactliebherrback.glitch.me/' : 'http://localhost:5000',
+  baseURL: process.env.BACKEND,
   headers: {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
     'Content-Type': 'application/json',
@@ -55,36 +56,25 @@ class PublicApi extends Api {
   }
 
   getMachinery = (query: string) => {
-    return this.get<{ items: MachineryType[]; total: number; chunk: number }>('/api/machinery' + query)
+    return this.get<IMachineryRes>('/api/machinery' + query)
   }
 
   getSingleMachinery = (id: number) => {
-    return this.post<{ machinery: MachineryType; similarOnes: MachineryType[] }, { id: number }>('/api/machinery', {
+    return this.post<ISingleMachineryRes, { id: number }>('/api/machinery', {
       id,
     })
   }
 
   getSingleConstruction = (id: string) => {
-    return this.post<{ construction: ConstructionType; similarOnes: ConstructionType[] }, { id: string }>(
-      '/api/construction',
-      { id },
-    )
+    return this.post<ISingleConstructionRes, { id: string }>('/api/construction', { id })
   }
 
   getConstructions = () => {
-    return this.get<{ constructions: ConstructionType[]; hasMore: boolean }>('/api/constructions')
-  }
-
-  getConstructionsIds = () => {
-    return this.get<{ items: number[] }>('/api/constructions/ids')
+    return this.get<IConstructionsRes>('/api/construction')
   }
 
   getArticles = (portionIdx: number) => {
     return this.get<{ items: ArticleType[]; hasMore: boolean }>('/api/articles?chunk=' + portionIdx)
-  }
-
-  getArticlesIds = () => {
-    return this.get<{ items: number[] }>('/api/articles/ids')
   }
 
   getSingleArticle = (id: string) => {
@@ -92,11 +82,11 @@ class PublicApi extends Api {
   }
 
   sendRequest = (data: RequestType) => {
-    return this.post<{ success: Boolean }, RequestType>('/api/question', data)
+    return this.post<{ success: boolean }, RequestType>('/api/question', data)
   }
 
   makeOrder = (userData: OrderType) => {
-    return this.post<{ success: Boolean }, { id: string }>('/api/order', userData)
+    return this.post<{ success: boolean }, { id: string }>('/api/order', userData)
   }
 }
 

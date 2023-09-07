@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Machinery {
+  id                  Int        @unique @id @default(autoincrement())
+  image                      Image?              @relation(fields: [imageId], references: [id])
+  imageId                    Int                @unique
+  name String
+  liftingCapacity String
+  arrowLength String
+  mainArrowLength String
+  maxHeight String
+  maxRadius String
+  speed String
+  extension String
+  price String
+  // similarOnes 
+  // thumbs
+}
+
+model Construction {
+  id                  Int        @unique @id @default(autoincrement())
+  preview                      Image?              @relation(fields: [previewId], references: [id])
+  previewId                    Int                @unique
+  title String
+  text String
+  images ConstructionImage[]
+}
+
+model ConstructionImage {
+  id                  Int        @unique @id @default(autoincrement())
+  imageId                    Int                @unique
+  constructionId Int
+  image                      Image?              @relation(fields: [imageId], references: [id])
+  construction        Construction? @relation(fields: [constructionId], references: [id])
+}
+
+model Image {
+  id                  Int        @id @default(autoincrement())
+  name                String
+  alternativeText     String?
+  caption             String?
+  width               Int
+  height              Int
+  hash                String
+  ext                 String
+  size                Int
+  url                 String
+  mime                String
+  provider            String
+  data                Bytes
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+  machinery           Machinery?
+  construction        Construction?
+  constructionImage   ConstructionImage?
+}
+
+model Request {
+  id                  Int        @id @default(autoincrement())
+  name                String
+  email                String
+  phone                String
+  body                String
+  createdAt                  DateTime            @default(now())
+  updatedAt                  DateTime            @updatedAt
+}
+
+model Order {
+  id                  Int        @id @default(autoincrement())
+  name String
+  userName                String
+  userEmail                String
+  userPhone                String
+  status                String
+  createdAt                  DateTime            @default(now())
+  updatedAt                  DateTime            @updatedAt
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
