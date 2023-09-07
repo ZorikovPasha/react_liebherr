@@ -1,0 +1,121 @@
+
+.questions {
+  background-image: url('/static/images/questions-bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__container {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  &__images {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc( 100% - 891px );
+    width: 891px;
+  }
+
+  &__inner {
+    z-index: 2;
+    color: #fff;
+    max-width: 510px;
+    padding: 75px 0;
+  }
+
+  &__title {
+    @extend %h2;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+
+  &__form {
+    max-width: 490px;
+  }
+
+  &__form-block + &__form-block {
+    margin-top: 30px;
+  }
+
+  &__text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 30px;
+  }
+
+  &__form-message {
+    margin-top: 5px;
+    color: red;
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  &__form-input {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid #C4C4C4;
+    background-color: transparent;
+    color: #fff;
+    
+    &,
+    &::placeholder {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 156.69%;  
+    }
+    &::placeholder {
+      color: #C4C4C4;
+    }
+  }
+
+  &__form-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 15px 20px;
+    resize: none;
+    border: 1px solid #C4C4C4;
+    background-color: transparent;
+    color: #fff;
+
+    &,
+    &::placeholder {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 156.69%;  
+    }
+    &::placeholder {
+      color: #C4C4C4;
+    }
+  }
+
+  &__form-label {
+    align-items: flex-start;
+    margin: 30px 0;
+  }
+
+  &__form-real {
+    @extend %checkbox-real;
+  }
+
+  &__form-fake {
+    @extend %checkbox-fake;
+  }
+
+  &__form-real:checked + .questions__form-fake::after {
+    @extend %checked; 
+  }
+
+  &__form-agree {
+    @extend %agree;
+  }
+
+  &__form-btn {
+    width: 100%;
+  }
+}

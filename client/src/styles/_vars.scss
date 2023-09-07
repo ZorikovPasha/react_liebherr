@@ -5,6 +5,8 @@ $dirt: #535554;
 $white: #F3F3F3;
 $grey: #C4C4C4;
 
+$mobile: '(max-width: 768px)';
+$tablet: '(max-width: 1200px)';
 
 %h1 {
   font-family: 'PT Sans', sans-serif;
@@ -59,7 +61,6 @@ $grey: #C4C4C4;
 %btn-wrapper {
   margin-top: 30px;
   text-align: center;
-
 }
 
 %link-btn {
@@ -117,7 +118,7 @@ $grey: #C4C4C4;
   left: 2px;
   width: 11px;
   height: 7px;
-  background-image: url('../images/checkmark.svg');
+  background-image: url('/static/images/checkmark.svg');
 }
 
 %agree {

@@ -11,12 +11,9 @@ import { QuestionsForm } from '../components/common/QuestionsForm'
 import { RentSlider } from '../components/pages/home/RentSlider'
 import { Top } from '../components/pages/home/Top'
 import { ProjectsSlider } from '../components/pages/home/ProjectsSlider'
-import { ConstructionType } from '../types/dataTypes'
 import { ROUTES } from '../utils/const'
+import { IConstructionsRes } from '../api/types'
 
-interface IHomeProps {
-  constructions: { constructions: ConstructionType[] }
-}
 export const costsItems = [
   {
     imgSrc: '/static/images/cost-1.png',
@@ -60,7 +57,7 @@ export const servicesItems = [
   },
 ]
 
-const Home: NextPage<IHomeProps> = ({ constructions }) => {
+const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
   return (
     <>
       <Head>
@@ -99,7 +96,7 @@ const Home: NextPage<IHomeProps> = ({ constructions }) => {
         </div>
       </section>
 
-      <ProjectsSlider items={constructions.constructions} />
+      {constructions.length ? <ProjectsSlider items={constructions} /> : null}
 
       <CatalogSlider />
 
@@ -215,10 +212,12 @@ const Home: NextPage<IHomeProps> = ({ constructions }) => {
 }
 export default Home
 
-export const getStaticProps: GetStaticProps<IHomeProps> = async () => {
-  const constructions = await publicApi.getConstructions()
+export const getStaticProps: GetStaticProps<IConstructionsRes> = async () => {
+  const dto = await publicApi.getConstructions()
+
+  console.log('dto', dto)
 
   return {
-    props: { constructions },
+    props: dto,
   }
 }

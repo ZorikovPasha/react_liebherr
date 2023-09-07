@@ -1,0 +1,81 @@
+
+.sort-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 183px;
+  padding: 6px 30px 6px 16px;
+  border: 1px solid #535554;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 5px;
+    right: 9px;
+  }
+
+  &::after {
+    top: 9px;
+    background-image: url('/static/images/arrow-upw.svg');
+  }
+  &::before {
+    bottom: 9px;
+    background-image: url('/static/images/arrow-downw.svg');
+  }
+
+  &__list {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    display: none;
+    z-index: 1;
+    width: 255px;
+    background: #f3f3f3;
+    overflow: hidden;
+    box-shadow: 7px 7px 8px 8px rgba(0, 0, 0, 0.3);
+
+  }
+
+  &__list--visible {
+    display: block;
+  }
+
+  &__item {
+    font-size: 12px;
+    line-height: 17px;
+    border: 1px solid #535554;
+
+    border-bottom: none;
+    padding: 11px 16px;
+    cursor: pointer;
+
+    &:first-child {
+      border-radius: 3px 3px 0 0;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid #535554;
+      border-radius: 0 0 3px 3px;
+    }
+
+    &:hover {
+      background: #E5E5E5;
+    }
+  }
+
+  &__arrows {
+    margin-right: 10px;
+
+    img {
+      display: block;
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+}

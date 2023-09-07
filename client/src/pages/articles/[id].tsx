@@ -81,7 +81,7 @@ export default Article
 type PType = { params: { id: string } }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await publicApi.getArticlesIds()
+  const data = await publicApi.getArticles(1)
 
   return {
     paths: data.items.reduce((accum: PType[], next) => [...accum, { params: { id: next.toString() } }], []),

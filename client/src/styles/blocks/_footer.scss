@@ -11,27 +11,19 @@
     }
   }
 
-  // .footer__inner
-
   &__inner {
     align-items: flex-start;
     margin: 0 -13px;
   }
-
-  // .footer__column
 
   &__column {
     max-width: 200px;
     padding: 0 13px;
   }
 
-  // .footer__logo
-
   &__logo {
     margin: 8px 0 25px;
   }
-
-  // .footer__about
 
   &__about {
     max-width: 150px;
@@ -40,15 +32,11 @@
     line-height: 13px;
   }
 
-  // .footer__rights
-
   &__rights {
     font-size: 10px;
     line-height: 16px;
     color: #B5B5B5;
   }
-
-  // .footer__column-title
 
   &__column-title {
     margin-bottom: 15px;
@@ -57,8 +45,6 @@
     line-height: 15px;
     color: #FFFFFF;
   }
-
-  // .footer__btn
 
   &__btn {
     width: 170px;
@@ -93,8 +79,6 @@
     cursor: pointer;
   }
 
-  // .footer__tel
-
   &__tel {
     display: block;
     font-weight: 500;
@@ -109,8 +93,6 @@
   &__item + &__item {
     margin-top: 6px;
   }
-
-  // .column-list__link
 
   &__link {
     font-size: 12px;

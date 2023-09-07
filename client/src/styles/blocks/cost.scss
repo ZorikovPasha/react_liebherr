@@ -1,0 +1,92 @@
+
+.cost {
+  padding: 61px 0 83px;
+  background-color: $black;
+
+  &::before,
+  &::after {
+    left: 0;
+    right: 0;
+    height: 43px;
+    background-image: url('/static/images/numbers-bottom-decor.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after{
+    bottom: -2px;
+  }
+
+  &__inner {
+    color: #fff
+  }
+
+  &__title {
+    @extend %h2;
+    color: #fff;
+    margin-bottom: 26px;
+  }
+
+  &__items {
+    align-items: flex-start;
+  }
+
+  &__item {
+    max-width: 247px;
+    text-align: center;
+  }
+
+  &__item-num {
+    max-width: 127px;
+    margin: 0 auto;
+    margin-bottom: 23px;
+  }
+
+  &__item-num--1,
+  &__item-num--2,
+  &__item-num--3,
+  &__item-num--4 {
+    position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      font-weight: 500;
+      font-size: 64px;
+      line-height: 100%;
+      color: #fff;
+    }
+  }
+
+  &__item-num--1::after {
+    content: "01";
+  }
+  &__item-num--2::after {
+    content: "02";
+  }
+  &__item-num--3::after {
+    content: "03";
+  }
+  &__item-num--4::after {
+    content: "04";
+  }
+
+  &__item-title {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 142.19%;
+    margin-bottom: 9px;
+  }
+
+  &__item-text {
+    font-size: 16px;
+    line-height: 156.69%;
+  }
+}

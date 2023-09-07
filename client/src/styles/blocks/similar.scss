@@ -1,0 +1,27 @@
+.similar {
+  padding: 180px 0 100px;
+
+  &__title {
+    @extend %h2;
+    margin-bottom: 67px;
+  }
+
+  &__items {
+    .slick-btn {
+      right: 12px;
+      top: -96px;
+    }
+    .slick-prev {
+      right: 89px;
+    }
+
+    .slick-slide + .slick-slide {
+      margin-left: 30px;
+    }
+  
+    .slick-dots {
+      top: -57px;
+      right: 12px;
+    }
+  }
+}

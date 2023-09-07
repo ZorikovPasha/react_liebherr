@@ -1,0 +1,46 @@
+
+.numbers {
+  padding: 90px 0;
+  background-color: $black;
+
+  &::before,
+  &::after {
+    left: 0;
+    right: 0;
+    height: 43px;
+    background-image: url('/static/images/numbers-bottom-decor.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after{
+    bottom: -2px;
+  }
+
+  &__items {
+    padding: 0 70px 0 50px;
+  }
+
+  &__item {
+    max-width: 265px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__number {
+    margin-bottom: 15px;
+  }
+
+  &__text {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 142.19%;
+    color: #fff;
+  }
+}
+

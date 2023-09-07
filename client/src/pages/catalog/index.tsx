@@ -18,6 +18,9 @@ import { selectProducts, selectProductsError } from '../../redux/selectors'
 
 const Catalog: NextPage = () => {
   const items = useSelector(selectProducts)
+
+  console.log('items', items)
+
   const [activeView, setActiveView] = React.useState<'grid' | 'list'>('grid')
 
   const AsideRef = React.useRef(null)
@@ -74,7 +77,6 @@ const Catalog: NextPage = () => {
           </div>
         </div>
       </div>
-
       <HelpRequestForm />
       <section className="block-text">
         <div className="container">
