@@ -1,66 +1,49 @@
-import Image from 'next/image'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { publicApi } from '../../api'
+import Head from 'next/head'
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 
+import { cmsApiClient } from '../../api'
 import { AnotherArticlesSlider } from '../../components/pages/article/AnotherArticlesSlider'
 import { BreadCrumbs } from '../../components/common/BreadCrumbs'
-import { ArticleType } from '../../types/dataTypes'
 import { ROUTES } from '../../utils/const'
-import Head from 'next/head'
+import { IArticleRes } from '../../api/types'
 
 interface IArticleProps {
-  article: ArticleType
+  article: IArticleRes
+  others: IArticleRes[]
+  MdxBody: MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>
 }
 
-const Article: NextPage<IArticleProps> = ({ article }) => {
-  const { title, images, sections, subtitles } = article
+const Article: NextPage<IArticleProps> = ({ article, MdxBody, others }) => {
+  const { Title, MetaTitle, MetaDescription } = article
   const breadCrumbs = [
     { id: 1, link: ROUTES.HOME, text: 'Главная' },
-    { id: 2, link: ROUTES.ARTICLES, text: 'Блог' },
-    { id: 3, link: '', text: title },
+    { id: 2, link: ROUTES.ARTICLES, text: 'Статьи' },
+    { id: 3, link: '', text: Title },
   ]
 
   return (
     <>
       <Head>
-        <meta name="description" content="Строительная компания Liebherr" />
-        <title>{title}</title>
+        <meta name="description" content={MetaDescription} />
+        <title>{MetaTitle}</title>
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />
 
       <section className="article-top">
         <div className="container">
-          <h1 className="article-top__heading">{title}</h1>
-          <div className="article-top__images flex jcsb">
-            {images?.map((src) => (
-              <div className="article-top__img" key={src}>
-                <Image src={src} layout="fill" objectFit="cover" alt="Строительный кран" />
-              </div>
-            ))}
+          <h1 className="article-top__heading">{Title}</h1>
+          <div className="article-top__images flex jcsb"></div>
+          <div className="article__markdown mt-40">
+            <MDXRemote {...MdxBody} />
           </div>
-          {sections?.map((section, index) => (
-            <div key={index}>
-              <h2 className="article-top__title" key={index}>
-                {subtitles[index]}
-              </h2>
-              {section.map(({ text, isListItem }, idx) =>
-                isListItem ? (
-                  <li className="article-top__list-item rel after" key={idx}>
-                    {text}
-                  </li>
-                ) : (
-                  <p className="article-top__text" key={idx}>
-                    {text}
-                  </p>
-                ),
-              )}
-            </div>
-          ))}
         </div>
       </section>
 
-      <AnotherArticlesSlider currentArticle={article.id} />
+      {others.length ? <AnotherArticlesSlider items={others} /> : null}
 
       <div className="map">
         <iframe
@@ -81,10 +64,10 @@ export default Article
 type PType = { params: { id: string } }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await publicApi.getArticles(1)
+  const data = await cmsApiClient.getArticles()
 
   return {
-    paths: data.items.reduce((accum: PType[], next) => [...accum, { params: { id: next.toString() } }], []),
+    paths: data.reduce((accum: PType[], next) => [...accum, { params: { id: next.Slug } }], []),
     fallback: false,
   }
 }
@@ -96,7 +79,25 @@ export const getStaticProps: GetStaticProps<IArticleProps> = async ({ params }) 
       notFound: true,
     }
   }
-  const article = await publicApi.getSingleArticle(id)
 
-  return { props: { article } }
+  const articles = await cmsApiClient.getArticles()
+  const current = articles.find((a) => a.Slug === id)
+
+  if (!current) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const MdxBody = await serialize(current.Body)
+
+  console.log(`${process.env.NEXT_PUBLIC_CMS}:slug`)
+
+  return {
+    props: {
+      article: current,
+      others: articles.filter((a) => a.Slug !== id),
+      MdxBody: MdxBody,
+    },
+  }
 }

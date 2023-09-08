@@ -3,21 +3,17 @@ import Slider from 'react-slick'
 import React from 'react'
 
 import { SliderNextArrow, SliderPrevArrow } from '../../../components/common/SliderArrows'
-import ArticleCard from '../../../components/pages/blog/ArticleCard'
-import { publicApi } from '../../../api'
-import { ArticleType } from '../../../types/dataTypes'
+import { ArticleCard } from '../../../components/pages/blog/ArticleCard'
 import { ROUTES } from '../../../utils/const'
+import { IArticleRes } from '../../../api/types'
 
-export const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ currentArticle }) => {
-  const [articles, setArticles] = React.useState<ArticleType[]>([])
+interface IAnotherArticlesSliderProps {
+  items: IArticleRes[]
+}
+
+export const AnotherArticlesSlider: React.FC<IAnotherArticlesSliderProps> = ({ items }) => {
   const [slider, setSlider] = React.useState<Slider>()
   const [activeSlide, setActiveSlide] = React.useState(0)
-
-  React.useEffect(() => {
-    publicApi.getArticles(1).then((data) => {
-      setArticles(data.items.filter((article) => article.id !== currentArticle))
-    })
-  }, [currentArticle])
 
   const settings = {
     row: 1,
@@ -26,7 +22,7 @@ export const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ cu
     dots: false,
     infinite: false,
     prevArrow: <SliderPrevArrow onClick={slider?.slickPrev} isDisabled={activeSlide === 0} />,
-    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === articles.length - 3} />,
+    nextArrow: <SliderNextArrow onClick={slider?.slickNext} isDisabled={activeSlide === items.length - 3} />,
     afterChange: (current: number) => setActiveSlide(current),
     responsive: [
       {
@@ -44,8 +40,8 @@ export const AnotherArticlesSlider: React.FC<{ currentArticle: number }> = ({ cu
       <div className="container">
         <h2 className="another-ones__title">Другие статьи</h2>
         <Slider className="another-ones__slider" {...settings} ref={(slider: Slider) => setSlider(slider)}>
-          {articles?.map(({ id, title, subtitle, preview }) => (
-            <ArticleCard preview={preview} title={title} subtitle={subtitle} id={id} key={id} />
+          {items?.map(({ id, Title, Text, Preview, Slug }) => (
+            <ArticleCard preview={Preview?.url} title={Title} subtitle={Text} slug={Slug} key={id} />
           ))}
         </Slider>
         <div className="another-ones__btn-wrapper">

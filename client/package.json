@@ -9,7 +9,7 @@
     "stylelint": "stylelint --fix",
     "format": "prettier --write \"./src/**/*.{ts,tsx,js,jsx}\"",
     "export": "next export",
-    "lint":"next lint",
+    "lint": "next lint",
     "prepare": "cd .. && npx husky install",
     "typecheck": "tsc"
   },
@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^1.8.0",
     "axios": "^0.26.0",
     "next": "^12.1.5",
+    "next-mdx-remote": "^4.4.1",
     "next-redux-wrapper": "^7.0.5",
     "preact": "^10.11.3",
     "rc-slider": "^10.0.0-alpha.5",

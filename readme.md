@@ -1,3 +1,4 @@
 - [x] move to nest?
 - [ ] ci/cd
 - [ ] redo pagination   
+- [ ] should add cms for articles

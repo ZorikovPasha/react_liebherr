@@ -32,7 +32,6 @@ const Product: NextPage<IProductProps> = ({ item, similarOnes }) => {
 
       <BreadCrumbs items={breadCrumbs} />
       <ProductView info={item} />
-
       <ProductTabs />
 
       <section className="product-text block-text">
