@@ -1,10 +1,20 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { ArticleType, OrderType, RequestType } from '../types/dataTypes'
-import { IConstructionsRes, IMachineryRes, ISingleConstructionRes, ISingleMachineryRes } from './types'
+import { OrderType, RequestType } from '../types/dataTypes'
+import { IArticlesRes, IConstructionsRes, IMachineryRes, ISingleConstructionRes, ISingleMachineryRes } from './types'
 
 export const apiConfig = {
   returnRejectedPromiseOnError: true,
   baseURL: process.env.BACKEND,
+  headers: {
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
+}
+
+export const cmsApiConfig = {
+  returnRejectedPromiseOnError: true,
+  baseURL: process.env.NEXT_PUBLIC_CMS,
   headers: {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
     'Content-Type': 'application/json',
@@ -73,14 +83,6 @@ class PublicApi extends Api {
     return this.get<IConstructionsRes>('/api/construction')
   }
 
-  getArticles = (portionIdx: number) => {
-    return this.get<{ items: ArticleType[]; hasMore: boolean }>('/api/articles?chunk=' + portionIdx)
-  }
-
-  getSingleArticle = (id: string) => {
-    return this.post<ArticleType, { id: string }>('/api/article', { id })
-  }
-
   sendRequest = (data: RequestType) => {
     return this.post<{ success: boolean }, RequestType>('/api/question', data)
   }
@@ -90,4 +92,11 @@ class PublicApi extends Api {
   }
 }
 
+class CmsApi extends Api {
+  getArticles = () => {
+    return this.get<IArticlesRes>('/api/articles')
+  }
+}
+
 export const publicApi = new PublicApi(apiConfig)
+export const cmsApiClient = new CmsApi(cmsApiConfig)
