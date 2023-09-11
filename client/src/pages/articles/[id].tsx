@@ -91,8 +91,6 @@ export const getStaticProps: GetStaticProps<IArticleProps> = async ({ params }) 
 
   const MdxBody = await serialize(current.Body)
 
-  console.log(`${process.env.NEXT_PUBLIC_CMS}:slug`)
-
   return {
     props: {
       article: current,

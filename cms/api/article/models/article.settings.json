@@ -54,18 +54,6 @@
     "Body": {
       "type": "richtext",
       "required": true
-    },
-    "Pics": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
     }
   }
 }
