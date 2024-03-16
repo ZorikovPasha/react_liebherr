@@ -58,9 +58,16 @@ export default Blog
 
 export const getStaticProps: GetStaticProps<IBlogProps> = async () => {
   try {
-  } catch (error) {}
+    const dto = await cmsApiClient.getArticles()
 
-  const dto = await cmsApiClient.getArticles()
+    return { props: { items: dto } }
+  } catch (error) {
+    console.error(error)
 
-  return { props: { items: dto } }
+    return {
+      props: {
+        items: [],
+      },
+    }
+  }
 }

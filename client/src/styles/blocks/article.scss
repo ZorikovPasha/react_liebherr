@@ -3,6 +3,7 @@
 
   &__heading {
     @extend %h1;
+
     margin-bottom: 30px;
   }
 
@@ -24,8 +25,10 @@
   }
 
   &__img {
-    width: calc( (100% - 30px) / 2);
+    width: calc((100% - 30px) / 2);
+
     @extend %imgbox;
+
     padding-bottom: 42%;
 
     @media #{$mobile} {
@@ -40,17 +43,18 @@
 
   &__title {
     @extend %h2;
+
     margin-bottom: 31px;
   }
-  
+
   &__list {
     margin-bottom: 25px;
   }
-  
+
   &__list-item {
     padding-left: 9px;
 
-    &::after{
+    &::after {
       top: 12px;
       left: 3px;
       width: 3px;
@@ -59,7 +63,7 @@
       background-color: #000;
     }
   }
-  
+
   &__text--last {
     margin-bottom: 50px;
   }
@@ -68,7 +72,7 @@
 .article {
   &__markdown {
     p {
-      color: #2D2D2D;
+      color: #2d2d2d;
       font-size: 16px;
       font-weight: 400;
       line-height: 156%;
@@ -90,17 +94,16 @@
       padding-left: 20px;
       position: relative;
 
-      &:after {
+      &::after {
         position: absolute;
         top: 8px;
         left: 0;
         width: 8px;
         height: 8px;
-        background-color: #2D2D2D;
+        background-color: #2d2d2d;
         border-radius: 50%;
-        content: "";
+        content: '';
       }
     }
   }
 }
-

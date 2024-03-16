@@ -1,4 +1,6 @@
 - [x] move to nest?
 - [ ] ci/cd
 - [ ] redo pagination   
-- [ ] should add cms for articles
+- [x] should add cms for articles
+- [ ] catalog filters
+- [x] move redux to client?

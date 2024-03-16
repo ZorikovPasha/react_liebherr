@@ -3,6 +3,7 @@
 
   &__title {
     @extend %h1;
+
     margin-bottom: 53px;
   }
 
@@ -15,9 +16,12 @@
       grid-template-columns: repeat(1, 1fr);
     }
 
-    &::after{
+    &::after {
+      z-index: -1;
+
       @extend %banner;
-      content: "Eurocran";
+
+      content: 'Eurocran';
       bottom: 27%;
       left: -63%;
       width: 1218px;
@@ -28,9 +32,12 @@
       }
     }
 
-    &::before{
+    &::before {
+      z-index: -1;
+
       @extend %banner;
-      content: "Liebherr";
+
+      content: 'Liebherr';
       top: 20%;
       right: -57%;
       width: 1094px;
@@ -53,13 +60,12 @@
 
   &__btn {
     @extend %link-btn;
+
     padding: 12px 58px 12px 47px;
   }
-
 }
 
-
-@media (max-width:992px) {
+@media (width <= 992px) {
   .blog__items {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -69,8 +75,7 @@
   }
 }
 
-
-@media (max-width:600px) {
+@media (width <= 600px) {
   .blog__items .item-blog:nth-child(n + 9) {
     display: none;
   }

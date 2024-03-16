@@ -16,12 +16,12 @@ const nextConfig = {
       return [
         {
           source: '/database-storage/:slug',
-          destination: `${process.env.NEXT_PUBLIC_CMS}/database-storage/:slug`
-        }
+          destination: `${process.env.NEXT_PUBLIC_CMS}/database-storage/:slug`,
+        },
       ]
     }
     return []
-  }
+  },
 }
 
 module.exports = nextConfig

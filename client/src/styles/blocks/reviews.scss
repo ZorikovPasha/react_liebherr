@@ -7,10 +7,11 @@
 
   &__title {
     @extend %h2;
+
     margin-bottom: 100px;
 
     @media #{$mobile} {
-    margin-bottom: 60px;
+      margin-bottom: 60px;
     }
   }
 
@@ -21,6 +22,7 @@
       right: 12px;
       top: -58px;
     }
+
     .slick-prev {
       right: 89px;
     }
@@ -28,7 +30,7 @@
     .slick-dots {
       max-width: 342px;
       bottom: -30px;
-      left: 50%;  
+      left: 50%;
       transform: translate(-50%, 0%);
 
       @media #{$mobile} {
@@ -36,7 +38,7 @@
       }
 
       li {
-        width: calc( 100% / 3 )
+        width: calc(100% / 3);
       }
     }
   }

@@ -27,6 +27,10 @@ export const CatalogSlider = () => {
     responsive: [],
   }
 
+  if (items.length === 0) {
+    return <div className="catalog"></div>
+  }
+
   return (
     <section className="catalog">
       <div className="container">

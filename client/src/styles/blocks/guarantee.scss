@@ -1,6 +1,5 @@
-
 .guarantee {
-  background: #E5E5E5;
+  background: #e5e5e5;
   z-index: 100;
 
   &__inner {
@@ -9,11 +8,12 @@
 
   &__title {
     @extend %h2;
+
     margin-bottom: 65px;
   }
 
   &__info {
-    width: calc( 100% - 446px );
+    width: calc(100% - 446px);
     margin-right: 72px;
   }
 
@@ -30,9 +30,8 @@
   &__items {
     display: grid;
     grid-template-columns: minmax(auto, 195px) minmax(auto, 236px);
-    grid-template-rows: repeat( 2, minmax(auto, 146px));
+    grid-template-rows: repeat(2, minmax(auto, 146px));
     grid-gap: 37px 20px;
-
     width: 515px;
     margin-top: 10px;
   }

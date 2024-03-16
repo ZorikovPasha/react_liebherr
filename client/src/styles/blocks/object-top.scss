@@ -13,6 +13,7 @@
       right: 12px;
       top: -58px;
     }
+
     .slick-prev {
       right: 89px;
     }
@@ -20,6 +21,7 @@
 
   &__images {
     @extend %imgbox;
+
     padding-bottom: 61%;
 
     img {
@@ -40,7 +42,7 @@
   &__thumb-images {
     max-width: 170px;
     cursor: pointer;
-    
+
     @media #{$mobile} {
       position: relative;
       overflow: hidden;
@@ -63,4 +65,3 @@
     }
   }
 }
-

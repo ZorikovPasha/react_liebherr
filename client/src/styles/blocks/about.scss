@@ -17,6 +17,7 @@
 
   &__title {
     @extend %h1;
+
     margin-bottom: 50px;
   }
 
@@ -25,7 +26,7 @@
     margin-right: 20px;
 
     @media #{$mobile} {
-    width: 100%;
+      width: 100%;
     }
 
     p + p {
@@ -37,9 +38,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: calc( 100% - (100% - 1200px) / 2 - 612px  );
+    width: calc(100% - (100% - 1200px) / 2 - 612px);
 
     @extend %imgbox;
+
     height: 100%;
 
     @media #{$mobile} {
@@ -47,7 +49,7 @@
       order: -1;
       width: auto;
       height: 0;
-      margin: 0 15px 30px 15px;
+      margin: 0 15px 30px;
       padding-bottom: 66.5%;
     }
   }
@@ -94,15 +96,29 @@
 
 .anim-color path {
   fill: black;
-    animation: AnimColor 3s linear infinite;
+  animation: AnimColor 3s linear infinite;
 }
 
 @keyframes AnimColor {
-  0% { fill: #C4C4C4 }
-  25% { fill: #2D2D2D } 
-  50% { fill: #FCB427 } 
-  75% { fill: #F3F3F3 } 
-  100% { fill: #FF971D }
+  0% {
+    fill: #c4c4c4;
+  }
+
+  25% {
+    fill: #2d2d2d;
+  }
+
+  50% {
+    fill: #fcb427;
+  }
+
+  75% {
+    fill: #f3f3f3;
+  }
+
+  100% {
+    fill: #ff971d;
+  }
 }
 
 .anim-color {
@@ -110,9 +126,23 @@
 }
 
 @keyframes scale {
-  0% { transform: scale(0.95) }
-  25% { transform: scale(1.05) }
-  50% { transform: scale(0.95) }
-  75% { transform: scale(1) }
-  100% { transform: scale(0.95) }
+  0% {
+    transform: scale(0.95);
+  }
+
+  25% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  75% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.95);
+  }
 }

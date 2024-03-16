@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
+
 import { toggleModal } from '../../redux/slices/modalsSlice'
 import { ROUTES } from '../../utils/const'
 
@@ -17,10 +18,8 @@ export const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButton
 
   const links = [
     { link: ROUTES.CATALOG, text: 'Каталог' },
-    { link: ROUTES.OBJECTS, text: 'Услуги' },
     { link: ROUTES.ABOUT, text: 'О компании' },
     { link: ROUTES.OBJECTS, text: 'Объекты' },
-    { link: ROUTES.CONTACTS, text: 'Цены' },
     { link: ROUTES.ARTICLES, text: 'Блог' },
     { link: ROUTES.CONTACTS, text: 'Контакты' },
   ]

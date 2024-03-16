@@ -3,6 +3,7 @@
 
   &__title {
     @extend %h2;
+
     margin-bottom: 67px;
   }
 
@@ -11,6 +12,7 @@
       right: 12px;
       top: -96px;
     }
+
     .slick-prev {
       right: 89px;
     }
@@ -18,7 +20,7 @@
     .slick-slide + .slick-slide {
       margin-left: 30px;
     }
-  
+
     .slick-dots {
       top: -57px;
       right: 12px;

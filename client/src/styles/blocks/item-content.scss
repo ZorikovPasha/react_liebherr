@@ -1,21 +1,20 @@
-
 .item-content {
   &__title {
     @extend %h2;
+
     margin-bottom: 35px;
-    
   }
 
   &__images {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr );
-    grid-gap: 0 30px
-
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0 30px;
   }
 
   &__img {
     @extend %imgbox;
+
     height: 0;
     padding-bottom: 95%;
   }

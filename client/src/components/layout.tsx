@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 
 import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
-import { Loader } from './common/Loader'
 import { PopupRequest } from './common/Popup'
 import { PopupSuccess } from './common/PopupSuccess'
 import { PopupError } from './common/PopupError'
@@ -24,7 +23,7 @@ const SmoothScroll: SmoothScrollType = ({ children }) => {
   return <>{children}</>
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMobMenuOpen, setMobMenuOpen] = React.useState(false)
   const [isMenuBodyOpened, setMenuBodyOpened] = React.useState(false)
 
@@ -57,11 +56,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <PopupRequest />
         <PopupSuccess title="Заявка отправлена" text="Мы вам перезвоним в ближайшее время" buttonText="Закрыть" />
         <PopupError />
-        <Loader />
       </main>
       <Footer />
     </>
   )
 }
-
-export default Layout

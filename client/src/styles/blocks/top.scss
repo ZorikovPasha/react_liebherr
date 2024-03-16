@@ -1,9 +1,9 @@
 .top {
   &__inner {
     margin-bottom: 77px;
-    background-color: #E5E5E5;
+    background-color: #e5e5e5;
 
-    &::after{
+    &::after {
       width: 554px;
       height: 72px;
       bottom: -35px;
@@ -21,8 +21,7 @@
 
     .slick-btn {
       position: absolute;
-      bottom: 0px;
-      background-color: transparent;
+      bottom: 0;
       z-index: 9;
       cursor: pointer;
       border: none;
@@ -30,14 +29,15 @@
       left: 50%;
       width: 66px;
       height: 66px;
-      background-color: $yellowOrange;
+      background-color: $yellow-orange;
+
       &.slick-disabled {
         cursor: default;
-        background: #CFCFCC;
+        background: #cfcfcc;
         border: 1px solid #fff;
       }
     }
-    
+
     .slick-prev {
       transform: translate(-100%, 0);
     }
@@ -53,14 +53,14 @@
     font-weight: 900;
     font-size: 40px;
     line-height: 47px;
-    color: #F1F1F1;
+    color: #f1f1f1;
   }
 
   &__slider-total {
     font-weight: 900;
     font-size: 20px;
     line-height: 23px;
-    color: #E2E2E2;
+    color: #e2e2e2;
   }
 
   &__slider-img {
@@ -81,14 +81,14 @@
     bottom: 0;
     z-index: 6;
 
-    &::after{
+    &::after {
       top: 0;
       right: 0;
       left: 0;
       bottom: 0;
       max-width: 50%;
       z-index: -1;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgb(255 255 255 / 80%);
     }
   }
 
@@ -110,10 +110,10 @@
     margin-bottom: 40px;
     padding-top: 20px;
 
-    &::after{
+    &::after {
       width: 264px;
       height: 5px;
-      background: $yellowOrange;
+      background: $yellow-orange;
       top: 0;
       left: 0;
       right: 0;
@@ -124,7 +124,7 @@
     font-size: 16px;
     line-height: 156.69%;
     color: $black;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     max-width: 435px;
     margin-bottom: 30px;
   }

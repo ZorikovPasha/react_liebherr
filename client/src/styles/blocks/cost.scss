@@ -1,4 +1,3 @@
-
 .cost {
   padding: 61px 0 83px;
   background-color: $black;
@@ -18,16 +17,17 @@
     top: 0;
   }
 
-  &::after{
+  &::after {
     bottom: -2px;
   }
 
   &__inner {
-    color: #fff
+    color: #fff;
   }
 
   &__title {
     @extend %h2;
+
     color: #fff;
     margin-bottom: 26px;
   }
@@ -52,8 +52,9 @@
   &__item-num--3,
   &__item-num--4 {
     position: relative;
-    &::after{
-      content: "";
+
+    &::after {
+      content: '';
       position: absolute;
       bottom: -4px;
       left: 0;
@@ -65,16 +66,19 @@
   }
 
   &__item-num--1::after {
-    content: "01";
+    content: '01';
   }
+
   &__item-num--2::after {
-    content: "02";
+    content: '02';
   }
+
   &__item-num--3::after {
-    content: "03";
+    content: '03';
   }
+
   &__item-num--4::after {
-    content: "04";
+    content: '04';
   }
 
   &__item-title {

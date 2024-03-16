@@ -17,8 +17,6 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
     { id: 2, link: '', text: 'Объекты' },
   ]
 
-  // const onLoadMore = () => {}
-
   return (
     <>
       <Head>
@@ -28,24 +26,18 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
 
       <BreadCrumbs items={breadCrumbs} />
       <section className="objects">
-        <div className="container">
-          <h1 className="objects__title">Работа спецтехники от Компании Еврокран</h1>
-          {constructions.length ? (
+        {constructions.length ? (
+          <div className="container">
+            <h1 className="objects__title">Работа спецтехники от Компании Еврокран</h1>
             <div className="objects__items">
               {constructions?.map(({ id, preview, title }) => (
                 <ObjectCard id={id} key={id} title={title} preview={preview} />
               ))}
             </div>
-          ) : null}
-          {/* {constructions && (
-            <div className="objects__btn-wrapper">
-              <button className="objects__btn" onClick={onLoadMore}>
-                Загрузить ещё
-              </button>
-            </div>
-          )} */}
-        </div>
+          </div>
+        ) : null}
       </section>
+
       <section className="block-text">
         <div className="container">
           <h2 className="block-text__title">Аренда автокранов LIEBHERR в Москве</h2>
