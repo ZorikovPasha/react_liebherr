@@ -98,5 +98,6 @@ class CmsApi extends Api {
   }
 }
 
+console.log('cmsApiConfig', cmsApiConfig, cmsApiConfig.baseURL)
 export const publicApi = new PublicApi(apiConfig)
 export const cmsApiClient = new CmsApi(cmsApiConfig)

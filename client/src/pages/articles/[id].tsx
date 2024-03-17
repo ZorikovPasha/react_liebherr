@@ -80,22 +80,27 @@ export const getStaticProps: GetStaticProps<IArticleProps> = async ({ params }) 
     }
   }
 
-  const articles = await cmsApiClient.getArticles()
-  const current = articles.find((a) => a.Slug === id)
+  try {
+    const articles = await cmsApiClient.getArticles()
+    const current = articles.find((a) => a.Slug === id)
+    if (!current) {
+      return {
+        notFound: true,
+      }
+    }
 
-  if (!current) {
+    const MdxBody = await serialize(current.Body)
+
+    return {
+      props: {
+        article: current,
+        others: articles.filter((a) => a.Slug !== id),
+        MdxBody: MdxBody,
+      },
+    }
+  } catch (error) {
     return {
       notFound: true,
     }
-  }
-
-  const MdxBody = await serialize(current.Body)
-
-  return {
-    props: {
-      article: current,
-      others: articles.filter((a) => a.Slug !== id),
-      MdxBody: MdxBody,
-    },
   }
 }

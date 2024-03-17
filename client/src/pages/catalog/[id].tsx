@@ -104,9 +104,16 @@ export const getServerSideProps: GetServerSideProps<IProductProps> = async ({ qu
       notFound: true,
     }
   }
-  const { item, similarOnes } = await publicApi.getSingleMachinery(Number(query.id))
 
-  return {
-    props: { item, similarOnes },
+  try {
+    const { item, similarOnes } = await publicApi.getSingleMachinery(Number(query.id))
+
+    return {
+      props: { item, similarOnes },
+    }
+  } catch (error) {
+    return {
+      notFound: true,
+    }
   }
 }

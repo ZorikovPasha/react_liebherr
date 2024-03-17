@@ -207,8 +207,6 @@ export default Home
 export const getStaticProps: GetStaticProps<IConstructionsRes> = async () => {
   try {
     const dto = await publicApi.getConstructions()
-    console.log('dto', dto)
-
     return {
       props: dto,
     }

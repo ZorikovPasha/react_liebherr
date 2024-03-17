@@ -101,6 +101,14 @@ const Objects: NextPage<IObjectsProps> = ({ constructions }) => {
 export default Objects
 
 export const getStaticProps: GetStaticProps<IObjectsProps> = async () => {
-  const dto = await publicApi.getConstructions()
-  return { props: dto }
+  try {
+    const dto = await publicApi.getConstructions()
+    return { props: dto }
+  } catch (error) {
+    return {
+      props: {
+        constructions: [],
+      },
+    }
+  }
 }

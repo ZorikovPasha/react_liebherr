@@ -17,7 +17,6 @@ import { ROUTES } from '../../utils/const'
 import { selectProductsError, selectProductsLoading } from '../../redux/selectors'
 import { Loader } from '../../components/common/Loader'
 import { publicApi } from '../../api'
-import { IMachineryRes } from '../../api/types'
 import { MachineryType } from '../../types/dataTypes'
 
 interface IProps {
@@ -212,22 +211,26 @@ const Catalog: NextPage<IProps> = ({ products }) => {
 export default Catalog
 
 export const getServerSideProps: GetServerSideProps<IProps> = async () => {
-  let dto: IMachineryRes
   try {
-    dto = await publicApi.getMachinery('')
+    const dto = await publicApi.getMachinery('')
+
+    return {
+      props: {
+        products: dto.items,
+        total: dto.total,
+      },
+    }
   } catch (error) {
-    dto = {
+    const dto = {
       items: [] as MachineryType[],
       total: 0,
     }
-  }
 
-  console.log('dto', dto)
-
-  return {
-    props: {
-      products: dto.items,
-      total: dto.total,
-    },
+    return {
+      props: {
+        products: dto.items,
+        total: dto.total,
+      },
+    }
   }
 }
