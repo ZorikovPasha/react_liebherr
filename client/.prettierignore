@@ -4,3 +4,9 @@ package-lock.json
 public
 .husky
 .next
+*.png
+*.svg
+*.jpg
+*.woff
+*.woff2
+*.scss

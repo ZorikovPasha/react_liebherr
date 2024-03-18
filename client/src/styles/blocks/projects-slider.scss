@@ -6,6 +6,7 @@
     right: 12px;
     top: 30px;
   }
+
   .slick-prev {
     right: 89px;
   }
@@ -16,6 +17,7 @@
 
   &__images {
     @extend %imgbox;
+
     width: 56.8%;
     padding-bottom: 42%;
     margin-right: 40px;
@@ -47,7 +49,7 @@
     margin-bottom: 30px;
     padding-left: 31px;
 
-    &::after{
+    &::after {
       width: 21px;
       height: 21px;
       top: 50%;
@@ -70,7 +72,7 @@
     font-family: 'PT Sans', sans-serif;
     padding-right: 40px;
 
-    &::after{
+    &::after {
       width: 18px;
       height: 10px;
       top: 50%;
@@ -80,4 +82,3 @@
     }
   }
 }
-

@@ -1,10 +1,9 @@
-$yellowOrange: #FCB427;
-$Orange: #FF971D;
-$black: #2D2D2D;
+$yellow-orange: #fcb427;
+$orange: #ff971d;
+$black: #2d2d2d;
 $dirt: #535554;
-$white: #F3F3F3;
-$grey: #C4C4C4;
-
+$white: #f3f3f3;
+$grey: #c4c4c4;
 $mobile: '(max-width: 768px)';
 $tablet: '(max-width: 1200px)';
 
@@ -13,10 +12,9 @@ $tablet: '(max-width: 1200px)';
   font-weight: bold;
   font-size: 44px;
   line-height: 142%;
-  line-height: 142%;
 
-  @media (max-width:992px) {
-   font-size: 35px; 
+  @media (width <= 992px) {
+    font-size: 35px;
   }
 }
 
@@ -27,8 +25,8 @@ $tablet: '(max-width: 1200px)';
   color: $black;
   line-height: 141.69%;
 
-  @media (max-width:992px) {
-    font-size: 32px; 
+  @media (width <= 992px) {
+    font-size: 32px;
   }
 }
 
@@ -38,8 +36,8 @@ $tablet: '(max-width: 1200px)';
   line-height: 142.19%;
   font-family: 'PT Sans', sans-serif;
   color: $black;
-  
-  @media (max-width:992px) {
+
+  @media (width <= 992px) {
     font-size: 26px;
   }
 }
@@ -69,14 +67,14 @@ $tablet: '(max-width: 1200px)';
   font-weight: bold;
   font-size: 18px;
   line-height: 141.69%;
-  border: 1px solid $yellowOrange;
+  border: 1px solid $yellow-orange;
 
   &:hover {
-    border: 1px dashed $yellowOrange;
+    border: 1px dashed $yellow-orange;
   }
 
   &:active {
-    border: 1px dotted $yellowOrange;
+    border: 1px dotted $yellow-orange;
   }
 }
 
@@ -87,7 +85,7 @@ $tablet: '(max-width: 1200px)';
   font-size: 255px;
   line-height: 124.19%;
   text-transform: uppercase;
-  color: rgba(211, 208, 208, 0.2);
+  color: rgb(211 208 208 / 20%);
   transform: rotate(-90deg);
 }
 
@@ -105,11 +103,10 @@ $tablet: '(max-width: 1200px)';
   cursor: pointer;
   flex: 0 0 18px;
   display: inline-block;
-  border: 1px solid #C4C4C4;
+  border: 1px solid #c4c4c4;
   background-color: transparent;
   border-radius: 2px;
 }
-
 
 %checked {
   content: '';
@@ -122,11 +119,12 @@ $tablet: '(max-width: 1200px)';
 }
 
 %agree {
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 11px;
   line-height: 14px;
   padding-left: 10px;
   cursor: pointer;
+
   a {
     text-decoration: underline;
   }
@@ -139,22 +137,18 @@ $tablet: '(max-width: 1200px)';
   right: 0;
   left: 0;
   bottom: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background-color: rgba(#000, .5);
+  background-color: rgba(#000, 0.5);
 }
 
 %pop-up-body {
   max-width: 480px;
   width: 100%;
-
   overflow: auto;
   padding: 30px 20px;
-
-  background: rgba(243, 243, 243, 1);
+  background: rgb(243 243 243 / 100%);
   backdrop-filter: blur(14px);
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 8px rgb(0 0 0 / 10%);
 }

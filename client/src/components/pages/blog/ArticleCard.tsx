@@ -1,27 +1,28 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { ROUTES } from '../../../utils/const'
 
 interface ICardProps {
-  preview: string
+  preview: string | undefined
   title: string
   subtitle: string
-  id: number
+  slug: string
 }
 
-const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => {
+export const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, slug }) => {
+  const source = preview ? process.env.BACKEND + preview : undefined
+
   return (
     <div className="blog__item item-blog">
       <div className="blog__item-inner flex">
         <div className="item-blog__images">
-          <Image src={preview} width="100%" height="100%" alt="Статья о строительной технике" layout="responsive" />
+          <img src={source} alt="Статья о строительной технике" />
         </div>
         <div className="item-blog__box flex">
           <h6 className="item-blog__title">{title}</h6>
           <p className="item-blog__text" data-crop="200">
             {subtitle}
           </p>
-          <Link href={ROUTES.ARTICLES + id}>
+          <Link href={ROUTES.ARTICLES + slug}>
             <a className="item-blog__btn btn">Подробнее</a>
           </Link>
         </div>
@@ -29,5 +30,3 @@ const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, id }) => 
     </div>
   )
 }
-
-export default ArticleCard

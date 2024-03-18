@@ -1,12 +1,11 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import Select, { ActionMeta, SingleValue } from 'react-select'
-import { setSort } from '../../../redux/slices/CatalogFiltersSlice'
 
 interface ICOntrolsProps {
   activeView: 'grid' | 'list'
   onAsideOpen: React.MutableRefObject<(() => void) | null>
   setActiveView: React.Dispatch<React.SetStateAction<'grid' | 'list'>>
+  setSortBy: React.Dispatch<React.SetStateAction<string>>
 }
 
 type onSortChangeType = (
@@ -21,13 +20,7 @@ type onSortChangeType = (
 ) => void
 
 export const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(
-  ({ onAsideOpen, setActiveView, activeView }, asideBtnRef) => {
-    const dispatch = useDispatch()
-
-    const onToggleASide = () => {
-      onAsideOpen?.current && onAsideOpen.current()
-    }
-
+  ({ onAsideOpen, setActiveView, activeView, setSortBy }, asideBtnRef) => {
     const sortOptions = [
       { value: 'maxHeight:', label: 'По высоте' },
       { value: 'liftingCapacity:', label: 'По грузоподъемности' },
@@ -39,13 +32,13 @@ export const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps
         value: string
         label: string
       }>
-    >(sortOptions[0])
+    >({ value: 'maxHeight:', label: 'По высоте' })
 
     const onSortTypeChange: onSortChangeType = (value) => {
       setActiveSortType(value)
 
-      if (value?.value) {
-        dispatch(setSort(value?.value))
+      if (value) {
+        setSortBy(value.value)
       }
     }
 
@@ -60,7 +53,7 @@ export const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps
     return (
       <div className="catalog-content__controls catalog-controls rel flex aic jcsb">
         <div className="catalog-controls__aside-toggle aside-toggle">
-          <button className="aside-toggle__btn" onClick={onToggleASide} ref={asideBtnRef}>
+          <button className="aside-toggle__btn" onClick={() => onAsideOpen.current?.()} ref={asideBtnRef}>
             <img src="/static/images/aside-toggle.svg" alt="иконка переключатель" />
           </button>
         </div>
@@ -80,7 +73,7 @@ export const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps
               activeView === 'grid' ? 'catalog-controls__btn--active' : ''
             }`}
           >
-            <img src="/static/images/view-grid.svg" alt="сетка иконка" />
+            <img src="/static/images/view-grid.svg" alt="Grid icon" />
           </button>
           <button
             onClick={onChangeViewList}
@@ -88,7 +81,7 @@ export const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps
               activeView === 'list' ? 'catalog-controls__btn--active' : ''
             }`}
           >
-            <img src="/static/images/view-list.svg" alt="список иконка" />
+            <img src="/static/images/view-list.svg" alt="List icon" />
           </button>
         </div>
       </div>

@@ -1,11 +1,10 @@
-
 .rent {
   z-index: 5;
   padding-top: 51px;
   background-color: #fff;
 
-  &::after{
-    content: "Liebherr";
+  &::after {
+    content: 'Liebherr';
     position: absolute;
     z-index: -1;
     font-weight: bold;
@@ -16,15 +15,16 @@
     width: 650px;
     height: 180px;
     text-transform: uppercase;
-    color: rgba(211, 208, 208, 0.2);
+    color: rgb(211 208 208 / 20%);
   }
 
   &__title {
     @extend %h2;
+
     margin-bottom: 55px;
 
     span {
-      color: $Orange;
+      color: $orange;
     }
   }
 
@@ -33,9 +33,10 @@
       right: 12px;
       bottom: 109px;
     }
+
     .slick-prev {
       right: 87px;
-    }  
+    }
 
     .slick-dots {
       position: absolute;
@@ -50,18 +51,20 @@
         margin: 0;
       }
     }
-    .slick-dots button{
+
+    .slick-dots button {
       padding: 0;
       margin: 0;
-      border:none;
+      border: none;
       cursor: pointer;
       font-size: 0;
       line-height: 0;
-      transition: all .4s;
+      transition: all 0.4s;
       width: 100%;
       height: 4px;
       background: $grey;
     }
+
     .slick-dots li.slick-active button {
       background: #535554;
     }

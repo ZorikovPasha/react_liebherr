@@ -1,11 +1,11 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Head from 'next/head'
 
 import { BreadCrumbs } from '../../components/common/BreadCrumbs'
 import { CatalogAside } from '../../components/pages/catalog/CatalogAside'
-import { CatalogCard } from '../../components/pages/catalog/CatalogCard'
+// import { CatalogCard } from '../../components/pages/catalog/CatalogCard'
 import { CatalogTabs } from '../../components/pages/catalog/CatalogTabs'
 import { ContactsForm } from '../../components/common/ContactsForm'
 import { FilterControls } from '../../components/pages/catalog/FilterControls'
@@ -14,15 +14,20 @@ import { Pagination } from '../../components/pages/catalog/Pagination'
 import { Error } from '../../components/common/Error'
 import { AppEmpty } from '../../components/common/AppEmpty'
 import { ROUTES } from '../../utils/const'
-import { selectProducts, selectProductsError } from '../../redux/selectors'
+import { selectProductsError, selectProductsLoading } from '../../redux/selectors'
+import { Loader } from '../../components/common/Loader'
+import { publicApi } from '../../api'
+import { MachineryType } from '../../types/dataTypes'
 
-const Catalog: NextPage = () => {
-  const items = useSelector(selectProducts)
+interface IProps {
+  products: MachineryType[]
+  total: number
+}
 
-  console.log('items', items)
+const Catalog: NextPage<IProps> = ({ products }) => {
+  console.log('products', products)
 
-  const [activeView, setActiveView] = React.useState<'grid' | 'list'>('grid')
-
+  const query = React.useRef('')
   const AsideRef = React.useRef(null)
 
   const breadCrumbs = [
@@ -30,9 +35,12 @@ const Catalog: NextPage = () => {
     { id: 2, link: ROUTES.CATALOG, text: 'Каталог техники' },
   ]
 
-  const query = React.useRef('')
+  const [activeView, setActiveView] = React.useState<'grid' | 'list'>('grid')
+  const [sortBy, setSortBy] = React.useState('height_to')
+  const [weights, setWeights] = React.useState<number[]>([])
 
   const isError = useSelector(selectProductsError)
+  const isLoading = useSelector(selectProductsLoading)
 
   const onAsideOpen = React.useRef<null | (() => void)>(null)
 
@@ -44,30 +52,37 @@ const Catalog: NextPage = () => {
       </Head>
 
       <BreadCrumbs items={breadCrumbs} />
-      <CatalogTabs />
+      <CatalogTabs setWeights={setWeights} />
 
       <div className="catalog-content">
         <div className="container">
           <div className="catalog-content__inner rel flex">
-            <CatalogAside ref={AsideRef} query={query} onOpen={onAsideOpen} />
+            <CatalogAside sortBy={sortBy} weights={weights} ref={AsideRef} query={query} onOpen={onAsideOpen} />
             <div className="catalog-content__body">
-              <FilterControls activeView={activeView} setActiveView={setActiveView} onAsideOpen={onAsideOpen} />
-              {isError ? (
+              <FilterControls
+                setSortBy={setSortBy}
+                activeView={activeView}
+                setActiveView={setActiveView}
+                onAsideOpen={onAsideOpen}
+              />
+              {isLoading ? (
+                <Loader />
+              ) : isError ? (
                 <Error />
-              ) : items?.length ? (
+              ) : products.length ? (
                 <div
                   className={`catalog-content__items ${activeView === 'list' ? 'catalog-content__items--list' : ''}`}
                 >
-                  {items?.map(({ id, name, features, imgSrc }) => (
-                    <CatalogCard
-                      id={id}
-                      key={id}
-                      name={name}
-                      liftingCapacity={features.liftingCapacity.value}
-                      arrowLength={features.arrowLength.value}
-                      imgSrc={imgSrc}
-                    />
-                  ))}
+                  {/* {products.map(({}) => (
+                    // <CatalogCard
+                    //   id={id}
+                    //   key={id}
+                    //   name={name}
+                    //   liftingCapacity={features.liftingCapacity.value}
+                    //   arrowLength={features.arrowLength.value}
+                    //   imgSrc={imgSrc}
+                    // />
+                  ))} */}
                 </div>
               ) : (
                 <AppEmpty />
@@ -138,7 +153,7 @@ const Catalog: NextPage = () => {
       <section className="contacts">
         <div className="container">
           <h2 className="contacts__title">Контакты</h2>
-          <div className="contacts__inner flex jcsb">
+          <div className="contacts__inner">
             <div className="contacts__content">
               <a className="contacts__address rel after" href="#">
                 г. Москва, Россия, 117628,м. Бульвар Дмитрия Донского, ул. Куликовская, 12{' '}
@@ -194,3 +209,28 @@ const Catalog: NextPage = () => {
 }
 
 export default Catalog
+
+export const getServerSideProps: GetServerSideProps<IProps> = async () => {
+  try {
+    const dto = await publicApi.getMachinery('')
+
+    return {
+      props: {
+        products: dto.items,
+        total: dto.total,
+      },
+    }
+  } catch (error) {
+    const dto = {
+      items: [] as MachineryType[],
+      total: 0,
+    }
+
+    return {
+      props: {
+        products: dto.items,
+        total: dto.total,
+      },
+    }
+  }
+}
