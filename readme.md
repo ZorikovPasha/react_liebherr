@@ -4,3 +4,4 @@
 - [x] should add cms for articles
 - [ ] catalog filters
 - [x] move redux to client?
+- [ ] no dto checking on server
