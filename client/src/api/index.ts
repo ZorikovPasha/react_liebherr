@@ -1,8 +1,8 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { ArticleType, OrderType, RequestType } from '../types/dataTypes'
-import { IConstructionsRes, IMachineryRes, ISingleConstructionRes, ISingleMachineryRes } from './types'
+import { OrderType, RequestType } from '../types/dataTypes'
+import { IArticlesRes, IConstructionsRes, IMachineryRes, ISingleConstructionRes, ISingleMachineryRes } from './types'
 
-export const apiConfig = {
+const apiConfig = {
   returnRejectedPromiseOnError: true,
   baseURL: process.env.BACKEND,
   headers: {
@@ -12,7 +12,7 @@ export const apiConfig = {
   },
 }
 
-export class Axios {
+class Axios {
   protected _axios: AxiosInstance
   constructor(config: AxiosRequestConfig) {
     this._axios = axios.create(config)
@@ -50,7 +50,7 @@ class Api extends Axios {
   }
 }
 
-class PublicApi extends Api {
+export class PublicApi extends Api {
   constructor(config: AxiosRequestConfig) {
     super(config)
   }
@@ -73,20 +73,16 @@ class PublicApi extends Api {
     return this.get<IConstructionsRes>('/api/construction')
   }
 
-  getArticles = (portionIdx: number) => {
-    return this.get<{ items: ArticleType[]; hasMore: boolean }>('/api/articles?chunk=' + portionIdx)
-  }
-
-  getSingleArticle = (id: string) => {
-    return this.post<ArticleType, { id: string }>('/api/article', { id })
-  }
-
   sendRequest = (data: RequestType) => {
     return this.post<{ success: boolean }, RequestType>('/api/question', data)
   }
 
   makeOrder = (userData: OrderType) => {
     return this.post<{ success: boolean }, { id: string }>('/api/order', userData)
+  }
+
+  getArticles = () => {
+    return this.get<IArticlesRes>('/api/article')
   }
 }
 

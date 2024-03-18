@@ -1,10 +1,10 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { setWeight } from '../../../redux/slices/CatalogFiltersSlice'
 
-export const CatalogTabs = () => {
-  const dispatch = useDispatch()
+interface IProps {
+  setWeights: React.Dispatch<React.SetStateAction<number[]>>
+}
 
+export const CatalogTabs: React.FC<IProps> = ({ setWeights }) => {
   const tabs = [
     { filter: 40, text: '40 тонн' },
     { filter: 50, text: '50 тонн' },
@@ -50,7 +50,13 @@ export const CatalogTabs = () => {
   }
 
   const onTabClick = (idx: number) => {
-    dispatch(setWeight(tabs[idx].filter))
+    const newFilter = tabs[idx]?.filter
+    if (typeof newFilter === 'undefined') {
+      return
+    }
+    setWeights((prev) => {
+      return prev.includes(newFilter) ? prev.filter((f) => f !== newFilter) : [...prev, newFilter]
+    })
 
     if (activeTabs.includes(idx)) {
       setActiveTabs(activeTabs.filter((num) => num !== idx))

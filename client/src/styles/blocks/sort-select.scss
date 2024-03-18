@@ -1,4 +1,3 @@
-
 .sort-select {
   position: relative;
   display: flex;
@@ -11,7 +10,7 @@
 
   &::after,
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 8px;
     height: 5px;
@@ -22,6 +21,7 @@
     top: 9px;
     background-image: url('/static/images/arrow-upw.svg');
   }
+
   &::before {
     bottom: 9px;
     background-image: url('/static/images/arrow-downw.svg');
@@ -36,8 +36,7 @@
     width: 255px;
     background: #f3f3f3;
     overflow: hidden;
-    box-shadow: 7px 7px 8px 8px rgba(0, 0, 0, 0.3);
-
+    box-shadow: 7px 7px 8px 8px rgb(0 0 0 / 30%);
   }
 
   &__list--visible {
@@ -48,7 +47,6 @@
     font-size: 12px;
     line-height: 17px;
     border: 1px solid #535554;
-
     border-bottom: none;
     padding: 11px 16px;
     cursor: pointer;
@@ -63,7 +61,7 @@
     }
 
     &:hover {
-      background: #E5E5E5;
+      background: #e5e5e5;
     }
   }
 

@@ -58,19 +58,17 @@ export const servicesItems = [
 ]
 
 const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
+  console.log('constructions', constructions)
+
   return (
     <>
       <Head>
         <meta name="description" content="Аренда строительной техники" />
         <title>Liebherr</title>
       </Head>
-
       <Top />
-
       <RentSlider />
-
       <Guarantee />
-
       <section className="numbers rel after before">
         <div className="container">
           <div className="numbers__items flex aic jcsb wow animate__animated animate__fadeIn animate__delay-1s">
@@ -82,7 +80,7 @@ const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
             </div>
             <div className="numbers__item">
               <p className="numbers__number">
-                <img src="static/images/1 000+.png" alt="number" />
+                <img src="static/images/1000.png" alt="number" />
               </p>
               <p className="numbers__text">выполненных проектов</p>
             </div>
@@ -95,11 +93,8 @@ const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
           </div>
         </div>
       </section>
-
       {constructions.length ? <ProjectsSlider items={constructions} /> : null}
-
       <CatalogSlider />
-
       <section className="cost rel after before">
         <div className="container">
           <div className="cost__inner">
@@ -117,9 +112,7 @@ const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
           </div>
         </div>
       </section>
-
       <AboutPreview />
-
       <section className="services">
         <div className="container">
           <div className="services__inner rel">
@@ -196,7 +189,6 @@ const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
       </section>
 
       <QuestionsForm />
-
       <div className="map">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1538.59309082283!2d37.5659100109784!3d55.57353554252417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aada349fa0335%3A0x664f1a375fe7ab8a!2z0JrRg9C70LjQutC-0LLRgdC60LDRjyDRg9C7Liwg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1630922368972!5m2!1sru!2sru"
@@ -213,11 +205,18 @@ const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
 export default Home
 
 export const getStaticProps: GetStaticProps<IConstructionsRes> = async () => {
-  const dto = await publicApi.getConstructions()
+  try {
+    const dto = await publicApi.getConstructions()
+    return {
+      props: dto,
+    }
+  } catch (error) {
+    console.log('error', error)
 
-  console.log('dto', dto)
-
-  return {
-    props: dto,
+    return {
+      props: {
+        constructions: [],
+      },
+    }
   }
 }

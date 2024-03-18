@@ -13,6 +13,7 @@
 
   &__title {
     @extend %h3;
+
     margin-bottom: 16px;
   }
 
@@ -22,6 +23,7 @@
 
   &__btn {
     @extend %link-btn;
+
     display: block;
     padding: 12px 69px;
     margin: 0 auto;

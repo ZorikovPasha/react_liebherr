@@ -116,12 +116,25 @@ export const getStaticProps: GetStaticProps<IObjectsProps> = async ({ params }) 
       notFound: true,
     }
   }
-  const dto = await publicApi.getSingleConstruction(Array.isArray(id) ? id[0] : id)
 
-  return {
-    props: {
-      item: dto.item,
-      similarOnes: dto.similarOnes,
-    },
+  if (Array.isArray(id) && typeof id[0] === 'undefined') {
+    return {
+      notFound: true,
+    }
+  }
+
+  try {
+    // @ts-expect-error this is okay here
+    const dto = await publicApi.getSingleConstruction(Array.isArray(id) ? id[0] : id)
+    return {
+      props: {
+        item: dto.item,
+        similarOnes: dto.similarOnes,
+      },
+    }
+  } catch (error) {
+    return {
+      notFound: true,
+    }
   }
 }

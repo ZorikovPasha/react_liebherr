@@ -1,10 +1,17 @@
-@import "_vars.scss";
+@font-face {
+  font-family: FuturaPt-Bold;
+  src: url('../fonts/futura-pt-bold.woff2') format('woff2'), url('../fonts/futura-pt-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
   overflow-x: hidden;
   height: 100%;
+
   $scroll-gap: calc(100vw - 100%);
 
   &.lock {
@@ -16,17 +23,17 @@ html {
   }
 }
 
-*, 
+*,
 *::after,
 *::before {
   box-sizing: inherit;
 }
 
 body {
-	min-width: 320px;
+  min-width: 320px;
   overflow-x: hidden;
   height: 100%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
@@ -50,7 +57,6 @@ textarea {
   margin: 0 auto;
 }
 
-
 button {
   padding: 0;
   margin: 0;
@@ -66,9 +72,8 @@ button {
   flex-direction: column;
   min-height: 100%;
   overflow-x: hidden;
-
   background-color: transparent;
-  transition: all .1s;
+  transition: all 0.1s;
 
   &.covered::after {
     content: '';
@@ -78,8 +83,7 @@ button {
     right: 0;
     left: 0;
     bottom: 0;
-
-    background-color: rgba(#000, .4);
+    background-color: rgba(#000, 0.4);
   }
 }
 
@@ -90,6 +94,7 @@ button {
 .footer {
   flex: 0 0 auto;
 }
+
 .rel {
   position: relative;
 }
@@ -112,12 +117,12 @@ button {
 
 .after::after {
   position: absolute;
-  content: "";
+  content: '';
 }
 
 .before::before {
   position: absolute;
-  content: "";
+  content: '';
 }
 
 .btn {
@@ -125,21 +130,19 @@ button {
   font-weight: bold;
   font-size: 18px;
   line-height: 141.69%;
-  color: #FFFFFF;
-  background-color: rgba($yellowOrange, 1);
+  color: #fff;
+  background-color: rgba($yellow-orange, 1);
   padding: 12px 0;
-  transition: all .2s;
+  transition: all 0.2s;
 
   &:hover {
-    background-color: rgba($yellowOrange, .8);
+    background-color: rgba($yellow-orange, 0.8);
   }
 
   &:active {
-    background-color: $Orange;
+    background-color: $orange;
   }
 }
-
-
 
 .rent__slider,
 .projects-slider,
@@ -156,20 +159,25 @@ button {
     outline: none;
     width: 40px;
     height: 40px;
-    border: 2px solid #FF971D;
+    border: 2px solid #ff971d;
 
     &:active {
-      opacity: .6;
+      opacity: 0.6;
     }
-  
+
     &.slick-disabled {
       border: 2px solid transparent;
       cursor: default;
-      .slider-arr-wrapper svg path {fill: #C4C4C4;}
+
+      .slider-arr-wrapper svg path {
+        fill: #c4c4c4;
+      }
     }
+
     .slider-arr-wrapper {
       position: relative;
       height: 100%;
+
       svg {
         position: absolute;
         top: 50%;
@@ -178,8 +186,10 @@ button {
       }
     }
   }
+
   .slick-prev {
     right: 87px;
+
     .slider-arr-wrapper svg {
       left: 15px;
     }
@@ -195,34 +205,40 @@ button {
     max-width: 123px;
     width: 100%;
     align-items: center;
+
     li {
       margin: 0;
-      width: calc( 100% / 5 );
+      width: calc(100% / 5);
+
       &.active button {
         background: #535554;
       }
     }
   }
-  .slick-dots button{
+
+  .slick-dots button {
     padding: 0;
     margin: 0;
     border: none;
     cursor: pointer;
     font-size: 0;
     line-height: 0;
-    background: #C4C4C4;
+    background: #c4c4c4;
     height: 4px;
     width: 100%;
   }
+
   .slick-dots li.slick-active button {
     background: #535554;
   }
 }
+
 .catalog-slider,
 .another-ones__slider {
   .slick-track {
     display: flex !important;
   }
+
   .slick-slide {
     height: inherit !important;
   }
@@ -232,13 +248,12 @@ button {
   }
 }
 
-
 .map {
   max-width: 1605px;
   margin: 0 auto;
 }
 
-@media (max-width:992px) {
+@media (width <= 992px) {
   .product-item__title--big {
     font-size: 17px;
     line-height: 20px;
@@ -246,7 +261,7 @@ button {
   }
 }
 
-@media (max-width:570px) {
+@media (width <= 570px) {
   .product-item__title--big {
     font-size: 14px;
     line-height: 16px;

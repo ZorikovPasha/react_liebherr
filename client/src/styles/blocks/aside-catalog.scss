@@ -1,11 +1,10 @@
-
 .aside-catalog {
   &__body {
     max-width: 271px;
     width: 100%;
     overflow-y: auto;
 
-    @media (max-width:767px) {
+    @media (width <= 767px) {
       max-width: 100%;
     }
   }
@@ -15,12 +14,11 @@
     top: 15px;
     right: 15px;
     z-index: 10;
-
     display: none;
   }
 
   &__close:active {
-    opacity: .7;
+    opacity: 0.7;
   }
 
   &__box {
@@ -36,7 +34,7 @@
   &__reset {
     font-size: 16px;
     line-height: 156.69%;
-    color: #C4C4C4;
+    color: #c4c4c4;
     margin-bottom: 28px;
   }
 
@@ -46,7 +44,7 @@
     font-weight: bold;
     font-size: 16px;
     line-height: 21px;
-    color: #FFFFFF;
+    color: #fff;
     background-color: $black;
   }
 
@@ -59,6 +57,6 @@
     font-weight: bold;
     font-size: 18px;
     line-height: 142.19%;
-    color: #FFFFFF;
+    color: #fff;
   }
 }

@@ -1,18 +1,18 @@
-
 .catalog-content {
   padding-top: 50px;
   overflow: hidden;
 
   &__inner {
-    &::after{
+    &::after {
       @extend %banner;
 
-      content: "Eurocran";
+      content: 'Eurocran';
       bottom: 19%;
       left: -62%;
       width: 1218px;
       height: 318px;
     }
+
     &::before {
       @extend %banner;
 
@@ -21,7 +21,7 @@
       right: -59%;
       width: 1118px;
       height: 318px;
-    } 
+    }
   }
 
   &__body {
@@ -66,7 +66,6 @@
       right: 0;
       left: 0;
       bottom: 0;
-
       width: 100%;
       height: 100%;
     }

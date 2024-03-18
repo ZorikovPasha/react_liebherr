@@ -1,4 +1,3 @@
-
 .questions {
   background-image: url('/static/images/questions-bg.jpg');
   background-position: center;
@@ -14,7 +13,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: calc( 100% - 891px );
+    left: calc(100% - 891px);
     width: 891px;
   }
 
@@ -27,6 +26,7 @@
 
   &__title {
     @extend %h2;
+
     color: #fff;
     margin-bottom: 30px;
   }
@@ -40,7 +40,7 @@
   }
 
   &__text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     line-height: 21px;
     margin-bottom: 30px;
@@ -57,19 +57,20 @@
     display: block;
     width: 100%;
     padding: 14px 20px;
-    border: 1px solid #C4C4C4;
+    border: 1px solid #c4c4c4;
     background-color: transparent;
     color: #fff;
-    
+
     &,
     &::placeholder {
-      font-family: 'Montserrat', sans-serif;
+      font-family: Montserrat, sans-serif;
       font-weight: normal;
       font-size: 14px;
-      line-height: 156.69%;  
+      line-height: 156.69%;
     }
+
     &::placeholder {
-      color: #C4C4C4;
+      color: #c4c4c4;
     }
   }
 
@@ -78,19 +79,20 @@
     height: 100px;
     padding: 15px 20px;
     resize: none;
-    border: 1px solid #C4C4C4;
+    border: 1px solid #c4c4c4;
     background-color: transparent;
     color: #fff;
 
     &,
     &::placeholder {
-      font-family: 'Montserrat', sans-serif;
+      font-family: Montserrat, sans-serif;
       font-weight: normal;
       font-size: 14px;
-      line-height: 156.69%;  
+      line-height: 156.69%;
     }
+
     &::placeholder {
-      color: #C4C4C4;
+      color: #c4c4c4;
     }
   }
 
@@ -108,7 +110,7 @@
   }
 
   &__form-real:checked + .questions__form-fake::after {
-    @extend %checked; 
+    @extend %checked;
   }
 
   &__form-agree {

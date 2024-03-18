@@ -3,11 +3,11 @@
 
 cd client
 npm run stylelint
-npx next lint
 npm run format
-git add .
+cd ..
+git add client
 
-cd ../server
-npm run lint
+cd server
 npm run format
-git add .
+cd ..
+git add server

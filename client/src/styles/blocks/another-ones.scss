@@ -1,28 +1,29 @@
-
 .another-ones {
   padding-bottom: 80px;
 
   &__title {
     @extend %h2;
+
     margin-bottom: 75px;
   }
 
   &__slider {
     margin: 0 -5px;
-    
+
     .slick-slide {
       padding: 0 5px;
     }
+
     .slick-btn {
       right: 15px;
       top: -58px;
     }
+
     .slick-prev {
       right: 92px;
     }
 
     margin-bottom: 30px;
-
   }
 
   &__btn-wrapper {
@@ -31,6 +32,7 @@
 
   &__btn {
     @extend %link-btn;
+
     padding: 12px 57px;
   }
 }

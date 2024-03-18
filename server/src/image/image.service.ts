@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import sizeOf from 'buffer-image-size';
 import sharp from 'sharp';
 import crypto from 'crypto';
+
 import { PrismaService } from 'src/prisma/prisma.service';
 
 const replaceSpacesWithUnderscores = (str: string): string => {
@@ -35,6 +36,9 @@ export class ImageService {
       imageNameWithoutExtension,
     );
     const imageExtension = image.filename.split('.').pop();
+    const imageUrl = `/uploads/${processedImageNameWithoutExtension}_${hash.digest(
+      'hex',
+    )}.${imageExtension}`;
 
     const photo = {
       name: image.filename,
@@ -46,9 +50,7 @@ export class ImageService {
       ext: imageExtension ?? '',
       mime: image.mimetype,
       size: image.size / 1000,
-      url: `/uploads/${processedImageNameWithoutExtension}_${hash.digest(
-        'hex',
-      )}.${imageExtension}`,
+      url: imageUrl,
       provider: 'database',
       data: compressedImage,
     };

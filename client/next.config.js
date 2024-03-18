@@ -11,13 +11,17 @@ const nextConfig = {
     }
     return config
   },
+  async rewrites() {
+    if (process.env.NODE_ENV === 'development') {
+      return [
+        {
+          source: '/database-storage/:slug',
+          destination: `${process.env.BACKEND}/database-storage/:slug`,
+        },
+      ]
+    }
+    return []
+  },
 }
 
-// const withBundleAnalyzer = require('@next/bundle-analyzer')({
-//   enabled: process.env.ANALYZE === 'true',
-// })
-
-module.exports =
-  // withBundleAnalyzer(
-  nextConfig
-// )
+module.exports = nextConfig

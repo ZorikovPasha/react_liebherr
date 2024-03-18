@@ -160,7 +160,7 @@ const About: NextPage = () => {
       <section className="contacts">
         <div className="container">
           <h2 className="contacts__title">Контакты</h2>
-          <div className="contacts__inner flex jcsb">
+          <div className="contacts__inner">
             <div className="contacts__content">
               <a className="contacts__address rel after" href="#">
                 г. Москва, Россия, 117628,м. Бульвар Дмитрия Донского, ул. Куликовская, 12{' '}

@@ -1,8 +1,7 @@
-
 .projects-nav {
   .slick-slide + .slick-slide {
     margin-left: 30px;
-  } 
+  }
 
   &__item {
     max-width: 170px;
@@ -23,8 +22,8 @@
   .slick-current .projects-nav__img-wrapper {
     position: relative;
 
-    &::after{
-      content: "";
+    &::after {
+      content: '';
       position: absolute;
       height: 4px;
       width: 100%;
@@ -35,6 +34,7 @@
       background-color: #535554;
     }
   }
+
   .slick-current .projects-nav__img {
     filter: grayscale(0%);
   }
@@ -42,6 +42,6 @@
   &__line {
     height: 4px;
     margin-top: -7px;
-    background: #C4C4C4;
+    background: #c4c4c4;
   }
 }

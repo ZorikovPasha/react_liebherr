@@ -9,10 +9,9 @@ module.exports = {
     'comma-spacing': ['error', { before: false, after: true }],
     'react/no-children-prop': 'off',
     'prefer-rest-params': 'off',
-    '@typescript-eslint/no-extra-semi': 'off'
+    '@typescript-eslint/no-extra-semi': 'off',
   },
   globals: {
-    React: 'readonly'
-  }
+    React: 'readonly',
+  },
 }
-
