@@ -80,7 +80,7 @@ const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
             </div>
             <div className="numbers__item">
               <p className="numbers__number">
-                <img src="static/images/1 000+.png" alt="number" />
+                <img src="static/images/1000.png" alt="number" />
               </p>
               <p className="numbers__text">выполненных проектов</p>
             </div>

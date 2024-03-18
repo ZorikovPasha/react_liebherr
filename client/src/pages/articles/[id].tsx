@@ -4,7 +4,7 @@ import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 
-import { cmsApiClient } from '../../api'
+import { publicApi } from '../../api'
 import { AnotherArticlesSlider } from '../../components/pages/article/AnotherArticlesSlider'
 import { BreadCrumbs } from '../../components/common/BreadCrumbs'
 import { ROUTES } from '../../utils/const'
@@ -64,7 +64,7 @@ export default Article
 type PType = { params: { id: string } }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await cmsApiClient.getArticles()
+  const data = await publicApi.getArticles()
 
   return {
     paths: data.reduce((accum: PType[], next) => [...accum, { params: { id: next.Slug } }], []),
@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps<IArticleProps> = async ({ params }) 
   }
 
   try {
-    const articles = await cmsApiClient.getArticles()
+    const articles = await publicApi.getArticles()
     const current = articles.find((a) => a.Slug === id)
     if (!current) {
       return {

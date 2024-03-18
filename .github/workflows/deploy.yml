@@ -51,7 +51,7 @@ jobs:
           npm run stylelint
           npm run lint
           npm run typecheck
-          # npm run test
+          NODE_ENV=production npx tsx src/utils/warmupServer.ts
           npm run build
   #     - name: 🚀 Deploy to Netlify
   #       uses: netlify/actions/cli@master

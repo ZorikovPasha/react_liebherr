@@ -2,7 +2,7 @@ import { GetStaticProps, NextPage } from 'next'
 import React from 'react'
 import Head from 'next/head'
 
-import { cmsApiClient } from '../../api'
+import { publicApi } from '../../api'
 import { BreadCrumbs } from '../../components/common/BreadCrumbs'
 import { ArticleCard } from '../../components/pages/blog/ArticleCard'
 import { ROUTES } from '../../utils/const'
@@ -58,7 +58,7 @@ export default Blog
 
 export const getStaticProps: GetStaticProps<IBlogProps> = async () => {
   try {
-    const dto = await cmsApiClient.getArticles()
+    const dto = await publicApi.getArticles()
 
     return { props: { items: dto } }
   } catch (error) {

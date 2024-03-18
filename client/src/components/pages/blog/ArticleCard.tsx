@@ -9,7 +9,7 @@ interface ICardProps {
 }
 
 export const ArticleCard: React.FC<ICardProps> = ({ preview, title, subtitle, slug }) => {
-  const source = preview ? process.env.NEXT_PUBLIC_CMS + preview : undefined
+  const source = preview ? process.env.BACKEND + preview : undefined
 
   return (
     <div className="blog__item item-blog">

@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { OrderType, RequestType } from '../types/dataTypes'
 import { IArticlesRes, IConstructionsRes, IMachineryRes, ISingleConstructionRes, ISingleMachineryRes } from './types'
 
-export const apiConfig = {
+const apiConfig = {
   returnRejectedPromiseOnError: true,
   baseURL: process.env.BACKEND,
   headers: {
@@ -12,17 +12,7 @@ export const apiConfig = {
   },
 }
 
-export const cmsApiConfig = {
-  returnRejectedPromiseOnError: true,
-  baseURL: process.env.NEXT_PUBLIC_CMS,
-  headers: {
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
-}
-
-export class Axios {
+class Axios {
   protected _axios: AxiosInstance
   constructor(config: AxiosRequestConfig) {
     this._axios = axios.create(config)
@@ -60,7 +50,7 @@ class Api extends Axios {
   }
 }
 
-class PublicApi extends Api {
+export class PublicApi extends Api {
   constructor(config: AxiosRequestConfig) {
     super(config)
   }
@@ -90,14 +80,10 @@ class PublicApi extends Api {
   makeOrder = (userData: OrderType) => {
     return this.post<{ success: boolean }, { id: string }>('/api/order', userData)
   }
-}
 
-class CmsApi extends Api {
   getArticles = () => {
-    return this.get<IArticlesRes>('/api/articles')
+    return this.get<IArticlesRes>('/api/article')
   }
 }
 
-console.log('cmsApiConfig', cmsApiConfig, cmsApiConfig.baseURL)
 export const publicApi = new PublicApi(apiConfig)
-export const cmsApiClient = new CmsApi(cmsApiConfig)
