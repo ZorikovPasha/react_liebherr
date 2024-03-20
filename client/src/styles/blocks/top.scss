@@ -16,6 +16,11 @@
     }
   }
 
+  // .top__slider,
+  // .top__slider-img {
+  //   height: 650px;
+  // }
+
   &__slider {
     height: 600px;
 
@@ -131,18 +136,23 @@
 
   &__btns {
     max-width: 446px;
+
+    @media #{$mobile} {
+      flex-direction: column;
+      align-items: flex-start;
+      grid-gap: 30px;
+    }
   }
 
   &__callme {
-    width: 215px;
+    padding: 10px 40px;
     border: none;
   }
 
   &__link {
     text-align: center;
     font-family: 'PT Sans', sans-serif;
-    padding: 11px 0;
-    width: 215px;
+    padding: 10px 40px;
     color: $black;
     font-weight: bold;
     font-size: 17px;

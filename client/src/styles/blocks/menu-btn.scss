@@ -1,40 +1,15 @@
 .menu-btn {
-  position: absolute;
+  position: relative;
   display: none;
-  top: 50%;
-  left: 20px;
   z-index: 7;
-  transform: translate(0, -50%);
   background-color: transparent;
-  border: none;
 
-  &:hover::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    content: '';
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: rgba(#000, 0.2);
+  @media (width <= 1010px) {
+    display: block;
   }
 
-  &.active {
-    div:nth-child(2) {
-      opacity: 0;
-    }
-
-    div:nth-child(1) {
-      transform: translateY(5px) rotate(135deg);
-    }
-
-    div:nth-child(3) {
-      transform: translateY(-9px) rotate(-135deg);
-    }
-  }
-
-  div {
+  span {
+    display: block;
     width: 40px;
     height: 4px;
     background-color: #000;
@@ -45,7 +20,7 @@
     }
   }
 
-  div + div {
+  span + span {
     margin-top: 8px;
   }
 }

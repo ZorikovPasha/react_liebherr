@@ -76,7 +76,7 @@ export const Top: React.FC = () => {
                 </div>
                 <div className="top__slider-images">
                   <div className="top__slider-img">
-                    <Image src={src} layout="fill" alt="" />
+                    <Image src={src} layout="fill" alt="" objectFit="cover" />
                   </div>
                 </div>
               </div>

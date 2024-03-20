@@ -308,12 +308,14 @@ export const CatalogAside = React.forwardRef<HTMLDivElement, AsidePropsType>(
                   onChange={handleChangeRange.bind(null, setArrowLengthFrom, setArrowLengthTo)}
                 />
               </div>
-              <button className="aside-catalog__reset" type="reset" onClick={onResetFilters}>
-                Очистить фильтр
-              </button>
-              <button className="aside-catalog__submit" type="submit">
-                Показать
-              </button>
+              <div className="aside-catalog__bottom">
+                <button className="aside-catalog__reset" type="reset" onClick={onResetFilters}>
+                  Очистить фильтр
+                </button>
+                <button className="aside-catalog__submit" type="submit">
+                  Показать
+                </button>
+              </div>
             </form>
           </div>
         </div>

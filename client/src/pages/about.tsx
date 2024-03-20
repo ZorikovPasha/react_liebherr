@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
+import { useScreenSize } from '../hooks/useScreenSize'
 
 import { ROUTES } from '../utils/const'
 import { BreadCrumbs } from '../components/common/BreadCrumbs'
@@ -17,6 +18,8 @@ const About: NextPage = () => {
     { id: 2, link: '', text: 'О компании' },
   ]
 
+  const isDesktop = useScreenSize(992)
+
   return (
     <>
       <Head>
@@ -24,7 +27,7 @@ const About: NextPage = () => {
         <title>Liebherr</title>
       </Head>
 
-      <BreadCrumbs items={breadCrumbs} />
+      {!isDesktop ? <BreadCrumbs items={breadCrumbs} /> : null}
       <section className="about">
         <div className="container">
           <h1 className="about__title">О Компании Еврокран</h1>

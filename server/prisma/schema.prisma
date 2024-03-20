@@ -63,6 +63,7 @@ model Image {
   machinery         Machinery?
   construction      Construction?
   constructionImage ConstructionImage?
+  article           Article?
 }
 
 model Request {
@@ -86,3 +87,17 @@ model Order {
   updatedAt DateTime @updatedAt
 }
 
+model Article {
+  MetaTitle       String
+  MetaDescription String
+  Title           String
+  Slug       String
+  TimeToRead String
+  IsNew Boolean
+  Body String
+  Preview Image?        @relation(fields: [previewId], references: [id])
+  previewId        Int           @unique
+  Text String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

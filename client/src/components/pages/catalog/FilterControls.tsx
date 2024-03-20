@@ -57,15 +57,12 @@ export const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps
             <img src="/static/images/aside-toggle.svg" alt="иконка переключатель" />
           </button>
         </div>
-        <div className="flex aic">
-          <img src="/static/images/sort-icon.svg" alt="" />
-          <Select
-            value={activeSortType}
-            className="catalog-controls__sort-select"
-            options={sortOptions}
-            onChange={onSortTypeChange}
-          />
-        </div>
+        <Select
+          value={activeSortType}
+          className="catalog-controls__sort-select"
+          options={sortOptions}
+          onChange={onSortTypeChange}
+        />
         <div className="catalog-controls__view view flex aic">
           <button
             onClick={onChangeViewGrid}

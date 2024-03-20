@@ -5,9 +5,9 @@ export const REGEX = {
 
 export const ROUTES = {
   HOME: '/',
-  OBJECTS: '/objects/',
-  CATALOG: '/catalog/',
-  ABOUT: '/about/',
-  CONTACTS: '/contacts/',
-  ARTICLES: '/articles/',
+  OBJECTS: '/objects',
+  CATALOG: '/catalog',
+  ABOUT: '/about',
+  CONTACTS: '/contacts',
+  ARTICLES: '/articles',
 }

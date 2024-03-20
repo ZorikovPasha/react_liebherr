@@ -25,6 +25,17 @@
     @extend %h3;
 
     margin-bottom: 32px;
+
+    @media #{$mobile} {
+      margin-bottom: 10px;
+    }
+
+    @media (width <= 350px) {
+        text-align: center;
+        max-width: 250px;
+        margin: 0 auto 32px;
+      }
+    
   }
 
   &__text {
