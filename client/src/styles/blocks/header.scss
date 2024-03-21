@@ -201,6 +201,10 @@
 
   &__bottom-inner {
     padding: 25px 0;
+
+    @media (width <= 1010px) {
+      justify-content: flex-end;
+    }
   }
 
   &__nav-item {
@@ -254,14 +258,6 @@
 }
 
 @media (width <= 1010px) {
-  .menu-btn {
-    display: block;
-  }
-
-  .header__nav {
-    display: none;
-  }
-
   .header__input-box {
     margin-left: auto;
   }

@@ -37,7 +37,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     document.documentElement.classList.remove('lock')
   }, [])
 
-  const handleMobMennuButtonClick = React.useCallback(() => {
+  const openMobileMenu = React.useCallback(() => {
     setMobMenuOpen(true)
     document.documentElement.classList.add('lock')
     setTimeout(() => setMenuBodyOpened(true), 200)
@@ -45,7 +45,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <>
-      <Header handleMobMennuButtonClick={handleMobMennuButtonClick} />
+      <Header openMobileMenu={openMobileMenu} />
       <MobMenu
         handleMobMennuCloseClick={handleMobMennuCloseClick}
         isMobMenuOpen={isMobMenuOpen}

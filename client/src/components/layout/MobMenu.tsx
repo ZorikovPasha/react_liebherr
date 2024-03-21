@@ -11,10 +11,8 @@ interface IMobMenuProps {
 export const MobMenu: React.FC<IMobMenuProps> = ({ handleMobMennuCloseClick, isMobMenuOpen, isMenuBodyOpened }) => {
   const menuItems = [
     { link: ROUTES.CATALOG, text: 'Каталог' },
-    { link: ROUTES.OBJECTS, text: 'Услуги' },
     { link: ROUTES.ABOUT, text: 'О компании' },
     { link: ROUTES.OBJECTS, text: 'Объекты' },
-    { link: ROUTES.CONTACTS, text: 'Цены' },
     { link: ROUTES.ARTICLES, text: 'Блог' },
     { link: ROUTES.CONTACTS, text: 'Контакты' },
   ]

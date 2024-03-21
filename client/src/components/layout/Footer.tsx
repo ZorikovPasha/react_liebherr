@@ -14,7 +14,6 @@ export const Footer = () => {
       { text: 'Каталог техники', link: ROUTES.CATALOG },
       { text: 'Аренда кранов', link: ROUTES.ARTICLES },
       { text: 'Наши работы', link: ROUTES.OBJECTS },
-      { text: 'Прайс-лист', link: ROUTES.ABOUT },
       { text: 'Контакты', link: ROUTES.CONTACTS },
     ],
     [
@@ -22,13 +21,6 @@ export const Footer = () => {
       { text: 'Мобильные краны', link: ROUTES.CATALOG },
       { text: 'Низеорамные краны', link: ROUTES.CATALOG },
       { text: 'Модульные платформы', link: ROUTES.CATALOG },
-    ],
-    [
-      { text: 'Аренда гусеничного крана', link: ROUTES.CONTACTS },
-      { text: 'Аренда мобильного крана', link: ROUTES.CONTACTS },
-      { text: 'Аренда башенного крана', link: ROUTES.CONTACTS },
-      { text: 'Перевозка негабаритного груза', link: ROUTES.CONTACTS },
-      { text: 'Разработка ппрк', link: ROUTES.CONTACTS },
     ],
   ]
   const listsTitles = ['Клиентам', 'Техника', 'Услуги']

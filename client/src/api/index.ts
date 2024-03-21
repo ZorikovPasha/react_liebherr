@@ -4,7 +4,7 @@ import { IArticlesRes, IConstructionsRes, IMachineryRes, ISingleConstructionRes,
 
 const apiConfig = {
   returnRejectedPromiseOnError: true,
-  baseURL: process.env.BACKEND,
+  baseURL: process.env.NEXT_PUBLIC_BACKEND,
   headers: {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
     'Content-Type': 'application/json',
@@ -85,5 +85,7 @@ export class PublicApi extends Api {
     return this.get<IArticlesRes>('/api/article')
   }
 }
+
+console.log('apiConfig', apiConfig)
 
 export const publicApi = new PublicApi(apiConfig)

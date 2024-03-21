@@ -1,21 +1,17 @@
 import React from 'react'
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 
 import { toggleModal } from '../../redux/slices/modalsSlice'
 import { ROUTES } from '../../utils/const'
+import { useScreenSize } from '@/src/hooks/useScreenSize'
 
 interface IHeaderProps {
-  handleMobMennuButtonClick: React.MouseEventHandler<HTMLButtonElement>
+  openMobileMenu: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButtonClick }) => {
-  const dispatch = useDispatch()
-  const onOpenPopup = () => {
-    dispatch(toggleModal({ name: 'request', state: true }))
-    document.documentElement.classList.add('lock')
-  }
-
+export const Header: React.FC<IHeaderProps> = ({ openMobileMenu }) => {
   const links = [
     { link: ROUTES.CATALOG, text: 'Каталог' },
     { link: ROUTES.ABOUT, text: 'О компании' },
@@ -23,6 +19,20 @@ export const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButton
     { link: ROUTES.ARTICLES, text: 'Блог' },
     { link: ROUTES.CONTACTS, text: 'Контакты' },
   ]
+
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const isDesktop = useScreenSize(992)
+
+  const onOpenPopup = () => {
+    dispatch(toggleModal({ name: 'request', state: true }))
+    document.documentElement.classList.add('lock')
+  }
+
+  console.log('links', links)
+
+  console.log('router', router.pathname)
+
   return (
     <header className="header">
       <div className="header__top">
@@ -64,28 +74,30 @@ export const Header: React.FC<IHeaderProps> = React.memo(({ handleMobMennuButton
       <div className="header__bottom">
         <div className="container">
           <div className="header__bottom-inner rel flex aic jcsb">
-            <button className="menu-btn" aria-label="open mobile menu" onClick={handleMobMennuButtonClick}>
-              <div className="menu-btn__line"></div>
-              <div className="menu-btn__line"></div>
-              <div className="menu-btn__line"></div>
+            <button className="menu-btn" aria-label="open mobile menu" onClick={openMobileMenu}>
+              <span className="menu-btn__line" />
+              <span className="menu-btn__line" />
+              <span className="menu-btn__line" />
             </button>
 
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                {links.map(({ link, text }) => (
-                  <li className="header__nav-item" key={text + link}>
-                    <Link href={link}>
-                      <a className="header__nav-link rel after">{text}</a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            {isDesktop ? (
+              <nav className="header__nav">
+                <ul className="header__nav-list">
+                  {links.map(({ link, text }) => (
+                    <li className="header__nav-item" key={text + link}>
+                      <Link href={link}>
+                        <a className={`header__nav-link rel after ${router.pathname === link ? 'active' : ''}`}>
+                          {text}
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ) : null}
           </div>
         </div>
       </div>
     </header>
   )
-})
-
-Header.displayName = 'Header'
+}

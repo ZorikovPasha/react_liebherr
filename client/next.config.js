@@ -16,7 +16,7 @@ const nextConfig = {
       return [
         {
           source: '/database-storage/:slug',
-          destination: `${process.env.BACKEND}/database-storage/:slug`,
+          destination: `${process.env.NEXT_PUBLIC_BACKEND}/database-storage/:slug`,
         },
       ]
     }
