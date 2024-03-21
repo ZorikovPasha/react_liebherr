@@ -120,7 +120,9 @@ const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
             <div className="services__items">
               {servicesItems.map(({ text, imgSrc }) => (
                 <div className="services__item rel flex" key={text}>
-                  <Image src={imgSrc} width="100%" height="100%" alt="product" layout="responsive" />
+                  <div className="services__item-image">
+                    <Image src={imgSrc} width="100%" height="100%" alt="product" layout="responsive" />
+                  </div>
                   <Link href={ROUTES.CATALOG}>
                     <a className="services__item-link">{text}</a>
                   </Link>
