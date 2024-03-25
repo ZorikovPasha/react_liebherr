@@ -1,6 +1,16 @@
 .catalog-slider {
   margin-bottom: 30px;
 
+  .slick-next {
+    @media (width <= 1600px) {
+      right: calc((100% - 1200px) / 2);
+    }
+
+    @media #{$tablet} {
+      right: 15px;
+    }
+  }
+
   .slick-btn {
     right: 223px;
     top: -78px;
@@ -8,10 +18,26 @@
 
   .slick-prev {
     right: 291px;
+
+    @media (width <= 1600px) {
+      right: calc((100% - 1200px) / 2 + 68px);
+    }
+
+    @media #{$tablet} {
+      right: 83px;
+    }
   }
 
   .slick-dots {
     top: -40px;
     right: 223px;
+
+    @media (width <= 1600px) {
+      right: calc((100% - 1200px) / 2);
+    }
+
+    @media #{$tablet} {
+      right: 15px;
+    }
   }
 }

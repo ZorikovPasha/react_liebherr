@@ -25,15 +25,14 @@ interface IProps {
 }
 
 const Catalog: NextPage<IProps> = ({ products }) => {
-  console.log('products', products)
-
-  const query = React.useRef('')
-  const AsideRef = React.useRef(null)
-
   const breadCrumbs = [
     { id: 1, link: ROUTES.HOME, text: 'Главная' },
     { id: 2, link: ROUTES.CATALOG, text: 'Каталог техники' },
   ]
+
+  const query = React.useRef('')
+  const AsideRef = React.useRef(null)
+  const onAsideOpen = React.useRef<null | (() => void)>(null)
 
   const [activeView, setActiveView] = React.useState<'grid' | 'list'>('grid')
   const [sortBy, setSortBy] = React.useState('height_to')
@@ -41,8 +40,6 @@ const Catalog: NextPage<IProps> = ({ products }) => {
 
   const isError = useSelector(selectProductsError)
   const isLoading = useSelector(selectProductsLoading)
-
-  const onAsideOpen = React.useRef<null | (() => void)>(null)
 
   return (
     <>

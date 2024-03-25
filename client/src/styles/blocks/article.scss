@@ -41,6 +41,12 @@
     }
   }
 
+  &__img + &__img {
+    @media #{$mobile} {
+      margin-top: 20px;
+    }
+  }
+
   &__title {
     @extend %h2;
 

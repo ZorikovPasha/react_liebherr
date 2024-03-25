@@ -11,6 +11,11 @@
       left: -62%;
       width: 1218px;
       height: 318px;
+
+      @media #{$tablet} {
+        position: static;
+        display: none;
+      }
     }
 
     &::before {
@@ -21,6 +26,11 @@
       right: -59%;
       width: 1118px;
       height: 318px;
+
+      @media #{$tablet} {
+        position: static;
+        display: none;
+      }
     }
   }
 
@@ -28,6 +38,10 @@
     width: 100%;
     margin-left: 30px;
     padding-bottom: 120px;
+
+    @media #{$mobile} {
+      margin-left: 0;
+    }
   }
 
   &__controls {
@@ -39,6 +53,10 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     margin-bottom: 48px;
+
+    @media #{$tablet} {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__items.catalog-content__items--list {

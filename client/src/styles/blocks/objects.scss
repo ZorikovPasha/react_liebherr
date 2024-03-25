@@ -29,9 +29,3 @@
     padding: 12px 52px;
   }
 }
-
-@media (width <= 860px) {
-  .objects__item:nth-child(n + 9) {
-    display: none;
-  }
-}

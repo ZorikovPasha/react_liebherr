@@ -74,9 +74,3 @@
     max-width: none;
   }
 }
-
-@media (width <= 600px) {
-  .blog__items .item-blog:nth-child(n + 9) {
-    display: none;
-  }
-}

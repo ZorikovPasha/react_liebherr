@@ -10,6 +10,14 @@
     grid-template-columns: repeat(9, 114px);
     grid-template-rows: repeat(3, 1fr);
     grid-gap: 12px;
+
+    @media #{$tablet} {
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    @media #{$mobile} {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   &__item {
@@ -28,6 +36,10 @@
     text-align: center;
     margin: 17px auto 0;
     padding: 0 20px 4px;
+
+    @media #{$mobile} {
+      display: block;
+    }
 
     &::after {
       bottom: 0;

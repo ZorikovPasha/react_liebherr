@@ -7,7 +7,9 @@ import { toggleModal } from '../../redux/slices/modalsSlice'
 import { publicApi } from '../../api'
 import { REGEX } from '../../utils/const'
 
-export const QuestionsForm: React.FC = () => {
+export const QuestionsForm = () => {
+  const phoneMask = '+7(999) 999-99-99'
+
   const dispatch = useDispatch()
 
   const initialFields = {
@@ -30,8 +32,8 @@ export const QuestionsForm: React.FC = () => {
         tag: 'input',
         inputClass: 'form-contacts__input',
         type: 'tel',
-        placeholder: '+7__________',
-        mask: '+79999999999',
+        placeholder: 'Ваш телефон',
+        mask: phoneMask,
         labelClass: 'form-label',
         blockClass: 'form-contacts__block',
         errorMessage: 'Поле заполнено некорректно',
@@ -74,15 +76,15 @@ export const QuestionsForm: React.FC = () => {
       isAgree: !prev.isAgree,
     }))
 
-  const onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = ({ target: { value, name } }) =>
+  const onChange = (key: keyof typeof state.fields) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setState((prev) => ({
       ...prev,
       fields: {
         ...prev.fields,
-        [name]: {
-          ...prev.fields[name as keyof typeof state.fields],
-          value,
-          isValid: prev.fields[name as keyof typeof state.fields]?.validateFn(value),
+        [key]: {
+          ...prev.fields[key],
+          value: e.target.value,
+          isValid: prev.fields[key].validateFn(e.target.value),
         },
       },
     }))
@@ -106,6 +108,8 @@ export const QuestionsForm: React.FC = () => {
     try {
       const res = await publicApi.sendRequest(dto)
       if (!res?.success) {
+        dispatch(toggleModal({ name: 'error', state: true }))
+        document.documentElement.classList.add('lock')
         return
       }
 
@@ -138,7 +142,7 @@ export const QuestionsForm: React.FC = () => {
                   type="text"
                   placeholder="Ваше имя"
                   value={name.value}
-                  onChange={onChange}
+                  onChange={onChange('name')}
                 />
                 {showErrors && !name.isValid && <p className="questions__form-message">{name.errorMessage}</p>}
               </div>
@@ -153,7 +157,7 @@ export const QuestionsForm: React.FC = () => {
                   className={`questions__form-input ${showErrors && !phone.isValid ? 'form-input--error' : ''} `}
                   type={phone.type}
                   placeholder={phone.placeholder}
-                  onChange={onChange}
+                  onChange={onChange('phone')}
                 />
                 {showErrors && !phone.isValid && <p className="questions__form-message">{phone.errorMessage}</p>}
               </div>
@@ -165,7 +169,7 @@ export const QuestionsForm: React.FC = () => {
                   type="text"
                   placeholder="Ваша почта"
                   value={email.value}
-                  onChange={onChange}
+                  onChange={onChange('email')}
                 />
                 {showErrors && !email.isValid && <p className="questions__form-message">{email.errorMessage}</p>}
               </div>
@@ -177,7 +181,7 @@ export const QuestionsForm: React.FC = () => {
                   className={`questions__form-textarea ${showErrors && !message.isValid ? 'form-input--error' : ''} `}
                   placeholder="Оставьте ваш вопрос"
                   value={message.value}
-                  onChange={onChange}
+                  onChange={onChange('message')}
                 />
                 {showErrors && !message.isValid && <p className="questions__form-message">{message.errorMessage}</p>}
               </div>
