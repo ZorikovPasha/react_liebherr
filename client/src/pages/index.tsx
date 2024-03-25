@@ -58,8 +58,6 @@ export const servicesItems = [
 ]
 
 const Home: NextPage<IConstructionsRes> = ({ constructions }) => {
-  console.log('constructions', constructions)
-
   return (
     <>
       <Head>
@@ -213,8 +211,6 @@ export const getStaticProps: GetStaticProps<IConstructionsRes> = async () => {
       props: dto,
     }
   } catch (error) {
-    console.log('error', error)
-
     return {
       props: {
         constructions: [],

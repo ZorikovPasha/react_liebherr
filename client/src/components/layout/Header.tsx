@@ -29,10 +29,6 @@ export const Header: React.FC<IHeaderProps> = ({ openMobileMenu }) => {
     document.documentElement.classList.add('lock')
   }
 
-  console.log('links', links)
-
-  console.log('router', router.pathname)
-
   return (
     <header className="header">
       <div className="header__top">

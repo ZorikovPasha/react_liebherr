@@ -98,6 +98,11 @@
   &__text {
     font-size: 16px;
     line-height: 25px;
+
+    @media #{$mobile} {
+      font-size: 14px;
+      line-height: 16px;
+    }
   }
 
   &__text--small {
@@ -114,6 +119,15 @@
     white-space: nowrap;
     padding-right: 25px;
 
+    @media #{$mobile} {
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    &:hover::after {
+      right: -10px;
+    }
+
     &::after {
       top: 50%;
       right: 0;
@@ -122,10 +136,6 @@
       transform: translate(0%, -50%);
       background-image: url('/static/images/catalog-arr.svg');
     }
-  }
-
-  &__link:hover::after {
-    right: -10px;
   }
 
   &__link + &__link {
@@ -138,9 +148,9 @@
     width: 100%;
     max-width: 220px;
     margin: 0 auto;
-  }
 
-  &__btn--left {
-    margin-left: 0;
+    &--left {
+      margin-left: 0;
+    }
   }
 }

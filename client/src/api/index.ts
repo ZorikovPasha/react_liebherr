@@ -86,6 +86,4 @@ export class PublicApi extends Api {
   }
 }
 
-console.log('apiConfig', apiConfig)
-
 export const publicApi = new PublicApi(apiConfig)

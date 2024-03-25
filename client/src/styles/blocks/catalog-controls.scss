@@ -8,6 +8,10 @@
   &__aside-toggle {
     display: none;
     margin-right: 15px;
+
+    @media #{$mobile} {
+      display: block;
+    }
   }
 
   &__view {

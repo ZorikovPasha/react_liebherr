@@ -137,7 +137,7 @@
   }
 }
 
-@media (width <= 767px) {
+@media #{$mobile} {
   .product__info .product-list__item:not(:last-child) {
     display: none;
   }

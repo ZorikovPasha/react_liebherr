@@ -3,6 +3,10 @@
     margin-bottom: 77px;
     background-color: #e5e5e5;
 
+    @media #{$mobile} {
+      margin-bottom: 40px;
+    }
+
     &::after {
       width: 554px;
       height: 72px;
@@ -13,13 +17,13 @@
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
+
+      @media #{$tablet} {
+        position: static;
+        display: none;
+      }
     }
   }
-
-  // .top__slider,
-  // .top__slider-img {
-  //   height: 650px;
-  // }
 
   &__slider {
     height: 600px;
@@ -106,6 +110,10 @@
     max-width: 50%;
     height: 100%;
     padding-top: 103px;
+
+    @media #{$mobile} {
+      padding-bottom: 40px;
+    }
   }
 
   &__title {
@@ -147,6 +155,10 @@
   &__callme {
     padding: 10px 40px;
     border: none;
+
+    @media #{$mobile} {
+      display: block;
+    }
   }
 
   &__link {
@@ -158,5 +170,9 @@
     font-size: 17px;
     line-height: 141.69%;
     border: 1px solid $black;
+
+    @media #{$mobile} {
+      display: block;
+    }
   }
 }

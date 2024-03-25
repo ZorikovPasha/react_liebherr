@@ -7,6 +7,11 @@
   &__container {
     max-width: 1600px;
     margin: 0 auto;
+
+    &::after {
+      position: static;
+      display: none;
+    }
   }
 
   &__images {
@@ -16,11 +21,11 @@
     left: calc(100% - 891px);
     width: 891px;
 
-    @media (width <= 1200px) {
-     left: 350px; 
+    @media #{$tablet} {
+      left: 350px;
     }
 
-    @media (width <= 768px) {
+    @media #{$mobile} {
       display: none;
     }
   }
@@ -41,6 +46,10 @@
 
   &__form {
     max-width: 490px;
+
+    @media #{$mobile} {
+      padding-left: 0;
+    }
   }
 
   &__form-block + &__form-block {

@@ -34,6 +34,11 @@
     bottom: -16px;
     width: 964px;
     height: 264px;
+
+    @media #{$mobile} {
+      position: static;
+      display: none;
+    }
   }
 
   &__title {

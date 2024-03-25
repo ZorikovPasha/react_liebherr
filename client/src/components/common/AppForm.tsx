@@ -8,66 +8,32 @@ import { AppTextField } from './AppTextField'
 import { toggleLoader } from '../../redux/slices/loaderSilce'
 import { selectProduct } from '../../redux/selectors'
 
-interface fieldsType {
+interface IFormField {
+  inputClass: string
+  type: string
+  placeholder: string
+  labelClass: string
+  blockClass?: string
+  tag: string
+  value: string
+  mask?: string
+  isValid: boolean
+  errorMessage: string
+  validateFn: (s: string) => boolean
+}
+
+interface IFields {
   fields: {
-    name: {
-      inputClass: string
-      type: string
-      placeholder: string
-      labelClass: string
-      blockClass?: string
-      tag: string
-      value: string
-      mask?: string
-      isValid: boolean
-      errorMessage: string
-      validateFn: (s: string) => boolean
-    }
-    phone?: {
-      inputClass: string
-      type: string
-      placeholder: string
-      labelClass: string
-      blockClass?: string
-      tag: string
-      mask?: string
-      value: string
-      isValid: boolean
-      errorMessage: string
-      validateFn: (s: string) => boolean
-    }
-    email?: {
-      inputClass: string
-      type: string
-      placeholder: string
-      labelClass: string
-      blockClass?: string
-      tag: string
-      mask?: string
-      value: string
-      isValid: boolean
-      errorMessage: string
-      validateFn: (s: string) => boolean
-    }
-    message?: {
-      inputClass: string
-      type: string
-      placeholder: string
-      labelClass: string
-      blockClass?: string
-      tag: string
-      mask?: string
-      value: string
-      isValid: boolean
-      errorMessage: string
-      validateFn: (s: string) => boolean
-    }
+    name: IFormField
+    phone: IFormField
+    email?: IFormField
+    message?: IFormField
   }
   isAgree: boolean
 }
 
-type AppFormPropsType = {
-  fields: fieldsType
+interface IProps {
+  fields: IFields
   buttonClass: string
   buttonText: string
   formClass: string
@@ -75,14 +41,14 @@ type AppFormPropsType = {
   isOrder?: boolean
 }
 
-export const AppForm: React.FC<AppFormPropsType> = ({
+export const AppForm = ({
   fields,
   buttonClass = '',
   buttonText,
   formClass = '',
   agreeLabelClass = 'popup__label flex form-label',
   isOrder = false,
-}) => {
+}: IProps) => {
   const [showErrors, setShowErrors] = React.useState(false)
   const [state, setState] = React.useState(fields)
   const dispatch = useDispatch()
@@ -90,18 +56,25 @@ export const AppForm: React.FC<AppFormPropsType> = ({
 
   const desiredProduct = useSelector(selectProduct(Number(query.id)))
 
-  const onChange: React.ChangeEventHandler<HTMLInputElement> = ({ target: { value, name } }) =>
-    setState((prev) => ({
-      ...prev,
-      fields: {
-        ...prev.fields,
-        [name]: {
-          ...prev.fields[name as keyof typeof state.fields],
-          value,
-          isValid: prev.fields[name as keyof typeof state.fields]?.validateFn(value),
+  const onChange = (key: keyof typeof state.fields) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setState((prev) => {
+      const props = prev.fields[key]
+      if (typeof props === 'undefined') {
+        return prev
+      }
+
+      return {
+        ...prev,
+        fields: {
+          ...prev.fields,
+          [key]: {
+            ...prev.fields[key],
+            value: e.target.value,
+            isValid: props.validateFn(e.target.value),
+          },
         },
-      },
-    }))
+      }
+    })
 
   const onAgree = () =>
     setState((prev) => ({
@@ -129,18 +102,23 @@ export const AppForm: React.FC<AppFormPropsType> = ({
 
     dispatch(toggleLoader(true))
 
-    const res = await (isOrder ? publicApi.makeOrder(dto) : publicApi.sendRequest(dto))
+    try {
+      const res = await (isOrder ? publicApi.makeOrder(dto) : publicApi.sendRequest(dto))
+      dispatch(toggleLoader(false))
+      if (!res?.success) {
+        dispatch(toggleModal({ name: 'error', state: true }))
+        document.documentElement.classList.add('lock')
+        return
+      }
 
-    dispatch(toggleLoader(false))
-
-    if (res?.success) {
       isOrder
         ? dispatch(toggleModal({ name: 'order', state: false }))
         : dispatch(toggleModal({ name: 'request', state: false }))
       dispatch(toggleModal({ name: 'message', state: true }))
 
       setState(fields)
-    } else {
+    } catch (error) {
+      dispatch(toggleLoader(false))
       dispatch(toggleModal({ name: 'error', state: true }))
       document.documentElement.classList.add('lock')
     }
@@ -166,7 +144,7 @@ export const AppForm: React.FC<AppFormPropsType> = ({
             labelClass={labelClass}
             inputClass={inputClass}
             errorMessage={errorMessage}
-            handleChange={onChange}
+            handleChange={onChange(name as keyof typeof state.fields)}
           />
         ),
       )}
